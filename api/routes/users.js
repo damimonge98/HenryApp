@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Get All Users
 router.get("/", (req, res, next) => {
-  res.send("Hello Word!");
+  res.send("Hello World!");
 });
 // Get One User
 router.get("/:id", (req, res, next) => {
