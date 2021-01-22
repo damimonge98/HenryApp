@@ -10,11 +10,11 @@ mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to database.'));
+db.once('open', () => console.log('Connected to database!'));
 
 server.use(express.json());
 server.use('/users', userRoutes);
 
 server.listen(5000, () => {
-  console.log('Server Listening in http://localhost:5000');
+  console.log('Server running on port 5000...');
 });
