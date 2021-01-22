@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {/* TODO: Acá van las rutas del cliente.*/}
-        {/* <Route path="/" component={HomePage} /> */}
-        {/* <Route path="/user/profile" component={UserProfilePage} /> */}
+        {/* To do: Acá van las rutas del cliente.*/}
+        {/* <Route path='/' component={HomePage} /> */}
+        {/* <Route path='/user/profile' component={UserProfilePage} /> */}
       </Switch>
     </BrowserRouter>
   );

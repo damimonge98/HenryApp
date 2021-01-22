@@ -1,6 +1,6 @@
-import React from "react";
-import { AppWrapper } from "./styles";
-import routes from "../../routes";
+import React from 'react';
+import { AppWrapper } from './styles';
+import routes from '../../routes';
 
 function App() {
 

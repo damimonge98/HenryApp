@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AppWrapper = styled.div`
   background: red;
@@ -13,5 +13,3 @@ export const AppWrapper = styled.div`
     color: blue;
   }
 `;
-
-
