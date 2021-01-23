@@ -1,27 +1,41 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  firstName: {
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    required: true
+  },
+
+  first_name: {
     type: String,
     required: true
   },
 
-  lastName: {
+  last_name: {
     type: String,
     required: true
   },
 
-  progress: {
-    type: Array
+  password: {
+    type: String,
+    select: false, //cuando se hace GET, no trae la contraseña.
+    required: true
   },
 
-  admin: {
-    type: Boolean
+  is_super_admin: {
+    type: Boolean,
+    default: false
   },
 
-  sAdmin: {
-    type: Boolean
-  }
+  role: {
+    type: String,
+    enum: ['instructor', 'student', 'guest'],
+    default: 'guest'
+  },
+
+  avatar: String
 });
 
 module.exports = mongoose.model('User', userSchema);

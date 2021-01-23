@@ -31,6 +31,7 @@ server.use((req, res, next) => {
   next();
 });
 
+//Rutas
 server.use('/users', userRoutes);
 
 // Error catching endware.
