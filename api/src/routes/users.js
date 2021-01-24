@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // Get all Instructors
 router.get('/instructors', async (req, res) => {
   try {
@@ -22,6 +21,17 @@ router.get('/instructors', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+//Get all students
+router.get ("/students", async (req,res) => {
+  try {
+    const students = await User.find ({role: "student"})
+    res.json (students)
+  }
+  catch (error) {
+    res.status(500).json({message: error})
+  }
+})
 
 
 // Get one user
@@ -116,5 +126,8 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({ message: error.message });
   })
 });
+
+
+ 
 
 module.exports = router;
