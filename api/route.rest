@@ -1,12 +1,10 @@
 # Get all users
 GET http://localhost:5000/users
 
-
 ###
 
 # Get one user (id)
-GET http://localhost:5000/users/600ca8db9310d619fcf5779f
-
+GET http://localhost:5000/users/600ded5216e3742b1c71460a
 
 ###
 
@@ -24,7 +22,6 @@ Content-Type: application/json
   "avatar": "https://avatars.githubusercontent.com/u/38694567"
 }
 
-
 ###
 
 # Update one user (id)
@@ -35,11 +32,31 @@ Content-Type: application/json
   "first_name": "Arbusto"
 }
 
-
 ###
 
 # Delete one user (id)
-DELETE http://localhost:5000/users/600ca243fee5093b2c92cc1c
-
+DELETE http://localhost:5000/users/600dece9ff5c752a94e48756
 
 ###
+
+# Register
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "email": "augusto@gmail.com",
+  "first_name": "Augusto",
+  "last_name": "Felicenzi",
+  "password": "123"
+}
+
+###
+
+# Login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email": "augusto@gmail.com",
+    "password": "123"
+}
