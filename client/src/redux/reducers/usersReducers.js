@@ -4,7 +4,7 @@ import { GET_USERS, GET_INSTRUCTORS, GET_STUDENTS } from "../actions/usersAction
 const initialState = {
   users: [],
   intructor: [],
-  student: [],
+  student: []
  };
 
 const userReducers = (state = initialState, action) => {
