@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
 
 //Get all students
 router.get ("/students", async (req,res) => {
-  User.find({role: "student"})
   try {
     const students = await User.find ({role: "student"})
     res.json (students)
