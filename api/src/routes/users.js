@@ -12,6 +12,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+// Get all Instructors
+router.get('/instructors', async (req, res) => {
+  try {
+    const users = await User.find({ role: "instructor" });
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 // Get one user
 router.get('/:id', (req, res) => {
   const { id } = req.params;
