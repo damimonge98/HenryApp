@@ -1,4 +1,4 @@
-import { } from "../constants/usersContants";
+import { } from '../constants/usersContants';
 
 const initialState = {
   user: {}

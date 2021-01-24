@@ -5,7 +5,7 @@ const { DATABASE_URL } = process.env;
 const userRoutes = require('./src/routes/users');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const cors = require("cors");
+const cors = require('cors');
 
 const server = express();
 
@@ -19,7 +19,7 @@ db.once('open', () => {
 });
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
-server.use(express.json({ limit: "50mb" }));
+server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use(cors());

@@ -1,38 +1,45 @@
 # Get all users
 GET http://localhost:5000/users
 
-###
-
-
-# Get one user
-GET http://localhost:5000/users/600a9eafc15d9518107954d8
 
 ###
 
+# Get one user (id)
+GET http://localhost:5000/users/600ca8db9310d619fcf5779f
+
+
+###
 
 # Create one user
 POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "firstName": "Augusto",
-  "lastName": "Felicenzi"
+  "email": "augusto@gmail.com",
+  "first_name": "Augusto",
+  "last_name": "Felicenzi",
+  "password": "123",
+  "is_super_admin": false,
+  "role": "student",
+  "avatar": "https://avatars.githubusercontent.com/u/38694567"
 }
+
 
 ###
 
-
-# Update one user
-PATCH http://localhost:5000/users/600a9eafc15d9518107954d8
+# Update one user (id)
+PATCH http://localhost:5000/users/600ca243fee5093b2c92cc1c
 Content-Type: application/json
 
 {
-  "firstName": "Arbusto",
-  "lastName": "Felicenzi"
+  "first_name": "Arbusto"
 }
+
 
 ###
 
+# Delete one user (id)
+DELETE http://localhost:5000/users/600ca243fee5093b2c92cc1c
 
-# Delete one user
-DELETE http://localhost:5000/users/600a9eafc15d9518107954d8
+
+###
