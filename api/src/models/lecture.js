@@ -5,6 +5,7 @@ const lectureSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imagen: String,
   description: String,
   video: {
     type: Array,
