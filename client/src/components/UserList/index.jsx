@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const UserList = () => {
@@ -46,6 +47,12 @@ const UserList = () => {
 
     return (
         <div >
+           <Link to='/createUser'>
+              <button type="button">
+                <i class="fas fa-plus-circle me-2"></i>
+                Crear usuario
+              </button>
+            </Link>
             <h2><i class="fas fa-users" />    Usuarios</h2>
             <div>
                 <button onClick={() => roleHandler("")}>Todos los usuarios</button>

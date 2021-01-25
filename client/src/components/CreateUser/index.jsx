@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -12,7 +12,7 @@ const CreateUser = () => {
         last_name: "",
         password: "",
         is_super_admin: false,
-        role: "",
+        role: "guest",
         avatar: ""
     });
 
@@ -20,15 +20,16 @@ const CreateUser = () => {
     function handleChange(e) {
         setUser({
             ...user,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value
         });
     }
 
-    function handleSubmit(e) {
-        const { email, first_name, last_name, password, role } = user;
-        axios.post("http://localhost:5000/users", user, { email, first_name, last_name, password, role })
+    const handleSubmit = () => {
+        const { email, first_name, last_name, password, role } = user
+        console.log("entra");
+        axios.post("http://localhost:5000/users", { email, first_name, last_name, password, role })
             .then(res => {
-                console.log(res, "Aaaaa")
+                console.log(res, "Entra")
             })
     }
 
@@ -103,11 +104,11 @@ const CreateUser = () => {
                             Rol
                         </label>
                         <div>
-                            <input /* onChange={(e) => { handleChange(e); }} */ type="radio" name="role" />
+                            <input onChange={(e) => { handleChange(e) }} type="radio" name="role" value="guest" />
                             <label >Visitante</label>
-                            <input /* onChange={(e) => { handleChange(e); }}  */ type="radio" name="role" />
+                            <input onChange={(e) => { handleChange(e) }} type="radio" name="role" value="student" />
                             <label >Estudiante</label>
-                            <input /* onChange={(e) => { handleChange(e); }} */ type="radio" name="role" />
+                            <input onChange={(e) => { handleChange(e) }} type="radio" name="role" value="instructor" />
                             <label >Instructor</label>
                         </div>
                     </div>
@@ -127,7 +128,13 @@ const CreateUser = () => {
                         </button>
                     </div>
                 </div>
-            </form>
+            </form><br />
+            <Link to='/users'>
+                <button type="button">
+                    <i class="fas fa-users" />
+                  Lista de usuarios
+              </button>
+            </Link>
         </div>
     );
 }
