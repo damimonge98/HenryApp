@@ -10,29 +10,50 @@ const UserList = () => {
         rol: "",
         _id: ""
     }]);
+    const [selectedRole, setSelectedRole] = useState("");
+
+    useEffect(() => {
+        if (selectedRole === "") {
+            return getUsers();
+        } else {
+            return getUsersRole(selectedRole);
+        }
+    }, [selectedRole]);
 
     const getUsers = () => {
         axios.get("http://localhost:5000/users")
             .then(res => {
                 setAllUsers(res.data);
             })
-    }
-    useEffect(() => {
-        getUsers();
+    };
 
-    }, []);
+    const getUsersRole = (role) => {
+        axios.get(`http://localhost:5000/users/${role}`)
+            .then(res => setAllUsers(res.data));
+    };
 
 
     const handleDelete = (id) => {
         if (confirm("¿Quiere eliminar al usuario?") === true) {
             axios.delete(`http://localhost:5000/users/${id}`)
                 .then(res => getUsers());
-        }
-    }
+        };
+    };
+
+    const roleHandler = (role) => {
+        setSelectedRole(role)
+    };
 
     return (
         <div >
             <h2><i class="fas fa-users" />    Usuarios</h2>
+            <div>
+                <button onClick={() => roleHandler("")}>Todos los usuarios</button>
+                <button onClick={() => roleHandler("instructor")}>Instructores</button>
+                <button onClick={() => roleHandler("student")}>Estudiantes</button>
+                <button onClick={() => roleHandler("guest")}>Invitados</button>
+                <button onClick={() => roleHandler("banned")}>banned</button>
+            </div>
             <table >
                 <thead >
                     <tr >
