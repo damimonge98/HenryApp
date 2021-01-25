@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
-const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcryptjs');
 const morgan = require('morgan');
 const session = require('express-session');
 
@@ -26,8 +24,8 @@ db.once('open', () => {
 });
 
 // Middleware
-server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
+server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(cors({
   origin: 'http://localhost:3000', // Client
   credentials: true
