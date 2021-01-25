@@ -5,25 +5,25 @@ const initialState = {
   users: [],
   intructor: [],
   student: []
- };
+};
 
 const userReducers = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
-      return{
+      return {
         ...state,
         users: action.payload
-      }
+      };
     case GET_INSTRUCTORS:
       return {
         ...state,
         instructor: action.payload
-      }
-      case GET_STUDENTS:
-        return{
-          ...state,
-          student: action.payload
-        }
+      };
+    case GET_STUDENTS:
+      return {
+        ...state,
+        student: action.payload
+      };
     default:
       return state;
   }

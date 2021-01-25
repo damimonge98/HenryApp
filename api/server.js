@@ -1,12 +1,16 @@
 require('dotenv').config();
-const express = require('express');
+const { DATABASE_URL, SECRET } = process.env;
 const mongoose = require('mongoose');
-const { DATABASE_URL } = process.env;
-const userRoutes = require('./src/routes/users');
-const lectureRoutes = require('./src/routes/lectures');
+const express = require('express');
+const cors = require('cors');
+const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const cors = require("cors");
+const session = require('express-session');
+
+const userRoutes = require('./src/routes/users');
+const authRoutes = require('./src/routes/auth');
+const lectureRoutes = require('./src/routes/lectures');
 
 const server = express();
 
@@ -19,21 +23,35 @@ db.once('open', () => {
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
+// Middleware
+server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
-server.use(express.json({ limit: "50mb" }));
-server.use(cookieParser());
+server.use(cors({
+  origin: 'http://localhost:3000', // Client
+  credentials: true
+}));
+server.use(session({
+  secret: SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+server.use(cookieParser(SECRET));
 server.use(morgan('dev'));
-server.use(cors());
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Authorization, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
-  next();
-});
+server.use(passport.initialize());
+server.use(passport.session());
+require('./src/passportConfig')(passport);
 
-//Rutas
+// server.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Authorization, Content-Type, Accept');
+//   res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
+//   next();
+// });
+
+// Routes
 server.use('/users', userRoutes);
+server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
 
 // Error catching endware.
