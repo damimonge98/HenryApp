@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
 
   password: {
     type: String,
-    select: false, //cuando se hace GET, no trae la contraseña.
+    select: false, //cuando se hace GET, no trae la contraseña por seguridad.
     required: true
   },
 
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum: ['instructor', 'student', 'guest'],
+    enum: ['instructor', 'student', 'guest', 'banned'],
     default: 'guest'
   },
 

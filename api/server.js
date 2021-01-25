@@ -12,6 +12,7 @@ const session = require('express-session');
 
 const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth');
+const lectureRoutes = require('./src/routes/lectures');
 
 const server = express();
 
@@ -20,7 +21,7 @@ mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  db.dropDatabase();
+  /* db.dropDatabase(); */   // Con este comando se borra la db cuando se reincia el server
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
@@ -53,6 +54,7 @@ require('./src/passportConfig')(passport);
 // Routes
 server.use('/users', userRoutes);
 server.use('/auth', authRoutes);
+server.use('/lectures', lectureRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

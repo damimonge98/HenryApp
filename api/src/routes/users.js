@@ -12,6 +12,38 @@ router.get('/', async (req, res) => {
   }
 });
 
+//Get users by role
+router.get('/:role', (req, res) => {
+  const { role } = req.params;
+  User.find({ role })
+    .then(users => res.json(users))
+    .catch(
+      error => res.status(500).json({ message: error.message })
+    );
+});
+
+// Get all Instructors
+router.get('/instructors', async (req, res) => {
+  try {
+    const users = await User.find({ role: "instructor" });
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//Get all students
+router.get("/students", async (req, res) => {
+  try {
+    const students = await User.find({ role: "student" });
+    res.json(students);
+  }
+  catch (error) {
+    res.status(500).json({ message: error });
+  }
+});
+
+
 // Get one user
 router.get('/:id', (req, res) => {
   const { id } = req.params;
@@ -83,6 +115,17 @@ router.patch('/:id', (req, res) => {
     });
 });
 
+//Ban one user
+router.patch('/ban/:id', (req, res) => {
+  const { id } = req.params;
+  User.findOneAndUpdate(id, { role: 'banned' }, { new: true }).then(user => {
+    res.json(user);
+  })
+    .catch(error => {
+      res.status(400).json({ message: error.message });
+    });
+});
+
 // Delete one user
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
@@ -93,5 +136,8 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({ message: error.message });
   });
 });
+
+
+
 
 module.exports = router;
