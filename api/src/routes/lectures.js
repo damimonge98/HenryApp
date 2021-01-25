@@ -14,9 +14,10 @@ router.get('/', async (req, res) => {
 
 // Create one lecture;
 router.post('/', async (req, res) => {
-  const { title, description, video } = req.body;
+  const { title, imagen, description, video } = req.body;
   const lecture = new Lecture({
     title,
+    imagen,
     description,
     video
   });
@@ -44,7 +45,7 @@ router.patch('/:id', (req, res) => {
     update = { ...update, video };
   };
 
-  Lecture.findOneAndUpdate(id, update, { new: true }).then(lecture => {
+  Lecture.findByIdAndUpdate(id, update, { new: true }).then(lecture => {
     res.json(lecture);
   })
     .catch(error => {
