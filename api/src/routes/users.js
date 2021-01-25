@@ -45,7 +45,7 @@ router.get("/students", async (req, res) => {
 
 
 // Get one user
-router.get('/:id', (req, res) => {
+router.get('/user/:id', (req, res) => {
   const { id } = req.params;
 
   user = User.findById(id).then(user => {
@@ -81,38 +81,38 @@ router.post('/', async (req, res) => {
 });
 
 // Update one user
-router.patch('/:id', (req, res) => {
-  const { id } = req.params;
+router.patch('/user/:id', (req, res) => {
+  const { id } = req.params
   const { email, first_name, last_name, password, is_super_admin, role, avatar } = req.body;
-  let update = {};
+  let update = {}
   if (email) {
-    update = { ...update, email };
+    update = { ...update, email }
   }
   if (first_name) {
-    update = { ...update, first_name };
+    update = { ...update, first_name }
   }
   if (last_name) {
-    update = { ...update, last_name };
+    update = { ...update, last_name }
   }
   if (password) {
-    update = { ...update, password };
+    update = { ...update, password }
   }
   if (is_super_admin) {
-    update = { ...update, is_super_admin };
+    update = { ...update, is_super_admin }
   }
   if (role) {
-    update = { ...update, role };
+    update = { ...update, role }
   }
   if (avatar) {
-    update = { ...update, avatar };
+    update = { ...update, avatar }
   }
-
-  User.findOneAndUpdate(id, update, { new: true }).then(user => {
-    res.json(user);
+ 
+  User.findByIdAndUpdate(id, update, { new: true }).then(user => {
+    res.json(user)
   })
     .catch(error => {
       res.status(400).json({ message: error.message });
-    });
+    })
 });
 
 //Ban one user
