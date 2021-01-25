@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { DATABASE_URL } = process.env;
 const userRoutes = require('./src/routes/users');
+const lectrureRoutes = require('./src/routes/lectures');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const cors = require("cors");
@@ -33,6 +34,7 @@ server.use((req, res, next) => {
 
 //Rutas
 server.use('/users', userRoutes);
+server.use('/lectures', lectrureRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
