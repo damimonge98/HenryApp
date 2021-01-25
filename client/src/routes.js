@@ -1,5 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import UserList from "../src/components/UserList/index"
+import CreateUser from "../src/components/CreateUser/index"
+
+
 
 // Containers / Pages
 import HomePage from './containers/HomePage';
@@ -14,6 +18,8 @@ const routes = () => {
         <Route path='/' exact component={HomePage} />
         <Route path='/login' exact component={LoginPage} />
         <Route path='/register' exact component={RegisterPage} />
+        <Route exact path='/users' component={UserList} />
+        <Route exact path='/createUser' component={CreateUser} />
       </Switch>
     </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-import { } from "../constants/authContants";
+import { } from '../constants/authContants';
 
 const initialState = {
   auth: {}
