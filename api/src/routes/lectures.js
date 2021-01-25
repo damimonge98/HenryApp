@@ -12,6 +12,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get one lecture
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  lecture = Lecture.findById(id).then(lecture => {
+    if (!lecture) {
+      return res.status(404).json({ message: 'Cannot find lecture' });
+    } else res.json(lecture);
+  })
+    .catch(
+      error => res.status(500).json({ message: error.message })
+    );
+});
+
 // Create one lecture;
 router.post('/', async (req, res) => {
   const { title, imagen, description, video } = req.body;
