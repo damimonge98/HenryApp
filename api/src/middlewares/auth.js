@@ -2,7 +2,7 @@ const isUser = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    throw new Error('Not logued in.');
+    res.status(401).json({ msg: "You are not logued in." });
   }
 };
 
@@ -10,7 +10,7 @@ const isSuperAdmin = (req, res, next) => {
   if (req.user && req.user.isSuperAdmin) {
     next();
   } else {
-    throw new Error('Not Admin User.');
+    res.status(401).json({ msg: "You are not superadmin." });
   }
 };
 
