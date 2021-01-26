@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const userRoutes = require('./src/routes/users');
-const authRoutes = require('./src/routes/auth');
+const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
 
 const server = express();
@@ -26,28 +26,40 @@ db.once('open', () => {
 // Middleware
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(cookieParser());
+server.use(morgan('dev'));
 server.use(cors({
   origin: 'http://localhost:3000', // Client
   credentials: true
 }));
-server.use(session({
-  secret: SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
-server.use(cookieParser(SECRET));
-server.use(morgan('dev'));
-server.use(passport.initialize());
-server.use(passport.session());
-require('./src/passportConfig')(passport);
 
-// server.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Authorization, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
-//   next();
-// });
+// server.use(session({
+//   secret: SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }));
+server.use(passport.initialize());
+require("./src/passport");
+
+server.all("*", (req, res, next) => {
+  passport.authenticate("bearer", (err, user) => {
+    if (err) return next(err);
+    req.user = user;
+    if (user) {
+    }
+    return next();
+  })(req, res, next);
+});
+
+// server.use(passport.session());
+
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Authorization, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
+  next();
+});
 
 // Routes
 server.use('/users', userRoutes);
