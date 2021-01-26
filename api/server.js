@@ -44,8 +44,8 @@ require("./src/passport");
 server.all("*", (req, res, next) => {
   passport.authenticate("bearer", (err, user) => {
     if (err) return next(err);
-    req.user = user;
     if (user) {
+      req.user = user;
     }
     return next();
   })(req, res, next);

@@ -6,8 +6,8 @@ const isUser = (req, res, next) => {
   }
 };
 
-const isAdmin = (req, res, next) => {
-  if (req.user && req.user.isAdmin) {
+const isSuperAdmin = (req, res, next) => {
+  if (req.user && req.user.isSuperAdmin) {
     next();
   } else {
     throw new Error('Not Admin User.');
@@ -16,5 +16,5 @@ const isAdmin = (req, res, next) => {
 
 module.exports = {
   isUser,
-  isAdmin
+  isSuperAdmin
 };
