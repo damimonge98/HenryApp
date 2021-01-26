@@ -10,6 +10,7 @@ import OneLecture from "../src/components/OneLecture/index"
 import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
+import Lectures from './containers/Lectures'
 
 const routes = () => {
   return (
@@ -22,6 +23,7 @@ const routes = () => {
         <Route exact path='/users' component={UserList} />
         <Route exact path='/createUser' component={CreateUser} />
         <Route exact path='/oneLecture' component={OneLecture} />
+        <Route exact path='/lectures' component={Lectures} />
       </Switch>
     </BrowserRouter>
   );
