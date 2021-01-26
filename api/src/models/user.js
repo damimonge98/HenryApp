@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  first_name: {
+  firstName: {
     type: String,
     required: true
   },
 
-  last_name: {
+  lastName: {
     type: String,
     required: true
   },
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  is_super_admin: {
+  isSuperAdmin: {
     type: Boolean,
     default: false
   },
