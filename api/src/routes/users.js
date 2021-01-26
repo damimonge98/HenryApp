@@ -61,13 +61,13 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, first_name, last_name, password, is_super_admin, role, avatar } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
   const user = new User({
     email,
-    first_name,
-    last_name,
+    firstName,
+    lastName,
     password,
-    is_super_admin,
+    isSuperAdmin,
     role,
     avatar
   });
@@ -82,37 +82,37 @@ router.post('/', async (req, res) => {
 
 // Update one user
 router.patch('/user/:id', (req, res) => {
-  const { id } = req.params
-  const { email, first_name, last_name, password, is_super_admin, role, avatar } = req.body;
-  let update = {}
+  const { id } = req.params;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
+  let update = {};
   if (email) {
-    update = { ...update, email }
+    update = { ...update, email };
   }
-  if (first_name) {
-    update = { ...update, first_name }
+  if (firstName) {
+    update = { ...update, firstName };
   }
-  if (last_name) {
-    update = { ...update, last_name }
+  if (lastName) {
+    update = { ...update, lastName };
   }
   if (password) {
-    update = { ...update, password }
+    update = { ...update, password };
   }
-  if (is_super_admin) {
-    update = { ...update, is_super_admin }
+  if (isSuperAdmin) {
+    update = { ...update, isSuperAdmin };
   }
   if (role) {
-    update = { ...update, role }
+    update = { ...update, role };
   }
   if (avatar) {
-    update = { ...update, avatar }
+    update = { ...update, avatar };
   }
- 
+
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
-    res.json(user)
+    res.json(user);
   })
     .catch(error => {
       res.status(400).json({ message: error.message });
-    })
+    });
 });
 
 //Ban one user
