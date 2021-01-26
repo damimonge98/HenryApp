@@ -12,11 +12,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get one lecture
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  lecture = Lecture.findById(id).then(lecture => {
+    if (!lecture) {
+      return res.status(404).json({ message: 'Cannot find lecture' });
+    } else res.json(lecture);
+  })
+    .catch(
+      error => res.status(500).json({ message: error.message })
+    );
+});
+
 // Create one lecture;
 router.post('/', async (req, res) => {
-  const { title, description, video } = req.body;
+  const { title, imagen, description, video } = req.body;
   const lecture = new Lecture({
     title,
+    imagen,
     description,
     video
   });
@@ -44,7 +58,7 @@ router.patch('/:id', (req, res) => {
     update = { ...update, video };
   };
 
-  Lecture.findOneAndUpdate(id, update, { new: true }).then(lecture => {
+  Lecture.findByIdAndUpdate(id, update, { new: true }).then(lecture => {
     res.json(lecture);
   })
     .catch(error => {
