@@ -13,6 +13,11 @@ const lectureSchema = new mongoose.Schema({
   video: {
     type: Array,
     required: true
+  },
+  modulo: {
+    type: String,
+    enum: ["PREP", "M1", "M2", "M3", "M4"],
+    required: true
   }
 });
 

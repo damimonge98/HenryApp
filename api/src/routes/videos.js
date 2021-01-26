@@ -13,13 +13,28 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get one video
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    video = Video.findById(id).then(video => {
+        if (!video) {
+            return res.status(404).json({ message: 'Cannot find video' });
+        } else res.json(video);
+    })
+        .catch(
+            error => res.status(500).json({ message: error.message })
+        );
+});
+
 // Create one video;
 router.post('/', async (req, res) => {
-    const { title, profesor, url, duration } = req.body;
+    const { title, profesor, url, lecture, img, duration } = req.body;
     const video = new Video({
         title,
         profesor,
         url,
+        lecture,
+        img,
         duration
     });
 
@@ -34,7 +49,7 @@ router.post('/', async (req, res) => {
 // Update one Video
 router.patch('/:id', (req, res) => {
     const { id } = req.params;
-    const { title, profesor, url, duration } = req.body;
+    const { title, profesor, url, lecture, img, duration } = req.body;
     let update = {};
     if (title) {
         update = { ...update, title };
@@ -45,27 +60,33 @@ router.patch('/:id', (req, res) => {
     if (url) {
         update = { ...update, url };
     };
+    if (lecture) {
+        update = { ...update, lecture };
+    };
+    if (img) {
+        update = { ...update, img };
+    };
     if (duration) {
         update = { ...update, duration };
     };
 
-    Lecture.findOneAndUpdate(id, update, { new: true }).then(lecture => {
-        res.json(lecture);
+    Video.findByIdAndUpdate(id, update, { new: true }).then(video => {
+        res.json(video);
     })
         .catch(error => {
             res.status(400).json({ message: error.message });
         });
 });
-/*  
-// Delete one lecture
+
+// Delete one video
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    Lecture.findById(id).then(lecture => {
-        lecture.remove();
-        res.json({ message: 'Lecture has been deleted' });
+    Video.findById(id).then(video => {
+        video.remove();
+        res.json({ message: 'Video has been deleted' });
     }).catch(error => {
         res.status(500).json({ message: error.message });
     });
-});  */
+});
 
 module.exports = router;

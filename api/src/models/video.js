@@ -12,6 +12,13 @@ const videoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    lecture: {
+        type: Number,
+        required: true
+    },
+    img: {
+        type: String
+    },
     duration: {
         type: Number
     }
