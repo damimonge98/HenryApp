@@ -6,6 +6,7 @@ const moduleSchema = new Schema({
     type: String,
     required: true
   },
+  //relacion con el schema lecture
   lectures: [{
     type: Schema.Types.ObjectId,
     ref: 'Lecture'
