@@ -17,7 +17,7 @@ router.get("/me", isUser, async (req, res, next) => {
   }
 });
 
-router.post('/register', (req, res) => {
+router.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
 
   User.findOne({ email }, async (err, doc) => {
@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
         res.send({ done: true, msg: "New user registered!" });
       }
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   });
 });
@@ -52,8 +52,7 @@ router.post('/login', (req, res, next) => {
 
     try {
       const result = await User.findById(user.id);
-      console.log(result);
-      return res.json({ token: jwt.sign(JSON.stringify(result), JWT_SECRET), result });
+      return res.json({ token: jwt.sign(JSON.stringify(result), JWT_SECRET), user: result });
     } catch (error) {
       next(error);
     }
