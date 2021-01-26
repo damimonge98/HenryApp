@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const videoSchema = new mongoose.Schema({
     title: {
@@ -21,7 +22,9 @@ const videoSchema = new mongoose.Schema({
     },
     duration: {
         type: Number
-    }
+    },
+    lecture:
+        { type: Schema.Types.ObjectId, ref: 'Lecture' }
 
 });
 
