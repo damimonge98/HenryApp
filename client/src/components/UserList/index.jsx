@@ -100,12 +100,12 @@ const UserList = () => {
     }
 
     const handleIdInput = (id) => {
-        event.preventDefault()
+       /*  event.preventDefault() */
         setIdInput(id)
     }
 
-    const handleCheckInput = (e) => {
-        event.preventDefault()
+    const handleCheckInput = () => {
+   /*      event.preventDefault() */
         setInput(false)
     }
 

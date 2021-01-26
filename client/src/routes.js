@@ -22,7 +22,7 @@ const routes = () => {
         <Route path='/register' exact component={RegisterPage} />
         <Route exact path='/users' component={UserList} />
         <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/oneLecture' component={OneLecture} />
+        <Route exact path='/Redux' component={OneLecture} />
         <Route exact path='/lectures' component={Lectures} />
       </Switch>
     </BrowserRouter>

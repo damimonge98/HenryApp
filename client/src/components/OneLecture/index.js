@@ -15,6 +15,7 @@ const OneLecture = () => {
 
     return (
         <div>
+            <h3>Hola</h3>
             <div className="videoCard-grid">
                 {allVideos.map((video, index) => {
                     return (
