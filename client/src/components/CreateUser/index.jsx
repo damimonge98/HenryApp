@@ -135,6 +135,12 @@ const CreateUser = () => {
                   Lista de usuarios
               </button>
       </Link>
+      <Link to='/'>
+        <button type="button">
+          <i class="fas fa-home" />
+                  Inicio
+              </button>
+      </Link>
     </div>
   );
 };
