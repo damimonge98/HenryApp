@@ -60,4 +60,11 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/google', passport.authenticate('google', { scope: ['profile', "email"] }));
+
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  // Successful authentication, redirect to client.
+  res.redirect('http://localhost:3000');
+});
+
 module.exports = router;

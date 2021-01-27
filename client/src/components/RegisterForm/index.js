@@ -33,7 +33,9 @@ const RegisterForm = () => {
   return (
     <RegisterFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <LogoWrapper>
-        <img src={henryLogo} alt="Henry Logo" />
+        <Link to="/">
+          <img src={henryLogo} alt="Henry Logo" />
+        </Link>
       </LogoWrapper>
 
       <Input

@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
+  googleId: {
+    type: String,
+    unique: true,
+  },
+
   firstName: {
     type: String,
     required: true

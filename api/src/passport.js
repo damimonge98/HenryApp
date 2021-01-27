@@ -4,8 +4,10 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-const { JWT_SECRET } = process.env;
+
+const { JWT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -51,6 +53,29 @@ passport.use(
       });
   })
 );
+
+// Estrategia para logearse con Google.
+passport.use(new GoogleStrategy({
+  clientID: GOOGLE_CLIENT_ID,
+  clientSecret: GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/google/callback"
+},
+  async (accessToken, refreshToken, profile, cb) => {
+    try {
+      await User.findOneAndUpdate({ googleId: profile.id }, {
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value,
+        avatar: profile.photos[0].value
+      }, { upsert: true, useFindAndModify: false });
+
+      return cb(null, profile);
+    } catch (error) {
+      console.log(error);
+      return cb(error, null);
+    }
+  }
+));
 
 // Estrategia para verificar que el JWT sea valido.
 passport.use(

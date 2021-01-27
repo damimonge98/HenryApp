@@ -11,14 +11,15 @@ import {
   LogInWrapper,
   HeaderWrapper,
   MenuWrapper,
-  MenuItem
+  MenuItem,
+  LinksWrapper
 } from './styles';
 
 import henryLogo from "../../assets/images/henry.png";
 
 const Header = () => {
 
-  const { firstName, lastName } = useSelector(state => state.auth.user);
+  const { isAuth, user } = useSelector(state => state.auth);
 
   return (
     <HeaderWrapper>
@@ -32,31 +33,39 @@ const Header = () => {
         </Link>
       </LogoWrapper>
 
-      <LogInWrapper>
-        <ConsoleIcon />
-        <span>{firstName} {lastName}</span>
-        <AvatarWrapper>
+      {
+        isAuth ?
+          <LogInWrapper>
+            <ConsoleIcon />
+            <span>{user.firstName} {user.lastName}</span>
+            <AvatarWrapper>
 
-        </AvatarWrapper>
-        <MenuWrapper>
-          <MenuItem>
-            <Link to="/profile">Profile</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/course">Your course</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/payments">Payments</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/settings">Settings</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/logout">Logout</Link>
-          </MenuItem>
-        </MenuWrapper>
-      </LogInWrapper>
+            </AvatarWrapper>
 
+            <MenuWrapper>
+              <MenuItem>
+                <Link to="/profile">Profile</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/course">Your course</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/payments">Payments</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/settings">Settings</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/logout">Logout</Link>
+              </MenuItem>
+            </MenuWrapper>
+          </LogInWrapper>
+          :
+          <LinksWrapper>
+            <Link to="/login">Login</Link>/
+            <Link to="/register"> Register</Link>
+          </LinksWrapper>
+      }
     </HeaderWrapper>
   );
 };

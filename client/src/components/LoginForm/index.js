@@ -44,14 +44,16 @@ const LoginForm = () => {
   return (
     <LoginFormWrapper onSubmit={handleSubmit(onChange)}>
       <LogoWrapper>
-        <img src={henryLogo} alt="Henry Logo" />
+        <Link to="/">
+          <img src={henryLogo} alt="Henry Logo" />
+        </Link>
       </LogoWrapper>
       <LoginGithubButton>
         <GithubLogo />
         Login with Github
       </LoginGithubButton>
       <Span>or</Span>
-      <LoginGoogleButton>
+      <LoginGoogleButton href="http://localhost:5000/auth/google">
         <GoogleLogo />
         Login with Google
       </LoginGoogleButton>
