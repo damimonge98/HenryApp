@@ -81,7 +81,6 @@ const UserList = () => {
             ...user,
             [e.target.name]: e.target.value
         })
-        infoUser[e.target.name] = user[e.target.value]
     }
 
     const handleSubmit = (e) => {
@@ -202,7 +201,7 @@ const UserList = () => {
                                                                     :
 
                                                                     <Fragment>
-                                                                        <input name="email" value={infoUser.lastName} readonly></input>
+                                                                        <input name="email" value={infoUser.email} readonly></input>
                                                                         <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                                                     </Fragment>
                                                                 }
