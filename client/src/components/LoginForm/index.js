@@ -31,14 +31,14 @@ const LoginForm = () => {
       <LogoWrapper>
         <img src={henryLogo} alt="Henry Logo" />
       </LogoWrapper>
-      <LoginGithubButton>
+      <LoginGithubButton href='http://localhost:5000/auth/github'>
         <GithubLogo />
-        Login with github
+        Log in with GitHub
       </LoginGithubButton>
       <Span>OR</Span>
       <LoginGoogleButton>
         <GoogleLogo />
-        Login with google
+        Log in with Google
       </LoginGoogleButton>
       <Span>OR</Span>
       <Input type="email" name="email" label="Email" required value={loginData.email} onChange={handleChange} />

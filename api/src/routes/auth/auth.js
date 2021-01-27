@@ -60,4 +60,14 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/github',
+  passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback',
+  passport.authenticate('github'),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000');
+  });
+
 module.exports = router;
