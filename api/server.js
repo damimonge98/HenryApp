@@ -43,7 +43,7 @@ require("./src/passport");
 
 server.all("*", (req, res, next) => {
   passport.authenticate("bearer", (err, user) => {
-    if (err) return next(err);
+    if (err) return res.status(401).json({ msg: "You are not logged in." });
     if (user) {
       req.user = user;
     }

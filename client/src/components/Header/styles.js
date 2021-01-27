@@ -131,3 +131,15 @@ export const MenuItem = styled.li`
     background: #cacaca;
   }
 `;
+
+export const LinksWrapper = styled.div`
+  position: absolute;
+  right: 1rem;
+
+  & a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 0.5rem;
+  }
+`;

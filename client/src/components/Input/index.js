@@ -1,19 +1,19 @@
 import React from 'react';
 import { InputWrapper, ErrorMessage, RowLabel } from './styles';
 
-const Input = ({ label, ...otherProps }) => {
+const Input = React.forwardRef(({ label, required, ...otherProps }, ref) => {
   return (
     <InputWrapper>
       <RowLabel>
-        {label} {otherProps.required ? "*" : null}
+        {label} {required ? "*" : null}
         {
           otherProps.error &&
-          <ErrorMessage>Error</ErrorMessage>
+          <ErrorMessage>{otherProps.error}</ErrorMessage>
         }
       </RowLabel>
-      <input {...otherProps} />
+      <input ref={ref} {...otherProps} />
     </InputWrapper>
   );
-};
+});
 
 export default Input;

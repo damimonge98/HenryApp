@@ -39,6 +39,7 @@ export const LoginGithubButton = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   background: #31B256;
   color: white;
   font-weight: 500;
@@ -55,6 +56,7 @@ export const LoginGoogleButton = styled.a`
   justify-content: center;
   background: #4286F5;
   color: white;
+  text-decoration: none;
   font-weight: 500;
   font-size: 18px;
   backdrop-filter: blur(250px);
