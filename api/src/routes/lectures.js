@@ -1,6 +1,8 @@
 const express = require('express');
+const { findById } = require('../models/lecture');
 const router = express.Router();
 const Lecture = require('../models/lecture');
+const Module = require('../models/module')
 
 // Get all lectures;
 router.get('/', async (req, res) => {
@@ -25,23 +27,33 @@ router.get('/:id', (req, res) => {
     );
 });
 
-// Create one lecture;
-router.post('/', async (req, res) => {
+// Create one lecture for one module;
+router.post('/:_id', async (req, res) => {
   const { title, imagen, description, video, modulo } = req.body;
-  const lecture = new Lecture({
+  const lectureForModule = new Lecture({
     title,
     imagen,
     description,
     video,
     modulo
   });
+  const module = await Module.findById(req.params._id);
+  lectureForModule.modulo = module;
+   await lectureForModule.save();
+   module.lectures.push(lectureForModule);
+   await module.save();
+   res.send(lectureForModule);
 
-  try {
+
+
+
+  
+ /*  try {
     const newLecture = await lecture.save();
     res.json(newLecture);
   } catch (error) {
     res.status(400).json({ message: error.message });
-  }
+  } */
 });
 
 // Update one lecture
