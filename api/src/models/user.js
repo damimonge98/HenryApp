@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema({
 
   avatar: {
     type: String
+  },
+
+  githubId: {
+    type: String,
+    allowNull: true,
+    unique: true,
   }
 });
 
