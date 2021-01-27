@@ -1,13 +1,32 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
+import { logoutUser } from "../../redux/actions/authActions";
 
 import { ReactComponent as HamburgerIcon } from "../../assets/icons/hamburgerlogo.svg";
 import { ReactComponent as ConsoleIcon } from "../../assets/icons/consolelogo.svg";
+import {
+  AvatarWrapper,
+  HamburgerWrapper,
+  LogoWrapper,
+  LogInWrapper,
+  HeaderWrapper,
+  MenuWrapper,
+  MenuItem,
+  LinksWrapper
+} from './styles';
+
 import henryLogo from "../../assets/images/henry.png";
 
-import { AvatarWrapper, HamburgerWrapper, LogoWrapper, LogInWrapper, HeaderWrapper, MenuWrapper, MenuItem } from './styles';
-import { Link } from 'react-router-dom';
-
 const Header = () => {
+
+  const { isAuth, user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <HeaderWrapper>
       <HamburgerWrapper>
@@ -15,34 +34,53 @@ const Header = () => {
       </HamburgerWrapper>
 
       <LogoWrapper>
-        <img src={henryLogo} alt="Henry Logo" />
+        <Link to="/">
+          <img src={henryLogo} alt="Henry Logo" />
+        </Link>
       </LogoWrapper>
 
-      <LogInWrapper>
-        <ConsoleIcon />
-        <span>Alejo Gschwind</span>
-        <AvatarWrapper>
+      {
+        isAuth ?
+          <LogInWrapper>
+            <ConsoleIcon />
+            <span>{user.firstName} {user.lastName}</span>
+            <AvatarWrapper>
+              {
+                user.avatar &&
+                <img src={user.avatar} alt={user.firstName + " " + user.lastName} />
+              }
+            </AvatarWrapper>
 
-        </AvatarWrapper>
-        <MenuWrapper>
-          <MenuItem>
-            <Link to="/profile">Profile</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/course">Your course</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/payments">Payments</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/settings">Settings</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/logout">Logout</Link>
-          </MenuItem>
-        </MenuWrapper>
-      </LogInWrapper>
-
+            <MenuWrapper>
+              <MenuItem>
+                <Link to="/profile">Profile</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/course">Your course</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/users">User list</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/createUser">Create user</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/payments">Payments</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/settings">Settings</Link>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                Logout
+              </MenuItem>
+            </MenuWrapper>
+          </LogInWrapper>
+          :
+          <LinksWrapper>
+            <Link to="/login">Login</Link>/
+            <Link to="/register"> Register</Link>
+          </LinksWrapper>
+      }
     </HeaderWrapper>
   );
 };

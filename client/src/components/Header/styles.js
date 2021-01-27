@@ -64,13 +64,21 @@ export const LogInWrapper = styled.div`
   }
 `;
 
-export const AvatarWrapper = styled.figure`
+export const AvatarWrapper = styled.div`
   height: 40px;
   width: 40px;
   border: 2px solid #FFFF01;
   border-radius: 50%;
   background: #323232;
   margin: 0 1rem;
+
+  & img {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;
 
 export const MenuWrapper = styled.ul`
@@ -116,6 +124,8 @@ export const MenuItem = styled.li`
   height: 50px;
   background: #fafafa;
   padding: 0 1rem;
+  color: black;
+  font-weight: 500;
   border-bottom: 0.2px solid rgba(0,0,0,.20);
 
   display: flex;
@@ -129,5 +139,17 @@ export const MenuItem = styled.li`
   }
   &:hover {
     background: #cacaca;
+  }
+`;
+
+export const LinksWrapper = styled.div`
+  position: absolute;
+  right: 1rem;
+
+  & a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 0.5rem;
   }
 `;

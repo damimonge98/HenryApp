@@ -20,7 +20,7 @@ mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  /* db.dropDatabase(); */   // Con este comando se borra la db cuando se reincia el server
+ /*  db.dropDatabase();   */ // Con este comando se borra la db cuando se reincia el servidor
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
@@ -44,7 +44,7 @@ require("./src/passport");
 
 server.all("*", (req, res, next) => {
   passport.authenticate("bearer", (err, user) => {
-    if (err) return next(err);
+    if (err) return res.status(401).json({ msg: "You are not logged in." });
     if (user) {
       req.user = user;
     }

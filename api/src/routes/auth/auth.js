@@ -60,4 +60,25 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/google', passport.authenticate('google', { scope: ['profile', "email"] }));
+
+router.get('/google/callback', passport.authenticate('google'), async (req, res) => {
+  // Successful authentication, redirect to client.
+  const user = await User.findOne({ googleId: req.user.id });
+  const token = jwt.sign(JSON.stringify(user), JWT_SECRET);
+  res.redirect(`http://localhost:3000/oauth/${token}`);
+});
+
+router.get('/github',
+  passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback',
+  passport.authenticate('github'),
+  async (req, res) => {
+    // Successful authentication, redirect home.
+    const user = await User.findOne({ githubId: req.user.id });
+    const token = jwt.sign(JSON.stringify(user), JWT_SECRET);
+    res.redirect(`http://localhost:3000/oauth/${token}`);
+  });
+
 module.exports = router;
