@@ -59,6 +59,12 @@ const Header = () => {
                 <Link to="/course">Your course</Link>
               </MenuItem>
               <MenuItem>
+                <Link to="/users">User list</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/createUser">Create user</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/payments">Payments</Link>
               </MenuItem>
               <MenuItem>
