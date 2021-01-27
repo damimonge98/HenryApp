@@ -42,12 +42,7 @@ router.post('/:_id', async (req, res) => {
    await lectureForModule.save();
    module.lectures.push(lectureForModule);
    await module.save();
-   res.send(lectureForModule);
-
-
-
-
-  
+   res.send(lectureForModule);  
  /*  try {
     const newLecture = await lecture.save();
     res.json(newLecture);
