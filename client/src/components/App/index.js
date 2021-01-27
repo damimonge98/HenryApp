@@ -8,7 +8,6 @@ import Loading from '../Loading';
 import { quotes } from "../../data";
 
 function App() {
-
   const dispatch = useDispatch();
   const { loading } = useSelector(state => state.auth);
 

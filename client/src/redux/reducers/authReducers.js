@@ -25,6 +25,7 @@ const authReducers = (state = initialState, action) => {
     case REQUEST_FAILED_ACTION:
       return {
         ...state,
+        isAuth: false,
         loading: false,
         error: action.error
       };

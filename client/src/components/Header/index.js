@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import { logoutUser } from "../../redux/actions/authActions";
 
 import { ReactComponent as HamburgerIcon } from "../../assets/icons/hamburgerlogo.svg";
 import { ReactComponent as ConsoleIcon } from "../../assets/icons/consolelogo.svg";
@@ -20,6 +21,11 @@ import henryLogo from "../../assets/images/henry.png";
 const Header = () => {
 
   const { isAuth, user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <HeaderWrapper>
@@ -39,7 +45,10 @@ const Header = () => {
             <ConsoleIcon />
             <span>{user.firstName} {user.lastName}</span>
             <AvatarWrapper>
-
+              {
+                user.avatar &&
+                <img src={user.avatar} alt={user.firstName + " " + user.lastName} />
+              }
             </AvatarWrapper>
 
             <MenuWrapper>
@@ -55,8 +64,8 @@ const Header = () => {
               <MenuItem>
                 <Link to="/settings">Settings</Link>
               </MenuItem>
-              <MenuItem>
-                <Link to="/logout">Logout</Link>
+              <MenuItem onClick={handleLogout}>
+                Logout
               </MenuItem>
             </MenuWrapper>
           </LogInWrapper>
