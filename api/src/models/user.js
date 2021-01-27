@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
 
   googleId: {
     type: String,
-    unique: true,
   },
 
   firstName: {
@@ -46,8 +45,6 @@ const userSchema = new mongoose.Schema({
 
   githubId: {
     type: String,
-    allowNull: true,
-    unique: true,
   }
 });
 

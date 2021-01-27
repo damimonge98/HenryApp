@@ -64,22 +64,23 @@ export const autoLoginUser = () => {
   return async (dispatch) => {
     try {
       // dispatch(requestAction());
-
+      const token = localStorage.getItem("HJWT");
       const res = await axios.get('http://localhost:5000/auth/me', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("HJWT")}`
+          Authorization: `Bearer ${token}`
         }
       });
 
       dispatch(loginAction(res.data));
 
     } catch (error) {
+      console.log(error);
       dispatch(requestFailedAction(error));
     }
   };
 };
 
-export const logout = () => {
+export const logoutUser = () => {
   return async (dispatch) => {
     try {
       // dispatch(requestAction());

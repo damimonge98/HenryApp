@@ -72,7 +72,7 @@ const RegisterForm = () => {
       />
 
       <Input
-        type="text"
+        type="password"
         name="password"
         label="Password"
         required
@@ -83,7 +83,7 @@ const RegisterForm = () => {
       />
 
       <Input
-        type="text"
+        type="password"
         name="repassword"
         label="Confirm Password"
         required
