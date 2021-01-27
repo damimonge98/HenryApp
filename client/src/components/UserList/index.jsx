@@ -120,6 +120,12 @@ const UserList = () => {
                   Crear usuario
               </button>
             </Link>
+            <Link to='/'>
+                <button type="button">
+                    <i class="fas fa-home" />
+                  Inicio
+              </button>
+            </Link>
             <br />
             <h2><i class="fas fa-users" />    Usuarios</h2>
             <div>
@@ -149,61 +155,61 @@ const UserList = () => {
                                     <td>{email}</td>
                                     <td>{role}</td>
                                     <td >
-                                        <button onClick={() => { getUserHandler(_id)}}> <a href="#openModal"><i class="fas fa-user-edit" /></a></button>
+                                        <button onClick={() => { getUserHandler(_id) }}> <a href="#openModal"><i class="fas fa-user-edit" /></a></button>
                                         {modalState === true ?
 
                                             <Fragment>
                                                 <div id="openModal" title="close" class="modalDialog">
-                                                    <div><a href="#close" onClick={() => { ()=>{setModalState(false)}; setInput(false) }} class="close">X</a>
+                                                    <div><a href="#close" onClick={() => { () => { setModalState(false) }; setInput(false) }} class="close">X</a>
                                                         <h2>Editar Usuario</h2>
                                                         <form>
                                                             <p>
-                                                                Nombre  { input === true && idInput === 1? 
-                                                                  <Fragment>
-                                                                  <input onChange={onChangeHandler} name="firstName"  value={user.name} readonly></input>
-                                                                  <button onClick = {handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
-                                                                  </Fragment>
-                                                                  :
+                                                                Nombre  {input === true && idInput === 1 ?
+                                                                    <Fragment>
+                                                                        <input onChange={onChangeHandler} name="firstName" value={user.name} readonly></input>
+                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    </Fragment>
+                                                                    :
 
-                                                                <Fragment>
-                                                                <input name="firstName"  value={infoUser.firstName} readonly></input>
-                                                                <button onClick = {()=> {handleInput(); handleIdInput(1)}}><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                                </Fragment>
+                                                                    <Fragment>
+                                                                        <input name="firstName" value={infoUser.firstName} readonly></input>
+                                                                        <button onClick={() => { handleInput(); handleIdInput(1) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                    </Fragment>
 
-                                                               
-                                                            }
+
+                                                                }
                                                             </p>
                                                             <p>
-                                                                Apellido  { input === true && idInput === 2? 
-                                                                <Fragment>
-                                                                  <input onChange={onChangeHandler} name="lastName"  value={user.name} readonly></input>
-                                                                  <button onClick = {handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
-                                                                  </Fragment>
-                                                                  :
+                                                                Apellido  {input === true && idInput === 2 ?
+                                                                    <Fragment>
+                                                                        <input onChange={onChangeHandler} name="lastName" value={user.name} readonly></input>
+                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    </Fragment>
+                                                                    :
 
-                                                                <Fragment>
-                                                                <input name="lastName"  value={infoUser.lastName} readonly></input>
-                                                                <button onClick = {()=> {handleInput(); handleIdInput(2)}}><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                                </Fragment>
-                                                            }
+                                                                    <Fragment>
+                                                                        <input name="lastName" value={infoUser.lastName} readonly></input>
+                                                                        <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                    </Fragment>
+                                                                }
                                                             </p>
                                                             <p>
-                                                                Email { input === true && idInput === 3?
-                                                               <Fragment>
-                                                               <input onChange={onChangeHandler} name="email"  value={user.name} readonly></input>
-                                                               <button onClick = {handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
-                                                               </Fragment>
-                                                               :
+                                                                Email {input === true && idInput === 3 ?
+                                                                    <Fragment>
+                                                                        <input onChange={onChangeHandler} name="email" value={user.name} readonly></input>
+                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    </Fragment>
+                                                                    :
 
-                                                             <Fragment>
-                                                             <input name="email"  value={infoUser.lastName} readonly></input>
-                                                             <button onClick = {()=> {handleInput(); handleIdInput(2)}}><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                             </Fragment>
-                                                            } 
+                                                                    <Fragment>
+                                                                        <input name="email" value={infoUser.lastName} readonly></input>
+                                                                        <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                    </Fragment>
+                                                                }
                                                             </p>
                                                             <p>
-                                                                Rol  
-                                                                <select onChange ={onChangeHandler} name="role">
+                                                                Rol
+                                                                <select onChange={onChangeHandler} name="role">
                                                                     <option value={infoUser.role} selected>{infoUser.role}</option>
                                                                     <option value={filterRoleArray[0]}>{filterRoleArray[0]}</option>
                                                                     <option value={filterRoleArray[1]}>{filterRoleArray[1]}</option>
