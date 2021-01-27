@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from "../../yup";
@@ -8,29 +9,25 @@ import Input from '../Input';
 import { RegisterFormWrapper, RegisterButton, SpanLink, LogoWrapper, UserLogo } from './styles';
 import henryLogo from "../../assets/images/henry.png";
 
+import { registerUser } from "../../redux/actions/authActions";
+
 const RegisterForm = () => {
 
-  const { register, handleSubmit, watch, errors, trigger } = useForm({
+  const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(registerSchema)
   });
 
-  // const [registerData, setRegisterData] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  // });
+  const { isAuth } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   setRegisterData({
-  //     ...registerData,
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
+  useEffect(() => {
+    if (isAuth) history.push("/");
+  }, [isAuth]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(registerUser(data));
+    history.push("/login");
   };
 
   return (
@@ -44,6 +41,7 @@ const RegisterForm = () => {
         name="firstName"
         label="First Name"
         required
+        autocomplete="off"
         ref={register}
         onChange={() => trigger("firstName")}
         error={errors.firstName?.message}
@@ -54,6 +52,7 @@ const RegisterForm = () => {
         name="lastName"
         label="Last Name"
         required
+        autocomplete="off"
         ref={register}
         onChange={() => trigger("lastName")}
         error={errors.lastName?.message}
@@ -64,6 +63,7 @@ const RegisterForm = () => {
         name="email"
         label="Email"
         required
+        autocomplete="off"
         ref={register}
         onChange={() => trigger("email")}
         error={errors.email?.message}
@@ -74,6 +74,7 @@ const RegisterForm = () => {
         name="password"
         label="Password"
         required
+        autocomplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.password?.message}
@@ -84,6 +85,7 @@ const RegisterForm = () => {
         name="repassword"
         label="Confirm Password"
         required
+        autocomplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.repassword?.message}

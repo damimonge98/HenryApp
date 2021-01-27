@@ -1,48 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from "../../yup";
+import { loginUser } from "../../redux/actions/authActions";
 
-import { LoginFormWrapper, LoginGithubButton, LoginGoogleButton, LoginButton, Span, SpanLink, GithubLogo, GoogleLogo, UserLogo } from './styles';
 import Input from '../Input';
+import {
+  LoginFormWrapper,
+  LoginGithubButton,
+  LoginGoogleButton,
+  LoginButton,
+  Span,
+  SpanLink,
+  GithubLogo,
+  GoogleLogo,
+  LogoWrapper,
+  UserLogo
+} from './styles';
 
 import henryLogo from "../../assets/images/henry.png";
-import { LogoWrapper } from './styles';
-import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
 
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
+  const { register, handleSubmit, watch, errors, trigger } = useForm({
+    resolver: yupResolver(loginSchema)
   });
 
-  const handleChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const { isAuth } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(loginData);
+  useEffect(() => {
+    if (isAuth) history.push('/');
+  }, [isAuth]);
+
+  const onChange = (data) => {
+    dispatch(loginUser(data));
+    history.push("/");
   };
 
   return (
-    <LoginFormWrapper onSubmit={handleSubmit}>
+    <LoginFormWrapper onSubmit={handleSubmit(onChange)}>
       <LogoWrapper>
         <img src={henryLogo} alt="Henry Logo" />
       </LogoWrapper>
       <LoginGithubButton>
         <GithubLogo />
-        Login with github
+        Login with Github
       </LoginGithubButton>
-      <Span>OR</Span>
+      <Span>or</Span>
       <LoginGoogleButton>
         <GoogleLogo />
-        Login with google
+        Login with Google
       </LoginGoogleButton>
-      <Span>OR</Span>
-      <Input type="email" name="email" label="Email" required value={loginData.email} onChange={handleChange} />
-      <Input type="password" name="password" label="Password" required value={loginData.password} onChange={handleChange} />
+      <Span>or</Span>
+
+      <Input
+        type="email"
+        name="email"
+        label="Email"
+        autocomplete="off"
+        required
+        onChange={() => trigger("email")}
+        ref={register}
+        error={errors.email?.message}
+      />
+
+      <Input
+        type="password"
+        name="password"
+        label="Password"
+        autocomplete="off"
+        required
+        onChange={() => trigger("password")}
+        ref={register}
+        error={errors.password?.message}
+      />
+
       <LoginButton>
         <UserLogo />
         Login with email

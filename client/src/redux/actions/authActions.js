@@ -29,10 +29,10 @@ const logoutAction = () => ({
   type: LOGOUT_ACTION
 });
 
-export const register = (registerData) => {
-  async (dispatch) => {
+export const registerUser = (registerData) => {
+  return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      // dispatch(requestAction());
 
       await axios.post('http://localhost:5000/auth/register', { ...registerData });
 
@@ -44,10 +44,10 @@ export const register = (registerData) => {
   };
 };
 
-export const login = ({ email, password }) => {
-  async (dispatch) => {
+export const loginUser = ({ email, password }) => {
+  return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      // dispatch(requestAction());
 
       const res = await axios.post('http://localhost:5000/auth/login', { email, password });
       localStorage.setItem("HJWT", res.data.token);
@@ -60,10 +60,10 @@ export const login = ({ email, password }) => {
   };
 };
 
-export const autoLogin = () => {
-  async (dispatch) => {
+export const autoLoginUser = () => {
+  return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      // dispatch(requestAction());
 
       const res = await axios.get('http://localhost:5000/auth/me', {
         headers: {
@@ -80,7 +80,7 @@ export const autoLogin = () => {
 };
 
 export const logout = () => {
-  async (dispatch) => {
+  return async (dispatch) => {
     try {
       // dispatch(requestAction());
 
