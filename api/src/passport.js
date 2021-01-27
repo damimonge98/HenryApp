@@ -5,9 +5,10 @@ const jwt = require("jsonwebtoken");
 const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github2').Strategy;
 
+const { JWT_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 
-const { JWT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -87,6 +88,26 @@ passport.use(
     });
   })
 );
+
+passport.use(new GitHubStrategy({
+  clientID: GITHUB_CLIENT_ID,
+  clientSecret: GITHUB_CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/github/callback",
+  scope: ['user:email']
+},
+  async (accessToken, refreshToken, profile, done) => {
+    try {
+      await User.findOneAndUpdate({ githubId: profile.id }, {
+        firstName: profile.username,
+        email: profile.emails[0].value,
+        avatar: profile.photos[0].value
+      }, { upsert: true, useFindAndModify: false });
+      return done(null, profile);
+    } catch (err) {
+      return done(err, null);
+    }
+  }
+));
 
 passport.serializeUser((user, cb) => { // Creates cookie
   cb(null, user.id); // with user.id inside

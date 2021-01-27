@@ -67,4 +67,14 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   res.redirect('http://localhost:3000');
 });
 
+router.get('/github',
+  passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback',
+  passport.authenticate('github'),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000');
+  });
+
 module.exports = router;

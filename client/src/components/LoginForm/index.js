@@ -48,14 +48,14 @@ const LoginForm = () => {
           <img src={henryLogo} alt="Henry Logo" />
         </Link>
       </LogoWrapper>
-      <LoginGithubButton>
+      <LoginGithubButton href='http://localhost:5000/auth/github'>
         <GithubLogo />
-        Login with Github
+        Log in with GitHub
       </LoginGithubButton>
       <Span>or</Span>
       <LoginGoogleButton href="http://localhost:5000/auth/google">
         <GoogleLogo />
-        Login with Google
+        Log in with Google
       </LoginGoogleButton>
       <Span>or</Span>
 
