@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import UserList from "../src/components/UserList/index";
-import CreateUser from "../src/components/CreateUser/index";
+import UserList from "../src/components/UserList/index"
+import CreateUser from "../src/components/CreateUser/index"
+import OneLecture from "../src/components/OneLecture/index"
 
 
 
@@ -10,6 +11,7 @@ import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import GooglePage from './containers/GooglePage';
+import Lectures from './containers/Lectures'
 
 const routes = () => {
   return (
@@ -22,6 +24,8 @@ const routes = () => {
         <Route path='/register' exact component={RegisterPage} />
         <Route exact path='/users' component={UserList} />
         <Route exact path='/createUser' component={CreateUser} />
+        <Route exact path='/Redux' component={OneLecture} />
+        <Route exact path='/lectures' component={Lectures} />
       </Switch>
     </BrowserRouter>
   );
