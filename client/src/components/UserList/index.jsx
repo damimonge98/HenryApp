@@ -23,12 +23,12 @@ const UserList = () => {
     //Estado necesario para editar el usuario
     const [userId, setUserId] = useState(null)
     const [user, setUserInfo] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        role: ""
+        firstName: infoUser.firstName,
+        lastName: infoUser.lastName,
+        email: infoUser.email,
+        role: infoUser.role
     })
-
+    
     const [modalState, setModalState] = useState(false)
     const [input, setInput] = useState(false)
     const [idInput, setIdInput] = useState(null)
@@ -43,7 +43,7 @@ const UserList = () => {
             return getUsersRole(selectedRole);
         }
     }, [selectedRole]);
-
+    
     const getUsers = () => {
         axios.get("http://localhost:5000/users")
             .then(res => {
@@ -81,6 +81,7 @@ const UserList = () => {
             ...user,
             [e.target.name]: e.target.value
         })
+        infoUser[e.target.name] = e.target.value
     }
 
     const handleSubmit = (e) => {
@@ -96,6 +97,7 @@ const UserList = () => {
 
     const handleInput = (e) => {
         setInput(!input)
+        
     }
 
     const handleIdInput = (id) => {
@@ -106,10 +108,15 @@ const UserList = () => {
     const handleCheckInput = () => {
    /*      event.preventDefault() */
         setInput(false)
+
     }
 
     const roleArray = ["student", "guest", "instructor"]
     const filterRoleArray = roleArray.filter(e => e !== infoUser.role)
+    console.log("user", user)
+    console.log ("infoUser", infoUser)
+
+
 
     return (
         <div >
@@ -162,7 +169,7 @@ const UserList = () => {
                                                     <div><a href="#close" onClick={() => { () => { setModalState(false) }; setInput(false) }} class="close">X</a>
                                                         <h2>Editar Usuario</h2>
                                                         <form>
-                                                            <p>
+                                                            <label>
                                                                 Nombre  {input === true && idInput === 1 ?
                                                                     <Fragment>
                                                                         <input onChange={onChangeHandler} name="firstName" value={user.name} readonly></input>
@@ -177,7 +184,7 @@ const UserList = () => {
 
 
                                                                 }
-                                                            </p>
+                                                            </label>
                                                             <p>
                                                                 Apellido  {input === true && idInput === 2 ?
                                                                     <Fragment>
@@ -202,17 +209,34 @@ const UserList = () => {
 
                                                                     <Fragment>
                                                                         <input name="email" value={infoUser.email} readonly></input>
-                                                                        <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <button onClick={() => { handleInput(); handleIdInput(3) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
                                                                     </Fragment>
                                                                 }
                                                             </p>
                                                             <p>
                                                                 Rol
-                                                                <select onChange={onChangeHandler} name="role">
-                                                                    <option value={infoUser.role} selected>{infoUser.role}</option>
-                                                                    <option value={filterRoleArray[0]}>{filterRoleArray[0]}</option>
-                                                                    <option value={filterRoleArray[1]}>{filterRoleArray[1]}</option>
-                                                                </select>
+                                                                <div>
+                                                                    {infoUser.role === "guest"? 
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="guest" checked/>
+                                                                    :
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="guest" />
+                                                                    }
+                                                                    <label >Visitante</label>
+                                                                    
+                                                                    {infoUser.role === "student"? 
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="student" checked/>
+                                                                    :
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="student" />
+                                                                    }
+                                                                    <label >Estudiante</label>
+
+                                                                    {infoUser.role === "instructor"? 
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="instructor" checked/>
+                                                                    :
+                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="instructor" />
+                                                                    }
+                                                                    <label >Instructor</label>
+                                                                </div>
                                                             </p>
                                                             <button type="submit" onClick={handleSubmit}>GUARDAR CAMBIOS</button>
                                                         </form>
