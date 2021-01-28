@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Video = require('../models/video');
+const Lecture = require('../models/lecture');
 
 
 // Get all videos;
@@ -27,23 +28,30 @@ router.get('/:id', (req, res) => {
 });
 
 // Create one video;
-router.post('/', async (req, res) => {
-    const { title, profesor, url, lecture, img, duration } = req.body;
-    const video = new Video({
+router.post('/:_id', async (req, res) => {
+    const { title, profesor, url, img, duration } = req.body;
+    const { _id } = req.params;
+    const videoLecture = new Video({
         title,
         profesor,
         url,
-        lecture,
         img,
-        duration
-    });
-
+        duration,
+      });
+    const oneLecture = await Lecture.findById(_id);
+    videoLecture.lecture = oneLecture;
+    await videoLecture.save();
+    oneLecture.video = videoLecture;
+    await oneLecture.save();
+    res.send(videoLecture);
+    /* lecture.video = oneLecture;
     try {
+        oneLecture.video
         const newVideo = await video.save();
         res.json(newVideo);
     } catch (error) {
         res.status(400).json({ message: error.message });
-    }
+    } */
 });
 
 // Update one Video

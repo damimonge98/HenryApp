@@ -13,7 +13,6 @@ const moduleSchema = new Schema({
   }],
   description: {
     type: String,
-    required: true
   }
 });
 
