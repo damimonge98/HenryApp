@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ModuleCard from "../../components/ModuleCard/index";
 import './styles.css';
 
-export default function Modulos() {
-    const [modulos, setModulos] = useState([]);
+const Modules = () => {
+    const [modulos, setModulos] = useState([{}]);
 
     useEffect(() => {
         getModulos()
@@ -12,19 +11,20 @@ export default function Modulos() {
 
     const getModulos = () => {
         axios.get("http://localhost:5000/modules")
-            .then((modulos) => {
-                setModulos(modulos.data)
+            .then((modulo) => {
+                setModulos(modulo.data);
+                console.log(modulos)
             });
     };
     return (
         <div>
-            <h2>Henry Prep Course</h2>
+            <h2>Nombre del modulo</h2>
             <br />
-            <div className="modules">
-                {modulos.map((modulo, index) => {
+            <div className="lecture-grid">
+                {modulos.map((module, index) => {
                     return (
                         <div key={index}>
-                            <ModuleCard modulo={modulo} />
+                            <ModuleCard module={module} />
                         </div>
                     );
                 })}
@@ -32,3 +32,6 @@ export default function Modulos() {
         </div>
     )
 };
+export default Modules;
+
+

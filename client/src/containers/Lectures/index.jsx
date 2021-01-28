@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CardLecture from "../../components/CardLecture/index";
 import './estilos.css'
 
 const Lectures = () => {
