@@ -11,6 +11,7 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
+import Modulos from '../src/containers/Modulos/index'
 
 const routes = () => {
   return (
