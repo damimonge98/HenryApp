@@ -1,10 +1,13 @@
-import React from "react";
+import React from 'react';
 import { Link } from "react-router-dom";
 import './styles.css';
 
-const ModuleCard = ({ module }) => {
-    let { title, 
-        description, 
+
+
+function ModuleCard({ module }) {
+    let { _id,
+        description,
+        title,
         lectures } = module;
 
     return (
@@ -29,7 +32,4 @@ const ModuleCard = ({ module }) => {
 };
 
 export default ModuleCard;
-
-
-
 

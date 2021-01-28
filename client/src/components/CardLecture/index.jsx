@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import './estilos.css'
 
 const CardLecture = ({ lecture }) => {
-    let { title, description, video, modulo, imagen } = lecture;
+    let { _id,
+        description,
+        imagen,
+        modulo,
+        title,
+        video, } = lecture;
 
     return (
         <Link to={`/${title}`}>
