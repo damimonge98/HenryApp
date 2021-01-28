@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import './styles.css';
 
 const ModuleCard = ({ module }) => {
-    let { title, 
-        description, 
-        lectures } = module;
+    let { title,
+        description,
+        lectures,
+        _id } = module;
 
     return (
-        <Link to={`/${title}`}>
+        <Link to={`/${_id}`}>
             <div className="modCard">
                 <div className="info">
                     <div>

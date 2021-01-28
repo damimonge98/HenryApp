@@ -22,7 +22,7 @@ const Lectures = () => {
             .then(res => {
                 console.log(res.data)
                 setLectures(res.data)
-                console.log(lectures, "lectures")
+                console.log(res.data.modulo)
             });
     };
     return (

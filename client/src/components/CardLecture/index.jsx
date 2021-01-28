@@ -10,8 +10,9 @@ const CardLecture = ({ lecture }) => {
         title,
         video, } = lecture;
 
+
     return (
-        <Link to={`/${title}`}>
+        <Link to={`/${modulo}`}>
             <div className="card">
                 <div className="center">
                     <img src={imagen} alt="Henry app" />
