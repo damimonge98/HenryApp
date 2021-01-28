@@ -40,8 +40,6 @@ router.post('/:_id', async (req, res) => {
   await lectureForModule.save();
   module.lectures.push(lectureForModule);
   await module.save();
-  module.lectures.pop();
-  await module.save;
   res.send(lectureForModule);
   /*  try {
      const newLecture = await lecture.save();
@@ -84,7 +82,9 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   Lecture.findById(id).then(lecture => {
-    lecture.remove();
+    const modulo = Module.find()
+    console.log(modulo.title, 'aaaaa')
+    /*  lecture.remove(); */
     res.json({ message: 'Lecture has been deleted' });
   }).catch(error => {
     res.status(500).json({ message: error.message });
