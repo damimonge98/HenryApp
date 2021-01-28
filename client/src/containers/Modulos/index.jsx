@@ -24,7 +24,7 @@ export default function Modulos() {
                 {modulos.map((modulo, index) => {
                     return (
                         <div key={index}>
-                            <ModuleCard modulo={modulo} />
+                            <ModuleCard module={modulo} />
                         </div>
                     );
                 })}
