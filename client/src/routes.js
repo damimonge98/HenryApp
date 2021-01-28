@@ -10,8 +10,6 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
-import CreateUser from "../src/components/CreateUser/index"
-import OneLecture from "../src/components/OneLecture/index"
 import Modulos from "../src/containers/Modulos/index"
 
 const routes = () => {

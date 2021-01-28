@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ModuleCard from '../../components/ModuleCard/index'
+import ModuleCard from '../../components/ModuleCard/index.jsx'
 import './styles.css';
 
 const Modules = () => {
