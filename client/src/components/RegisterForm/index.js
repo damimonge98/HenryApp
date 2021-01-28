@@ -1,45 +1,98 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { registerSchema } from "../../yup";
 
-import { RegisterFormWrapper, RegisterButton, SpanLink } from './styles';
 import Input from '../Input';
-
+import { RegisterFormWrapper, RegisterButton, SpanLink, LogoWrapper, UserLogo } from './styles';
 import henryLogo from "../../assets/images/henry.png";
-import { LogoWrapper } from './styles';
-import { Link } from 'react-router-dom';
-import { UserLogo } from '../LoginForm/styles';
+
+import { registerUser } from "../../redux/actions/authActions";
 
 const RegisterForm = () => {
 
-  const [registerData, setRegisterData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+  const { register, handleSubmit, errors, trigger } = useForm({
+    resolver: yupResolver(registerSchema)
   });
 
-  const handleChange = (e) => {
-    setRegisterData({
-      ...registerData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const { isAuth } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(registerData);
+  useEffect(() => {
+    if (isAuth) history.push("/");
+  }, [isAuth]);
+
+  const onSubmit = (data) => {
+    dispatch(registerUser(data));
+    history.push("/login");
   };
 
   return (
-    <RegisterFormWrapper onSubmit={handleSubmit}>
+    <RegisterFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <LogoWrapper>
-        <img src={henryLogo} alt="Henry Logo" />
+        <Link to="/">
+          <img src={henryLogo} alt="Henry Logo" />
+        </Link>
       </LogoWrapper>
 
-      <Input type="text" name="firstName" label="First Name" required value={registerData.firstName} onChange={handleChange} />
-      <Input type="text" name="lastName" label="Last Name" required value={registerData.lastName} onChange={handleChange} />
-      <Input type="email" name="email" label="Email" required value={registerData.email} onChange={handleChange} />
-      <Input type="password" name="password" label="Password" required value={registerData.password} onChange={handleChange} />
-      <Input type="password" name="repassword" label="Confirm Password" required value={registerData.repassword} onChange={handleChange} />
+      <Input
+        type="text"
+        name="firstName"
+        label="First Name"
+        required
+        autocomplete="off"
+        ref={register}
+        onChange={() => trigger("firstName")}
+        error={errors.firstName?.message}
+      />
+
+      <Input
+        type="text"
+        name="lastName"
+        label="Last Name"
+        required
+        autocomplete="off"
+        ref={register}
+        onChange={() => trigger("lastName")}
+        error={errors.lastName?.message}
+      />
+
+      <Input
+        type="text"
+        name="email"
+        label="Email"
+        required
+        autocomplete="off"
+        ref={register}
+        onChange={() => trigger("email")}
+        error={errors.email?.message}
+      />
+
+      <Input
+        type="password"
+        name="password"
+        label="Password"
+        required
+        autocomplete="off"
+        ref={register}
+        onChange={() => trigger(["password", "repassword"])}
+        error={errors.password?.message}
+      />
+
+      <Input
+        type="password"
+        name="repassword"
+        label="Confirm Password"
+        required
+        autocomplete="off"
+        ref={register}
+        onChange={() => trigger(["password", "repassword"])}
+        error={errors.repassword?.message}
+      />
+
       <RegisterButton>
         <UserLogo />
         Register

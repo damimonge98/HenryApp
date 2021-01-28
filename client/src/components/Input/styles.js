@@ -20,7 +20,7 @@ export const InputWrapper = styled.label`
 `;
 
 export const ErrorMessage = styled.span`
-  font-size: 14px;
+  font-size: 10px;
   color: #FF0000;
 `;
 

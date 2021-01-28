@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
+  googleId: {
+    type: String,
+  },
+
   firstName: {
     type: String,
     required: true
@@ -37,6 +41,10 @@ const userSchema = new mongoose.Schema({
 
   avatar: {
     type: String
+  },
+
+  githubId: {
+    type: String,
   }
 });
 
