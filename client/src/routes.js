@@ -13,6 +13,7 @@ import RegisterPage from './containers/RegisterPage';
 import GooglePage from './containers/GooglePage';
 import Lectures from './containers/Lectures'
 
+
 const routes = () => {
   return (
     <BrowserRouter>
@@ -26,6 +27,7 @@ const routes = () => {
         <Route exact path='/createUser' component={CreateUser} />
         <Route exact path='/Redux' component={OneLecture} />
         <Route exact path='/lectures' component={Lectures} />
+        
       </Switch>
     </BrowserRouter>
   );
