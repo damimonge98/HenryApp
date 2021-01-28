@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import './styles.css';
 
-
-
-export default function ModuleCard ({ moduleCard }) {
-  let { title, description, lectures } = moduleCard;
+export default function ModuleCard ({ module }) {
+  let { 
+      _id,
+      title, 
+      description, 
+      lectures } = module;
 
   return (
       <Link to={`/${title}`}>
