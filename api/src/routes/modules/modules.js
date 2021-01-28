@@ -32,10 +32,9 @@ router.get('/:id', (req, res) => {
 
 //--------------------Create one module--------------------
 router.post('/', async (req, res) => {
-  const { title, description, lectures } = req.body;
+  const { title, description } = req.body;
   const modulo = new Module({
     title,
-    lectures,
     description
   });
 
