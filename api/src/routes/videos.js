@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 
 // Create one video;
 router.post('/:_id', async (req, res) => {
-    const { title, profesor, url, lecture, img, duration } = req.body;
+    const { title, profesor, url, img, duration } = req.body;
     const { _id } = req.params;
     const videoLecture = new Video({
         title,
@@ -37,8 +37,7 @@ router.post('/:_id', async (req, res) => {
         url,
         img,
         duration,
-        lecture
-    });
+      });
     const oneLecture = await Lecture.findById(_id);
     videoLecture.lecture = oneLecture;
     await videoLecture.save();

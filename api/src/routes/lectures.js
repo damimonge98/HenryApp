@@ -29,26 +29,26 @@ router.get('/:id', (req, res) => {
 
 // Create one lecture for one module;
 router.post('/:_id', async (req, res) => {
-  const { title, imagen, description, video, modulo } = req.body;
+  const { title, imagen, description } = req.body;
   const lectureForModule = new Lecture({
     title,
     imagen,
-    description,
-    video,
-    modulo
+    description
   });
   const module = await Module.findById(req.params._id);
   lectureForModule.modulo = module;
-   await lectureForModule.save();
-   module.lectures.push(lectureForModule);
-   await module.save();
-   res.send(lectureForModule);  
- /*  try {
-    const newLecture = await lecture.save();
-    res.json(newLecture);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  } */
+  await lectureForModule.save();
+  module.lectures.push(lectureForModule);
+  await module.save();
+  module.lectures.pop();
+  await module.save;
+  res.send(lectureForModule);
+  /*  try {
+     const newLecture = await lecture.save();
+     res.json(newLecture);
+   } catch (error) {
+     res.status(400).json({ message: error.message });
+   } */
 });
 
 // Update one lecture
