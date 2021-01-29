@@ -1,8 +1,7 @@
 import axios from "axios";
-export const GET_INSTRUCTORS = "GET_INSTRUCTORS";
-export const GET_USERS = "GET_USERS";
-export const GET_STUDENTS = "GET_STUDENTS";
-export const GET_USER = "GET_USER";
+import {GET_INSTRUCTORS, GET_STUDENTS, 
+        GET_USER, GET_USERS,
+        UPDATE_USER} from "../constants/usersContants"
 
 export const getUsers = () => {
     return function (dispatch) {
@@ -43,13 +42,24 @@ export const getStudents = () => {
 
 export const getOneUser = (id) => {
     return function (dispatch){
-        axios.get(`http://localhost:5000/users/${id}`)
+        axios.get(`http://localhost:5000/users/user/${id}`)
         .then(res => {
             dispatch({
                 type: GET_USER,
-                payload: res
+                payload: res.data
             });
         });
     };
 };
 
+export const updateUser = (id, data) => {
+    return function (dispatch) {
+        axios.patch(`http://localhost:5000/users/user/${id}` ,data)
+        .then (res => {
+            dispatch ({
+                type: UPDATE_USER,
+                payload: res.data
+            })
+        })
+    }
+}

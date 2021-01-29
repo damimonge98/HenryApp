@@ -1,10 +1,11 @@
-import { } from "../constants/usersContants";
-import { GET_USERS, GET_INSTRUCTORS, GET_STUDENTS } from "../actions/usersActions";
+import { GET_USERS, GET_INSTRUCTORS, GET_STUDENTS, GET_USER, EDIT_USER, UPDATE_USER } from "../constants/usersContants";
 
 const initialState = {
   users: [],
+  user: [],
   intructor: [],
-  student: []
+  student: [],
+  editUser: []
  };
 
 const userReducers = (state = initialState, action) => {
@@ -19,11 +20,22 @@ const userReducers = (state = initialState, action) => {
         ...state,
         instructor: action.payload
       }
-      case GET_STUDENTS:
-        return{
-          ...state,
-          student: action.payload
-        }
+    case GET_STUDENTS:
+      return{
+        ...state,
+        student: action.payload
+      }
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
+    case EDIT_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
+
     default:
       return state;
   }

@@ -8,12 +8,16 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  first_name: {
+  googleId: {
+    type: String,
+  },
+
+  firstName: {
     type: String,
     required: true
   },
 
-  last_name: {
+  lastName: {
     type: String,
     required: true
   },
@@ -24,7 +28,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  is_super_admin: {
+  isSuperAdmin: {
     type: Boolean,
     default: false
   },
@@ -35,7 +39,13 @@ const userSchema = new mongoose.Schema({
     default: 'guest'
   },
 
-  avatar: String
+  avatar: {
+    type: String
+  },
+
+  githubId: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

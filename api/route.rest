@@ -3,36 +3,46 @@ GET http://localhost:5000/users
 
 ###
 
-
-# Get one user
-GET http://localhost:5000/users/600a9eafc15d9518107954d8
+# Get one user (id)
+GET http://localhost:5000/users/600f05d1ab85f5333c922784
 
 ###
 
-
-# Create one user
-POST http://localhost:5000/users
+# Update one user (id)
+PATCH http://localhost:5000/users/600eff955118332bac123f87
 Content-Type: application/json
 
 {
-  "firstName": "Augusto",
-  "lastName": "Felicenzi"
+  "first_name": "Arbusto"
 }
 
 ###
 
+# Delete one user (id)
+DELETE http://localhost:5000/users/601114d394ef521dc2cb76c0
 
-# Update one user
-PATCH http://localhost:5000/users/600a9eafc15d9518107954d8
+###
+
+# Register
+POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "Arbusto",
-  "lastName": "Felicenzi"
+  "email": "augusto@gmail.com",
+  "first_name": "Augusto",
+  "last_name": "Felicenzi",
+  "password": "123"
 }
 
 ###
 
+# Login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
 
-# Delete one user
-DELETE http://localhost:5000/users/600a9eafc15d9518107954d8
+{
+    "email": "augusto@gmail.com",
+    "password": "123"
+}
+
+###

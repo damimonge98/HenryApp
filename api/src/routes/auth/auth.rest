@@ -1,0 +1,24 @@
+# Register User
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Chusto",
+  "lastName": "Hi",
+  "password": "123456",
+  "email": "hi@gmail.com"
+}
+
+###
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "hi@gmail.com",
+  "password": "123456"
+}
+
+###
+GET http://localhost:5000/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc1N1cGVyQWRtaW4iOmZhbHNlLCJyb2xlIjoiZ3Vlc3QiLCJfaWQiOiI2MDEwNWRlZGRkYzUwNDFmZmE2NmEwNjEiLCJlbWFpbCI6ImhpQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkNodXN0byIsImxhc3ROYW1lIjoiSGkiLCJfX3YiOjB9.ija0btonkpP2ozboMszeA61-8q7RljZbs5BzODW4q_4
