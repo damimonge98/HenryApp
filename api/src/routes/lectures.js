@@ -6,8 +6,20 @@ const Module = require('../models/module')
 
 // Get all lectures;
 router.get('/', async (req, res) => {
+
   try {
     const lectures = await Lecture.find();
+    res.json(lectures);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// get all lectures of a specific module
+router.get('/module/:moduloid', async (req, res) => {
+
+  try {
+    const lectures = await Lecture.find({modulo: req.params.moduloid});
     res.json(lectures);
   } catch (error) {
     res.status(500).json({ message: error.message });
