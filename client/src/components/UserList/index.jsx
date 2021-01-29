@@ -11,7 +11,8 @@ const UserList = () => {
         lastName: "",
         email: "",
         rol: "",
-        _id: ""
+        _id: "",
+        isSuperAdmin: false
     }]);
 
 
@@ -28,7 +29,7 @@ const UserList = () => {
         email: infoUser.email,
         role: infoUser.role
     })
-    
+
     const [modalState, setModalState] = useState(false)
     const dispatch = useDispatch();
     const history = useHistory();
@@ -41,7 +42,7 @@ const UserList = () => {
             return getUsersRole(selectedRole);
         }
     }, [selectedRole]);
-    
+
     const getUsers = () => {
         axios.get("http://localhost:5000/users")
             .then(res => {
@@ -97,7 +98,7 @@ const UserList = () => {
     const filterRoleArray = roleArray.filter(e => e !== infoUser.role)
 
     console.log("user", user)
-    console.log ("infoUser", infoUser)
+    console.log("infoUser", infoUser)
 
 
 
@@ -136,71 +137,74 @@ const UserList = () => {
                 {<tbody>
                     {
                         allUsers.map((user, index) => {
-                            const { firstName, lastName, email, role, _id } = user;
-                            return (
-                                <tr key={index}>
-                                    <td >{firstName}</td>
-                                    <td>{lastName}</td>
-                                    <td>{email}</td>
-                                    <td>{role}</td>
-                                    <td >
-                                        <button onClick={() => { getUserHandler(_id) }}> <a href="#openModal"><i class="fas fa-user-edit" /></a></button>
-                                        {modalState === true ?
+                            const { firstName, lastName, email, role, _id, isSuperAdmin } = user;
+                            if (isSuperAdmin === false) {
 
-                                            <Fragment>
-                                                <div id="openModal" title="close" class="modalDialog">
-                                                    <div><a href="#close" onClick={() => { setModalState(false)}} class="close">X</a>
-                                                        <h2>Editar Usuario</h2>
-                                                        <form>
-                                                            <p>
-                                                                Nombre  
+                                return (
+                                    <tr key={index}>
+                                        <td >{firstName}</td>
+                                        <td>{lastName}</td>
+                                        <td>{email}</td>
+                                        <td>{role}</td>
+                                        <td >
+                                            <button onClick={() => { getUserHandler(_id) }}> <a href="#openModal"><i class="fas fa-user-edit" /></a></button>
+                                            {modalState === true ?
+
+                                                <Fragment>
+                                                    <div id="openModal" title="close" class="modalDialog">
+                                                        <div><a href="#close" onClick={() => { setModalState(false) }} class="close">X</a>
+                                                            <h2>Editar Usuario</h2>
+                                                            <form>
+                                                                <p>
+                                                                    Nombre
                                                                         <input onChange={onChangeHandler} name="firstName" value={infoUser.firstName}></input>
-                                                            </p>
-                                                            <p>
-                                                                Apellido  
-                                                                        <input onChange={onChangeHandler} name="lastName" value={infoUser.lastName} ></input> 
-                                                            </p>
-                                                            <p>
-                                                                Email 
+                                                                </p>
+                                                                <p>
+                                                                    Apellido
+                                                                        <input onChange={onChangeHandler} name="lastName" value={infoUser.lastName} ></input>
+                                                                </p>
+                                                                <p>
+                                                                    Email
                                                                         <input onChange={onChangeHandler} name="email" value={infoUser.email} ></input>
-                                                            </p>
-                                                            <p>
-                                                                Rol
+                                                                </p>
+                                                                <p>
+                                                                    Rol
                                                                 <div>
-                                                                    {infoUser.role === "guest"? 
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="guest" checked/>
-                                                                    :
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="guest" />
-                                                                    }
-                                                                    <label >Visitante</label>
-                                                                    
-                                                                    {infoUser.role === "student"? 
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="student" checked/>
-                                                                    :
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="student" />
-                                                                    }
-                                                                    <label >Estudiante</label>
+                                                                        {infoUser.role === "guest" ?
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="guest" checked />
+                                                                            :
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="guest" />
+                                                                        }
+                                                                        <label >Visitante</label>
 
-                                                                    {infoUser.role === "instructor"? 
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="instructor" checked/>
-                                                                    :
-                                                                    <input onChange = {onChangeHandler} type="radio" name="role" value="instructor" />
-                                                                    }
-                                                                    <label >Instructor</label>
-                                                                </div>
-                                                            </p>
-                                                            <button type="submit" onClick={handleSubmit}>GUARDAR CAMBIOS</button>
-                                                        </form>
+                                                                        {infoUser.role === "student" ?
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="student" checked />
+                                                                            :
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="student" />
+                                                                        }
+                                                                        <label >Estudiante</label>
 
+                                                                        {infoUser.role === "instructor" ?
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="instructor" checked />
+                                                                            :
+                                                                            <input onChange={onChangeHandler} type="radio" name="role" value="instructor" />
+                                                                        }
+                                                                        <label >Instructor</label>
+                                                                    </div>
+                                                                </p>
+                                                                <button type="submit" onClick={handleSubmit}>GUARDAR CAMBIOS</button>
+                                                            </form>
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </Fragment>
-                                            : console.log("")
-                                        }
-                                    </td>
-                                    <button type="submit" onClick={() => handleDelete(_id)} ><i class="fas fa-trash-alt" /></button>
-                                </tr>
-                            );
+                                                </Fragment>
+                                                : console.log("")
+                                            }
+                                        </td>
+                                        <button type="submit" onClick={() => handleDelete(_id)} ><i class="fas fa-trash-alt" /></button>
+                                    </tr>
+                                );
+                            }
                         })}
                 </tbody>}
             </table>
