@@ -17,23 +17,9 @@ const UserList = () => {
 
   const [selectedRole, setSelectedRole] = useState("");
 
-
-  //Me traigo el usuario seleccionado para poder editarlo
-  const infoUser = useSelector(state => state.user.user);
-  //Estado necesario para editar el usuario
-  const [userId, setUserId] = useState(null);
-  const [user, setUserInfo] = useState({
-    firstName: infoUser.firstName,
-    lastName: infoUser.lastName,
-    email: infoUser.email,
-    role: infoUser.role
-  });
-
   const [modalState, setModalState] = useState(false);
-  const [input, setInput] = useState(false);
-  const [idInput, setIdInput] = useState(null);
-  const dispatch = useDispatch();
-  const history = useHistory();
+
+
 
 
   useEffect(() => {
@@ -52,9 +38,6 @@ const UserList = () => {
   };
 
 
-  const [selectedRole, setSelectedRole] = useState("");
-
-
   //Me traigo el usuario seleccionado para poder editarlo
   const infoUser = useSelector(state => state.user.user);
   //Estado necesario para editar el usuario
@@ -66,7 +49,6 @@ const UserList = () => {
     role: ""
   });
 
-  const [modalState, setModalState] = useState(false);
   const [input, setInput] = useState(false);
   const [idInput, setIdInput] = useState(null);
   const dispatch = useDispatch();
@@ -88,12 +70,6 @@ const UserList = () => {
     }
   }, [selectedRole]);
 
-  const getUsers = () => {
-    axios.get("http://localhost:5000/users")
-      .then(res => {
-        setAllUsers(res.data);
-      });
-  };
   const handleInput = (e) => {
     setInput(!input);
 
@@ -122,13 +98,6 @@ const UserList = () => {
     //busco a ese usuario en la base de datos
     dispatch(getOneUser(id));
     setModalState(true);
-  };
-
-  const onChangeHandler = (e) => {
-    setUserInfo({
-      ...user,
-      [e.target.name]: e.target.value
-    });
   };
 
   const handleSubmit = (e) => {
@@ -191,9 +160,6 @@ const UserList = () => {
           console.log(res.statusText);
         });
     };
-
-    const roleArray = ["student", "guest", "instructor"];
-    const filterRoleArray = roleArray.filter(e => e !== infoUser.role);
 
     return (
       <div >
