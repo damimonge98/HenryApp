@@ -96,7 +96,7 @@ const UserList = () => {
     }
 
     const handleInput = (e) => {
-        setInput(!input)
+        setInput(true)
         
     }
 
@@ -105,7 +105,7 @@ const UserList = () => {
         setIdInput(id)
     }
 
-    const handleCheckInput = (e) => {
+    const handleCheckInput = (event) => {
         event.preventDefault()
         setInput(false)
 
@@ -172,14 +172,14 @@ const UserList = () => {
                                                             <label>
                                                                 Nombre  {input === true && idInput === 1 ?
                                                                     <Fragment>
-                                                                        <input onChange={onChangeHandler} name="firstName" value={user.name} readonly></input>
-                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                        <input onChange={onChangeHandler} name="firstName" value={user.name} onClick={handleCheckInput}></input>
+                                                                        {/* <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
                                                                     :
 
                                                                     <Fragment>
-                                                                        <input name="firstName" value={infoUser.firstName} readonly></input>
-                                                                        <button onClick={() => { handleInput(); handleIdInput(1) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <input name="firstName" value={infoUser.firstName} onClick={() => { handleInput(); handleIdInput(1) }}></input>
+                                                                        {/* <button onClick={() => { handleInput(); handleIdInput(1) }}><i class="fa fa-pencil" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
 
 
@@ -188,28 +188,28 @@ const UserList = () => {
                                                             <p>
                                                                 Apellido  {input === true && idInput === 2 ?
                                                                     <Fragment>
-                                                                        <input onChange={onChangeHandler} name="lastName" value={user.name} readonly></input>
-                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                        <input onChange={onChangeHandler} name="lastName" value={user.name} onClick={handleCheckInput}></input>
+                                                                        {/* <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
                                                                     :
 
                                                                     <Fragment>
-                                                                        <input name="lastName" value={infoUser.lastName} readonly></input>
-                                                                        <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <input name="lastName" value={infoUser.lastName} onClick={() => { handleInput(); handleIdInput(2) }}></input>
+                                                                        {/* <button onClick={() => { handleInput(); handleIdInput(2) }}><i class="fa fa-pencil" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
                                                                 }
                                                             </p>
                                                             <p>
                                                                 Email {input === true && idInput === 3 ?
                                                                     <Fragment>
-                                                                        <input onChange={onChangeHandler} name="email" value={user.name} readonly></input>
-                                                                        <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                        <input onChange={onChangeHandler} name="email" value={user.name} onClick={handleCheckInput}></input>
+                                                                        {/* <button onClick={handleCheckInput}><i class="fa fa-check" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
                                                                     :
 
                                                                     <Fragment>
-                                                                        <input name="email" value={infoUser.email} readonly></input>
-                                                                        <button onClick={() => { handleInput(); handleIdInput(3) }}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <input name="email" value={infoUser.email} onClick={() => { handleInput(); handleIdInput(3) }}></input>
+                                                                        {/* <button onClick={() => { handleInput(); handleIdInput(3) }}><i class="fa fa-pencil" aria-hidden="true"></i></button> */}
                                                                     </Fragment>
                                                                 }
                                                             </p>
