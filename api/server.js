@@ -12,6 +12,7 @@ const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
 const uploadRoutes = require('./src/routes/upload/upload');
+const mailRoutes = require("./src/routes/mail.js");
 
 const server = express();
 
@@ -59,7 +60,11 @@ server.use((req, res, next) => {
 server.use('/users', userRoutes);
 server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
+<<<<<<< HEAD
 server.use("/upload", uploadRoutes);
+=======
+server.use("/sendMail", mailRoutes)
+>>>>>>> 277cf4036850e102200bbaed38f532430282c6a0
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
