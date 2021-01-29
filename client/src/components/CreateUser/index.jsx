@@ -16,7 +16,6 @@ const CreateUser = () => {
     avatar: ""
   });
 
-
   function handleChange(e) {
     setUser({
       ...user,
@@ -24,12 +23,14 @@ const CreateUser = () => {
     });
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const { email, firstName, lastName, password, role } = user;
     console.log("entra");
     axios.post("http://localhost:5000/users", { email, firstName, lastName, password, role })
       .then(res => {
         console.log(res, "Entra");
+        history.push("/users");
       });
   };
 
