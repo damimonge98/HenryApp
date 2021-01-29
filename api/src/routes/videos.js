@@ -14,6 +14,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// get all videos of a specific lecture
+router.get('/lecture/:lectureid', async (req, res) => {
+    try {
+      const videos = await Video.find({lecture: req.params.lectureid});
+      res.json(videos);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
 // Get one video
 router.get('/:id', (req, res) => {
     const { id } = req.params;
@@ -43,15 +53,7 @@ router.post('/:_id', async (req, res) => {
     await videoLecture.save();
     oneLecture.video = videoLecture;
     await oneLecture.save();
-    res.send(videoLecture);
-    /* lecture.video = oneLecture;
-    try {
-        oneLecture.video
-        const newVideo = await video.save();
-        res.json(newVideo);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    } */
+    res.send(videoLecture);   
 });
 
 // Update one Video

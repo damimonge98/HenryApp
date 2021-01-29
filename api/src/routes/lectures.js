@@ -17,9 +17,8 @@ router.get('/', async (req, res) => {
 
 // get all lectures of a specific module
 router.get('/module/:moduloid', async (req, res) => {
-
   try {
-    const lectures = await Lecture.find({modulo: req.params.moduloid});
+    const lectures = await Lecture.find({ modulo: req.params.moduloid });
     res.json(lectures);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -55,12 +54,6 @@ router.post('/:_id', async (req, res) => {
   module.lectures.pop();
   await module.save;
   res.send(lectureForModule);
-  /*  try {
-     const newLecture = await lecture.save();
-     res.json(newLecture);
-   } catch (error) {
-     res.status(400).json({ message: error.message });
-   } */
 });
 
 // Update one lecture
