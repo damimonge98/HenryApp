@@ -3,25 +3,19 @@ const router = express.Router();
 const Video = require('../models/video');
 const Lecture = require('../models/lecture');
 
-
-// Get all videos;
-router.get('/', async (req, res) => {
-    try {
-        const video = await Video.find();
-        res.json(video);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
 // get all videos of a specific lecture
-router.get('/lecture/:lectureid', async (req, res) => {
+router.get('/', async (req, res) => {
+    const q = {};
+    if (req.query.lectureid !== undefined) {
+      q.lecture = req.query.lectureid;
+    };
     try {
-      const videos = await Video.find({lecture: req.params.lectureid});
+      const videos = await Video.find(q);
       res.json(videos);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
+  
   });
 
 // Get one video

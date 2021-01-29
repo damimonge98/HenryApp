@@ -4,25 +4,19 @@ const router = express.Router();
 const Lecture = require('../models/lecture');
 const Module = require('../models/module')
 
-// Get all lectures;
-router.get('/', async (req, res) => {
-
-  try {
-    const lectures = await Lecture.find();
-    res.json(lectures);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 // get all lectures of a specific module
-router.get('/module/:moduloid', async (req, res) => {
+router.get('/', async (req, res) => {
+  const q = {};
+  if (req.query.moduleid !== undefined) {
+    q.modulo = req.query.moduleid;
+  };
   try {
-    const lectures = await Lecture.find({ modulo: req.params.moduloid });
+    const lectures = await Lecture.find(q);
     res.json(lectures);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+
 });
 
 // Get one lecture
