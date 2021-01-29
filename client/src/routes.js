@@ -23,8 +23,8 @@ const routes = () => {
         <Route path='/register' exact component={RegisterPage} />
         <Route exact path='/users' component={UserList} />
         <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/11-Redux' component={OneLecture} />
-        <Route exact path='/6012e9d98b97e32a3a629369' component={Lectures} />
+        <Route exact path='/lecture/:lectureid' component={OneLecture} />
+        <Route exact path='/modulo/:moduloid' component={Lectures} />
  {/*        <Route exact path='/modules' component={Modulos} /> */}
       </Switch>
     </BrowserRouter>
