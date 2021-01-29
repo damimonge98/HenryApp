@@ -3,7 +3,7 @@ import CardVideo from "../CardVideo/index";
 import axios from "axios";
 import "./index.css";
 
-const OneLecture = () => {
+const OneLecture = (props) => {
 
     const [allVideos, setAllVideos] = useState([{
         _id: "",
@@ -18,13 +18,11 @@ const OneLecture = () => {
         getVideos()
     }, []);
 
-    const getVideos = () => {
-        axios.get("http://localhost:5000/videos/")
-            .then(res => {
-                console.log(res.data)
-                setAllVideos(res.data)
-                console.log(allVideos)
 
+    const getVideos = () => {
+        axios.get("http://localhost:5000/videos/", { params: { lectureid: props.match.params.lectureid } })
+            .then(res => {
+                setAllVideos(res.data)
             });
     };
 

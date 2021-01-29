@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './estilos.css'
 
 const CardLecture = ({ lecture }) => {
-    let { _id,
+    const { _id,
         description,
         imagen,
         modulo,
@@ -12,7 +12,7 @@ const CardLecture = ({ lecture }) => {
 
 
     return (
-        <Link to={`/${title}`}>
+        <Link to={`/lecture/${_id}`}>
             <div className="card">
                 <div className="center">
                     <img src={imagen} alt="Henry app" />

@@ -3,7 +3,7 @@ import axios from "axios";
 import ModuleCard from '../../components/ModuleCard/index.jsx'
 import './styles.css';
 
-const Modules = () => {
+const Modules = ({ moduloid }) => {
     const [modulos, setModulos] = useState([{
         _id: "",
         description: "",
@@ -18,11 +18,16 @@ const Modules = () => {
     const getModulos = () => {
         axios.get("http://localhost:5000/modules/")
             .then(res => {
-                console.log(res.data)
                 setModulos(res.data)
-                console.log(modulos, 'modulos')
             });
     };
+
+    /*   const getLectures = () => {
+          axios.get("http://localhost:5000/lectures/module/", { params: { moduloid } })
+              .then(res => {
+                  setLectures(res.data)
+              }); */
+
     return (
         <div>
             <div className="modules">

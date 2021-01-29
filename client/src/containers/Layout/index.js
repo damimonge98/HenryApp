@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <LayoutWrapper>
       <Header />
       {children}
-      <Modules />
+      <Modules ></Modules>
     </LayoutWrapper>
   );
 };
