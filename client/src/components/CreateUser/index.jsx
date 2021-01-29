@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 
 
 const CreateUser = () => {
-  const history = useHistory();
   const [user, setUser] = useState({
     email: "",
     firstName: "",
@@ -25,27 +24,24 @@ const CreateUser = () => {
   }
 
   const handleSubmit = () => {
-    const { email, firstName, lastName, password, role } = user;
-    console.log("entra");
-    axios.post("http://localhost:5000/users", { email, firstName, lastName, password, role })
-      .then(res => {
-        console.log(res, "Entra");
-      });
+    const { email, firstName, lastName, password, role, isSuperAdmin } = user;
+    axios.post("http://localhost:5000/users", { email, firstName, lastName, password, role, isSuperAdmin })
+      .then();
   };
 
   const handleToggle = e => {
-    if (!e.target.checked === true) {
+    if (e.target.checked) {
       setUser({
         ...user,
-        isSuperAdmin : true
+        isSuperAdmin: true
       });
-      console.log(user, "false")
+      console.log(user, "true")
     } else {
       setUser({
         ...user,
-        isSuperAdmin : false
+        isSuperAdmin: false
       });
-      console.log(user, "true")
+      console.log(user, "false")
     };
   };
 
