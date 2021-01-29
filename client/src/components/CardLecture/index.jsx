@@ -12,7 +12,7 @@ const CardLecture = ({ lecture }) => {
 
 
     return (
-        <Link to={`/${modulo}`}>
+        <Link to={`/${title}`}>
             <div className="card">
                 <div className="center">
                     <img src={imagen} alt="Henry app" />

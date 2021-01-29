@@ -25,8 +25,6 @@ const Modules = () => {
     };
     return (
         <div>
-            <h2>Nombre del modulo</h2>
-            <br />
             <div className="modules">
                 {modulos.map((modulo, index) => {
                     return (
