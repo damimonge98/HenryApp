@@ -11,9 +11,10 @@ const CreateUser = () => {
     lastName: "",
     password: "",
     isSuperAdmin: false,
-    role: "guest",
-    avatar: ""
+    role: "guest"
   });
+
+  const [toggle, setToggle] = useState(false);
 
 
   function handleChange(e) {
@@ -35,13 +36,13 @@ const CreateUser = () => {
         ...user,
         isSuperAdmin: true
       });
-      console.log(user, "true")
+      setToggle(true);
     } else {
       setUser({
         ...user,
         isSuperAdmin: false
       });
-      console.log(user, "false")
+      setToggle(false);
     };
   };
 
@@ -53,7 +54,7 @@ const CreateUser = () => {
         <div >
           <label >
             Nombre
-                    </label>
+           </label>
           <div >
             <input
               onChange={(e) => { handleChange(e); }}
@@ -67,7 +68,7 @@ const CreateUser = () => {
         <div >
           <label >
             Apellido
-                    </label>
+          </label>
           <div >
             <input
               onChange={(e) => { handleChange(e); }}
@@ -80,7 +81,7 @@ const CreateUser = () => {
         <div >
           <label >
             E-mail
-                    </label>
+          </label>
           <div >
             <input
               onChange={(e) => { handleChange(e); }}
@@ -102,42 +103,38 @@ const CreateUser = () => {
             />
           </div>
           <div >
-            <label>SuperAdmin</label>
-            <div>
+            <label>SuperAdmin    </label>
+            <input
+              type="checkbox"
+              name="isSuperAdmin"
+              onChange={(e) => {
+                handleToggle(e);
+              }}
+            />
 
-              <input
-                type="checkbox"
-                name="isSuperAdmin"
-                onChange={(e) => {
-                  handleToggle(e);
-                }}
-              />
-
-            </div>
           </div>
           <div >
-            <label>
-              Rol
-                        </label>
             <div>
-              <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="guest" />
-              <label >Visitante</label>
-              <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="student" />
-              <label >Estudiante</label>
-              <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="instructor" />
-              <label >Instructor</label>
+              {toggle === false
+                ?
+                <div>
+                  <label>
+                    Rol
+                  </label>
+                  <div>
+                    <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="guest" />
+                    <label >Visitante</label>
+                    <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="student" />
+                    <label >Estudiante</label>
+                    <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="instructor" />
+                    <label >Instructor</label>
+                  </div>
+                </div>
+                :
+                <h4>El usuario se creara como SuperAdmin.</h4>
+              }
             </div>
           </div>
-          {/* <div >
-                        <label>Avatar</label>
-                        <div>
-                            <input
-                                onChange={(e) => { handleChange(e); }}
-                                name="avatar"
-                                type="image"
-                            />
-                        </div>
-                    </div> */}
           <div>
             <button type="submit">
               Create user
