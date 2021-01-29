@@ -4,9 +4,10 @@ const Module = require('../../models/module');
 
 
 //--------------------Get all modules--------------------
+//ordenar modulo por orden;
 router.get('/', async (req, res) => {
   try {
-    const modulos = await Module.find();
+    const modulos = await Module.find();    
     res.json(modulos);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -32,10 +33,11 @@ router.get('/:id', (req, res) => {
 
 //--------------------Create one module--------------------
 router.post('/', async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, order } = req.body;
   const modulo = new Module({
     title,
-    description
+    description,
+    order
   });
 
   try {
