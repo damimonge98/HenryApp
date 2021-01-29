@@ -60,11 +60,8 @@ server.use((req, res, next) => {
 server.use('/users', userRoutes);
 server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
-<<<<<<< HEAD
 server.use("/upload", uploadRoutes);
-=======
-server.use("/sendMail", mailRoutes)
->>>>>>> 277cf4036850e102200bbaed38f532430282c6a0
+server.use("/sendMail", mailRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
