@@ -3,16 +3,20 @@ const router = express.Router();
 const Video = require('../models/video');
 const Lecture = require('../models/lecture');
 
-
-// Get all videos;
+// get all videos of a specific lecture
 router.get('/', async (req, res) => {
+    const q = {};
+    if (req.query.lectureid !== undefined) {
+      q.lecture = req.query.lectureid;
+    };
     try {
-        const video = await Video.find();
-        res.json(video);
+      const videos = await Video.find(q);
+      res.json(videos);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
-});
+  
+  });
 
 // Get one video
 router.get('/:id', (req, res) => {
@@ -43,15 +47,7 @@ router.post('/:_id', async (req, res) => {
     await videoLecture.save();
     oneLecture.video = videoLecture;
     await oneLecture.save();
-    res.send(videoLecture);
-    /* lecture.video = oneLecture;
-    try {
-        oneLecture.video
-        const newVideo = await video.save();
-        res.json(newVideo);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    } */
+    res.send(videoLecture);   
 });
 
 // Update one Video

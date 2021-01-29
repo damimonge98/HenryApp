@@ -13,6 +13,10 @@ const moduleSchema = new Schema({
   }],
   description: {
     type: String,
+  },
+  order: {
+    type: Number,
+    required: true
   }
 });
 

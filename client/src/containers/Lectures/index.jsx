@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CardLecture from "../../components/CardLecture/index";
+import CardLecture from '../../components/CardLecture/index'
 import './estilos.css'
 
-const Lectures = () => {
-    const [lectures, setLectures] = useState([]);
+const Lectures = (props) => {
+    const [lectures, setLectures] = useState([{
+        _id: "",
+        description: "",
+        imagen: "",
+        modulo: "",
+        title: "",
+        video: []
+    }]);
+
 
     useEffect(() => {
         getLectures()
     }, []);
 
     const getLectures = () => {
-        axios.get("http://localhost:5000/lectures")
-            .then((lecture) => {
-                setLectures(lecture.data)
+        axios.get("http://localhost:5000/lectures/", { params: { moduloid: props.match.params.moduloid } })
+            .then(res => {
+                setLectures(res.data)
             });
     };
     return (
