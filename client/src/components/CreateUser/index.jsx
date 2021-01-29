@@ -33,6 +33,23 @@ const CreateUser = () => {
       });
   };
 
+  const handleToggle = e => {
+    if (!e.target.checked === true) {
+      setUser({
+        ...user,
+        isSuperAdmin : true
+      });
+      console.log(user, "false")
+    } else {
+      setUser({
+        ...user,
+        isSuperAdmin : false
+      });
+      console.log(user, "true")
+    };
+  };
+
+
 
   return (
     <div >
@@ -88,17 +105,20 @@ const CreateUser = () => {
               required
             />
           </div>
-          {/*      <div >
-                        <label>SuperAdmin</label>
-                        <div>
-                            <input
-                                onChange={(e) => { handleChange(e); }}
-                                name="isSuperAdmin"
-                                type={Boolean}
-                                required
-                            />
-                        </div>
-                    </div> */}
+          <div >
+            <label>SuperAdmin</label>
+            <div>
+
+              <input
+                type="checkbox"
+                name="isSuperAdmin"
+                onChange={(e) => {
+                  handleToggle(e);
+                }}
+              />
+
+            </div>
+          </div>
           <div >
             <label>
               Rol
