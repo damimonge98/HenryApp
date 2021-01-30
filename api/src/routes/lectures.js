@@ -83,7 +83,7 @@ router.delete('/:id', (req, res) => {
   Lecture.findById(id).then(lecture => {
     const modulo = Module.find()
     console.log(modulo.title, 'aaaaa')
-    /*  lecture.remove(); */
+     lecture.remove();
     res.json({ message: 'Lecture has been deleted' });
   }).catch(error => {
     res.status(500).json({ message: error.message });
