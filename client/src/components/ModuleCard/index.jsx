@@ -9,7 +9,7 @@ const ModuleCard = ({ module }) => {
         _id } = module;
 
     return (
-        <Link to={`/modulo/${_id}`}>
+        <Link to={`/modulo/${_id}`} >
             <div className="modCard">
                 <div className="info">
                     <div>

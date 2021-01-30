@@ -1,13 +1,15 @@
-.modCard{
-  width: 350px;
-  padding: 15px;
-  margin: 15px;
-  background-color: rosybrown;
-  border: 1px solid rosybrown;
-  border-radius: 5px;
-}
+.modCard {
+  width           : 350px;
+  padding         : 15px;
+  margin          : 15px;
+  background-color: yellow;
+  border          : 1px solid black;
+  border-radius   : 5px;
+ }
 
-.info{
-  display: flex;
+.info {
+  display        : flex;
   justify-content: space-evenly;
+  color          : black;
+
 }
