@@ -11,7 +11,6 @@ import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
 import lectureList from './containers/CRUDclases/index'
-/* import Modulos from "../src/containers/Modulos/index" */
 
 const routes = () => {
   return (
@@ -27,7 +26,6 @@ const routes = () => {
         <Route exact path='/lecture/:lectureid' component={OneLecture} />
         <Route exact path='/modulo/:moduloid' component={Lectures} />
         <Route exact path='/lectures' component={lectureList} />
- {/*        <Route exact path='/modules' component={Modulos} /> */}
       </Switch>
     </BrowserRouter>
   );
