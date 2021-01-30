@@ -10,7 +10,7 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
-import lectureList from './containers/CRUD clases/index'
+import lectureList from './containers/CRUDclases/index'
 /* import Modulos from "../src/containers/Modulos/index" */
 
 const routes = () => {
