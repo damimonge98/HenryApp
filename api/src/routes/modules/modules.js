@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Module = require('../../models/module');
+const Lecture = require("../../models/lecture")
 
 
 //--------------------Get all modules--------------------
 //ordenar modulo por orden;
 router.get('/', async (req, res) => {
   try {
-    const modulos = await Module.find();    
+    const modulos = await Module.find();
     res.json(modulos);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -72,7 +73,24 @@ router.patch('/:id', (req, res) => {
       res.status(400).json({ message: error.message });
     });
 });
-//---------------------------------------------------------
+
+// ------------------------------------------------------------ 
+
+
+//-------------Delete one module and all its lecture-----------
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  Lecture.deleteMany({ modulo: id }).then();
+  Module.findById(id).then(modulo => {
+    modulo.remove();
+    res.json({ message: 'Module has been deleted' });
+  }).catch(error => {
+    res.status(500).json({ message: error.message });
+  });
+});
+
+// ------------------------------------------------------------ 
+
 
 
 module.exports = router;

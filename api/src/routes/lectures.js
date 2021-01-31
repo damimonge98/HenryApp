@@ -81,7 +81,7 @@ router.patch('/:id', (req, res) => {
 // Delete one lecture and all its videos
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  Video.deleteMany({ lecture: id }).then(res => console.log(res))
+  Video.deleteMany({ lecture: id }).then();
   Lecture.findById(id).then(lecture => {
     lecture.remove();
     res.json({ message: 'Lecture has been deleted' });
