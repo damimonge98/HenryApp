@@ -19,7 +19,7 @@ const Lectures = (props) => {
     }, []);
 
     const getLectures = () => {
-        axios.get("http://localhost:5000/lectures/", { params: { moduloid: props.match.params.moduloid } })
+        axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`)
             .then(res => {
                 setLectures(res.data)
             });
