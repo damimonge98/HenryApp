@@ -12,8 +12,7 @@ const Lectures = (props) => {
         title: "",
         video: []
     }]);
-
-
+ 
     useEffect(() => {
         getLectures()
     }, []);
@@ -24,9 +23,11 @@ const Lectures = (props) => {
                 setLectures(res.data)
             });
     };
+
     return (
         <div>
             <h2>Nombre del modulo</h2>
+            <h4></h4>
             <br />
             <div className="lecture-grid">
                 {lectures.map((lecture, index) => {
