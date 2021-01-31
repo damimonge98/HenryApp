@@ -7,16 +7,16 @@ const Lecture = require('../models/lecture');
 router.get('/', async (req, res) => {
     const q = {};
     if (req.query.lectureid !== undefined) {
-      q.lecture = req.query.lectureid;
+        q.lecture = req.query.lectureid;
     };
     try {
-      const videos = await Video.find(q);
-      res.json(videos);
+        const videos = await Video.find(q);
+        res.json(videos);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  
-  });
+
+});
 
 // Get one video
 router.get('/:id', (req, res) => {
@@ -41,13 +41,13 @@ router.post('/:_id', async (req, res) => {
         url,
         img,
         duration,
-      });
+    });
     const oneLecture = await Lecture.findById(_id);
     videoLecture.lecture = oneLecture;
     await videoLecture.save();
     oneLecture.video.push(videoLecture);
     await oneLecture.save();
-    res.send(videoLecture);   
+    res.send(videoLecture);
 });
 
 // Update one Video
@@ -82,9 +82,18 @@ router.patch('/:id', (req, res) => {
         });
 });
 
-// Delete one video
+// Delete one video and remove it from the lecture
+
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
+    Lecture.find({ video: id }).then(res => {
+        for (let i = 0; i < res[0].video.length; i++) {
+            if (res[0].video[i] == id) {
+                res[0].video.splice(i, 1);
+            };
+        };
+        res[0].save();
+    });
     Video.findById(id).then(video => {
         video.remove();
         res.json({ message: 'Video has been deleted' });
