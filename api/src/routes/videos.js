@@ -45,7 +45,7 @@ router.post('/:_id', async (req, res) => {
     const oneLecture = await Lecture.findById(_id);
     videoLecture.lecture = oneLecture;
     await videoLecture.save();
-    oneLecture.video = videoLecture;
+    oneLecture.video.push(videoLecture);
     await oneLecture.save();
     res.send(videoLecture);   
 });

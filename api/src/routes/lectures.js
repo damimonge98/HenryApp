@@ -3,6 +3,7 @@ const { findById } = require('../models/lecture');
 const router = express.Router();
 const Lecture = require('../models/lecture');
 const Module = require('../models/module')
+const Video = require('../models/video')
 
 // get all lectures of a specific module
 router.get('/', async (req, res) => {
@@ -77,13 +78,12 @@ router.patch('/:id', (req, res) => {
     });
 });
 
-// Delete one lecture
+// Delete one lecture and all its videos
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
+  Video.deleteMany({ lecture: id }).then(res => console.log(res))
   Lecture.findById(id).then(lecture => {
-    const modulo = Module.find()
-    console.log(modulo.title, 'aaaaa')
-     lecture.remove();
+    lecture.remove();
     res.json({ message: 'Lecture has been deleted' });
   }).catch(error => {
     res.status(500).json({ message: error.message });
