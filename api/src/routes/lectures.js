@@ -78,10 +78,19 @@ router.patch('/:id', (req, res) => {
     });
 });
 
-// Delete one lecture and all its videos
+// Delete a lecture, delete it from the module and all its videos.
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  Video.deleteMany({ lecture: id }).then();
+
+  Video.deleteMany({ lecture: id }).then();   //elimina videos de la lecture
+  Module.find({ lectures: id }).then(res => { //elimina la lecture dentro modulo
+    for (let i = 0; i < res[0].lectures.length; i++) {
+      if (res[0].lectures[i] == id) {
+        res[0].lectures.splice(i, 1);
+      };
+    };
+    res[0].save();
+  })
   Lecture.findById(id).then(lecture => {
     lecture.remove();
     res.json({ message: 'Lecture has been deleted' });
