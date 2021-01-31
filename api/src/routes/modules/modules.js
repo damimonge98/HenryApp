@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Module = require('../../models/module');
-const Lecture = require("../../models/lecture")
+const Lecture = require("../../models/lecture");
+const Video = require("../../models/video");
 
 
 //--------------------Get all modules--------------------
@@ -77,9 +78,14 @@ router.patch('/:id', (req, res) => {
 // ------------------------------------------------------------ 
 
 
-//-------------Delete one module and all its lecture-----------
+//-------------Delete a module and its entire lectures including its videos-----------
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
+  Lecture.find({ modulo: id }).then(res => {
+    for (let i = 0; i < res.length; i++) {
+      Video.deleteMany({ lecture: res[i]._id }).then();
+    };
+  });
   Lecture.deleteMany({ modulo: id }).then();
   Module.findById(id).then(modulo => {
     modulo.remove();
@@ -88,6 +94,7 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({ message: error.message });
   });
 });
+
 
 // ------------------------------------------------------------ 
 
