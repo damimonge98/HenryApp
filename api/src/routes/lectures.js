@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 // Get one lecture
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  lecture = Lecture.findById(id).then(lecture => {
+  Lecture.findById(id).then(lecture => {
     if (!lecture) {
       return res.status(404).json({ message: 'Cannot find lecture' });
     } else res.json(lecture);
@@ -42,7 +42,6 @@ router.post('/:_id', async (req, res) => {
     imagen,
     description
   });
-
 
   const module = await Module.findById(req.params._id);
   lectureForModule.modulo = req.params._id;

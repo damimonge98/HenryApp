@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 // Get one video
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    video = Video.findById(id).then(video => {
+    Video.findById(id).then(video => {
         if (!video) {
             return res.status(404).json({ message: 'Cannot find video' });
         } else res.json(video);
