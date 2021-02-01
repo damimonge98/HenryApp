@@ -25,7 +25,7 @@ const CreateModule = () => {
     return (
         <div >
             <div></div>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={() => handleSubmit} >
                 <div >
                     <label >
                         Nombre

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+//en reparación xD
+
+/* import React, { useState } from "react";
 import axios from "axios";
 
 
 
-const CreateLecture = (id) => {
+const CreateLecture = (props) => {
     const [lecture, setLecture] = useState({
         title: "",
-        video: [],
         imagen: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
         description: '',
     });
@@ -18,11 +18,10 @@ const CreateLecture = (id) => {
             [e.target.name]: e.target.value
         });
     }
-
     const handleSubmit = () => {
-        const { title, description, imagen } = lecture;
-        axios.post(`http://localhost:5000/lectures/${id}`, { title, description, imagen })
-            .then();
+        axios.post(`http://localhost:5000/lectures/${props.match.params.id}`, {title, imagen, description})
+            .then(res => console.log(res));
+
     };
 
     return (
@@ -30,7 +29,7 @@ const CreateLecture = (id) => {
             <div>
                 <h3>Crear un lecture</h3>
             </div>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 <div >
                     <label >
                         Nombre
@@ -72,20 +71,14 @@ const CreateLecture = (id) => {
                 </div>
                 <div>
                     <div>
-                        <button type="submit">
+                        <button type='submit'>
                             Crear lecture
                         </button>
                     </div>
                 </div>
             </form><br />
-            <Link to='/'>
-                <button type="button">
-                    <i className="fas fa-home" />
-                  Inicio
-              </button>
-            </Link>
         </div >
     );
 };
 
-export default CreateLecture;
+export default CreateLecture; */
