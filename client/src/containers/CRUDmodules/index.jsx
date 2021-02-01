@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CreateModule from '../../components/createModule/index'
 
 const ModuleList = () => {
     const [allModules, setAllModules] = useState([{
@@ -30,6 +31,7 @@ const ModuleList = () => {
 
     return (
         <div>
+            <h3>Lista de módulos</h3>
             <table >
                 <thead >
                     <tr >
@@ -51,6 +53,8 @@ const ModuleList = () => {
                         })}
                 </tbody>
             </table>
+            <br />
+            <CreateModule></CreateModule>
         </div>
     );
 };
