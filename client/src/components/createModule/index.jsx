@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
-
 const CreateModule = () => {
     const [module, setModule] = useState({
         title: "",
@@ -26,13 +24,11 @@ const CreateModule = () => {
 
     return (
         <div >
-            <div>
-                <h3>Crear un módulo</h3>
-            </div>
+            <div></div>
             <form onSubmit={handleSubmit} >
                 <div >
                     <label >
-                        Title
+                        Nombre
            </label>
                     <div >
                         <input
