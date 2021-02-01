@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+
+
 
 const CreateModule = () => {
     const [module, setModule] = useState({
-        title: '',
+        title: "",
         lectures: [],
-        description: ''
+        description: "",
     });
 
     function handleChange(e) {
@@ -17,28 +20,33 @@ const CreateModule = () => {
 
     const handleSubmit = () => {
         const { title, description } = module;
-        axios.post("http://localhost:5000/modules/", { title, description })
-            .then(res => console.log(res));
+        axios.post("http://localhost:5000/modules", { title, description })
+            .then();
     };
 
     return (
-        <div>
-            <h3>Crear un nuevo módulo </h3>
-            <form onSubmit={handleSubmit}>
+        <div >
+            <div>
+                <h3>Crear un módulo</h3>
+            </div>
+            <form onSubmit={handleSubmit} >
                 <div >
-                    <label>Nombre</label>
+                    <label >
+                        Title
+           </label>
                     <div >
                         <input
                             onChange={(e) => { handleChange(e); }}
                             name="title"
-                            value={module.title}
                             type="text"
                             required
                         />
                     </div>
                 </div>
                 <div >
-                    <label >Descripción</label>
+                    <label >
+                        Descripción
+          </label>
                     <div >
                         <textarea
                             onChange={(e) => { handleChange(e); }}
@@ -48,12 +56,22 @@ const CreateModule = () => {
                         />
                     </div>
                 </div>
-            </form>
-            <button type="submit">
-                Crear módulo
+                <div>
+                    <div>
+                        <button type="submit">
+                            Crear módulo
                         </button>
-        </div>
-    )
+                    </div>
+                </div>
+            </form><br />
+            <Link to='/'>
+                <button type="button">
+                    <i className="fas fa-home" />
+                  Inicio
+              </button>
+            </Link>
+        </div >
+    );
 };
 
 export default CreateModule;

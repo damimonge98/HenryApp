@@ -144,13 +144,13 @@ const CreateUser = () => {
       </form><br />
       <Link to='/users'>
         <button type="button">
-          <i class="fas fa-users" />
+          <i className="fas fa-users" />
                   Lista de usuarios
               </button>
       </Link>
       <Link to='/'>
         <button type="button">
-          <i class="fas fa-home" />
+          <i className="fas fa-home" />
                   Inicio
               </button>
       </Link>
