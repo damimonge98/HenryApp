@@ -32,8 +32,8 @@ const lectureList = () => {
     const handleDelete = (id) => {
         if (confirm("¿Quiere eliminar la Lecture?") === true) {
             axios.delete(`http://localhost:5000/lectures/${id}`)
-                .then(res => getLectures())
-        }
+                .then(res => getLectures());
+        };
     };
 
     const handleSubmit = (id) => {
@@ -44,16 +44,16 @@ const lectureList = () => {
                     setOneLecture({
                         title: "",
                         description: ""
-                    })
-            })
-    }
+                    });
+            });
+    };
 
     const handleChange = (e) => {
         setOneLecture({
             ...oneLecture,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
 
     return (
