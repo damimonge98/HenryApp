@@ -1,0 +1,8 @@
+.card {
+    /*   width: 80%;
+      display: grid;
+      grid-gap: 30px;
+      margin-right: 10px;
+      margin-left: 20px;    */
+      border: solid yellow 2px;
+    };
