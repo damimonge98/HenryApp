@@ -10,7 +10,7 @@ const CreateModule = () => {
 
     function handleChange(e) {
         setModule({
-            ...user,
+            ...module,
             [e.target.name]: e.target.value
         });
     }
@@ -18,7 +18,7 @@ const CreateModule = () => {
     const handleSubmit = () => {
         const { title, description } = module;
         axios.post("http://localhost:5000/modules/", { title, description })
-            .then();
+            .then(res => console.log(res));
     };
 
     return (
