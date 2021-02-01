@@ -10,7 +10,8 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
-import lectureList from './containers/CRUDclases/index'
+import lectureList from './containers/CRUDclases/index';
+import ModuleList from './containers/CRUDmodules/index';
 
 const routes = () => {
   return (
@@ -26,6 +27,7 @@ const routes = () => {
         <Route exact path='/lecture/:lectureid' component={OneLecture} />
         <Route exact path='/modulo/:moduloid' component={Lectures} />
         <Route exact path='/lectures' component={lectureList} />
+        <Route exact path='/modules' component={ModuleList} />
       </Switch>
     </BrowserRouter>
   );

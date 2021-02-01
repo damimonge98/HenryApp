@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const lectureList = () => {
-    const [allLecures, setAllLectures] = useState([{
+const ModuleList = () => {
+    const [allModules, setAllModules] = useState([{
         title: '',
-        imagen: '',
-        video: [],
-        modulo: '',
-        _id: '',
+        description: '',
+        lectures: [],
+        order: null,
+        _id: ''
     }]);
 
     useEffect(() => {
-        getLectures();
+        getModules();
     }, []);
 
-    const getLectures = () => {
-        axios.get("http://localhost:5000/lectures")
+    const getModules = () => {
+        axios.get("http://localhost:5000/modules/")
             .then(res => {
-                setAllLectures(res.data);
+                setAllModules(res.data);
             });
     };
 
     const handleDelete = (id) => {
-        if (confirm("¿Quiere eliminar la Lecture?") === true) {
-            axios.delete(`http://localhost:5000/lectures/${id}`)
-                .then(res => getLectures())
+        if (confirm("¿Quiere eliminar este módulo? Se eliminarán todas les lectures y videos asociados") === true) {
+            axios.delete(`http://localhost:5000/modules/${id}`)
+                .then(res => getModules())
         }
     };
 
@@ -34,17 +34,17 @@ const lectureList = () => {
                 <thead >
                     <tr >
                         <th scope="col">Modulo</th>
-                        <th scope="col">Lecture</th>
+                        <th scope="col">Lectures</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        allLecures.map((lecture, index) => {
-                            const { modulo, title, _id } = lecture;
+                        allModules.map((module, index) => {
+                            const { title, lectures, _id } = module;
                             return (
                                 <tr key={index}>
-                                    <td >{modulo}</td>
-                                    <td>{title}</td>
+                                    <td >{title}</td>
+                                    <td>{lectures.length}</td>
                                     <td ><button><i class="fas fa-user-edit" /></button></td>
                                     <td><button type="submit" onClick={() => handleDelete(_id)} > <i class="fas fa-trash-alt" /></button></td>
                                 </tr>)
@@ -52,7 +52,7 @@ const lectureList = () => {
                 </tbody>
             </table>
         </div>
-    )
+    );
 };
 
-export default lectureList;
+export default ModuleList;
