@@ -19,13 +19,13 @@ const CreateModule = () => {
     const handleSubmit = () => {
         const { title, description } = module;
         axios.post("http://localhost:5000/modules", { title, description })
-            .then();
+            .then(console.log(res));
     };
 
     return (
         <div >
             <div></div>
-            <form onSubmit={() => handleSubmit} >
+            <form onSubmit={handleSubmit} >
                 <div >
                     <label >
                         Nombre
