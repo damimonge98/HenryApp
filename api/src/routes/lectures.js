@@ -1,5 +1,6 @@
 const express = require('express');
 const { findById } = require('../models/lecture');
+const lecture = require('../models/lecture');
 const router = express.Router();
 const Lecture = require('../models/lecture');
 const Module = require('../models/module')
@@ -41,13 +42,16 @@ router.post('/:_id', async (req, res) => {
     imagen,
     description
   });
+
+
   const module = await Module.findById(req.params._id);
-  lectureForModule.modulo = module;
+  lectureForModule.modulo = req.params._id;
   await lectureForModule.save();
   module.lectures.push(lectureForModule);
   await module.save();
   res.send(lectureForModule);
 });
+
 
 // Update one lecture
 router.patch('/:id', (req, res) => {
