@@ -5,7 +5,8 @@ const jobSchema = new Schema({
   
   enterprise: [{
       type: Schema.Types.ObjectId,
-      ref: 'Empresa'
+      ref: 'Empresa',
+      required: true
     }],
   
   title: {
