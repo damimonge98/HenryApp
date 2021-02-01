@@ -106,18 +106,18 @@ const UserList = () => {
         <div >
             <Link to='/createUser'>
                 <button type="button">
-                    <i class="fas fa-plus-circle me-2" />
+                    <i className="fas fa-plus-circle me-2" />
                   Crear usuario
               </button>
             </Link>
             <Link to='/'>
                 <button type="button">
-                    <i class="fas fa-home" />
+                    <i className="fas fa-home" />
                   Inicio
               </button>
             </Link>
             <br />
-            <h2><i class="fas fa-users" />    Usuarios</h2>
+            <h2><i className="fas fa-users" />    Usuarios</h2>
             <div>
                 <button onClick={() => roleHandler("")}>Todos los usuarios</button>
                 <button onClick={() => roleHandler("instructor")}>Instructores</button>
@@ -147,12 +147,12 @@ const UserList = () => {
                                         <td>{email}</td>
                                         <td>{role}</td>
                                         <td >
-                                            <button onClick={() => { getUserHandler(_id) }}> <a href="#openModal"><i class="fas fa-user-edit" /></a></button>
+                                            <button onClick={() => { getUserHandler(_id) }}> <a href="#openModal"><i className="fas fa-user-edit" /></a></button>
                                             {modalState === true ?
 
                                                 <Fragment>
-                                                    <div id="openModal" title="close" class="modalDialog">
-                                                        <div><a href="#close" onClick={() => { setModalState(false) }} class="close">X</a>
+                                                    <div id="openModal" title="close" className="modalDialog">
+                                                        <div><a href="#close" onClick={() => { setModalState(false) }} className="close">X</a>
                                                             <h2>Editar Usuario</h2>
                                                             <form>
                                                                 <p>
@@ -201,7 +201,7 @@ const UserList = () => {
                                                 : console.log("")
                                             }
                                         </td>
-                                        <button type="submit" onClick={() => handleDelete(_id)} ><i class="fas fa-trash-alt" /></button>
+                                        <button type="submit" onClick={() => handleDelete(_id)} ><i className="fas fa-trash-alt" /></button>
                                     </tr>
                                 );
                             }

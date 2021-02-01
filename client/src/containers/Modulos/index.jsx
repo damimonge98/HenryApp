@@ -22,12 +22,6 @@ const Modules = ({ moduloid }) => {
             });
     };
 
-    /*   const getLectures = () => {
-          axios.get("http://localhost:5000/lectures/module/", { params: { moduloid } })
-              .then(res => {
-                  setLectures(res.data)
-              }); */
-
     return (
         <div>
             <div className="modules">
