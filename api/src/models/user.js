@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema({
     default: 'guest'
   },
 
+  currentModule:{
+    type:String,
+    enum: ['M0', 'M1', 'M2', 'M3', 'M4' ],
+    default: 'M0'
+  },
+
   avatar: {
     type: String
   },
