@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const talksSchema = new Schema({
+const talkSchema = new Schema({
   title: {
     type:String,
     required:true
@@ -20,4 +20,4 @@ const talksSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Talks', lectureSchema);
+module.exports = mongoose.model('Talk', talkSchema);

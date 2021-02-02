@@ -15,6 +15,7 @@ const videoRoutes = require('./src/routes/videos');
 const modulesRoutes = require('./src/routes/modules');
 const mailRoutes = require ("./src/routes/mail.js")
 const empleoRoutes = require('./src/routes/empleos');
+const talkRoutes = require("./src/routes/talk")
 
 const server = express();
 
@@ -73,6 +74,7 @@ server.use('/videos', videoRoutes);
 server.use('/modules', modulesRoutes);
 server.use("/sendMail", mailRoutes)
 server.use('/empleos', empleoRoutes);
+server.use('/talk', talkRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

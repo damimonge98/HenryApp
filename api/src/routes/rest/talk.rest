@@ -1,0 +1,48 @@
+# Get all modules
+
+GET http://localhost:5000/talk
+
+###
+
+# Get one module
+
+GET http://localhost:5000/talk/6019a0156011a30f70690e0e
+
+###
+
+# Create one module
+
+POST http://localhost:5000/talk
+Content-Type: application/json
+
+{
+  "title": "Modulo 1",
+  "imagen": "",
+  "description": "Javascript avanzado",
+  "url": " "
+}
+
+###
+
+# Update one module
+
+PATCH http://localhost:5000/talk/6019a0156011a30f70690e0e
+Content-Type: application/json
+
+{
+  "title": "Modulo 2",
+  "imagen": "(L)",
+  "description": "Javascript retrasado",
+  "url": " "
+}
+###
+# Delete one module
+
+DELETE  http://localhost:5000/talk/6019a0156011a30f70690e0e
+
+###
+
+
+
+
+###
