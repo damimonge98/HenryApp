@@ -25,14 +25,8 @@ export default function BoomTest () {
 
 return (<div> 
    {booms.length === 0 ? <h1>Aca deberia ir un spinner de Loading :P</h1> :
-   <Fragment>
-   <h2>{booms[0].info}</h2>
-   <h2>{booms[1].info}</h2>
-   <h2>{booms[2].info}</h2>
-   <h2>{booms[3].info}</h2>
-   </Fragment>
-   }
-
+   booms.map(el=><Fragment><h4>New Boom</h4><p>{el.info}</p></Fragment>)  
+  }
     </div>)
 }
 

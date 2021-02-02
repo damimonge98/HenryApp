@@ -2,13 +2,15 @@ var Twitter = require('Twitter')
 const Boom = require('../models/booms');
 const express = require ("express");
 const server = express.Router ()
+const { CONSUMER_KEY, CONSUMER_SECRET, BEARER_TOKEN }  = process.env
+
 
 const boomTweets = function () { 
 var T = new Twitter({
 
-  consumer_key:         'RhEWR65PmYZnAhZdvZ4uuMJrh',
-  consumer_secret:      '2WplVh4mKGBDvs3kQyvxIzcA9Fa3ft6jHK8TTsCpPIqsUe1YmO',
-  bearer_token: "AAAAAAAAAAAAAAAAAAAAAKcUMQEAAAAAFplKha4DDgphjw7SwxPBx2tyJQQ%3DvAxucvxd3VglX19m6WOQyxSBeVI5Gn4N01cPD9ExYf4hrdvPER"
+  consumer_key:        CONSUMER_KEY,
+  consumer_secret:      CONSUMER_SECRET,
+  bearer_token: BEARER_TOKEN
 })
 
 
