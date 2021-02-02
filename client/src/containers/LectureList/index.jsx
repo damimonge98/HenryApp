@@ -16,6 +16,7 @@ const lectureList = () => {
     });
     const [estadoId, setEstadoId] = useState('');
 
+
     useEffect(() => {
         getLectures();
     }, []);
@@ -39,10 +40,7 @@ const lectureList = () => {
         axios.patch(`http://localhost:5000/lectures/${id}`, { title, description })
             .then(res => {
                 getLectures(),
-                    setOneLecture({
-                        title: "",
-                        description: ""
-                    });
+                    setOneLecture({ title: "", description: "" });
             });
     };
 
@@ -59,13 +57,9 @@ const lectureList = () => {
             .then(res => {
                 getLectures(),
                     setVideo({
-                        title: '',
-                        profesor: '',
-                        url: '',
-                        img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
-                        duration: ''
+                        title: '', profesor: '', url: '', duration: '',
+                        img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI'
                     })
-
             })
     };
 
