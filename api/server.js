@@ -12,7 +12,7 @@ const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
 const uploadRoutes = require('./src/routes/upload/upload');
-const mailRoutes = require("./src/routes/mail.js");
+const { mailRoutes } = require("./src/routes/mail.js");
 
 const server = express();
 
@@ -21,7 +21,7 @@ mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  // db.dropDatabase();// Con este comando se borra la db cuando se reincia el servidor
+  db.dropDatabase();// Con este comando se borra la db cuando se reincia el servidor
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 

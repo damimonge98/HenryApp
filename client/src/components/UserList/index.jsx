@@ -3,9 +3,14 @@ import { getOneUser, updateUser } from "../../redux/actions/usersActions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
+
+import Layout from "../../containers/Layout";
+import Table from "../Table";
+
 import "./index.css";
 
 const UserList = () => {
+
   const [allUsers, setAllUsers] = useState([{
     firstName: "",
     lastName: "",
@@ -18,9 +23,6 @@ const UserList = () => {
   const [selectedRole, setSelectedRole] = useState("");
 
   const [modalState, setModalState] = useState(false);
-
-
-
 
   useEffect(() => {
     if (selectedRole === "") {
@@ -100,95 +102,171 @@ const UserList = () => {
     setModalState(true);
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(updateUser(infoUser._id, user));
+  //   setModalState(false);
+  //   const alert = confirm("Cambios guardados");
+  //   if (alert === true) {
+  //     location.reload();
+  //     history.push("/users");
+  //     const handleCheckInput = (e) => {
+  //       event.preventDefault();
+  //       setInput(false);
+
+  //     };
+  //   };
+
+  const roleArray = ["student", "guest", "instructor"];
+  const filterRoleArray = roleArray.filter(e => e !== infoUser.role);
+  console.log("user", user);
+  console.log("infoUser", infoUser);
+
+  const handleIdInput = (id) => {
+    event.preventDefault();
+    setIdInput(id);
+  };
+
+  const handleCheckInput = (e) => {
+    event.preventDefault();
+    setInput(false);
+  };
+
+  const [file, setFile] = useState("");
+
+  const handleChangeFile = (e) => {
+    setFile({
+      [e.target.name]: event.target.files[0]
+    });
+  };
+
+
+
+  const handleSubmitFile = (e) => {
     e.preventDefault();
-    dispatch(updateUser(infoUser._id, user));
-    setModalState(false);
-    const alert = confirm("Cambios guardados");
-    if (alert === true) {
-      location.reload();
-      history.push("/users");
-      const handleCheckInput = (e) => {
-        event.preventDefault();
-        setInput(false);
-
-      };
-    };
-
-    const handleInput = (e) => {
-      setInput(!input);
-    };
-    const roleArray = ["student", "guest", "instructor"];
-    const filterRoleArray = roleArray.filter(e => e !== infoUser.role);
-    console.log("user", user);
-    console.log("infoUser", infoUser);
-
-
-
-    const handleIdInput = (id) => {
-      event.preventDefault();
-      setIdInput(id);
-    };
-
-    const handleCheckInput = (e) => {
-      event.preventDefault();
-      setInput(false);
-    };
-
-    const [file, setFile] = useState("");
-
-    const handleChangeFile = (e) => {
-      setFile({
-        [e.target.name]: event.target.files[0]
+    console.log(file);
+    const data = new FormData();
+    data.append('users', file.users, file.users.name);
+    axios
+      .post("http://localhost:5000/upload/users", data, {
+        // onUploadProgress: ProgressEvent => {
+        //   // this.setState({
+        //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+        //   // });
+        // },
+      })
+      .then(res => {
+        console.log(res.statusText);
       });
-    };
+  };
 
-    const handleSubmitFile = (e) => {
-      e.preventDefault();
-      console.log(file);
-      const data = new FormData();
-      data.append('users', file.users, file.users.name);
-      axios
-        .post("http://localhost:5000/upload/users", data, {
-          // onUploadProgress: ProgressEvent => {
-          //   // this.setState({
-          //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
-          //   // });
-          // },
-        })
-        .then(res => {
-          console.log(res.statusText);
-        });
-    };
 
-    return (
-      <div >
-        {/* <form method="post" action="http://localhost:5000/upload/users" onSubmit={handleSubmitFile} enctype="multipart/form-data"> */}
-        <input type="file" onChange={handleChangeFile} name="users" />
-        <button onClick={handleSubmitFile}>Send</button>
-        {/* </form> */}
-        <Link to='/createUser'>
-          <button type="button">
-            <i class="fas fa-plus-circle me-2" />
+
+  const rows = [
+    {
+      id: "1",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "2",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "2",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "2",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+    {
+      id: "3",
+      fullName: "Alejo Gschwind",
+      email: 'alejogschwind.97@gmail.com',
+      role: "student",
+      isAdmin: true,
+    },
+  ];
+
+  return (<Layout>
+    {/* <input type="file" onChange={handleChangeFile} name="users" />
+    <button onClick={handleSubmitFile}>Send</button> */}
+    <Table columns={columns} rows={rows} actions={actions} />
+  </Layout>);
+  return (
+    <div >
+      {/* <form method="post" action="http://localhost:5000/upload/users" onSubmit={handleSubmitFile} enctype="multipart/form-data"> */}
+
+      {/* </form> */}
+      <Link to='/createUser'>
+        <button type="button">
+          <i class="fas fa-plus-circle me-2" />
                   Crear usuario
               </button>
-        </Link>
-        <Link to='/'>
-          <button type="button">
-            <i class="fas fa-home" />
+      </Link>
+      <Link to='/'>
+        <button type="button">
+          <i class="fas fa-home" />
                   Inicio
               </button>
-        </Link>
-        <br />
-        <h2><i class="fas fa-users" />    Usuarios</h2>
-        <div>
-          <button onClick={() => roleHandler("")}>Todos los usuarios</button>
-          <button onClick={() => roleHandler("instructor")}>Instructores</button>
-          <button onClick={() => roleHandler("student")}>Estudiantes</button>
-          <button onClick={() => roleHandler("guest")}>Invitados</button>
-          <button onClick={() => roleHandler("banned")}>banned</button>
-        </div>
-        <table >
+      </Link>
+      <br />
+      <h2><i class="fas fa-users" />    Usuarios</h2>
+      <div>
+        <button onClick={() => roleHandler("")}>Todos los usuarios</button>
+        <button onClick={() => roleHandler("instructor")}>Instructores</button>
+        <button onClick={() => roleHandler("student")}>Estudiantes</button>
+        <button onClick={() => roleHandler("guest")}>Invitados</button>
+        <button onClick={() => roleHandler("banned")}>banned</button>
+      </div>
+      {/* <table >
           <thead >
             <tr >
               <th scope="col">Nombre</th>
@@ -291,7 +369,7 @@ const UserList = () => {
                             </div>
                           </div>
                         </Fragment>
-                        : console.log("")
+                        : <span>Hola</s
                       }
                     </td>
                     <button type="submit" onClick={() => handleDelete(_id)} ><i class="fas fa-trash-alt" /></button>
@@ -299,11 +377,10 @@ const UserList = () => {
                 );
               })}
           </tbody>}
-        </table>
-      </div>
-
-    );
-  };
+        </table> */}
+    </div>
+  );
+  // };
 };
 
 export default UserList;
