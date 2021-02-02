@@ -3,13 +3,16 @@ import axios from "axios";
 import ModuleCard from '../../components/ModuleCard/index.jsx'
 import './styles.css';
 
+
 const Modules = ({ moduloid }) => {
+
     const [modulos, setModulos] = useState([{
         _id: "",
         description: "",
         title: "",
         lectures: []
     }]);
+
 
     useEffect(() => {
         getModulos()
@@ -28,7 +31,7 @@ const Modules = ({ moduloid }) => {
                 {modulos.map((modulo, index) => {
                     return (
                         <div key={index}>
-                            <ModuleCard module={modulo} />
+                            <ModuleCard module={modulo} available={false} />
                         </div>
                     );
                 })}
