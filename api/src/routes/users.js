@@ -88,34 +88,39 @@ router.post('/', async (req, res) => {
 });
 
 // Update one user
-router.patch('/user/:id', (req, res) => {
+router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
   const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
+  let allModules = await Module.find();
+  let current = allModules.length;
+
   let update = {};
   if (email) {
     update = { ...update, email };
-  }
+  };
   if (firstName) {
     update = { ...update, firstName };
-  }
+  };
   if (lastName) {
     update = { ...update, lastName };
-  }
+  };
   if (password) {
     update = { ...update, password };
-  }
+  };
   if (isSuperAdmin) {
-    update = { ...update, isSuperAdmin };
-  }
-  if (role) {
+    update = { ...update, isSuperAdmin, currentModule: current };
+  };
+  if (role === "instructor") {
+    update = { ...update, role, currentModule: current };
+  } else {
     update = { ...update, role };
-  }
+  };
   if (currentModule) {
     update = { ...update, currentModule };
-  }
+  };
   if (avatar) {
     update = { ...update, avatar };
-  }
+  };
 
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
@@ -124,6 +129,7 @@ router.patch('/user/:id', (req, res) => {
       res.status(400).json({ message: error.message });
     });
 });
+
 
 //Ban one user
 router.patch('/ban/:id', (req, res) => {
