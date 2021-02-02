@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
       {
         isAuth ?
           <Modules ></Modules>
-          : console.log('')
+          : null
       }
     </LayoutWrapper>
   );
