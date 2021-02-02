@@ -1,0 +1,42 @@
+/*los colores despues se cambian, queria ver como queda la transicion*/
+
+.card__front,
+.card__back {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ padding: 2em;
+ border-radius: 0.5em;
+ transition: transform 0.7s ease;
+ backface-visibility: hidden;
+ box-shadow: 0 7px 15px -5px rgba(0, 0, 0, 0.4);
+}
+
+.card__front {
+  display: flex;
+  flex-direction: column;
+  color: gold;
+  overflow: hidden;
+ }
+
+ .card__back {
+  border: 1px solid #ccc;
+  background: #efefef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: rotateY(-180deg);
+ }
+ 
+ .card:hover .card__front,
+ .card:focus .card__front {
+  transform: rotateY(180deg);
+ }
+ 
+ .card:hover .card__back,
+ .card:focus .card__back {
+  transform: rotateY(0);
+ }
+ 

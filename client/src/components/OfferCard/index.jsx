@@ -8,20 +8,27 @@ const OfferCard = ({ empleo }) => {
 
   return (
     <div className="card">
-      <div>
-        <h3>{title}</h3>
+      <div className="card__front">
+        <div>
+          <h3>{title}</h3>
+        </div>
+        <div>
+          <h6>{location}</h6>
+        </div>
+        <div>
+          <p>{remote}</p>
+        </div>
       </div>
-      <div>
-        <h6>{location}</h6>
-      </div>
-      <div>
-        <p>{remote}</p>
-      </div>
-      <div>
-        <p>{description}</p>
-      </div>
-      <div>
-        <a href={linkedIn} target="_blank"><button>Ver en LinkedIn</button></a>
+
+      <div className="card__back">
+        <div>
+          <p>{description}</p>
+        </div>
+        <div>
+          <a href={linkedIn} target="_blank">
+            <button>Ver en LinkedIn</button>
+          </a>
+        </div>
       </div>
     </div>
   );
