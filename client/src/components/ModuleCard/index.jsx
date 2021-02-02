@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './styles.css';
 
-const ModuleCard = ({ module }, { available }) => {
+const ModuleCard = ({ module, available }) => {
     let { title,
         description,
         lectures,

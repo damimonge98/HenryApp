@@ -72,9 +72,9 @@ router.post('/', async (req, res) => {
     currentModule,
     avatar
   });
-  if (user.isSuperAdmin === true || user.role === 'instructor'){
-    user.currentModule = 'M4'
-  }
+  if (user.isSuperAdmin === true || user.role === 'instructor') {
+    user.currentModule = 4;
+  };
 
   try {
     const newUser = await user.save();
@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', (req, res) => {
   const { id } = req.params;
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
   let update = {};
   if (email) {
     update = { ...update, email };
@@ -106,6 +106,9 @@ router.patch('/user/:id', (req, res) => {
   }
   if (role) {
     update = { ...update, role };
+  }
+  if (currentModule) {
+    update = { ...update, currentModule };
   }
   if (avatar) {
     update = { ...update, avatar };

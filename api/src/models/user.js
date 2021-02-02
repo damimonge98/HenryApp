@@ -39,10 +39,10 @@ const userSchema = new mongoose.Schema({
     default: 'guest'
   },
 
-  currentModule:{
-    type:String,
-    enum: ['M0', 'M1', 'M2', 'M3', 'M4' ],
-    default: 'M0'
+  currentModule: {
+    type: Number,
+    enum: [0, 1, 2, 3, 4],
+    default: 0
   },
 
   avatar: {

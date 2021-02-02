@@ -16,7 +16,9 @@ const moduleSchema = new Schema({
   },
   order: {
     type: Number,
-   
+    enum: [0, 1, 2, 3, 4],
+    required: true
+
   }
 });
 
