@@ -5,27 +5,16 @@ import './index.css'
 
 const lectureList = () => {
     const [allLectures, setAllLectures] = useState([{
-        title: '',
-        imagen: '',
-        video: [],
-        modulo: '',
-        description: '',
-        _id: '',
+        title: '', imagen: '', video: [], modulo: '', description: '', _id: ''
     }]);
-    const [estadoId, setEstadoId] = useState('');
-
     const [video, setVideo] = useState({
-        title: '',
-        profesor: '',
-        url: '',
-        img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
-        duration: ''
+        title: '', profesor: '', url: '', duration: '',
+        img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI'
     });
-
     const [oneLecture, setOneLecture] = useState({
-        title: "",
-        description: ""
+        title: "", description: ""
     });
+    const [estadoId, setEstadoId] = useState('');
 
     useEffect(() => {
         getLectures();
