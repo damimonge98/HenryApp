@@ -4,38 +4,39 @@ import {
   CREATE_TALK,
   UPDATE_TALK,
   DELETE_TALK,
-} from "../constants/talkContants";
+} from '../constants/talkConstants';
 
 const initialState = {
-  talks: [],
+  talks: {}
 };
 
 const talkReducers = (state = initialState, action) => {
   switch (action.type) {
+
     case GET_ALL_TALKS:
       return {
-        ...state,
-        talks: action.payload,
+        ...state
       };
+
     case GET_TALK:
       return {
-        ...state,
-        talks: action.payload,
+        ...state
       };
+
     case CREATE_TALK:
       return {
-        ...state,
-        talks: action.payload,
+        ...state
       };
+
     case UPDATE_TALK:
       return {
         ...state,
-        talks: action.payload,
+        talks: action.payload
       };
+
     case DELETE_TALK:
       return {
-        ...state,
-        talks: action.payload,
+        ...state
       };
 
     default:

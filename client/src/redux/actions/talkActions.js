@@ -5,15 +5,92 @@ import {
   CREATE_TALK,
   UPDATE_TALK,
   DELETE_TALK,
-} from "../constants/talkContants";
+} from '../constants/talkConstants';
 
-export const getTalks = () => {
-  return function (dispatch) {
-    axios.get("http://localhost:5000/talk").then((res) => {
-      dispatch({
-        type: GET_ALL_TALKS,
-        payload: res,
-      });
-    });
+
+const getAllTalksAction = () => ({
+  type: GET_ALL_TALKS
+});
+
+const getTalkAction = () => ({
+  type: GET_TALK
+});
+
+const createTalkAction = () => ({
+  type: CREATE_TALK
+});
+
+const updateTalkAction = (talk) => ({
+  type: UPDATE_TALK,
+  talk
+});
+
+const deleteTalkAction = () => ({
+  type: DELETE_TALK
+});
+
+
+export const getAllTalks = () => {
+  return async (dispatch) => {
+    try {
+      await axios.get('http://localhost:5000/talk');
+
+      dispatch(getAllTalksAction());
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getTalk = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.get(`http://localhost:5000/talk/${id}`);
+
+      dispatch(getTalkAction());
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const createTalk = (talkData) => {
+  return async (dispatch) => {
+    try {
+      await axios.post('http://localhost:5000/talk', { ...talkData });
+
+      dispatch(createTalkAction());
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateTalk = (id, { title, imagen, description, url }) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(`http://localhost:5000/talk/${id}`, { title, imagen, description, url });
+
+      dispatch(updateTalkAction());
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteTalk = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`http://localhost:5000/talk/${id}`);
+
+      dispatch(deleteTalkAction());
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
