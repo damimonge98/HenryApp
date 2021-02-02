@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+//-----falta el input de remote para cambiar su valor
+//-----definir como se van a traer los datos de la empresa
+
+
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
     // enterprise: {},
