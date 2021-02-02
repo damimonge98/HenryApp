@@ -42,6 +42,10 @@ router.post('/', async (req, res) => {
     order
   });
 
+  const allModules = await Module.find().then();
+  modulo.order = allModules.length + 1;
+  console.log(modulo.order)
+
   try {
     const newModule = await modulo.save();
     res.json(newModule);
