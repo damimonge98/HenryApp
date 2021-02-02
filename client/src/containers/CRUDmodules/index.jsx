@@ -11,6 +11,10 @@ const ModuleList = () => {
         order: null,
         _id: ''
     }]);
+    const [oneModule, setOneModule] = useState({
+        title: "",
+        description: ""
+    });
     const [oneId, setOneId] = useState(null);
 
     useEffect(() => {
@@ -50,6 +54,28 @@ const ModuleList = () => {
 
     };
 
+    const handleModuleSubmit = (id) => {
+        const { title, description } = oneModule;
+
+        axios.patch(`http://localhost:5000/modules/${id}`, { title, description })
+            .then(res => {
+                getModules();
+                setOneModule({
+                    title: "",
+                    description: ""
+                });
+            });
+    };
+
+    const handleModuleChange = (e) => {
+
+        setOneModule({
+            ...oneModule,
+            [e.target.name]: e.target.value
+        });
+    };
+
+
     return (
         <div>
             <h3>Lista de módulos</h3>
@@ -68,7 +94,29 @@ const ModuleList = () => {
                                 <tr key={index}>
                                     <td >{title}</td>
                                     <td>{lectures.length}</td>
-                                    <td ><button><i className="fas fa-user-edit" /></button></td>
+                                    <td ><button onClick={() => setOneId(_id)} ><a href="#openModal1"><i className="fas fa-user-edit" /> </a></button></td>
+
+                                    {/* ---------------------------------MODAL EDITAR MODULO---------------------------------------------------- */}
+
+                                    <div id="openModal1" class="modalDialog">
+                                        <div>	<a href="#close" title="Close" class="close">X</a>
+                                            <h2>Editar Modelo</h2>
+                                            <form onSubmit={() => handleModuleSubmit(oneId)} ><a href="#close" title="Close" class="close"></a>
+                                                <p>
+                                                    Título
+                                                        <input name="title" onChange={e => handleModuleChange(e)} />
+                                                </p>
+                                                <p>
+                                                    Descripción
+                                                        <input name="description" onChange={e => handleModuleChange(e)} />
+                                                </p>
+                                                <button type="submit">  GUARDAR CAMBIOS</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    {/* ---------------------------------MODAL CREAR LECTURE---------------------------------------------------- */}
+
                                     <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
                                     <td><button onClick={() => setOneId(_id)}><a href="#openModal"><i className="fas fa-plus-circle me-2" /> Agregar lecture</a></button></td>
                                     <div id="openModal" className="modalDialog">
@@ -132,7 +180,7 @@ const ModuleList = () => {
             </table>
             <br />
             <CreateModule></CreateModule>
-        </div>
+        </div >
     );
 };
 
