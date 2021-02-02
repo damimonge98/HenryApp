@@ -20,11 +20,13 @@ router.get("/me", isUser, async (req, res, next) => {
 router.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
 
-  User.findOne({ email }, async (err, doc) => {
+  User.findOne({ email }, async (err, user) => {
     try {
-      if (doc) res.send('User already exists');
+      if (user) {
+        return res.status(409).json({ errors: 'User already exists' });
+      }
 
-      if (!doc) {
+      if (!user) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
           email,
@@ -47,7 +49,7 @@ router.post('/login', (req, res, next) => {
       return res.status(400).json({ errors: err });
     }
     if (!user) {
-      return res.status(400).json({ errors: 'No user found' });
+      return res.status(401).json({ errors: 'No user found' });
     }
 
     try {
