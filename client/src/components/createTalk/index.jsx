@@ -17,10 +17,11 @@ const CreateTalk = () => {
         });
     }
 
-    const handleSubmit = () => {
-        const { title, description } = talk;
-        axios.post("http://localhost:5000/talks", { title, description, imagen })
-            .then(console.log(res));
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const { title, description ,imagen, url} = talk;
+        axios.post("http://localhost:5000/talk", { title, description, imagen, url })
+            .then(console.log(e));
     };
 
     return (
