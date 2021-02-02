@@ -1,34 +1,35 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
-  
-  enterprise: [{
+  enterprise: [
+    {
       type: Schema.Types.ObjectId,
-      ref: 'Empresa',
-      required: true
-    }],
-  
+      ref: "Empresa",
+      required: true,
+    },
+  ],
+
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   remote: {
-    type: Boolean
+    type: Boolean,
   },
   location: {
     type: String,
-    required: true
+    required: true,
   },
 
   linkedIn: {
-     type: String
-   }
-
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('Empleo', jobSchema);
+module.exports = mongoose.model("Empleo", jobSchema);

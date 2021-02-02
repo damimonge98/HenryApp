@@ -1,15 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const enterpriseSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   logo: {
-    type: String
-  }
-
+    type: String,
+  },
 });
 
-module.exports = mongoose.model('Empresa', enterpriseSchema);
+module.exports = mongoose.model("Empresa", enterpriseSchema);
