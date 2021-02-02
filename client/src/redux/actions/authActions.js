@@ -39,7 +39,10 @@ export const registerUser = (registerData) => {
       dispatch(registerAction());
 
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedAction(error = {
+        code: 409,
+        errorMessage: 'Email address already in use'
+      }));
     }
   };
 };
@@ -55,7 +58,10 @@ export const loginUser = ({ email, password }) => {
       dispatch(loginAction(res.data.user));
 
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedAction(error = {
+        code: 401,
+        errorMessage: 'Incorrect username or password'
+      }));
     }
   };
 };
@@ -95,4 +101,3 @@ export const logoutUser = () => {
     }
   };
 };
-
