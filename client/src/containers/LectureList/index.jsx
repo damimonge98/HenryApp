@@ -38,7 +38,7 @@ const lectureList = () => {
     };
 
     const handleDelete = (id) => {
-        if (confirm("¿Quiere eliminar la Lecture?") === true) {
+        if (confirm("¿Quiere eliminar la Lecture? Se eliminarán todos los videos asociados") === true) {
             axios.delete(`http://localhost:5000/lectures/${id}`)
                 .then(res => getLectures());
         };
