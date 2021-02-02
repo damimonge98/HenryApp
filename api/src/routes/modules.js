@@ -43,8 +43,8 @@ router.post('/', async (req, res) => {
   });
 
   const allModules = await Module.find().then();
-  modulo.order = allModules.length + 1;
-  console.log(modulo.order)
+
+  modulo.order = allModules.length === 0 ? 0 : allModules.length;
 
   try {
     const newModule = await modulo.save();
@@ -92,7 +92,16 @@ router.delete('/:id', (req, res) => {
   });
   Lecture.deleteMany({ modulo: id }).then();
   Module.findById(id).then(modulo => {
+    const allModules = Module.find().then(res => {
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].order > modulo.order) {
+          res[i].order = res[i].order - 1;
+        }
+      }
+      allModules.save();
+    });
     modulo.remove();
+
     res.json({ message: 'Module has been deleted' });
   }).catch(error => {
     res.status(500).json({ message: error.message });
