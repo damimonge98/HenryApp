@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './index.css'
 
@@ -66,15 +67,15 @@ const lectureList = () => {
     const handleVideoSubmit = () => {
         const { title, profesor, url, img, duration } = video
         axios.post(`http://localhost:5000/videos/${estadoId}`, { title, profesor, url, img, duration })
-            .then(res=>{
+            .then(res => {
                 getLectures(),
-                setVideo({
-                    title: '',
-                    profesor: '',
-                    url: '',
-                    img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
-                    duration: ''
-                })
+                    setVideo({
+                        title: '',
+                        profesor: '',
+                        url: '',
+                        img: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
+                        duration: ''
+                    })
 
             })
     };
@@ -125,13 +126,13 @@ const lectureList = () => {
                                                 </form>
                                             </div>
                                         </div>
-                                            {/* --------------------------------------------------------------------- */}
+                                        {/* --------------------------------------------------------------------- */}
                                         <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
                                         <td><button onClick={() => setEstadoId(_id)}><a href="#openModal2"><i className="fas fa-plus-circle me-2" /> Agregar video</a></button></td>
                                         <div id="openModal2" className="modalDialog">
                                             <div>	<a href="#close" title="Close" className="close">X</a>
                                                 <div >
-                                                    <form onSubmit={()=>handleVideoSubmit(estadoId)}><a href="#close" title="Close" className="close"></a>
+                                                    <form onSubmit={() => handleVideoSubmit(estadoId)}><a href="#close" title="Close" className="close"></a>
                                                         <div >
                                                             <label >
                                                                 Titulo</label>
@@ -209,6 +210,18 @@ const lectureList = () => {
                     </tbody>
                 </table>
             </div>
+            <Link to='/'>
+                <button type="button">
+                    <i className="fas fa-home" />
+                  Inicio
+              </button>
+            </Link>
+            <Link to='/modules'>
+                <button type="button">
+                    <i className="fas fa-list" />
+                     Lista de Modulos
+              </button>
+            </Link>
         </div >
     )
 };

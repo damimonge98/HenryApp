@@ -66,6 +66,12 @@ const CreateModule = () => {
                   Inicio
               </button>
             </Link>
+            <Link to='/lecturesList'>
+                <button type="button">
+                    <i className="fas fa-list" />
+                     Lista de Lectures
+              </button>
+            </Link>
         </div >
     );
 };
