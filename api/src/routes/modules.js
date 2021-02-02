@@ -96,9 +96,9 @@ router.delete('/:id', (req, res) => {
       for (let i = 0; i < res.length; i++) {
         if (res[i].order > modulo.order) {
           res[i].order = res[i].order - 1;
+          res[i].save();
         }
       }
-      allModules.save();
     });
     modulo.remove();
 
