@@ -61,7 +61,7 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
   const user = new User({
     email,
     firstName,
@@ -69,8 +69,12 @@ router.post('/', async (req, res) => {
     password,
     isSuperAdmin,
     role,
+    currentModule,
     avatar
   });
+  if (user.isSuperAdmin === true || user.role === 'instructor'){
+    user.currentModule = 'M4'
+  }
 
   try {
     const newUser = await user.save();
