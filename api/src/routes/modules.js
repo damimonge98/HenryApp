@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Module = require('../../models/module');
-const Lecture = require("../../models/lecture");
-const Video = require("../../models/video");
+const Module = require('../models/module');
+const Lecture = require("../models/lecture");
+const Video = require("../models/video");
 
 
 //--------------------Get all modules--------------------
