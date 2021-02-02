@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Module = require('../models/module')
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -73,7 +74,9 @@ router.post('/', async (req, res) => {
     avatar
   });
   if (user.isSuperAdmin === true || user.role === 'instructor') {
-    user.currentModule = 4;
+    const allModules = await Module.find().then();
+    user.currentModule = allModules.length;
+
   };
 
   try {

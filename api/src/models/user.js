@@ -41,7 +41,6 @@ const userSchema = new mongoose.Schema({
 
   currentModule: {
     type: Number,
-    enum: [0, 1, 2, 3, 4],
     default: 0
   },
 

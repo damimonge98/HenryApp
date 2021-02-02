@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 const Modules = ({ moduloid }) => {
     const { user } = useSelector(state => state.auth);
+    console.log(user)
     const [modulos, setModulos] = useState([{
         _id: "",
         description: "",
