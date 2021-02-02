@@ -10,7 +10,7 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
-import lectureList from './containers/CRUDclases/index';
+import lectureList from './containers/LectureList/index';
 import ModuleList from './containers/CRUDmodules/index';
 import BoomTest from "../src/components/BoomTest.jsx";
 
@@ -27,7 +27,7 @@ const routes = () => {
         <Route exact path='/createUser' component={CreateUser} />
         <Route exact path='/lecture/:lectureid' component={OneLecture} />
         <Route exact path='/modulo/:moduloid' component={Lectures} />
-        <Route exact path='/lectures' component={lectureList} />
+        <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path = "/booms" component = {BoomTest} />
       </Switch>
