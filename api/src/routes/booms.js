@@ -15,15 +15,18 @@ var T = new Twitter({
 
 
 const query = "?tweet.fields=created_at"
-T.get (`https://api.twitter.com/2/users/148246336/tweets${query}`,{max_results : 100},function(err, data, response) {
+T.get (`https://api.twitter.com/2/users/148246336/tweets${query}&media.fields=preview_image_url`,{max_results : 100},function(err, data, response) {
 const boomTweets = data.data.filter(el => el.text.includes("BOOM"))
   Boom.find()
   .then (boomsDB => {
       if (boomsDB.length === 0) {
         for (var i = 0; i < boomTweets.length; i++) {
+          const arreglo = boomTweets[i].text.split(" ")
+          const link = arreglo.filter(el => el.includes("http"))
           const addBooms = new Boom ({
           info: boomTweets[i].text,
-          created_at: boomTweets[i].created_at
+          created_at: boomTweets[i].created_at,
+          link: link[0]
           })
           addBooms.save()
           return;
@@ -31,11 +34,14 @@ const boomTweets = data.data.filter(el => el.text.includes("BOOM"))
       
     } else {
       for (var i = 0; i < boomTweets.length; i++) {
-      const isNewBoom = boomsDB.filter(el => el.info.includes(boomTweets[i].text))
+        const arreglo = boomTweets[i].text.split(" ")
+        const link = arreglo.filter(el => el.includes("http"))
+        const isNewBoom = boomsDB.filter(el => el.info.includes(boomTweets[i].text))
       if (isNewBoom.length === 0) { //Significa que ese boom no existe, (es nuevo)
         const addBoom = new Boom ({
           info: boomTweets[i].text,
-          created_at: boomTweets[i].created_at
+          created_at: boomTweets[i].created_at,
+          link: link[0]
         })
         addBoom.save()
       }

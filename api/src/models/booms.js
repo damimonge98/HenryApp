@@ -9,6 +9,9 @@ const BoomSchema = new Schema({
   created_at: {
     type: String,
     required: true
+  },
+  link: {
+    type: String,
   }
 
 });

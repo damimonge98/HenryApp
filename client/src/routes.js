@@ -12,7 +12,7 @@ import Lectures from './containers/Lectures'
 import GooglePage from './containers/GooglePage';
 import lectureList from './containers/LectureList/index';
 import ModuleList from './containers/CRUDmodules/index';
-import BoomTest from "../src/components/BoomTest.jsx";
+import Booms from "./components/Booms/Booms.jsx";
 
 const routes = () => {
   return (
@@ -29,7 +29,7 @@ const routes = () => {
         <Route exact path='/modulo/:moduloid' component={Lectures} />
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
-        <Route exact path = "/booms" component = {BoomTest} />
+        <Route exact path = "/booms" component = {Booms} />
       </Switch>
     </BrowserRouter>
   );
