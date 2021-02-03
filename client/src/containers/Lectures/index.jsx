@@ -34,9 +34,9 @@ const Lectures = (props) => {
     };
 
     const getOneModule = () => {
-        axios.get(`http://localhost:5000/lectures/${props.match.params.moduloid}`).then(
+        axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`).then(
             res => {
-                setLecture(res.data);
+                setLectures(res.data);
             });
     };
 
