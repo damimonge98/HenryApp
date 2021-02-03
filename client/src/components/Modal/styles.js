@@ -19,6 +19,7 @@ export const BackDrop = styled.div`
 `;
 
 export const ModalBox = styled.div`
+  position: relative;
   min-height: 40%;
   width: 40%;
   overflow-y: auto;
@@ -31,4 +32,19 @@ export const ModalBox = styled.div`
   box-shadow: 0 0 10px rgba(0,0,0, 0.25);
   z-index: 1001;
   padding: 2rem;
+`;
+
+export const CloseButton = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 3px;
+  background: black;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

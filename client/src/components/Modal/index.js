@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import ReactDOM from "react-dom";
 
-import { ModalWrapper, BackDrop, ModalBox } from "./styles";
+import { ModalWrapper, BackDrop, ModalBox, CloseButton } from "./styles";
 
 const Modal = forwardRef(({ children }, ref) => {
   const [display, setDisplay] = useState(false);
@@ -26,6 +26,7 @@ const Modal = forwardRef(({ children }, ref) => {
     <ModalWrapper>
       <BackDrop onClick={close} />
       <ModalBox>
+        <CloseButton onClick={close} />
         {children}
       </ModalBox>
     </ModalWrapper>, document.getElementById("modal-root"));
