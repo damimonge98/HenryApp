@@ -6,7 +6,8 @@ import {
   REQUEST_FAILED_ACTION,
   GET_USER,
   GET_USERS,
-  UPDATE_USER
+  UPDATE_USER,
+  DELETE_USER
 } from "../constants/usersContants";
 
 const requestAction = () => ({
@@ -35,6 +36,11 @@ const getUserAction = (user) => ({
 const updateUserAction = (user) => ({
   type: UPDATE_USER,
   user
+});
+
+const deleteUserAction = (id) => ({
+  type: DELETE_USER,
+  id
 });
 
 export const getUsers = () => {
@@ -87,9 +93,9 @@ export const deleteUser = (id) => {
     try {
       dispatch(requestAction());
 
-      const res = await axios.patch(`http://localhost:5000/users/user/${id}`, data);
+      const res = await axios.delete(`http://localhost:5000/users/${id}`);
 
-      dispatch(updateUserAction(res.data));
+      dispatch(deleteUserAction(res.data));
       dispatch(requestSuccessAction());
     } catch (error) {
       dispatch(requestFailedAction(error));

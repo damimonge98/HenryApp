@@ -27,7 +27,8 @@ const userReducers = (state = initialState, action) => {
     case REQUEST_SUCCESS_ACTION:
       return {
         ...state,
-        loading: false
+        loading: false,
+        error: null
       };
 
     case REQUEST_FAILED_ACTION:

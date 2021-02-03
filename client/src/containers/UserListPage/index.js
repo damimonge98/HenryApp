@@ -1,26 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsers } from '../../redux/actions/usersActions';
+import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
-import { H1 } from './styles';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
   const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
   const editModalRef = useRef();
+  const deleteModalRef = useRef();
 
   useEffect(() => {
     dispatch(getUsers());
   }, []);
 
   const handleUpdateUser = (id) => {
-    console.log(id);
     const [user] = users.filter(u => {
       if (u._id === id)
         return true;
@@ -29,7 +29,16 @@ const UserListPage = () => {
     setSelected(user);
     editModalRef.current.openModal();
   };
-  const handleDeleteUser = () => { };
+  const handleDeleteUser = (id) => {
+    console.log(id);
+    const [user] = users.filter(u => {
+      if (u._id === id)
+        return true;
+      return false;
+    });
+    setSelected(user);
+    deleteModalRef.current.openModal();
+  };
 
   const columns = [
     {
@@ -65,7 +74,7 @@ const UserListPage = () => {
       icon: "E"
     },
     {
-      handleClick: (id) => handleDeleteUser(),
+      handleClick: (id) => handleDeleteUser(id),
       icon: "D"
     }
   ];
@@ -81,12 +90,25 @@ const UserListPage = () => {
   if (loading)
     return <Loading />;
 
+  console.log("SELECTED", selected);
   return (
     <Layout>
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
         <H1>Edit User</H1>
         <UpdateUserForm modalRef={editModalRef} userData={selected} />
+      </Modal>
+      <Modal ref={deleteModalRef}>
+        {
+          selected ? (
+            <ConfirmationWrapper>
+              <H1>Deleting {selected.firstName} {selected.lastName}</H1>
+              <span>Are you sure you want to delete this user?</span>
+              <ButtonConfirm onClick={() => dispatch(deleteUser(selected._id))}>Confirm</ButtonConfirm>
+              <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancel</ButtonCancel>
+            </ConfirmationWrapper>
+          ) : null
+        }
       </Modal>
     </Layout>
   );
