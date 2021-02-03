@@ -1,30 +1,30 @@
-# Get all modules
+# Get all talks
 
 GET http://localhost:5000/talk
 
 ###
 
-# Get one module
+# Get one talk
 
 GET http://localhost:5000/talk/6019a0156011a30f70690e0e
 
 ###
 
-# Create one module
+# Create one talk
 
 POST http://localhost:5000/talk
 Content-Type: application/json
 
 {
-  "title": "Modulo 1",
-  "imagen": "",
-  "description": "Javascript avanzado",
-  "url": " "
+  "title": "Promesas",
+  "imagen": ":)",
+  "description": "Todo sobre promesas",
+  "url": "www.url.com"
 }
 
 ###
 
-# Update one module
+# Update one talk
 
 PATCH http://localhost:5000/talk/6019a0156011a30f70690e0e
 Content-Type: application/json
@@ -35,14 +35,11 @@ Content-Type: application/json
   "description": "Javascript retrasado",
   "url": " "
 }
-###
-# Delete one module
-
-DELETE  http://localhost:5000/talk/6019a0156011a30f70690e0e
 
 ###
 
+# Delete one talk
 
-
+DELETE  http://localhost:5000/talk/6019eaed0a1cc80cbc8fd49b
 
 ###

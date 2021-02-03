@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Containers / Pages
-import UserList from "./components/UserList/index"
-import CreateUser from "./components/CreateUser/index"
-import OneLecture from "./components/OneLecture/index"
+import UserList from './components/UserList';
+import CreateUser from './components/CreateUser';
+import OneLecture from './components/OneLecture';
 import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
-import Lectures from './containers/Lectures'
+import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
-import lectureList from './containers/LectureList/index';//arreglar
-import ModuleList from './containers/CRUDmodules/index';
-import CreateTalk from './components/CreateTalk'
+import lectureList from './containers/LectureList';//arreglar
+import ModuleList from './containers/CRUDmodules';
+import CreateTalk from './components/CreateTalk';
 
 const routes = () => {
   return (
@@ -29,7 +29,7 @@ const routes = () => {
         <Route exact path='/modulo/:moduloid' component={Lectures} />
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
-        <Route exact path='/talk' component={CreateTalk}/>
+        <Route exact path='/talk' component={CreateTalk} />
       </Switch>
     </BrowserRouter>
   );

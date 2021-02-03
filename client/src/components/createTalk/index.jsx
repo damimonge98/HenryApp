@@ -1,23 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { createTalk } from '../../redux/actions/talkActions';
 
 const CreateTalk = () => {
-
-  const { talks } = useSelector(state => state);
-  const dispatch = useDispatch();
-
-  const handleSubmit = async (data) => {
-    data.preventDefault();
-    console.log('DATA', data);
-    dispatch(createTalk(data));
-  };
-
-  // const onSubmit = (data) => {
-  //   dispatch(createTalk(data));
-  // };
 
   const [talk, setTalk] = useState({
     title: "",
@@ -26,22 +11,22 @@ const CreateTalk = () => {
     url: ""
   });
 
-  function onChange(data) {
+  const handleChange = (e) => {
     setTalk({
       ...talk,
-      [data.target.name]: data.target.value
+      [e.target.name]: e.target.value
     });
-  }
+  };
 
-  // const handleSubmit = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     const { title, imagen, description, url } = talk;
-  //     await axios.post('http://localhost:5000/talk', { title, description, imagen, url });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const { title, imagen, description, url } = talk;
+      await axios.post('http://localhost:5000/talk', { title, description, imagen, url });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -50,7 +35,7 @@ const CreateTalk = () => {
           <label>Titulo</label>
           <div>
             <input
-              onChange={(data) => { onChange(data); }}
+              onChange={(e) => { handleChange(e); }}
               name="title"
               type="text"
               required />
@@ -60,7 +45,7 @@ const CreateTalk = () => {
           <label>Descripción</label>
           <div>
             <textarea
-              onChange={(data) => { onChange(data); }}
+              onChange={(e) => { handleChange(e); }}
               name="description"
               type="text"
               required />
@@ -70,7 +55,7 @@ const CreateTalk = () => {
           <label>Imagen</label>
           <div>
             <input
-              onChange={(data) => { onChange(data); }}
+              onChange={(e) => { handleChange(e); }}
               name="imagen"
               type="text"
               placeholder='Puede agregar una imagen' />
@@ -80,7 +65,7 @@ const CreateTalk = () => {
           <label>URL</label>
           <div>
             <input
-              onChange={(data) => { onChange(data); }}
+              onChange={(e) => { handleChange(e); }}
               name="url"
               type="text"
               required />

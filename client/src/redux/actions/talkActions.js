@@ -20,9 +20,8 @@ const createTalkAction = () => ({
   type: CREATE_TALK
 });
 
-const updateTalkAction = (talk) => ({
-  type: UPDATE_TALK,
-  talk
+const updateTalkAction = () => ({
+  type: UPDATE_TALK
 });
 
 const deleteTalkAction = () => ({
