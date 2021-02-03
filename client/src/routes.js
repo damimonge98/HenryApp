@@ -14,6 +14,7 @@ import lectureList from './containers/LectureList'; //arreglar
 import ModuleList from './containers/CRUDmodules';
 import CreateTalk from './components/CreateTalk';
 import BoomTest from "../src/components/BoomTest.jsx";
+import TalkList from './components/TalkList';
 
 const routes = () => {
   return (
@@ -31,6 +32,7 @@ const routes = () => {
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talk' component={CreateTalk} />
+        <Route exact path='/talks' component={TalkList} />
         <Route exact path="/booms" component={BoomTest} />
       </Switch>
     </BrowserRouter >

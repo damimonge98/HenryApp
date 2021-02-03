@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { createTalk } from '../../redux/actions/talkActions';
 
 const CreateTalk = () => {
 
@@ -11,21 +12,18 @@ const CreateTalk = () => {
     url: ""
   });
 
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createTalk(talk));
+  };
+
   const handleChange = (e) => {
     setTalk({
       ...talk,
       [e.target.name]: e.target.value
     });
-  };
-
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const { title, imagen, description, url } = talk;
-      await axios.post('http://localhost:5000/talk', { title, description, imagen, url });
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
