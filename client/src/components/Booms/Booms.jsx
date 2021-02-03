@@ -34,20 +34,19 @@ export default function Booms () {
     console.log(link)
 return (
     <div className = {styles.containerDiv}>
-        <h1 className = {styles.title}>MIRÁ LOS ULTIMOS BOOMS ;)</h1>
+        <div>
+        <h1 className = {styles.containerDiv}>ESTO SUCEDE CON NUESTROS GRADUADOS! ;)</h1>
+        </div>
+        
         <Carousel>
             {booms.length !== 0? 
             booms.map(el => 
-            
             <Fragment>
             <div>{el.info}</div>
-            <div>
-            <a href={el.link} className ={styles.a}>VER MÁS</a>
-            </div>
+            <a href = {el.link}>LEER MÁS</a>
             </Fragment>
                 ) : <h1>Loading...</h1>}
         </Carousel>
-            )
     </div>
 )
       

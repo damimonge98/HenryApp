@@ -2,33 +2,25 @@ import React from "react";
 import HenryDev from "../../assets/images/HenryDev.png";
 import WhyHenry from "../../assets/images/WhyHenry.png";
 import Cost from "../../assets/images/Cost.png";
+import Booms from "../Booms/Booms"
 import "./styles.css";
 
 const InitialHome = () => {
   return (
-    <div>
-      <div className="dev">
-      <div className="texto">
-        <div className="invertimos">
-          <p>
-            <h1 class="title1">Invertimos en tu educación</h1>
-            <h2 class="title2">Comienza a estudiar programación</h2>
-            <h4 class="intro">
-              Conviértete en un desarrollador de software en 4 meses a remoto. Y
-              lo mejor, sólo nos pagas cuando consigues un trabajo.
-            </h4>
-          </p>
+
+
+<div class="parent">
+  <div class="div1"> 
+
+           <Booms/>
         </div>
-        <div className="aplica" role="button">
-        <p className="aplicabtn">Aplica</p>
-        </div>
-        </div>
-        <div className="devImg">
+        
+
+  <div class="div2">
         <img src={HenryDev} alt="devImg" />
-        </div>
-      </div>
-      <div className="why">
-        <div className="reasons">
+     </div>
+
+  <div class="div3">
           <h1> ¿Por qué Henry?</h1>
           <br/>
           <h2>100% online</h2>
@@ -58,13 +50,14 @@ const InitialHome = () => {
             Unirte a Henry significa crear conexiones para toda la vida, hacer
             nuevos amigos y aprovechar oportunidades globales y diversas.
           </p>
-        </div>
-        <img src={WhyHenry} alt="why" />
-      </div>
-      <div className="cost">
-        <img src={Cost} alt="cost" />
-      </div>
+     </div>
+
+    <div class="div4">
+        <img src={Cost} alt="cost" /> 
     </div>
+
+</div>
+  
   );
 };
 export default InitialHome;
