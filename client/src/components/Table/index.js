@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TableWrapper, TableHeader, TableHead, TableBody, Row, Cell, ActionBox } from './styles';
 
-const Table = ({ columns, rows, actions }) => {
+const Table = ({ columns = [], rows, actions = [] }) => {
   return (
     <TableWrapper>
 
@@ -19,7 +19,7 @@ const Table = ({ columns, rows, actions }) => {
       <TableBody>
         {
           rows.map((row) => {
-            const id = row.id;
+            const id = row._id;
             delete row.id;
             const arrValues = Object.values(row);
             return (
@@ -29,11 +29,14 @@ const Table = ({ columns, rows, actions }) => {
                 ))}
                 <Cell>
                   {
-                    actions.map((a, i) => (
-                      <ActionBox key={i} onClick={a.handleClick}>
-                        {a.icon}
-                      </ActionBox>
-                    ))
+                    actions.map((a, i) => {
+                      console.log(a);
+                      return (
+                        <ActionBox key={i} onClick={() => a.handleClick()}>
+                          {a.icon}
+                        </ActionBox>
+                      );
+                    })
                   }
                 </Cell>
               </Row>

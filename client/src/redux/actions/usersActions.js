@@ -4,8 +4,6 @@ import {
   REQUEST_ACTION,
   REQUEST_SUCCESS_ACTION,
   REQUEST_FAILED_ACTION,
-  GET_INSTRUCTORS,
-  GET_STUDENTS,
   GET_USER,
   GET_USERS,
   UPDATE_USER
@@ -40,13 +38,13 @@ const updateUserAction = (user) => ({
 });
 
 export const getUsers = () => {
-  return function async(dispatch) {
+  return async (dispatch) => {
     try {
       dispatch(requestAction());
 
-      const users = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("http://localhost:5000/users");
 
-      dispatch(getUsersAction(users));
+      dispatch(getUsersAction(res.data));
       dispatch(requestSuccessAction());
     } catch (error) {
       dispatch(requestFailedAction(error));
@@ -54,37 +52,13 @@ export const getUsers = () => {
   };
 };
 
-// export const getIntructors = () => {
-//   return function (dispatch) {
-//     axios.get("http://localhost:5000/users/instructors")
-//       .then(res => {
-//         dispatch({
-//           type: GET_INSTRUCTORS,
-//           payload: res
-//         });
-//       });
-//   };
-// };
-
-// export const getStudents = () => {
-//   return function (dispatch) {
-//     axios.get("http://localhost:5000/users/students")
-//       .then(res => {
-//         dispatch({
-//           type: GET_STUDENTS,
-//           payload: res
-//         });
-//       });
-//   };
-// };
-
 export const getUserById = (id) => {
-  return function async(dispatch) {
+  return async (dispatch) => {
     try {
       dispatch(requestAction());
-      const user = axios.get(`http://localhost:5000/users/user/${id}`);
+      const res = axios.get(`http://localhost:5000/users/user/${id}`);
 
-      dispatch(getUserAction(user));
+      dispatch(getUserAction(res.data));
       dispatch(requestSuccessAction());
 
     } catch (error) {
@@ -94,13 +68,13 @@ export const getUserById = (id) => {
 };
 
 export const updateUser = (id, data) => {
-  return function (dispatch) {
+  return async (dispatch) => {
     try {
       dispatch(requestAction());
 
-      const updatedUser = axios.patch(`http://localhost:5000/users/user/${id}`, data);
+      const res = await axios.patch(`http://localhost:5000/users/user/${id}`, data);
 
-      dispatch(updateUserAction(updatedUser));
+      dispatch(updateUserAction(res.data));
       dispatch(requestSuccessAction());
     } catch (error) {
       dispatch(requestFailedAction(error));

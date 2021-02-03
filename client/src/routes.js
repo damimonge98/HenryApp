@@ -10,6 +10,7 @@ import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import GooglePage from './containers/GooglePage';
+import UserListPage from './containers/UserListPage';
 
 const routes = () => {
   return (
@@ -20,7 +21,7 @@ const routes = () => {
         <Route path='/login' exact component={LoginPage} />
         <Route path='/oauth/:token' exact component={GooglePage} />
         <Route path='/register' exact component={RegisterPage} />
-        <Route exact path='/users' component={UserList} />
+        <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
       </Switch>
     </BrowserRouter>
