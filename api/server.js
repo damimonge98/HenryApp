@@ -15,6 +15,8 @@ const videoRoutes = require('./src/routes/videos');
 const modulesRoutes = require('./src/routes/modules');
 const mailRoutes = require ("./src/routes/mail.js")
 const empleoRoutes = require('./src/routes/empleos');
+const booms = require ("./src/routes/booms.js");
+const boomTweets = require ("./src/routes/boomTweets.js")
 
 const server = express();
 
@@ -71,6 +73,8 @@ server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
 server.use('/videos', videoRoutes);
 server.use('/modules', modulesRoutes);
+server.use("/boom", booms);
+server.use("/boomTweets", boomTweets);
 server.use("/sendMail", mailRoutes)
 server.use('/empleos', empleoRoutes);
 

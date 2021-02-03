@@ -15,6 +15,9 @@ const lectureSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Video'
   }],
+  urlLecture: {
+    type: String
+  },
   modulo: {
     type: Schema.Types.ObjectId,
     ref: 'Module'

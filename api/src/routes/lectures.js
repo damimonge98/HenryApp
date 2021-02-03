@@ -36,12 +36,13 @@ router.get('/:id', (req, res) => {
 
 // Create one lecture for one module;
 router.post('/:_id', async (req, res) => {
-  const { title, imagen, description, moduloName } = req.body;
+  const { title, imagen, description, moduloName, urlLecture } = req.body;
   const lectureForModule = new Lecture({
     title,
     imagen,
     description,
-    moduloName
+    moduloName,
+    urlLecture
   });
 
   const module = await Module.findById(req.params._id);
@@ -56,7 +57,7 @@ router.post('/:_id', async (req, res) => {
 // Update one lecture
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
-  const { title, description, video, modulo, imagen, moduloName } = req.body;
+  const { title, description, video, modulo, imagen, moduloName, urlLecture } = req.body;
   let update = {};
   if (title) {
     update = { ...update, title };
@@ -75,6 +76,9 @@ router.patch('/:id', (req, res) => {
   };
   if (moduloName) {
     update = { ...update, moduloName };
+  };
+  if (urlLecture) {
+    update = { ...update, urlLecture };
   };
 
   Lecture.findByIdAndUpdate(id, update, { new: true }).then(lecture => {
