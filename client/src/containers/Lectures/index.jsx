@@ -12,22 +12,39 @@ const Lectures = (props) => {
         title: "",
         video: []
     }]);
- 
+
+    const [module, setModule] = useState([{
+        _id: "",
+        description: "",
+        lectures: [],
+        order: "",
+        title: "",
+    }]);
+    
     useEffect(() => {
-        getLectures()
+        getLectures();
+        getOneModule();
     }, []);
 
     const getLectures = () => {
-        axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`)
+        axios.get(`http://localhost:5000/modules/${props.match.params.moduloid}`)
             .then(res => {
-                setLectures(res.data)
+                setModule(res.data)
+            });
+    };
+
+    const getOneModule = () => {
+        axios.get(`http://localhost:5000/lectures/${props.match.params.moduloid}`).then(
+            res => {
+                setLecture(res.data);
             });
     };
 
     return (
         <div>
-            <h2>Nombre del modulo</h2>
-            <h4></h4>
+            <h2>{module.title}</h2>
+            <br />
+            <h4>{module.description}</h4>
             <br />
             <div className="lecture-grid">
                 {lectures.map((lecture, index) => {
