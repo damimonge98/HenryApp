@@ -10,9 +10,10 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
-import lectureList from './containers/LectureList';//arreglar
+import lectureList from './containers/LectureList'; //arreglar
 import ModuleList from './containers/CRUDmodules';
 import CreateTalk from './components/CreateTalk';
+import BoomTest from "../src/components/BoomTest.jsx";
 
 const routes = () => {
   return (
@@ -30,8 +31,9 @@ const routes = () => {
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talk' component={CreateTalk} />
+        <Route exact path="/booms" component={BoomTest} />
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 };
 
