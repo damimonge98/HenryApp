@@ -5,7 +5,11 @@ const User = require('../models/user');
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find({ $where: { removed: false } });
+    const users = await User.find({
+      $where: () => {
+        return !this.removed;
+      },
+    });
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
