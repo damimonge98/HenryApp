@@ -18,6 +18,10 @@ const lectureSchema = new Schema({
   modulo: {
     type: Schema.Types.ObjectId,
     ref: 'Module'
+  },
+  moduloName: {
+    type: String,
+    required: true
   }
 });
 
