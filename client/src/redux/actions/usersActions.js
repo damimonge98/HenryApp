@@ -102,3 +102,29 @@ export const deleteUser = (id) => {
     }
   };
 };
+s;
+export const deleteUser = (file) => {
+  return async (dispatch) => {
+    try {
+      dispatch(requestAction());
+
+      data.append('users', file.users, "users");
+      axios
+        .post("http://localhost:5000/upload/users", data, {
+          // onUploadProgress: ProgressEvent => {
+          //   // this.setState({
+          //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+          //   // });
+          // },
+        })
+        .then(res => {
+          console.log(res.statusText);
+        });
+
+      dispatch(deleteUserAction(res.data));
+      dispatch(requestSuccessAction());
+    } catch (error) {
+      dispatch(requestFailedAction(error));
+    }
+  };
+};

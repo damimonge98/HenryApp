@@ -7,7 +7,8 @@ import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
+import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
@@ -15,6 +16,7 @@ const UserListPage = () => {
   const dispatch = useDispatch();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
+  const inviteUsersCsvModalRef = useRef();
 
   useEffect(() => {
     dispatch(getUsers());
@@ -93,6 +95,9 @@ const UserListPage = () => {
   console.log("SELECTED", selected);
   return (
     <Layout>
+      <ButtonsRow>
+        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invite users by csv</Button>
+      </ButtonsRow>
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
         <H1>Edit User</H1>
@@ -109,6 +114,10 @@ const UserListPage = () => {
             </ConfirmationWrapper>
           ) : null
         }
+      </Modal>
+      <Modal ref={inviteUsersCsvModalRef}>
+        <H1>Inviting users by csv file</H1>
+        <InviteUsersCsvForm />
       </Modal>
     </Layout>
   );

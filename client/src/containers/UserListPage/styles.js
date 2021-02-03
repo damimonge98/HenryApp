@@ -36,3 +36,26 @@ export const ConfirmationWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const ButtonsRow = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  height: 30px;
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+  backdrop-filter: blur(250px);
+  border: 2px solid black;
+  margin: 0.5rem 0 0.5rem 1rem;
+  cursor: pointer;
+`;
