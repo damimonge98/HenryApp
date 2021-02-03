@@ -7,7 +7,8 @@ import {
   GET_USER,
   GET_USERS,
   UPDATE_USER,
-  DELETE_USER
+  DELETE_USER,
+  INVITE_USERS
 } from "../constants/usersContants";
 
 const requestAction = () => ({
@@ -41,6 +42,11 @@ const updateUserAction = (user) => ({
 const deleteUserAction = (id) => ({
   type: DELETE_USER,
   id
+});
+
+const inviteUsersAction = (invited) => ({
+  type: INVITE_USERS,
+  invited
 });
 
 export const getUsers = () => {
@@ -102,26 +108,23 @@ export const deleteUser = (id) => {
     }
   };
 };
-s;
-export const deleteUser = (file) => {
+
+export const inviteUsers = (file) => {
   return async (dispatch) => {
     try {
       dispatch(requestAction());
 
+      const data = new FormData();
       data.append('users', file.users, "users");
-      axios
-        .post("http://localhost:5000/upload/users", data, {
-          // onUploadProgress: ProgressEvent => {
-          //   // this.setState({
-          //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
-          //   // });
-          // },
-        })
-        .then(res => {
-          console.log(res.statusText);
-        });
+      const res = await axios.post("http://localhost:5000/upload/users", data, {
+        // onUploadProgress: ProgressEvent => {
+        //   // this.setState({
+        //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+        //   // });
+        // },
+      });
 
-      dispatch(deleteUserAction(res.data));
+      dispatch(inviteUsersAction(res.data));
       dispatch(requestSuccessAction());
     } catch (error) {
       dispatch(requestFailedAction(error));
