@@ -39,6 +39,11 @@ const userSchema = new mongoose.Schema({
     default: 'guest'
   },
 
+  currentModule: {
+    type: Number,
+    default: 0
+  },
+
   avatar: {
     type: String
   },

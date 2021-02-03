@@ -15,6 +15,7 @@ import ModuleList from './containers/CRUDmodules';
 import CreateTalk from './components/CreateTalk';
 import BoomTest from "../src/components/BoomTest.jsx";
 import TalkList from './components/TalkList';
+import CardTalk from './components/CardTalk';
 
 const routes = () => {
   return (
@@ -34,6 +35,7 @@ const routes = () => {
         <Route exact path='/talk' component={CreateTalk} />
         <Route exact path='/talks' component={TalkList} />
         <Route exact path="/booms" component={BoomTest} />
+        <Route exact path='/card-talk' component={CardTalk} />
       </Switch>
     </BrowserRouter >
   );

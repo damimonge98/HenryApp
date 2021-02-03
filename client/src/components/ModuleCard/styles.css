@@ -5,11 +5,21 @@
   background-color: yellow;
   border          : 1px solid black;
   border-radius   : 5px;
- }
+}
 
 .info {
   display        : flex;
   justify-content: space-evenly;
   color          : black;
 
+}
+
+.disabled {
+  opacity         : 0.65;
+  background-color: rgb(97, 94, 94);
+  border          : 2px solid yellow;
+}
+
+.textColor {
+  color: yellow;
 }

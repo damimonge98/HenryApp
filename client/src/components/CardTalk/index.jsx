@@ -1,38 +1,24 @@
-import React from "react";
-import { url } from "react-router-dom";
-import './estilos.css'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllTalks } from '../../redux/actions/talkActions';
 
-const CardTalk = ({ talk }) => {
-    const { _id,
-        description,
-        imagen,
-        orador,
-        title,
-        url, } = lecture;
+const CardTalk = () => {
 
+  const { title, description, imagen, url } = useSelector(state => state.talk);
+  const dispatch = useDispatch();
 
-    return (
-        <url to={`/talk/${_id}`}>
-            <div>
-                <div>
-                    <img src={imagen} alt="Henry app" />
-                </div>
-                <div>
-                    <div>
-                        <h3>{title}</h3>
-                    </div>
-                    <div>
-                        {Array.isArray(url)
-                            ? <h5>urls: {url.length}</h5>
-                            : <h5>{url}</h5>}
-                    </div>
-                    <div>
-                        <p>{description}</p>
-                    </div>
-                </div>
-            </div>
-        </url>
-    );
+  useEffect(() => {
+    dispatch(getAllTalks());
+  }, []);
+
+  return (
+    <Link to={url}>
+      <h3>{title}</h3>
+      <img src={imagen} alt={title} />
+      <p>{description}</p>
+    </Link>
+  );
 };
 
-export default CardLecture
+export default CardTalk;

@@ -16,7 +16,7 @@ const moduleSchema = new Schema({
   },
   order: {
     type: Number,
-   
+    default: 0
   }
 });
 
