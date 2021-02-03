@@ -39,6 +39,7 @@ const ModuleList = () => {
         title: "",
         imagen: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
         description: '',
+        moduloName: ""
     });
 
     function handleChange(e) {
@@ -48,8 +49,8 @@ const ModuleList = () => {
         });
     }
     const handleSubmit = () => {
-        const { title, imagen, description } = lecture
-        axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description })
+        const { title, imagen, description, moduloName } = lecture
+        axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName })
             .then(res => console.log(res));
 
     };
@@ -90,6 +91,7 @@ const ModuleList = () => {
                     {
                         allModules.map((module, index) => {
                             const { title, lectures, _id } = module;
+                            
                             return (
                                 <tr key={index}>
                                     <td >{title}</td>
@@ -126,6 +128,18 @@ const ModuleList = () => {
                                                     <h3>Crear un lecture</h3>
                                                 </div>
                                                 <form onSubmit={handleSubmit}>
+                                                    <div >
+                                                        <label >
+                                                            Modulo </label>
+                                                        <div >
+                                                        <input
+                                                                onChange={(e) => { handleChange(e); }}
+                                                                name="moduloName"
+                                                                type="text"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
                                                     <div >
                                                         <label >
                                                             Nombre</label>

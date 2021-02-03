@@ -11,7 +11,7 @@ const lectureList = () => {
         modulo: '',
         description: '',
         _id: '',
-        nameModulo: ""
+        moduloName: ""
     }]);
     const [estadoId, setEstadoId] = useState('');
 
@@ -28,17 +28,8 @@ const lectureList = () => {
         description: ""
     });
 
-
-    const [allModules, setAllModules] = useState([{
-        title: "",
-        description: "",
-        order: null,
-        lectures: []
-    }])
-
     useEffect(() => {
         getLectures();
-        getNameModule();
     }, []);
 
     const getLectures = () => {
@@ -48,26 +39,12 @@ const lectureList = () => {
             });
     };
 
-
-
-
-
-    const getNameModule = (id) => {
-        axios.get(`http://localhost:5000/modules/`)
-            .then(res => {
-                setAllModules(res.data)
-            });
-    }
-
-
-
     const handleDelete = (id) => {
         if (confirm("¿Quiere eliminar la Lecture? Se eliminarán todos los videos asociados") === true) {
             axios.delete(`http://localhost:5000/lectures/${id}`)
                 .then(res => getLectures());
         };
     };
-
 
 
     const handleSubmit = (id) => {
@@ -127,12 +104,12 @@ const lectureList = () => {
                     </thead>
                     <tbody>
                         {
-
                             allLectures.map((lecture, index) => {
-                                const { modulo, title, _id, description, video } = lecture;
+                                const { modulo, title, _id, description, video, moduloName } = lecture;
+
                                 return (
                                     <tr key={index}>
-                                        <td>{allModules[0].title}</td>
+                                        <td>{moduloName}</td>
                                         <td>{title}</td>
                                         <td>{description}</td>
                                         <td>{video.length}</td>
