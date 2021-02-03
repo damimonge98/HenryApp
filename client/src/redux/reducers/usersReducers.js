@@ -52,7 +52,7 @@ const userReducers = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map(u => {
-          if (u.id === action.user.id)
+          if (u._id === action.user._id)
             return action.user;
           return u;
         })

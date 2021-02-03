@@ -14,7 +14,7 @@ const Select = React.forwardRef(({ label, required, options = [], ...props }, re
       </RowLabel>
       <select ref={ref} {...props}>
         {options.map((o, i) => (
-          <Option key={i} value={o}>{o}</Option>
+          <Option key={i} value={o.value}>{o.text}</Option>
         ))}
       </select>
     </SelectWrapper>

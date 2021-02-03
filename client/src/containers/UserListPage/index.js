@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../redux/actions/usersActions';
 
@@ -6,10 +6,12 @@ import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
-import Select from '../../components/Select';
+import UpdateUserForm from '../../components/UpdateUserForm';
+import { H1 } from './styles';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
+  const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
   const editModalRef = useRef();
 
@@ -17,7 +19,14 @@ const UserListPage = () => {
     dispatch(getUsers());
   }, []);
 
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (id) => {
+    console.log(id);
+    const [user] = users.filter(u => {
+      if (u._id === id)
+        return true;
+      return false;
+    });
+    setSelected(user);
     editModalRef.current.openModal();
   };
   const handleDeleteUser = () => { };
@@ -52,16 +61,17 @@ const UserListPage = () => {
 
   const actions = [
     {
-      handleClick: () => handleUpdateUser(),
+      handleClick: (id) => handleUpdateUser(id),
       icon: "E"
     },
     {
-      handleClick: () => handleDeleteUser(),
+      handleClick: (id) => handleDeleteUser(),
       icon: "D"
     }
   ];
 
   const rows = users.map(u => ({
+    _id: u._id,
     fullName: `${u.firstName} ${u.lastName}`,
     email: u.email,
     role: u.role,
@@ -75,16 +85,8 @@ const UserListPage = () => {
     <Layout>
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
-        <h1>Edit User</h1>
-        <Select
-          name="role"
-          label="Role"
-          required
-          // ref={register}
-          onSelect={() => console.log("Selected")}
-          // error={errors.password?.message}
-          options={["guess", "student", "instructor"]}
-        />
+        <H1>Edit User</H1>
+        <UpdateUserForm modalRef={editModalRef} userData={selected} />
       </Modal>
     </Layout>
   );

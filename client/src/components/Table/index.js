@@ -18,21 +18,21 @@ const Table = ({ columns = [], rows, actions = [] }) => {
 
       <TableBody>
         {
-          rows.map((row) => {
-            const id = row._id;
-            delete row.id;
+          rows.map(({ _id, ...row }) => {
+            console.log("ID", _id);
             const arrValues = Object.values(row);
             return (
-              <Row key={id} >
+              <Row key={_id} >
                 {arrValues.map(val => (
                   <Cell>{String(val)}</Cell>
                 ))}
                 <Cell>
                   {
                     actions.map((a, i) => {
-                      console.log(a);
+                      console.log("ROW", row);
+                      console.log("ID", _id);
                       return (
-                        <ActionBox key={i} onClick={() => a.handleClick()}>
+                        <ActionBox key={i} onClick={() => a.handleClick(_id)}>
                           {a.icon}
                         </ActionBox>
                       );

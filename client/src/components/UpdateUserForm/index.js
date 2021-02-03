@@ -4,13 +4,14 @@ import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { updateUserSchema } from "../../yup";
-
-import Input from '../Input';
-import { UpdateUserFormWrapper, RegisterButton, SpanLink, LogoWrapper, UserLogo } from './styles';
-
 import { updateUser } from "../../redux/actions/usersActions";
 
-const UpdateUserForm = ({ closeModal }) => {
+import Input from '../Input';
+import Loading from '../Loading';
+import Select from '../Select';
+import { UpdateUserFormWrapper, UpdateButton } from './styles';
+
+const UpdateUserForm = ({ modalRef, userData }) => {
 
   const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(updateUserSchema)
@@ -22,9 +23,12 @@ const UpdateUserForm = ({ closeModal }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    dispatch(updateUser(data));
-    closeModal();
+    console.log(data);
+    dispatch(updateUser(userData._id, data));
   };
+
+  if (!userData)
+    return <Loading />;
 
   return (
     <UpdateUserFormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -35,6 +39,7 @@ const UpdateUserForm = ({ closeModal }) => {
         label="First Name"
         required
         autocomplete="off"
+        defaultValue={userData.firstName}
         ref={register}
         onChange={() => trigger("firstName")}
         error={errors.firstName?.message}
@@ -46,6 +51,7 @@ const UpdateUserForm = ({ closeModal }) => {
         label="Last Name"
         required
         autocomplete="off"
+        defaultValue={userData.lastName}
         ref={register}
         onChange={() => trigger("lastName")}
         error={errors.lastName?.message}
@@ -62,24 +68,55 @@ const UpdateUserForm = ({ closeModal }) => {
         error={errors.email?.message}
       /> */}
 
-      <Input
-        type="password"
-        name="password"
-        label="Password"
+      <Select
+        name="role"
+        label="Role"
         required
-        autocomplete="off"
         ref={register}
-        onChange={() => trigger(["password", "repassword"])}
-        error={errors.password?.message}
+        defaultValue={userData.role}
+        onSelect={() => trigger("role")}
+        error={errors.role?.message}
+        options={[
+          {
+            text: "Guess",
+            value: "guess"
+          },
+          {
+            text: "Student",
+            value: "student"
+          },
+          {
+            text: "Instructor",
+            value: "instructor"
+          }
+        ]}
       />
 
-      <RegisterButton>
-        <UserLogo />
-        Register
-      </RegisterButton>
-      <SpanLink>Do you have an account? <Link to="/login">Login here</Link></SpanLink>
+      <Select
+        name="isSuperAdmin"
+        label="Admin"
+        required
+        ref={register}
+        defaultValue={userData.isSuperAdmin}
+        onSelect={() => trigger("isSuperAdmin")}
+        error={errors.role?.message}
+        options={[
+          {
+            text: "No",
+            value: false
+          },
+          {
+            text: "Yes",
+            value: true
+          }
+        ]}
+      />
+
+      <UpdateButton>
+        Update User
+      </UpdateButton>
     </UpdateUserFormWrapper>
   );
 };
 
-export default RegisterForm;
+export default UpdateUserForm;

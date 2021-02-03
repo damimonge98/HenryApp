@@ -97,7 +97,7 @@ router.patch('/user/:id', (req, res) => {
   if (password) {
     update = { ...update, password };
   }
-  if (isSuperAdmin) {
+  if (typeof isSuperAdmin === "boolean") {
     update = { ...update, isSuperAdmin };
   }
   if (role) {
@@ -106,6 +106,9 @@ router.patch('/user/:id', (req, res) => {
   if (avatar) {
     update = { ...update, avatar };
   }
+
+  console.log(isSuperAdmin);
+  console.log(update);
 
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
