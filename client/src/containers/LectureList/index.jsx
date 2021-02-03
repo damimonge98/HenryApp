@@ -11,6 +11,7 @@ const lectureList = () => {
         modulo: '',
         description: '',
         _id: '',
+        moduloName: ""
     }]);
     const [estadoId, setEstadoId] = useState('');
 
@@ -44,6 +45,7 @@ const lectureList = () => {
                 .then(res => getLectures());
         };
     };
+
 
     const handleSubmit = (id) => {
         const { title, description } = oneLecture;
@@ -87,6 +89,7 @@ const lectureList = () => {
         });
     }
 
+
     return (
         <div>
             <div>
@@ -102,10 +105,11 @@ const lectureList = () => {
                     <tbody>
                         {
                             allLectures.map((lecture, index) => {
-                                const { modulo, title, _id, description, video } = lecture;
+                                const { modulo, title, _id, description, video, moduloName } = lecture;
+
                                 return (
                                     <tr key={index}>
-                                        <td>{modulo}</td>
+                                        <td>{moduloName}</td>
                                         <td>{title}</td>
                                         <td>{description}</td>
                                         <td>{video.length}</td>
