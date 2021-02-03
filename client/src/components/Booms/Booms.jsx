@@ -3,7 +3,7 @@ import {useEffect, useState, Fragment} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getBooms, getBoomsTweet} from "../../redux/actions/boomsActions.js";
 import Carousel from 'react-elastic-carousel'
-import styles from "./Booms.css";
+import "./Booms.css";
 
 
 export default function Booms () {
@@ -28,25 +28,25 @@ export default function Booms () {
         }
     }
 
-    
-    console.log(booms)
-    console.log(state)
-    console.log(link)
 return (
-    <div className = {styles.containerDiv}>
+    <div className = "containerDiv">
         <div>
-        <h1 className = {styles.containerDiv}>ESTO SUCEDE CON NUESTROS GRADUADOS! ;)</h1>
+        <h1 className = "containerTitle">¡ESTO SUCEDE EN TIEMPO REAL CON NUESTROS GRADUADOS!</h1>
         </div>
         
-        <Carousel>
+        <div className = "containerCarousel">
+        <Carousel style={{backgroundColor: 'yellow', color: 'black'}}>
             {booms.length !== 0? 
             booms.map(el => 
             <Fragment>
-            <div>{el.info}</div>
+            <div class = "containerBoom">
+            <p>{el.info}</p>
             <a href = {el.link}>LEER MÁS</a>
+            </div>
             </Fragment>
                 ) : <h1>Loading...</h1>}
         </Carousel>
+        </div>
     </div>
 )
       

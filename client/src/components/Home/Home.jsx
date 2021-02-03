@@ -17,10 +17,11 @@ const InitialHome = () => {
         
 
   <div class="div2">
-        <img src={HenryDev} alt="devImg" />
+        <img src={HenryDev} class="devImg" />
      </div>
 
   <div class="div3">
+          <div className = "divContainer3">
           <h1> ¿Por qué Henry?</h1>
           <br/>
           <h2>100% online</h2>
@@ -50,10 +51,19 @@ const InitialHome = () => {
             Unirte a Henry significa crear conexiones para toda la vida, hacer
             nuevos amigos y aprovechar oportunidades globales y diversas.
           </p>
+
+
+
+
+          </div>
+         
      </div>
 
     <div class="div4">
-        <img src={Cost} alt="cost" /> 
+      <div>
+      <img src={Cost} class="cost" />
+      </div>
+         
     </div>
 
 </div>
