@@ -107,7 +107,7 @@ router.patch('/user/:id', async (req, res) => {
   if (password) {
     update = { ...update, password };
   };
-  if (isSuperAdmin) {
+  if (isSuperAdmin && isSuperAdmin === true) {
     update = { ...update, isSuperAdmin, currentModule: current };
   };
   if (role && role === "instructor") {
