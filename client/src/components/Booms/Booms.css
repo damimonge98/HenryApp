@@ -1,0 +1,17 @@
+.containerTitle {
+    margin-left: 150px;
+}
+
+.containerDiv {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.containerBoom {
+    display:block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+.link {
+    text-decoration: none;
+}
