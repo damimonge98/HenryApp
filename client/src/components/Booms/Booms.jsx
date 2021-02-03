@@ -41,7 +41,7 @@ return (
             <Fragment>
             <div class = "containerBoom">
             <p>{el.info}</p>
-            <a href = {el.link}>LEER MÁS</a>
+            <a href = {el.link} class = "link">Leer más...</a>
             </div>
             </Fragment>
                 ) : <h1>Loading...</h1>}
