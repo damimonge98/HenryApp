@@ -1,4 +1,4 @@
-var Twitter = require('Twitter')
+var Twitter = require('twitter')
 const Boom = require('../models/booms');
 const express = require ("express");
 const server = express.Router ()
