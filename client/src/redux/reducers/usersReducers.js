@@ -2,6 +2,7 @@ import {
   GET_USERS,
   GET_USER,
   UPDATE_USER,
+  DELETE_USER,
   REQUEST_ACTION,
   REQUEST_SUCCESS_ACTION,
   REQUEST_FAILED_ACTION
@@ -55,6 +56,17 @@ const userReducers = (state = initialState, action) => {
           if (u._id === action.user._id)
             return action.user;
           return u;
+        })
+      };
+
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(u => {
+          if (u._id === action.id) {
+            return false;
+          }
+          return true;
         })
       };
 

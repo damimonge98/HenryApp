@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  registered: {
+
+  removed: {
     type: Boolean,
+    default: false
   },
 
   email: {
     type: String,
     unique: true,
     required: true
-  },
-
-  googleId: {
-    type: String,
   },
 
   firstName: {
@@ -44,6 +42,10 @@ const userSchema = new mongoose.Schema({
   },
 
   githubId: {
+    type: String,
+  },
+
+  googleId: {
     type: String,
   },
 

@@ -81,3 +81,18 @@ export const updateUser = (id, data) => {
     }
   };
 };
+
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(requestAction());
+
+      const res = await axios.patch(`http://localhost:5000/users/user/${id}`, data);
+
+      dispatch(updateUserAction(res.data));
+      dispatch(requestSuccessAction());
+    } catch (error) {
+      dispatch(requestFailedAction(error));
+    }
+  };
+};

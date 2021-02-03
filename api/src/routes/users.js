@@ -5,7 +5,7 @@ const User = require('../models/user');
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({ $where: { removed: false } });
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -48,8 +48,8 @@ router.get("/students", async (req, res) => {
 router.get('/user/:id', (req, res) => {
   const { id } = req.params;
 
-  user = User.findById(id).then(user => {
-    if (!user) {
+  User.findById(id).then(user => {
+    if (!user || user.removed) {
       return res.status(404).json({ message: 'Cannot find user' });
     } else res.json(user);
   })
@@ -107,9 +107,6 @@ router.patch('/user/:id', (req, res) => {
     update = { ...update, avatar };
   }
 
-  console.log(isSuperAdmin);
-  console.log(update);
-
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
   })
@@ -132,9 +129,8 @@ router.patch('/ban/:id', (req, res) => {
 // Delete one user
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  User.findById(id).then(user => {
-    user.remove();
-    res.json({ message: 'User has been deleted' });
+  User.findByIdAndUpdate(id, { removed: true }, { new: true }).then(user => {
+    res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });
   });
