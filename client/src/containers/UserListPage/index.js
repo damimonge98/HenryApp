@@ -6,6 +6,7 @@ import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
+import Select from '../../components/Select';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
@@ -75,6 +76,15 @@ const UserListPage = () => {
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
         <h1>Edit User</h1>
+        <Select
+          name="role"
+          label="Role"
+          required
+          // ref={register}
+          onSelect={() => console.log("Selected")}
+          // error={errors.password?.message}
+          options={["guess", "student", "instructor"]}
+        />
       </Modal>
     </Layout>
   );
