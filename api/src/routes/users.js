@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const Module = require('../models/module')
+const Module = require('../models/module');
 
 // Get all users
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
+    console.log(users);
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -49,8 +50,8 @@ router.get("/students", async (req, res) => {
 router.get('/user/:id', (req, res) => {
   const { id } = req.params;
 
-  user = User.findById(id).then(user => {
-    if (!user) {
+  User.findById(id).then(user => {
+    if (!user || user.removed) {
       return res.status(404).json({ message: 'Cannot find user' });
     } else res.json(user);
   })
@@ -106,14 +107,11 @@ router.patch('/user/:id', async (req, res) => {
   };
   if (password) {
     update = { ...update, password };
-  };
-  if (isSuperAdmin && isSuperAdmin === true) {
-    update = { ...update, isSuperAdmin, currentModule: current };
-  };
-  if (role && role === "instructor") {
-    update = { ...update, role, currentModule: current };
-  };
-  if (role && role !== "instructor") {
+  }
+  if (typeof isSuperAdmin === "boolean") {
+    update = { ...update, isSuperAdmin };
+  }
+  if (role) {
     update = { ...update, role };
   };
   if (currentModule) {
@@ -146,9 +144,11 @@ router.patch('/ban/:id', (req, res) => {
 // Delete one user
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
+  console.log(id);
   User.findById(id).then(user => {
+    console.log(user);
     user.remove();
-    res.json({ message: 'User has been deleted' });
+    res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });
   });

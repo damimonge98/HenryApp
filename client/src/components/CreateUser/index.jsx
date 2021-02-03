@@ -16,7 +16,6 @@ const CreateUser = () => {
 
   const [toggle, setToggle] = useState(false);
 
-
   function handleChange(e) {
     setUser({
       ...user,

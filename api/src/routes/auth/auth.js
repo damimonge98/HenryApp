@@ -20,13 +20,11 @@ router.get("/me", isUser, async (req, res, next) => {
 router.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
 
-  User.findOne({ email }, async (err, user) => {
+  User.findOne({ email }, async (err, doc) => {
     try {
-      if (user) {
-        return res.status(409).json({ errors: 'User already exists' });
-      }
+      if (doc) res.send('User already exists');
 
-      if (!user) {
+      if (!doc) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
           email,
@@ -49,7 +47,7 @@ router.post('/login', (req, res, next) => {
       return res.status(400).json({ errors: err });
     }
     if (!user) {
-      return res.status(401).json({ errors: 'No user found' });
+      return res.status(400).json({ errors: 'No user found' });
     }
 
     try {
@@ -68,7 +66,7 @@ router.get('/google/callback', passport.authenticate('google'), async (req, res)
   // Successful authentication, redirect to client.
   const user = await User.findOne({ googleId: req.user.id });
   const token = jwt.sign(JSON.stringify(user), JWT_SECRET);
-  res.redirect(`http://localhost:3000/oauth/${token}`);
+  return res.redirect(`http://localhost:3000/oauth/${token}`);
 });
 
 router.get('/github',
