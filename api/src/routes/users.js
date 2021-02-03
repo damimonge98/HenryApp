@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Module = require('../models/module');
 
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find({
-      $where: () => {
-        return !this.removed;
-      },
-    });
+    const users = await User.find();
+    console.log(users);
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -65,7 +63,7 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
   const user = new User({
     email,
     firstName,
@@ -73,8 +71,14 @@ router.post('/', async (req, res) => {
     password,
     isSuperAdmin,
     role,
+    currentModule,
     avatar
   });
+  if (user.isSuperAdmin === true || user.role === 'instructor') {
+    const allModules = await Module.find().then();
+    user.currentModule = allModules.length;
+
+  };
 
   try {
     const newUser = await user.save();
@@ -85,19 +89,22 @@ router.post('/', async (req, res) => {
 });
 
 // Update one user
-router.patch('/user/:id', (req, res) => {
+router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
+  let allModules = await Module.find();
+  let current = allModules.length;
+
   let update = {};
   if (email) {
     update = { ...update, email };
-  }
+  };
   if (firstName) {
     update = { ...update, firstName };
-  }
+  };
   if (lastName) {
     update = { ...update, lastName };
-  }
+  };
   if (password) {
     update = { ...update, password };
   }
@@ -106,10 +113,13 @@ router.patch('/user/:id', (req, res) => {
   }
   if (role) {
     update = { ...update, role };
-  }
+  };
+  if (currentModule) {
+    update = { ...update, currentModule };
+  };
   if (avatar) {
     update = { ...update, avatar };
-  }
+  };
 
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
@@ -118,6 +128,7 @@ router.patch('/user/:id', (req, res) => {
       res.status(400).json({ message: error.message });
     });
 });
+
 
 //Ban one user
 router.patch('/ban/:id', (req, res) => {
@@ -133,7 +144,10 @@ router.patch('/ban/:id', (req, res) => {
 // Delete one user
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(id, { removed: true }, { new: true }).then(user => {
+  console.log(id);
+  User.findById(id).then(user => {
+    console.log(user);
+    user.remove();
     res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });

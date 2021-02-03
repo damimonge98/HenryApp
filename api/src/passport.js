@@ -63,28 +63,12 @@ passport.use(new GoogleStrategy({
 },
   async (accessToken, refreshToken, profile, cb) => {
     try {
-      let user = await User.find({ email: profile.emails[0].value });
-
-      if (user && user.googleId) {
-        user.update({
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          email: profile.emails[0].value,
-          avatar: profile.photos[0].value
-        });
-      }
-
-      if (!user) {
-        await User.findOneAndUpdate({ googleId: profile.id }, {
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          email: profile.emails[0].value,
-          avatar: profile.photos[0].value
-        }, { upsert: true, useFindAndModify: false });
-      }
-
-      if (user && !user.googleId)
-        return cb({ error: "You did not use this login method." }, null);
+      await User.findOneAndUpdate({ googleId: profile.id }, {
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value,
+        avatar: profile.photos[0].value
+      }, { upsert: true, useFindAndModify: false });
 
       return cb(null, profile);
     } catch (error) {

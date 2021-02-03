@@ -13,6 +13,11 @@ const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
 const uploadRoutes = require('./src/routes/upload/upload');
 const { mailRoutes } = require("./src/routes/mail.js");
+const videoRoutes = require('./src/routes/videos');
+const modulesRoutes = require('./src/routes/modules');
+const empleoRoutes = require('./src/routes/empleos');
+const booms = require("./src/routes/booms.js");
+const boomTweets = require("./src/routes/boomTweets.js");
 
 const server = express();
 
@@ -21,7 +26,7 @@ mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  db.dropDatabase();// Con este comando se borra la db cuando se reincia el servidor
+  // db.dropDatabase();// Con este comando se borra la db cuando se reincia el servidor
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
@@ -61,7 +66,12 @@ server.use('/users', userRoutes);
 server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
 server.use("/upload", uploadRoutes);
+server.use('/videos', videoRoutes);
+server.use('/modules', modulesRoutes);
+server.use("/boom", booms);
+server.use("/boomTweets", boomTweets);
 server.use("/sendMail", mailRoutes);
+server.use('/empleos', empleoRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

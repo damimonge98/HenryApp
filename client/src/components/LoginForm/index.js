@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
@@ -28,7 +28,8 @@ const LoginForm = () => {
     resolver: yupResolver(loginSchema)
   });
 
-  const { isAuth } = useSelector(state => state.auth);
+  const [invalidUser, setInvalidUser] = useState(false);
+  const { isAuth, error } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -38,9 +39,12 @@ const LoginForm = () => {
     if (isAuth) history.push('/');
   }, [isAuth]);
 
-  const onChange = (data) => {
-    dispatch(loginUser(data));
-    history.push("/");
+  const onChange = async (data) => {
+    await dispatch(loginUser(data));
+    if (isAuth) {
+      setInvalidUser(false);
+      history.push('/');
+    } else setInvalidUser(true);
   };
 
   return (
@@ -82,6 +86,8 @@ const LoginForm = () => {
         ref={register}
         error={errors.password?.message}
       />
+
+      {invalidUser && <h5>{error.errorMessage}</h5>}
 
       <LoginButton>
         <UserLogo />

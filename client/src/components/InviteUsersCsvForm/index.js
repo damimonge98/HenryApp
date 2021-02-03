@@ -24,33 +24,26 @@ const InviteUsersCsvForm = () => {
   return (
     <InviteUsersCsvFormWrapper>
 
-      {
-        invited.length > 0 ?
-          (<ul>
-            {invited.map(i => <li>{i.email}</li>)}
-          </ul>) : (
-            <>
-              <DropZoneWrapper {...getRootProps()}>
-                <input
-                  {...getInputProps()}
-                />
-                {
-                  Object.keys(file).length > 0 ?
-                    <Span><strong>Selected file: </strong>{file.path}</Span>
-                    : null
-                }
-                {
-                  isDragActive ?
-                    <P>DroP the files here ...</P> :
-                    <P>Drag 'n' drop some files here, or click to select files</P>
-                }
-              </DropZoneWrapper>
 
-              <Button onClick={() => onSubmit()} >
-                Invite users
-              </Button>
-            </>)
-      }
+      <DropZoneWrapper {...getRootProps()}>
+        <input
+          {...getInputProps()}
+        />
+        {
+          Object.keys(file).length > 0 ?
+            <Span><strong>Selected file: </strong>{file.path}</Span>
+            : null
+        }
+        {
+          isDragActive ?
+            <P>DroP the files here ...</P> :
+            <P>Drag 'n' drop some files here, or click to select files</P>
+        }
+      </DropZoneWrapper>
+
+      <Button onClick={() => onSubmit()} >
+        Invite users
+      </Button>
 
     </InviteUsersCsvFormWrapper >
   );

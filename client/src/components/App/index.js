@@ -12,7 +12,7 @@ function App() {
   const { loading, error } = useSelector(state => state.auth);
 
   useEffect(() => {
-    // dispatch(autoLoginUser());
+    dispatch(autoLoginUser());
   }, []);
 
   // if (loading) {

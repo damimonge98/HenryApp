@@ -65,6 +65,12 @@ const Header = () => {
                 <Link to="/createUser">Create user</Link>
               </MenuItem>
               <MenuItem>
+                <Link to="/modules">Module list</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/lecturesList">Lecture list</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/payments">Payments</Link>
               </MenuItem>
               <MenuItem>
