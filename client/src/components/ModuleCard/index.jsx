@@ -30,8 +30,8 @@ const ModuleCard = ({ module, available }) => {
                 </Link >
                 :
                 <div>
-                    <div className="modCard">
-                        <div className="info">
+                    <div className="modCard disabled">
+                        <div className="info textColor">
                             <div>
                                 <h3>{title}</h3>
                             </div>
