@@ -39,7 +39,8 @@ const ModuleList = () => {
         title: "",
         imagen: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
         description: '',
-        moduloName: ""
+        moduloName: "",
+        urlLecture: ""
     });
 
     function handleChange(e) {
@@ -49,8 +50,8 @@ const ModuleList = () => {
         });
     }
     const handleSubmit = () => {
-        const { title, imagen, description, moduloName } = lecture
-        axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName })
+        const { title, imagen, description, moduloName, urlLecture } = lecture
+        axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName, urlLecture })
             .then(res => console.log(res));
 
     };
@@ -91,7 +92,7 @@ const ModuleList = () => {
                     {
                         allModules.map((module, index) => {
                             const { title, lectures, _id } = module;
-                            
+
                             return (
                                 <tr key={index}>
                                     <td >{title}</td>
@@ -132,7 +133,7 @@ const ModuleList = () => {
                                                         <label >
                                                             Modulo </label>
                                                         <div >
-                                                        <input
+                                                            <input
                                                                 onChange={(e) => { handleChange(e); }}
                                                                 name="moduloName"
                                                                 type="text"
@@ -165,6 +166,18 @@ const ModuleList = () => {
                                                         </div>
                                                     </div>
                                                     <div >
+                                                        <div >
+                                                            <label >
+                                                                Url lecture</label>
+                                                            <div >
+                                                                <input
+                                                                    onChange={(e) => { handleChange(e); }}
+                                                                    name="urlLecture"
+                                                                    type="text"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                        </div>
                                                         <label >
                                                             Imagen
                                                         </label>
