@@ -77,7 +77,6 @@ router.patch('/:id', (req, res) => {
     update = { ...update, urlLecture };
   };
 
-
   Lecture.findByIdAndUpdate(id, update, { new: true }).then(lecture => {
     res.json(lecture);
   })
