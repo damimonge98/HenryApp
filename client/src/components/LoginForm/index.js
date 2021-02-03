@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "../../yup";
@@ -31,6 +31,8 @@ const LoginForm = () => {
   const { isAuth } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
+  console.log(params);
 
   useEffect(() => {
     if (isAuth) history.push('/');

@@ -92,7 +92,6 @@ const UserListPage = () => {
   if (loading)
     return <Loading />;
 
-  console.log("SELECTED", selected);
   return (
     <Layout>
       <ButtonsRow>

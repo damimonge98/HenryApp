@@ -14,6 +14,7 @@ router.post("/users", csvUpload, (req, res, next) => {
   fs.createReadStream(filePath)
     .pipe(csv({}))
     .on("data", (data) => users.push(data))
+    .on("error", (err) => console.log(err))
     .on("end", async () => {
       // Check if csv has email and github username.
       const hasEmail = users[0].hasOwnProperty("email");

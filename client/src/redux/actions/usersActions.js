@@ -115,16 +115,10 @@ export const inviteUsers = (file) => {
       dispatch(requestAction());
 
       const data = new FormData();
-      data.append('users', file.users, "users");
-      const res = await axios.post("http://localhost:5000/upload/users", data, {
-        // onUploadProgress: ProgressEvent => {
-        //   // this.setState({
-        //   //   loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
-        //   // });
-        // },
-      });
+      data.append('users', file, file.name);
+      const res = await axios.post("http://localhost:5000/upload/users", data);
 
-      dispatch(inviteUsersAction(res.data));
+      dispatch(inviteUsersAction(res.data.invited));
       dispatch(requestSuccessAction());
     } catch (error) {
       dispatch(requestFailedAction(error));

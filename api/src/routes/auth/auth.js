@@ -64,9 +64,14 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', "emai
 
 router.get('/google/callback', passport.authenticate('google'), async (req, res) => {
   // Successful authentication, redirect to client.
-  const user = await User.findOne({ googleId: req.user.id });
-  const token = jwt.sign(JSON.stringify(user), JWT_SECRET);
-  res.redirect(`http://localhost:3000/oauth/${token}`);
+  console.log(req);
+  if (req.error) {
+    return res.redirect(`http://localhost:3000/login/?error=${error}`);
+  } else {
+    const user = await User.findOne({ googleId: req.user.id });
+    const token = jwt.sign(JSON.stringify(user), JWT_SECRET);
+    return res.redirect(`http://localhost:3000/oauth/${token}`);
+  }
 });
 
 router.get('/github',

@@ -7,3 +7,4 @@ export const GET_INSTRUCTORS = "GET_INSTRUCTORS";
 export const GET_STUDENTS = "GET_STUDENTS";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
+export const INVITE_USERS = "INVITE_USERS";

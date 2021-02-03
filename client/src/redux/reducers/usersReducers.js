@@ -3,6 +3,7 @@ import {
   GET_USER,
   UPDATE_USER,
   DELETE_USER,
+  INVITE_USERS,
   REQUEST_ACTION,
   REQUEST_SUCCESS_ACTION,
   REQUEST_FAILED_ACTION
@@ -10,6 +11,7 @@ import {
 
 const initialState = {
   users: [],
+  invited: [],
   userDetail: [],
   loading: false,
   error: null
@@ -69,6 +71,12 @@ const userReducers = (state = initialState, action) => {
           }
           return true;
         })
+      };
+
+    case INVITE_USERS:
+      return {
+        ...state,
+        invited: action.invited
       };
 
     default:

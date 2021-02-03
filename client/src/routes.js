@@ -18,9 +18,9 @@ const routes = () => {
       <Switch>
         {/* To do: Acá van las rutas del cliente.*/}
         <Route path='/' exact component={HomePage} />
-        <Route path='/login' exact component={LoginPage} />
         <Route path='/oauth/:token' exact component={GooglePage} />
         <Route path='/register' exact component={RegisterPage} />
+        <Route exact path='/login' component={LoginPage} />
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
       </Switch>
