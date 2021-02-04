@@ -1,0 +1,15 @@
+# GET ALL
+
+GET http://localhost:5000/users
+Content-Type: application/json
+
+###
+
+PATCH http://localhost:5000/users/user/601adc3694ef521dc2cbff36
+Content-Type: application/json
+
+{
+  "isSuperAdmin": false
+}
+
+###

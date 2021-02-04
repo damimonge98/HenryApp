@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
@@ -12,11 +13,13 @@ import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Butto
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
+  const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
   const inviteUsersCsvModalRef = useRef();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getUsers());
@@ -89,8 +92,17 @@ const UserListPage = () => {
     isAdmin: u.isSuperAdmin
   }));
 
-  if (loading)
+  if (auth.loading || loading)
     return <Loading />;
+
+  if (!auth.isAuth) {
+    history.push("/login");
+    return null;
+  }
+  if (!auth.user.isSuperAdmin) {
+    history.push("/");
+    return null;
+  }
 
   return (
     <Layout>
