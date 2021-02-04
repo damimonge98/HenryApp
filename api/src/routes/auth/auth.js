@@ -19,6 +19,8 @@ router.get("/me", isUser, async (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
+  let image = `https://robohash.org/${firstName, lastName}.png`
+
 
   User.findOne({ email }, async (err, doc) => {
     try {
@@ -30,6 +32,7 @@ router.post('/register', (req, res, next) => {
           email,
           firstName,
           lastName,
+          avatar: image,
           password: hashedPassword
         });
         await newUser.save();
