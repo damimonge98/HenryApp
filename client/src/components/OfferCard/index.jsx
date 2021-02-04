@@ -4,7 +4,7 @@ import "./styles.css";
 
 const OfferCard = ({ empleo }) => {
   //en teoria la tarjeta de empleo deberia tener primero logo y nombre de la empresa
-  const { title, description, location, remote, linkedIn } = empleo;
+  const { title, description, location, remote, tipo, end, linkedIn } = empleo;
 
   return (
     <div className="card">
@@ -18,12 +18,19 @@ const OfferCard = ({ empleo }) => {
         <div>
           <p>{remote}</p>
         </div>
+        
       </div>
 
       <div className="card__back">
         <div>
           <p>{description}</p>
         </div>
+        <div>
+          <p>{tipo}</p>
+        </div>
+        <div>
+          <p>{end}</p>
+          </div>
         <div>
           <a href={linkedIn} target="_blank">
             <button>Ver en LinkedIn</button>
