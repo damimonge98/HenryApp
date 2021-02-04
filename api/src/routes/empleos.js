@@ -6,6 +6,8 @@ const router = express.Router();
 const Empleo = require("../models/empleos");
 //const Empresa = require("../models/enterprise");
 
+//Si cambiamos lo de la empresa tendriamos que ponerle logo y nombre de empresa en las rutas
+
 //----------Rutas----------
 
 //-----Crear un empleo
@@ -16,6 +18,8 @@ router.post("/", async (req, res) => {
     description,
     remote,
     location,
+    tipo,
+    end,
     linkedIn,
   } = req.body;
   const offerCard = new Empleo({
@@ -24,6 +28,8 @@ router.post("/", async (req, res) => {
     description,
     remote,
     location,
+    tipo,
+    end,
     linkedIn,
   });
 
@@ -79,7 +85,7 @@ router.delete("/:id", (req, res) => {
 //-----Editar un empleo
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
-  const { title, description, remote, location, linkedIn } = req.body;
+  const { title, description, remote, location, tipo, end, linkedIn } = req.body;
   let update = {};
   if (title) {
     update = { ...update, title };
@@ -95,6 +101,12 @@ router.patch("/:id", (req, res) => {
   }
   if (remote) {
     update = { ...update, remote };
+  }
+  if (tipo) {
+    update = { ...update, tipo };
+  }
+  if (end) {
+    update = { ...update, end };
   }
   Empleo.findByIdAndUpdate(id, update, { new: true })
     .then((empleo) => {
