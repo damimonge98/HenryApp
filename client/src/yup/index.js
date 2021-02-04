@@ -42,3 +42,18 @@ export const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required()
 });
+
+export const updateUserSchema = yup.object().shape({
+  firstName: yup.string()
+    .min(2)
+    .max(76)
+    .required(),
+  lastName: yup.string()
+    .min(2)
+    .max(76)
+    .required(),
+  role: yup.string()
+    .required(),
+  isSuperAdmin: yup.boolean()
+    .required()
+});
