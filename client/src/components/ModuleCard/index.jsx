@@ -11,7 +11,7 @@ const ModuleCard = ({ module, available }) => {
     return (
         <div>{
             available ?
-                <Link to={`/modulo/${_id}`} >
+                <Link to={`/modulo/${_id}`} style={{ textDecoration: 'none' }} >
                     <div className="modCard">
                         <div className="info">
                             <div>
