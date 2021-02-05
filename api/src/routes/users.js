@@ -62,7 +62,7 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
   const user = new User({
     email,
     firstName,
@@ -71,7 +71,8 @@ router.post('/', async (req, res) => {
     isSuperAdmin,
     role,
     currentModule,
-    avatar
+    avatar,
+    debt
   });
   if (user.isSuperAdmin === true || user.role === 'instructor') {
     const allModules = await Module.find().then();
@@ -90,7 +91,7 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
   let allModules = await Module.find();
   let current = allModules.length;
 
@@ -113,8 +114,17 @@ router.patch('/user/:id', async (req, res) => {
   if (role) {
     update = { ...update, role };
   };
+  if (currentModule && currentModule === 3 || currentModule === 4) {
+    update = { ...update, currentModule, debt: 500 };
+  };
+  if (currentModule && currentModule > 4) {
+    update = { ...update, currentModule, debt: 4000 };
+  };
   if (currentModule) {
     update = { ...update, currentModule };
+  };
+  if (debt) {
+    update = { ...update, debt };
   };
   if (avatar) {
     update = { ...update, avatar };
