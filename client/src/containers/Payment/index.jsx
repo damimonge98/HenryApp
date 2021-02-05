@@ -4,25 +4,31 @@ import { getUserById } from '../../redux/actions/usersActions';
 import axios from "axios";
 
 const Payment = () => {
-    const { users, loading } = useSelector(state => state.user);
     const { isAuth, user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getUserById());
     }, []);
-    
 
 
 
     return (
-        <div>{isAuth ?
-            <h1>Tu deuda es de ${user.debt}</h1>
-            : null
-        }
+        <div>{
+            isAuth?
 
-        </div>
+            <div>{user.debt == 0 
+                ?
+                <p>{user.firstName}, en este momento no tenes deuda con Henry</p>
+                : 
+                <p>{user.firstName}, tu deuda con Henry es de usd {user.debt}. No te preocupes! podras empezar a pagarla cuando consigas trabajo</p>
+            } </div>
+            : null
+        }</div>
     );
+
+
+
 };
 
 export default Payment;

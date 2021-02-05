@@ -114,6 +114,12 @@ router.patch('/user/:id', async (req, res) => {
   if (role) {
     update = { ...update, role };
   };
+  if (debt === 0) {
+    update = { ...update, debt: 0 };
+  };
+  if (debt) {
+    update = { ...update, debt };
+  };
   if (currentModule && currentModule === 3 || currentModule === 4) {
     update = { ...update, currentModule, debt: 500 };
   };
@@ -122,9 +128,6 @@ router.patch('/user/:id', async (req, res) => {
   };
   if (currentModule) {
     update = { ...update, currentModule };
-  };
-  if (debt) {
-    update = { ...update, debt };
   };
   if (avatar) {
     update = { ...update, avatar };
