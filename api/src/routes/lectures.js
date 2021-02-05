@@ -3,8 +3,8 @@ const { findById } = require('../models/lecture');
 const lecture = require('../models/lecture');
 const router = express.Router();
 const Lecture = require('../models/lecture');
-const Module = require('../models/module')
-const Video = require('../models/video')
+const Module = require('../models/module');
+const Video = require('../models/video');
 
 // get all lectures of a specific module
 router.get('/', async (req, res) => {
@@ -36,11 +36,12 @@ router.get('/:id', (req, res) => {
 
 // Create one lecture for one module;
 router.post('/:_id', async (req, res) => {
-  const { title, imagen, description, urlLecture } = req.body;
+  const { title, imagen, description, moduloName, urlLecture } = req.body;
   const lectureForModule = new Lecture({
     title,
     imagen,
     description,
+    moduloName,
     urlLecture
   });
 
@@ -56,7 +57,7 @@ router.post('/:_id', async (req, res) => {
 // Update one lecture
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
-  const { title, description, video, modulo, imagen, urlLecture } = req.body;
+  const { title, description, video, modulo, imagen, moduloName, urlLecture } = req.body;
   let update = {};
   if (title) {
     update = { ...update, title };
@@ -72,6 +73,9 @@ router.patch('/:id', (req, res) => {
   };
   if (imagen) {
     update = { ...update, imagen };
+  };
+  if (moduloName) {
+    update = { ...update, moduloName };
   };
   if (urlLecture) {
     update = { ...update, urlLecture };
@@ -97,10 +101,10 @@ router.delete('/:id', (req, res) => {
       };
     };
     res[0].save();
-  })
+  });
   Lecture.findById(id).then(lecture => {
     lecture.remove();
-    res.json({ message: 'Lecture has been deleted' });
+    res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });
   });

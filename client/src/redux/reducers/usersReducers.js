@@ -1,40 +1,83 @@
-import { GET_USERS, GET_INSTRUCTORS, GET_STUDENTS, GET_USER, EDIT_USER, UPDATE_USER } from "../constants/usersContants";
+import {
+  GET_USERS,
+  GET_USER,
+  UPDATE_USER,
+  DELETE_USER,
+  INVITE_USERS,
+  REQUEST_ACTION,
+  REQUEST_SUCCESS_ACTION,
+  REQUEST_FAILED_ACTION
+} from "../constants/usersContants";
 
 const initialState = {
   users: [],
-  user: [],
-  intructor: [],
-  student: [],
-  editUser: []
- };
+  invited: [],
+  userDetail: [],
+  loading: false,
+  error: null
+};
 
 const userReducers = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USERS:
-      return{
-        ...state,
-        users: action.payload
-      }
-    case GET_INSTRUCTORS:
+
+    case REQUEST_ACTION:
       return {
         ...state,
-        instructor: action.payload
-      }
-    case GET_STUDENTS:
-      return{
+        loading: true
+      };
+
+    case REQUEST_SUCCESS_ACTION:
+      return {
         ...state,
-        student: action.payload
-      }
+        loading: false,
+        error: null
+      };
+
+    case REQUEST_FAILED_ACTION:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.users
+      };
+
     case GET_USER:
       return {
         ...state,
-        user: action.payload
-      }
-    case EDIT_USER:
+        userDetail: action.user
+      };
+
+    case UPDATE_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        users: state.users.map(u => {
+          if (u._id === action.user._id)
+            return action.user;
+          return u;
+        })
+      };
+
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(u => {
+          if (u._id === action.id) {
+            return false;
+          }
+          return true;
+        })
+      };
+
+    case INVITE_USERS:
+      return {
+        ...state,
+        invited: action.invited
+      };
 
     default:
       return state;

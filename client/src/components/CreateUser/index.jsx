@@ -16,7 +16,6 @@ const CreateUser = () => {
 
   const [toggle, setToggle] = useState(false);
 
-
   function handleChange(e) {
     setUser({
       ...user,
@@ -51,108 +50,91 @@ const CreateUser = () => {
   return (
     <div >
       <form onSubmit={handleSubmit} >
-        <div >
-          <label >
-            Nombre
-           </label>
-          <div >
+        <div>
+          <label>Nombre</label>
+          <div>
             <input
               onChange={(e) => { handleChange(e); }}
               name="firstName"
               value={user.firstName}
               type="text"
-              required
-            />
+              required />
           </div>
         </div>
-        <div >
-          <label >
-            Apellido
-          </label>
-          <div >
+        <div>
+          <label>Apellido</label>
+          <div>
             <input
               onChange={(e) => { handleChange(e); }}
               name="lastName"
               type="text"
-              required
-            />
+              required />
           </div>
         </div>
-        <div >
-          <label >
-            E-mail
-          </label>
+        <div>
+          <label>Email</label>
           <div >
             <input
               onChange={(e) => { handleChange(e); }}
               name="email"
               value={user.email}
               type="text"
-              required
-            />
+              required />
           </div>
         </div>
-        <div >
-          <label>Password</label>
+        <div>
+          <label>Contraseña</label>
           <div>
             <input
               onChange={(e) => { handleChange(e); }}
               name="password"
               type="password"
-              required
-            />
+              required />
           </div>
           <div >
-            <label>SuperAdmin    </label>
+            <label>SuperAdmin </label>
             <input
               type="checkbox"
               name="isSuperAdmin"
               onChange={(e) => {
                 handleToggle(e);
-              }}
-            />
-
+              }} />
           </div>
-          <div >
+          <div>
             <div>
               {toggle === false
                 ?
                 <div>
-                  <label>
-                    Rol
-                  </label>
+                  <label>Rol</label>
                   <div>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="guest" />
-                    <label >Visitante</label>
+                    <label>Visitante</label>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="student" />
-                    <label >Estudiante</label>
+                    <label>Estudiante</label>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="instructor" />
-                    <label >Instructor</label>
+                    <label>Instructor</label>
                   </div>
                 </div>
                 :
-                <h4>El usuario se creara como SuperAdmin.</h4>
+                <h4>El usuario se creará como SuperAdmin.</h4>
               }
             </div>
           </div>
           <div>
-            <button type="submit">
-              Create user
-                        </button>
+            <button type="submit">Crear Usuario</button>
           </div>
         </div>
-      </form><br />
+      </form>
+      <br />
       <Link to='/users'>
         <button type="button">
-          <i className="fas fa-users" />
-                  Lista de usuarios
-              </button>
+          <i className="fas fa-users" />Usuarios
+        </button>
       </Link>
       <Link to='/'>
         <button type="button">
-          <i className="fas fa-home" />
-                  Inicio
-              </button>
+          <i className="fas fa-home" />Inicio
+        </button>
       </Link>
     </div>
   );

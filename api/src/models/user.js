@@ -1,31 +1,29 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+
+  removed: {
+    type: Boolean,
+    default: false
+  },
+
   email: {
     type: String,
     unique: true,
-    lowercase: true,
     required: true
-  },
-
-  googleId: {
-    type: String,
   },
 
   firstName: {
     type: String,
-    required: true
   },
 
   lastName: {
     type: String,
-    required: true
   },
 
   password: {
     type: String,
     select: false, //cuando se hace GET, no trae la contraseña por seguridad.
-    required: true
   },
 
   isSuperAdmin: {
@@ -50,6 +48,14 @@ const userSchema = new mongoose.Schema({
 
   githubId: {
     type: String,
+  },
+
+  googleId: {
+    type: String,
+  },
+
+  githubUsername: {
+    type: String
   }
 });
 

@@ -11,22 +11,24 @@ const session = require('express-session');
 const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
+const uploadRoutes = require('./src/routes/upload/upload');
+const { mailRoutes } = require('./src/routes/mail.js');
 const videoRoutes = require('./src/routes/videos');
 const modulesRoutes = require('./src/routes/modules');
-const mailRoutes = require("./src/routes/mail.js");
+const mailRoutes = require('./src/routes/mail.js');
 const empleoRoutes = require('./src/routes/empleos');
-const talkRoutes = require("./src/routes/talk");
-const booms = require("./src/routes/booms.js");
-const boomTweets = require("./src/routes/boomTweets.js");
+const talkRoutes = require('./src/routes/talk');
+const booms = require('./src/routes/booms.js');
+const boomTweets = require('./src/routes/boomTweets.js');
 
 const server = express();
 
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  /*  db.dropDatabase();   */ // Con este comando se borra la db cuando se reincia el servidor
+  // db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
@@ -40,11 +42,6 @@ server.use(cors({
   credentials: true
 }));
 
-// server.use(session({
-//   secret: SECRET,
-//   resave: false,
-//   saveUninitialized: false
-// }));
 server.use(passport.initialize());
 require("./src/passport");
 
@@ -58,8 +55,6 @@ server.all("*", (req, res, next) => {
   })(req, res, next);
 });
 
-// server.use(passport.session());
-
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -72,6 +67,7 @@ server.use((req, res, next) => {
 server.use('/users', userRoutes);
 server.use('/auth', authRoutes);
 server.use('/lectures', lectureRoutes);
+server.use("/upload", uploadRoutes);
 server.use('/videos', videoRoutes);
 server.use('/modules', modulesRoutes);
 server.use("/boom", booms);
