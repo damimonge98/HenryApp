@@ -13,6 +13,7 @@ import UserListPage from './containers/UserListPage';
 import lectureList from './containers/LectureList/index';
 import ModuleList from './containers/CRUDmodules/index';
 import Booms from "./components/Booms/Booms.jsx";
+import Catalogo from "./components/Catalogo/index";
 
 const routes = () => {
   return (
@@ -30,6 +31,7 @@ const routes = () => {
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path="/booms" component={Booms} />
+        <Route exact path='/empleos' component={Catalogo} />
       </Switch>
     </BrowserRouter>
   );

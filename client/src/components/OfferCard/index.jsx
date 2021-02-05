@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
-const OfferCard = ({ empleo }) => {
+const OfferCard = (empleo) => {
   //en teoria la tarjeta de empleo deberia tener primero logo y nombre de la empresa
   const { title, description, location, remote, tipo, end, linkedIn } = empleo;
 

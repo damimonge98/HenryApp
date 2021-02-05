@@ -1,42 +1,54 @@
-import React from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+
 // Components
 import OfferCard from '../OfferCard/index';
 import Layout from '../../containers/Layout';
-//import {getEmpleos} from '';
+
 // Styled Components
 import { CatalogueWrapper, EmpleosColumn } from './styles';
 
-//crear action que traiga los empleos
 
 const Catalogo = ()=>{
-  const [empleo, setEmpleo] = useState([{
-    _id: "",
-    title:"",
-    description: "",
-    location: "",
-    remote: "",
-    tipo: "",
-    end: "",
-    linkedIn:""
-}]);
-const dispatch = useDispatch();
+  const [empleo, setEmpleo] = useState([
+    // _id: "",
+    // title:"",
+    // description: "",
+    // location: "",
+    // remote: "",
+    // tipo: "",
+    // end: "",
+    // linkedIn:""
+]);
 
-// useEffect(() => {
-//   getAllEmpleos();
-// }, []);
+useEffect(() => {
+  getAllEmpleos();
+}, []);
 
-// const getAllEmpleos = () => {
-//   setEmpleo([])
-//   dispatch(getEmpleos());
-// };
+const getAllEmpleos = () => {
+  axios.get("http://localhost:5000/empleos/")
+  .then((response)=>{
+    setEmpleo(response.data);
+  }).catch((error)=>{
+    console.log(error)})
+
+  // setEmpleo([])
+  // dispatch(getEmpleos());
+};
 
   
   return (
     <Layout>
     <CatalogueWrapper>
       <EmpleosColumn>
-        <OfferCard empleo={empleo} />
+        {empleo.map((empleo, index) => {
+                    return (
+                        <div key={index}>
+                        <OfferCard empleo={empleo} />
+                        </div>
+                    );
+                })}
+        
       </EmpleosColumn>    
     </CatalogueWrapper>
     </Layout>
