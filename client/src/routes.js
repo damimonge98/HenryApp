@@ -16,6 +16,7 @@ import TalkList from './components/TalkList';
 import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
+import Catalogo from "./components/Catalogo";
 
 const routes = () => {
   return (
@@ -36,6 +37,7 @@ const routes = () => {
         <Route exact path='/talks' component={TalkList} />
         <Route exact path='/card-talk' component={CardTalk} />
         <Route exact path="/booms" component={Booms} />
+        <Route exact path='/empleos' component={Catalogo} />
       </Switch>
     </BrowserRouter >
   );

@@ -4,26 +4,31 @@ const router = express.Router();
 //----------Modelos----------
 
 const Empleo = require("../models/empleos");
-//const Empresa = require("../models/enterprise");
 
 //----------Rutas----------
 
 //-----Crear un empleo
 router.post("/", async (req, res) => {
   const {
-    enterprise,
+    logo,
+    enterpriseName,
     title,
     description,
     remote,
     location,
+    tipo,
+    end,
     linkedIn,
   } = req.body;
   const offerCard = new Empleo({
-    enterprise,
+    logo,
+    enterpriseName,
     title,
     description,
     remote,
     location,
+    tipo,
+    end,
     linkedIn,
   });
 
@@ -79,8 +84,24 @@ router.delete("/:id", (req, res) => {
 //-----Editar un empleo
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
-  const { title, description, remote, location, linkedIn } = req.body;
+  const {
+    enterpriseName,
+    logo,
+    title,
+    description,
+    remote,
+    location,
+    tipo,
+    end,
+    linkedIn,
+  } = req.body;
   let update = {};
+  if (enterpriseName) {
+    update = { ...update, enterpriseName };
+  }
+  if (logo) {
+    update = { ...update, logo };
+  }
   if (title) {
     update = { ...update, title };
   }
@@ -95,6 +116,12 @@ router.patch("/:id", (req, res) => {
   }
   if (remote) {
     update = { ...update, remote };
+  }
+  if (tipo) {
+    update = { ...update, tipo };
+  }
+  if (end) {
+    update = { ...update, end };
   }
   Empleo.findByIdAndUpdate(id, update, { new: true })
     .then((empleo) => {

@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const jobSchema = new Schema({
-  enterprise: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Empresa",
-    },
-  ],
+  logo: {
+    type: String,
+    default:
+      "https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI",
+  },
+
+  enterpriseName: {
+    type: String,
+  },
 
   title: {
     type: String,
@@ -23,6 +27,13 @@ const jobSchema = new Schema({
   location: {
     type: String,
     required: true,
+  },
+  tipo: {
+    type: String,
+  },
+
+  end: {
+    type: String,
   },
 
   linkedIn: {
