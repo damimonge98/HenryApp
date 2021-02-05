@@ -6,7 +6,7 @@ GET http://localhost:5000/modules/
 
 # Get one module
 
-GET http://localhost:5000/modules/:id
+GET http://localhost:5000/modules/6019a788f04efb4794dc2312
 
 ###
 
@@ -14,6 +14,7 @@ GET http://localhost:5000/modules/:id
 
 POST http://localhost:5000/modules/
 Content-Type: application/json
+
 {
   "title": "Modulo 1",
   "lectures": "8",
@@ -24,6 +25,13 @@ Content-Type: application/json
 
 # Update one module
 
-PATCH http://localhost:5000/modules/:id
+PATCH http://localhost:5000/modules/6019a788f04efb4794dc2312
+Content-Type: application/json
+
+{
+  "title": "Modulo 3",
+  "description": "Javascript avanzado",
+  "lectures": []
+}
 
 ###
