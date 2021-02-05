@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import './styles.css';
 
 const ModuleCard = ({ module, available }) => {
-    let { title,
-        description,
-        lectures,
-        _id } = module;
+  let { title,
+    description,
+    lectures,
+    _id } = module;
 
     return (
         <div>{

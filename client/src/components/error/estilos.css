@@ -12,7 +12,11 @@
 .home {
     color      : rgb(255, 255, 0);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 400%;
-    text-shadow: 0 15px 0 #706e6e;
-    margin-inline-end: 30% !important;
+    font-size: 250%;
+    text-shadow: 0 10px 0 #706e6e;
+    padding: 2px;
+    border: solid yellow 2px;
+    box-shadow:0 15px 0 #706e6e;
+    border-radius: 100%;
+
 }

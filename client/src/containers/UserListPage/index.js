@@ -32,7 +32,6 @@ const UserListPage = () => {
     editModalRef.current.openModal();
   };
   const handleDeleteUser = (id) => {
-    console.log(id);
     const [user] = users.filter(u => {
       if (u._id === id)
         return true;
@@ -45,7 +44,7 @@ const UserListPage = () => {
   const columns = [
     {
       id: "1",
-      text: "Full Name",
+      text: "Nombre y Apellido",
       name: "fullName"
     },
     {
@@ -55,7 +54,7 @@ const UserListPage = () => {
     },
     {
       id: "3",
-      text: "Role",
+      text: "Rol",
       name: "role"
     },
     {
@@ -65,7 +64,7 @@ const UserListPage = () => {
     },
     {
       id: "5",
-      text: "Actions",
+      text: "Acciones",
       name: "actions"
     }
   ];
@@ -95,27 +94,27 @@ const UserListPage = () => {
   return (
     <Layout>
       <ButtonsRow>
-        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invite users by csv</Button>
+        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
       </ButtonsRow>
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
-        <H1>Edit User</H1>
+        <H1>Editar Usuario</H1>
         <UpdateUserForm modalRef={editModalRef} userData={selected} />
       </Modal>
       <Modal ref={deleteModalRef}>
         {
           selected ? (
             <ConfirmationWrapper>
-              <H1>Deleting {selected.firstName} {selected.lastName}</H1>
-              <span>Are you sure you want to delete this user?</span>
-              <ButtonConfirm onClick={() => dispatch(deleteUser(selected._id))}>Confirm</ButtonConfirm>
-              <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancel</ButtonCancel>
+              <H1>Borrando {selected.firstName} {selected.lastName}</H1>
+              <span>Estás seguro que deseas borrar este usuario?</span>
+              <ButtonConfirm onClick={() => dispatch(deleteUser(selected._id))}>Confirmar</ButtonConfirm>
+              <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
             </ConfirmationWrapper>
           ) : null
         }
       </Modal>
       <Modal ref={inviteUsersCsvModalRef}>
-        <H1>Inviting users by csv file</H1>
+        <H1>Invitando usuarios por .csv</H1>
         <InviteUsersCsvForm />
       </Modal>
     </Layout>

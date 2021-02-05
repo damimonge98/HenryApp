@@ -10,7 +10,10 @@ const error = () => {
             </div>
             <div >
                 <Link to='/' style={{ textDecoration: 'none' }}>
-                    <h1 className='home'>HOME</h1>
+                    <button className='home'>
+                    <h1 >HOME</h1>
+                    </button>
+
                 </Link>
             </div>
         </div>

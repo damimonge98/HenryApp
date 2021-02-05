@@ -19,18 +19,15 @@ const Table = ({ columns = [], rows, actions = [] }) => {
       <TableBody>
         {
           rows.map(({ _id, ...row }) => {
-            console.log("ID", _id);
             const arrValues = Object.values(row);
             return (
               <Row key={_id} >
-                {arrValues.map(val => (
-                  <Cell>{String(val)}</Cell>
+                {arrValues.map((val, i) => (
+                  <Cell key={i}>{String(val)}</Cell>
                 ))}
                 <Cell>
                   {
                     actions.map((a, i) => {
-                      console.log("ROW", row);
-                      console.log("ID", _id);
                       return (
                         <ActionBox key={i} onClick={() => a.handleClick(_id)}>
                           {a.icon}

@@ -33,7 +33,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     if (isAuth) history.push('/');
@@ -69,7 +68,7 @@ const LoginForm = () => {
         type="email"
         name="email"
         label="Email"
-        autocomplete="off"
+        autoComplete="off"
         required
         onChange={() => trigger("email")}
         ref={register}
@@ -80,7 +79,7 @@ const LoginForm = () => {
         type="password"
         name="password"
         label="Password"
-        autocomplete="off"
+        autoComplete="off"
         required
         onChange={() => trigger("password")}
         ref={register}

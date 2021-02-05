@@ -37,11 +37,11 @@ export default function Booms() {
       <div className="containerCarousel">
         <Carousel style={{ backgroundColor: 'yellow', color: 'black' }}>
           {booms.length !== 0 ?
-            booms.map(el =>
-              <Fragment>
-                <div class="containerBoom">
+            booms.map((el, i) =>
+              <Fragment key={i}>
+                <div className="containerBoom">
                   <p>{el.info}</p>
-                  <a href={el.link} class="link">Leer más...</a>
+                  <a href={el.link} className="link">Leer más...</a>
                 </div>
               </Fragment>
             ) : <h1>Loading...</h1>}
@@ -52,4 +52,3 @@ export default function Booms() {
 
 
 }
-
