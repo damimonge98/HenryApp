@@ -14,6 +14,7 @@ import lectureList from './containers/LectureList/index';
 import ModuleList from './containers/CRUDmodules/index';
 import Booms from "./components/Booms/Booms.jsx";
 import Catalogo from "./components/Catalogo/index";
+import Payment from "./containers/Payment/index"
 
 const routes = () => {
   return (
@@ -32,6 +33,7 @@ const routes = () => {
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path="/booms" component={Booms} />
         <Route exact path='/empleos' component={Catalogo} />
+        <Route exact path='/payments' component={Payment} />
       </Switch>
     </BrowserRouter>
   );
