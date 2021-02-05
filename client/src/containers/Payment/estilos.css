@@ -1,0 +1,10 @@
+.info{
+    border: solid 2px yellow;
+    padding: 15px;
+}
+
+.hurra {
+    color: yellow;
+    border: solid 2px black;
+    background-color: black;
+}
