@@ -21,7 +21,7 @@ const boomTweets = require("./src/routes/boomTweets.js");
 
 const server = express();
 
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
