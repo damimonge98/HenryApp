@@ -74,6 +74,9 @@ const Header = () => {
                 <Link to="/payments">Pagos</Link>
               </MenuItem>
               <MenuItem>
+              <Link to="/empleos">Bolsa de trabajo</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/settings">Configuración</Link>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
