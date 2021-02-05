@@ -39,6 +39,7 @@ const getAllEmpleos = () => {
   
   return (
     <Layout>
+      <div>Eres empresa? <button>Publica tu oferta</button></div>
     <div className="catalogueWrapper">
       <div className="empleosColumn">
         {empleos.map((empleo, index) => {
