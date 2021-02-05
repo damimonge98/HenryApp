@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 
   return (
     <LayoutWrapper>
-      <Header />;
+      <Header />
       <Main>
         {children}
       </Main>

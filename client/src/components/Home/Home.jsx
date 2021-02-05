@@ -6,16 +6,16 @@ import "./styles.css";
 
 const InitialHome = () => {
   return (
-    <div class="parent">
-      <div class="div1">
+    <div className="parent">
+      <div className="div1">
         <Booms />
       </div>
 
-      <div class="div2">
-        <img src={HenryDev} class="devImg" />
+      <div className="div2">
+        <img src={HenryDev} className="devImg" />
       </div>
 
-      <div class="div3">
+      <div className="div3">
         <div className="divContainer3">
           <h1> ¿Por qué Henry?</h1>
           <br />
@@ -52,9 +52,9 @@ const InitialHome = () => {
         </div>
       </div>
 
-      <div class="div4">
+      <div className="div4">
         <div>
-          <img src={Cost} class="cost" />
+          <img src={Cost} className="cost" />
         </div>
       </div>
     </div>
