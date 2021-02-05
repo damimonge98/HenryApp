@@ -28,9 +28,9 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "email": "augusto@gmail.com",
-  "first_name": "Augusto",
-  "last_name": "Felicenzi",
+  "email": "aufel@gmail.com",
+  "first_name": "Au",
+  "last_name": "Fel",
   "password": "123"
 }
 
@@ -41,7 +41,7 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "email": "augusto@gmail.com",
+    "email": "aufel@gmail.com",
     "password": "123"
 }
 
