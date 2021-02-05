@@ -65,8 +65,8 @@ export const LogInWrapper = styled.div`
 `;
 
 export const AvatarWrapper = styled.div`
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border: 2px solid #FFFF01;
   border-radius: 50%;
   background: #323232;

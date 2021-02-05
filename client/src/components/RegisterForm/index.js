@@ -41,9 +41,9 @@ const RegisterForm = () => {
       <Input
         type="text"
         name="firstName"
-        label="First Name"
+        label="Nombre"
         required
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger("firstName")}
         error={errors.firstName?.message}
@@ -52,9 +52,9 @@ const RegisterForm = () => {
       <Input
         type="text"
         name="lastName"
-        label="Last Name"
+        label="Apellido"
         required
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger("lastName")}
         error={errors.lastName?.message}
@@ -65,7 +65,7 @@ const RegisterForm = () => {
         name="email"
         label="Email"
         required
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger("email")}
         error={errors.email?.message}
@@ -74,9 +74,9 @@ const RegisterForm = () => {
       <Input
         type="password"
         name="password"
-        label="Password"
+        label="Contraseña"
         required
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.password?.message}
@@ -85,9 +85,9 @@ const RegisterForm = () => {
       <Input
         type="password"
         name="repassword"
-        label="Confirm Password"
+        label="Confirmar contraseña"
         required
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.repassword?.message}
@@ -95,9 +95,9 @@ const RegisterForm = () => {
 
       <RegisterButton>
         <UserLogo />
-        Register
+        Registrate
       </RegisterButton>
-      <SpanLink>Do you have an account? <Link to="/login">Login here</Link></SpanLink>
+      <SpanLink>Ya tenés una cuenta? <Link to="/login">Ingresá acá</Link></SpanLink>
     </RegisterFormWrapper>
   );
 };

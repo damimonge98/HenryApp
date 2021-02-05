@@ -31,18 +31,18 @@ const InviteUsersCsvForm = () => {
         />
         {
           Object.keys(file).length > 0 ?
-            <Span><strong>Selected file: </strong>{file.path}</Span>
+            <Span><strong>Archivo seleccionado: </strong>{file.path}</Span>
             : null
         }
         {
           isDragActive ?
             <P>DroP the files here ...</P> :
-            <P>Drag 'n' drop some files here, or click to select files</P>
+            <P>Arrastrá el archivo aquí o has click para seleccionar el archivo</P>
         }
       </DropZoneWrapper>
 
       <Button onClick={() => onSubmit()} >
-        Invite users
+        Invitar Usuarios
       </Button>
 
     </InviteUsersCsvFormWrapper >
