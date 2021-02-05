@@ -17,6 +17,7 @@ import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
 import Catalogo from "./components/Catalogo";
+import Payment from './containers/Payment/index'
 
 const routes = () => {
   return (
@@ -38,6 +39,7 @@ const routes = () => {
         <Route exact path='/card-talk' component={CardTalk} />
         <Route exact path="/booms" component={Booms} />
         <Route exact path='/empleos' component={Catalogo} />
+        <Route exact path='/payments' component={Payment} />
       </Switch>
     </BrowserRouter >
   );
