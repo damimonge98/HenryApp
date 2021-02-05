@@ -1,22 +1,27 @@
 .robot {
-    width: 50%;
+    width: 60%;
 }
 
 .pag {
-    display        : flex;
-    justify-content: start;
-    align-items    : center;   
+    display         : flex;
+    justify-content : start;
+    align-items     : center;
     background-color: rgb(168, 168, 166);
 }
 
-.home {
+.button {
+    background-color: rgb(168, 168, 166);
+    padding         : 2px;
+    border          : solid yellow 2px;
+}
+
+.text {
     color      : rgb(255, 255, 0);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 250%;
-    text-shadow: 0 10px 0 #706e6e;
-    padding: 2px;
-    border: solid yellow 2px;
-    box-shadow:0 15px 0 #706e6e;
-    border-radius: 100%;
-
+    font-size  : 250%;
 }
+
+
+button:hover {
+    background-color: rgb(100, 99, 110);
+ }
