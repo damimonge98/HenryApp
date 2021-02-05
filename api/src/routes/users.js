@@ -7,7 +7,6 @@ const Module = require('../models/module');
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
-    console.log(users);
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -144,9 +143,7 @@ router.patch('/ban/:id', (req, res) => {
 // Delete one user
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  console.log(id);
   User.findById(id).then(user => {
-    console.log(user);
     user.remove();
     res.json(id);
   }).catch(error => {

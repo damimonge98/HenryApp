@@ -4,211 +4,206 @@ import CreateModule from '../../components/createModule/index';
 import "./estilos.css";
 
 const ModuleList = () => {
-    const [allModules, setAllModules] = useState([{
-        title: '',
-        description: '',
-        lectures: [],
-        order: null,
-        _id: ''
-    }]);
-    const [oneModule, setOneModule] = useState({
-        title: "",
-        description: ""
-    });
-    const [oneId, setOneId] = useState(null);
+  const [allModules, setAllModules] = useState([{
+    title: '',
+    description: '',
+    lectures: [],
+    order: null,
+    _id: ''
+  }]);
+  const [oneModule, setOneModule] = useState({
+    title: "",
+    description: ""
+  });
+  const [oneId, setOneId] = useState(null);
 
-    useEffect(() => {
-        getModules();
-    }, []);
+  useEffect(() => {
+    getModules();
+  }, []);
 
-    const getModules = () => {
-        axios.get("http://localhost:5000/modules/")
-            .then(res => {
-                setAllModules(res.data);
-            });
-    };
+  const getModules = () => {
+    axios.get("http://localhost:5000/modules/")
+      .then(res => {
+        setAllModules(res.data);
+      });
+  };
 
-    const handleDelete = (id) => {
-        if (confirm("¿Quiere eliminar este módulo? Se eliminarán todas les lectures y videos asociados") === true) {
-            axios.delete(`http://localhost:5000/modules/${id}`)
-                .then(res => getModules())
-        }
-    };
-
-    const [lecture, setLecture] = useState({
-        title: "",
-        imagen: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
-        description: '',
-        moduloName: "",
-        urlLecture: ""
-    });
-
-    function handleChange(e) {
-        setLecture({
-            ...lecture,
-            [e.target.name]: e.target.value
-        });
+  const handleDelete = (id) => {
+    if (confirm("¿Quiere eliminar este módulo? Se eliminarán todas las clases y videos asociados.") === true) {
+      axios.delete(`http://localhost:5000/modules/${id}`)
+        .then(res => getModules());
     }
-    const handleSubmit = () => {
-        const { title, imagen, description, moduloName, urlLecture } = lecture
-        axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName, urlLecture })
-            .then(res => console.log(res));
+  };
 
-    };
+  const [lecture, setLecture] = useState({
+    title: "",
+    imagen: 'https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI',
+    description: '',
+    moduloName: "",
+    urlLecture: ""
+  });
 
-    const handleModuleSubmit = (id) => {
-        const { title, description } = oneModule;
+  function handleChange(e) {
+    setLecture({
+      ...lecture,
+      [e.target.name]: e.target.value
+    });
+  }
+  const handleSubmit = () => {
+    const { title, imagen, description, moduloName, urlLecture } = lecture;
+    axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName, urlLecture })
+      .then(res => console.log(res));
 
-        axios.patch(`http://localhost:5000/modules/${id}`, { title, description })
-            .then(res => {
-                getModules();
-                setOneModule({
-                    title: "",
-                    description: ""
-                });
-            });
-    };
+  };
 
-    const handleModuleChange = (e) => {
+  const handleModuleSubmit = (id) => {
+    const { title, description } = oneModule;
 
+    axios.patch(`http://localhost:5000/modules/${id}`, { title, description })
+      .then(res => {
+        getModules();
         setOneModule({
-            ...oneModule,
-            [e.target.name]: e.target.value
+          title: "",
+          description: ""
         });
-    };
+      });
+  };
+
+  const handleModuleChange = (e) => {
+
+    setOneModule({
+      ...oneModule,
+      [e.target.name]: e.target.value
+    });
+  };
 
 
-    return (
-        <div>
-            <h3>Lista de módulos</h3>
-            <table >
-                <thead >
-                    <tr >
-                        <th scope="col">Modulo</th>
-                        <th scope="col">Lectures</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        allModules.map((module, index) => {
-                            const { title, lectures, _id } = module;
+  return (
+    <div>
+      <h3>Módulos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Módulo</th>
+            <th scope="col">Clases</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            allModules.map((module, index) => {
+              const { title, lectures, _id } = module;
 
-                            return (
-                                <tr key={index}>
-                                    <td >{title}</td>
-                                    <td>{lectures.length}</td>
-                                    <td ><button onClick={() => setOneId(_id)} ><a href="#openModal1"><i className="fas fa-user-edit" /> </a></button></td>
+              return (
+                <tr key={index}>
+                  <td >{title}</td>
+                  <td>{lectures.length}</td>
+                  <td >
+                    <button onClick={() => setOneId(_id)} ><a href="#openModal1">
+                      <i className="fas fa-user-edit" /> </a>
+                    </button>
+                  </td>
 
-                                    {/* ---------------------------------MODAL EDITAR MODULO---------------------------------------------------- */}
+                  {/* ---------------------------------MODAL EDITAR MODULO---------------------------------------------------- */}
 
-                                    <div id="openModal1" class="modalDialog">
-                                        <div>	<a href="#close" title="Close" class="close">X</a>
-                                            <h2>Editar Modelo</h2>
-                                            <form onSubmit={() => handleModuleSubmit(oneId)} ><a href="#close" title="Close" class="close"></a>
-                                                <p>
-                                                    Título
-                                                        <input name="title" onChange={e => handleModuleChange(e)} />
-                                                </p>
-                                                <p>
-                                                    Descripción
-                                                        <input name="description" onChange={e => handleModuleChange(e)} />
-                                                </p>
-                                                <button type="submit">  GUARDAR CAMBIOS</button>
-                                            </form>
-                                        </div>
-                                    </div>
+                  <div id="openModal1" className="modalDialog">
+                    <div>
+                      <a href="#close" title="Close" className="close">X</a>
+                      <h2>Editar Módulo</h2>
+                      <form onSubmit={() => handleModuleSubmit(oneId)} >
+                        <a href="#close" title="Close" className="close"></a>
+                        <p>
+                          Título
+                          <input name="title" onChange={e => handleModuleChange(e)} />
+                        </p>
+                        <p>
+                          Descripción
+                          <input name="description" onChange={e => handleModuleChange(e)} />
+                        </p>
+                        <button type="submit">  Guardar cambios</button>
+                      </form>
+                    </div>
+                  </div>
 
-                                    {/* ---------------------------------MODAL CREAR LECTURE---------------------------------------------------- */}
+                  {/* ---------------------------------MODAL CREAR LECTURE---------------------------------------------------- */}
 
-                                    <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
-                                    <td><button onClick={() => setOneId(_id)}><a href="#openModal"><i className="fas fa-plus-circle me-2" /> Agregar lecture</a></button></td>
-                                    <div id="openModal" className="modalDialog">
-                                        <div>	<a href="#close" title="Close" className="close">X</a>
-                                            <div >
-                                                <div>
-                                                    <h3>Crear un lecture</h3>
-                                                </div>
-                                                <form onSubmit={handleSubmit}>
-                                                    <div >
-                                                        <label >
-                                                            Modulo </label>
-                                                        <div >
-                                                            <input
-                                                                onChange={(e) => { handleChange(e); }}
-                                                                name="moduloName"
-                                                                type="text"
-                                                                required
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div >
-                                                        <label >
-                                                            Nombre</label>
-                                                        <div >
-                                                            <input
-                                                                onChange={(e) => { handleChange(e); }}
-                                                                name="title"
-                                                                type="text"
-                                                                required
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div >
-                                                        <label >
-                                                            Descripción</label>
-                                                        <div >
-                                                            <textarea
-                                                                onChange={(e) => { handleChange(e); }}
-                                                                name="description"
-                                                                type="text"
-                                                                required
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div >
-                                                        <div >
-                                                            <label >
-                                                                Url lecture</label>
-                                                            <div >
-                                                                <input
-                                                                    onChange={(e) => { handleChange(e); }}
-                                                                    name="urlLecture"
-                                                                    type="text"
-                                                                    required
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <label >
-                                                            Imagen
-                                                        </label>
-                                                        <div >
-                                                            <input
-                                                                onChange={(e) => { handleChange(e); }}
-                                                                name="imagen"
-                                                                type="text"
-                                                                placeholder='Puede agregar una imagen'
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            <button type='submit'>
-                                                                Crear lecture
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form><br />
-                                            </div >
-                                        </div>
-                                    </div>
-                                </tr>)
-                        })}
-                </tbody>
-            </table>
-            <br />
-            <CreateModule></CreateModule>
-        </div >
-    );
+                  <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
+                  <td><button onClick={() => setOneId(_id)}><a href="#openModal"><i className="fas fa-plus-circle me-2" /> Agregar clase</a></button></td>
+                  <div id="openModal" className="modalDialog">
+                    <div>
+                      <a href="#close" title="Close" className="close">X</a>
+                      <div>
+                        <div>
+                          <h3>Crear una clase</h3>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                          <div>
+                            <label>Módulo </label>
+                            <div>
+                              <input
+                                onChange={(e) => { handleChange(e); }}
+                                name="moduloName"
+                                type="text"
+                                required />
+                            </div>
+                          </div>
+                          <div>
+                            <label>Nombre</label>
+                            <div>
+                              <input
+                                onChange={(e) => { handleChange(e); }}
+                                name="title"
+                                type="text"
+                                required />
+                            </div>
+                          </div>
+                          <div>
+                            <label>Descripción</label>
+                            <div>
+                              <textarea
+                                onChange={(e) => { handleChange(e); }}
+                                name="description"
+                                type="text"
+                                required />
+                            </div>
+                          </div>
+                          <div>
+                            <div>
+                              <label>URL Clase</label>
+                              <div>
+                                <input
+                                  onChange={(e) => { handleChange(e); }}
+                                  name="urlLecture"
+                                  type="text"
+                                  required />
+                              </div>
+                            </div>
+                            <label>Imagen</label>
+                            <div>
+                              <input
+                                onChange={(e) => { handleChange(e); }}
+                                name="imagen"
+                                type="text"
+                                placeholder='Puede agregar una imagen' />
+                            </div>
+                          </div>
+                          <div>
+                            <div>
+                              <button type='submit'>Crear clase</button>
+                            </div>
+                          </div>
+                        </form>
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                </tr>);
+            })}
+        </tbody>
+      </table>
+      <br />
+      <CreateModule />
+    </div >
+  );
 };
 
 export default ModuleList;
