@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//El Schema Empresa puede cambiar y podemos meter empresa y logo en el formulario
 
 const jobSchema = new Schema({
-  enterprise: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Empresa",
-    },
-  ],
+  logo: {
+    type: String,
+    default:
+      "https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI",
+  },
+
+  enterpriseName: {
+    type: String,
+  },
 
   title: {
     type: String,
@@ -27,11 +29,11 @@ const jobSchema = new Schema({
     required: true,
   },
   tipo: {
-    type: String
+    type: String,
   },
 
   end: {
-    type: String
+    type: String,
   },
 
   linkedIn: {

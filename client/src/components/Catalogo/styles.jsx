@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CatalogueWrapper = styled.div`
-  display: flex;
+  
   margin: 2rem 0;
   margin-bottom: 113px;
   background: #f4f5f7;
@@ -9,10 +9,10 @@ export const CatalogueWrapper = styled.div`
 `;
 
 export const EmpleosColumn = styled.div`
-  width: 50%;
-  display: grid;
+  
+  display: flex;
   align-items: center;
-  grid-gap: 0.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  
 `;
+
 

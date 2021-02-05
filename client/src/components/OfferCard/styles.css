@@ -2,16 +2,15 @@
 
 .card__front,
 .card__back {
- position: absolute;
- top: 0;
- left: 0;
- width: 200px;
- height: 50%;
- padding: 2em;
- border-radius: 0.5em;
- transition: transform 0.7s ease;
- backface-visibility: hidden;
- box-shadow: 0 7px 15px -5px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: transform 0.7s ease;
+  backface-visibility: hidden;
+  box-shadow: 0 7px 15px -5px rgba(0, 0, 0, 0.4);
+  justify-content: center;
 }
 
 .card__front {
@@ -20,24 +19,32 @@
   color: black;
   font-size: 30px;
   overflow: hidden;
- }
+  height: 100%;
+  width: 100%;
+}
 
- .card__back {
+.card__back {
   border: 1px solid #ccc;
   background: #efefef;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   transform: rotateY(-180deg);
- }
- 
- .card:hover .card__front,
- .card:focus .card__front {
+  height: 100%;
+  width: 100%;
+}
+
+.card:hover .card__front,
+.card:focus .card__front {
   transform: rotateY(180deg);
- }
- 
- .card:hover .card__back,
- .card:focus .card__back {
+}
+
+.card:hover .card__back,
+.card:focus .card__back {
   transform: rotateY(0);
- }
- 
+}
+
+.card {
+  position: relative;
+  height: 400px;
+  width: 300px;
+}

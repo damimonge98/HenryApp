@@ -10,15 +10,15 @@ import { CatalogueWrapper, EmpleosColumn } from './styles';
 
 
 const Catalogo = ()=>{
-  const [empleo, setEmpleo] = useState([
-    // _id: "",
-    // title:"",
-    // description: "",
-    // location: "",
-    // remote: "",
-    // tipo: "",
-    // end: "",
-    // linkedIn:""
+  const [empleos, setEmpleo] = useState([
+   { _id: "",
+    title:"",
+    description: "",
+    location: "",
+    remote: "",
+    tipo: "",
+    end: "",
+    linkedIn:""}
 ]);
 
 useEffect(() => {
@@ -29,9 +29,9 @@ const getAllEmpleos = () => {
   axios.get("http://localhost:5000/empleos/")
   .then((response)=>{
     setEmpleo(response.data);
-  }).catch((error)=>{
-    console.log(error)})
-
+    console.log(empleos, "sfgadg")
+    console.log(response, "jhbfkjsh")
+  })
   // setEmpleo([])
   // dispatch(getEmpleos());
 };
@@ -41,15 +41,15 @@ const getAllEmpleos = () => {
     <Layout>
     <CatalogueWrapper>
       <EmpleosColumn>
-        {empleo.map((empleo, index) => {
-                    return (
-                        <div key={index}>
-                        <OfferCard empleo={empleo} />
-                        </div>
+        {empleos.map((empleo, index) => {
+                    return (                      
+                        
+                        <OfferCard empleo={empleo} key={index}/>
+                        
                     );
                 })}
         
-      </EmpleosColumn>    
+      </EmpleosColumn>
     </CatalogueWrapper>
     </Layout>
   );
