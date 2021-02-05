@@ -50,7 +50,7 @@ const OneLecture = (props) => {
       <h4>{lecture.description}</h4>
       <br />
       <Link to={{ pathname: lecture.urlLecture }} target="_blank">
-        <h4><i className="fab fa-github"></i> Readme</h4>
+        <h4><i className="fab fa-github"></i>{lecture.title}</h4>
       </Link>
       <br />
       <div className="videoCard-grid">

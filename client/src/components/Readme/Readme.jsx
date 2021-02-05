@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
+import "./readme.css"
 
 export default function Readme (props) {
     console.log (props.title);
@@ -14,7 +15,7 @@ export default function Readme (props) {
     ReadmeUrl = ReadmeUrl.replace("/tree/master", "/contents")
     ReadmeUrl = ReadmeUrl + "/README.md?ref=master"
     console.log(ReadmeUrl)
-   //https://api.github.com/repos/soyHenry/FT-M1/tree/master/00-IntroToCS
+
 
     const getRepoReadme = function () {
       axios.get(ReadmeUrl, {
@@ -29,14 +30,28 @@ export default function Readme (props) {
         getRepoReadme()
     }, [ReadmeUrl])
     
-    const codeReadme = atob(readme)
-    const newReadme = md.render(codeReadme)
+    console.log(readme)
 
+    var codeReadme = atob(readme)
+    console.log(codeReadme)
+    const firstTag = codeReadme.indexOf("<")
+    const lastTag = codeReadme.lastIndexOf(">")
+    console.log(firstTag)
+    console.log(lastTag)
+    const deleteHTML = codeReadme.substring(firstTag, lastTag)
+    codeReadme = codeReadme.replace(deleteHTML, "")
+    const newReadme = md.render(codeReadme)
+    console.log(newReadme)
     return (
          <div className = "readme">
            {!readme? <div class="spinner-border text-light" role="status"></div>
            :
+           <Fragment>
+            <div className = "readme">
+           <h1>Readme</h1>
            <div dangerouslySetInnerHTML={{__html: newReadme }}/>
+           </div>
+           </Fragment>
            }
         
         </div>

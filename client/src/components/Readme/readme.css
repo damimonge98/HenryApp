@@ -1,3 +1,4 @@
 .readme {
-    display: inline
+    display: block;
+    position:absolute;
 }
