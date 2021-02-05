@@ -23,11 +23,17 @@ const Payment = () => {
                         <div>
                             <h2 className="hurra">Hurra!</h2>
                             <div className='info'>
-                                <h3>{user.firstName}, en este momento no tenes deuda con Henry</h3>
+                                <h3>{user.firstName}, en este momento no tenés deuda con Henry.</h3>
                             </div>
                         </div>
                         :
-                        <p>{user.firstName}, tu deuda con Henry es de usd {user.debt}. No te preocupes! podras empezar a pagarla cuando consigas trabajo</p>
+                        <div>
+                            <h2 className="hurra">Estado de cuenta</h2>
+                            <div className='info'>
+                                <h3>{user.firstName}, tu deuda con Henry es de usd {user.debt}.</h3>
+                            </div>
+                        </div>
+
                     } </div>
                 </Layout>
                 : null
