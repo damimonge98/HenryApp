@@ -108,7 +108,7 @@ const CreateUser = () => {
                   <label>Rol</label>
                   <div>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="guest" />
-                    <label>Invitado</label>
+                    <label>Visitante</label>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="student" />
                     <label>Estudiante</label>
                     <input onChange={(e) => { handleChange(e); }} type="radio" name="role" value="instructor" />
