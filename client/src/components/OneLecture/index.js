@@ -3,6 +3,7 @@ import CardVideo from "../CardVideo/index";
 import axios from "axios";
 import "./index.css";
 import { Link } from "react-router-dom";
+import Readme from "../Readme/Readme";
 
 const OneLecture = (props) => {
 
@@ -61,6 +62,7 @@ const OneLecture = (props) => {
           );
         })}
       </div>
+      <Readme title = {lecture.title} url = {lecture.urlLecture}/>
     </div >
   );
 };
