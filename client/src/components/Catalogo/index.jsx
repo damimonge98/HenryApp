@@ -6,8 +6,8 @@ import OfferCard from '../OfferCard/index';
 import Layout from '../../containers/Layout';
 
 // Styled Components
-import { CatalogueWrapper, EmpleosColumn } from './styles';
-
+//import { CatalogueWrapper, EmpleosColumn } from './styles';
+import './styles.css';
 
 const Catalogo = ()=>{
   const [empleos, setEmpleo] = useState([
@@ -39,8 +39,8 @@ const getAllEmpleos = () => {
   
   return (
     <Layout>
-    <CatalogueWrapper>
-      <EmpleosColumn>
+    <div className="catalogueWrapper">
+      <div className="empleosColumn">
         {empleos.map((empleo, index) => {
                     return (                      
                         
@@ -49,8 +49,8 @@ const getAllEmpleos = () => {
                     );
                 })}
         
-      </EmpleosColumn>
-    </CatalogueWrapper>
+      </div>
+    </div>
     </Layout>
   );
 
