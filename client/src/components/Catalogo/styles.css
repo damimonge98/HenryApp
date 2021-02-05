@@ -8,8 +8,7 @@
 .empleosColumn {
  display: flex;
  align-items: stretch; 
- justify-content: space-around;
- 
+ justify-content: space-around; 
  flex-wrap: wrap;
 }
 
