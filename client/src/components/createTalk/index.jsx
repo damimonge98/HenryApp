@@ -30,7 +30,7 @@ const CreateTalk = () => {
     <div>
       <form onSubmit={handleSubmit} >
         <div>
-          <label>Titulo</label>
+          <label>Título</label>
           <div>
             <input
               onChange={(e) => { handleChange(e); }}
