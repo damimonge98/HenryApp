@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CreateModule from '../../components/CreateModule';
+import CreateModule from '../../components/CreateModule/index';
 import "./estilos.css";
 
 const ModuleList = () => {
