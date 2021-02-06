@@ -23,7 +23,6 @@ const UpdateUserForm = ({ modalRef, userData }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log(data);
     dispatch(updateUser(userData._id, data));
   };
 
@@ -36,9 +35,9 @@ const UpdateUserForm = ({ modalRef, userData }) => {
       <Input
         type="text"
         name="firstName"
-        label="First Name"
+        label="Nombre"
         required
-        autocomplete="off"
+        autoComplete="off"
         defaultValue={userData.firstName}
         ref={register}
         onChange={() => trigger("firstName")}
@@ -48,9 +47,9 @@ const UpdateUserForm = ({ modalRef, userData }) => {
       <Input
         type="text"
         name="lastName"
-        label="Last Name"
+        label="Apellido"
         required
-        autocomplete="off"
+        autoComplete="off"
         defaultValue={userData.lastName}
         ref={register}
         onChange={() => trigger("lastName")}
@@ -62,7 +61,7 @@ const UpdateUserForm = ({ modalRef, userData }) => {
         name="email"
         label="Email"
         disabeled
-        autocomplete="off"
+        autoComplete="off"
         ref={register}
         onChange={() => trigger("email")}
         error={errors.email?.message}
@@ -70,7 +69,7 @@ const UpdateUserForm = ({ modalRef, userData }) => {
 
       <Select
         name="role"
-        label="Role"
+        label="Rol"
         required
         ref={register}
         defaultValue={userData.role}
@@ -113,7 +112,7 @@ const UpdateUserForm = ({ modalRef, userData }) => {
       />
 
       <UpdateButton>
-        Update User
+        Editar Usuario
       </UpdateButton>
     </UpdateUserFormWrapper>
   );

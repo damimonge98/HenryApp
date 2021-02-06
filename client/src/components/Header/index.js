@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { logoutUser } from "../../redux/actions/authActions";
 
 import { ReactComponent as HamburgerIcon } from "../../assets/icons/hamburgerlogo.svg";
@@ -22,9 +22,11 @@ const Header = () => {
 
   const { isAuth, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    history.push('/');
   };
 
   return (
@@ -53,38 +55,41 @@ const Header = () => {
 
             <MenuWrapper>
               <MenuItem>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">Perfil</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/course">Your course</Link>
+                <Link to="/course">Curso</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/users">User list</Link>
+                <Link to="/users">Usuarios</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/createUser">Create user</Link>
+                <Link to="/createUser">Crear usuario</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/modules">Module list</Link>
+                <Link to="/modules">Módulos</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/lecturesList">Lecture list</Link>
+                <Link to="/lecturesList">Clases</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/payments">Payments</Link>
+                <Link to="/payments">Pagos</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/settings">Settings</Link>
+              <Link to="/empleos">Bolsa de trabajo</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/settings">Configuración</Link>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
-                Logout
+                Salir
               </MenuItem>
             </MenuWrapper>
           </LogInWrapper>
           :
           <LinksWrapper>
-            <Link to="/login">Login</Link>/
-            <Link to="/register"> Register</Link>
+            <Link to="/login">Ingresar</Link>/
+            <Link to="/register"> Registrate</Link>
           </LinksWrapper>
       }
     </HeaderWrapper>

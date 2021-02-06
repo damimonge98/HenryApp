@@ -1,39 +1,41 @@
-require('dotenv').config();
+require("dotenv").config();
 const { DATABASE_URL, SECRET } = process.env;
-const mongoose = require('mongoose');
-const express = require('express');
-const cors = require('cors');
-const passport = require('passport');
-const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
-const session = require('express-session');
+const mongoose = require("mongoose");
+const express = require("express");
+const cors = require("cors");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
+const session = require("express-session");
 
 const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth/auth');
 const lectureRoutes = require('./src/routes/lectures');
 const uploadRoutes = require('./src/routes/upload/upload');
-const { mailRoutes } = require("./src/routes/mail.js");
+const { mailRoutes } = require('./src/routes/mail.js');
 const videoRoutes = require('./src/routes/videos');
 const modulesRoutes = require('./src/routes/modules');
 const empleoRoutes = require('./src/routes/empleos');
-const booms = require("./src/routes/booms.js");
-const boomTweets = require("./src/routes/boomTweets.js");
+const talkRoutes = require('./src/routes/talk');
+const booms = require('./src/routes/booms.js');
+const boomTweets = require('./src/routes/boomTweets.js');
 
 const server = express();
 
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => {
-  // db.dropDatabase();// Con este comando se borra la db cuando se reincia el servidor
+  // db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });
 
 // Middleware
-server.use(express.json({ limit: '50mb' }));
-server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(express.json({ limit: "50mb" }));
+server.use(express.urlencoded({ extended: true, limit: "50mb" }));
 server.use(cookieParser());
+<<<<<<< HEAD
 server.use(morgan('dev'));
 server.use(cors({
   origin: 'http://localhost:3000', // Client
@@ -46,6 +48,15 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
   next();
 });
+=======
+server.use(morgan("dev"));
+server.use(
+  cors({
+    origin: "http://localhost:3000", // Client
+    credentials: true,
+  })
+);
+>>>>>>> origin
 
 server.use(passport.initialize());
 require("./src/passport");
@@ -60,20 +71,40 @@ server.all("*", (req, res, next) => {
   })(req, res, next);
 });
 
+<<<<<<< HEAD
 // Routes
 server.use('/auth', authRoutes);
 server.use('/users', userRoutes);
 server.use('/lectures', lectureRoutes);
+=======
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Authorization, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
+  next();
+});
+
+// Routes
+server.use("/users", userRoutes);
+server.use("/auth", authRoutes);
+server.use("/lectures", lectureRoutes);
+>>>>>>> origin
 server.use("/upload", uploadRoutes);
-server.use('/videos', videoRoutes);
-server.use('/modules', modulesRoutes);
+server.use("/videos", videoRoutes);
+server.use("/modules", modulesRoutes);
 server.use("/boom", booms);
 server.use("/boomTweets", boomTweets);
 server.use("/sendMail", mailRoutes);
 server.use('/empleos', empleoRoutes);
+server.use('/talk', talkRoutes);
 
 // Error catching endware.
-server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+server.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
   console.error(err);
@@ -81,5 +112,5 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 server.listen(5000, () => {
-  console.log('  🚀 Server running on port 5000...');
+  console.log("  🚀 Server running on port 5000...");
 });

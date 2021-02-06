@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
 import Layout from '../Layout';
@@ -9,7 +10,6 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
-import DropDown from '../../components/DropDown';
 import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
@@ -27,6 +27,7 @@ const UserListPage = () => {
   });
   const [rows, setRows] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
   const inviteUsersCsvModalRef = useRef();
@@ -89,6 +90,7 @@ const UserListPage = () => {
     history.push("/login");
     return null;
   }
+
   if (!auth.user.isSuperAdmin) {
     history.push("/");
     return null;
@@ -182,27 +184,27 @@ const UserListPage = () => {
     <Layout>
       <FilterBar filters={filters} />
       <ButtonsRow>
-        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invite users by csv</Button>
+        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
       </ButtonsRow>
       <Table columns={columns} rows={rows} actions={actions} />
       <Modal ref={editModalRef}>
-        <H1>Edit User</H1>
+        <H1>Editar Usuario</H1>
         <UpdateUserForm modalRef={editModalRef} userData={selected} />
       </Modal>
       <Modal ref={deleteModalRef}>
         {
           selected ? (
             <ConfirmationWrapper>
-              <H1>Deleting {selected.firstName} {selected.lastName}</H1>
-              <span>Are you sure you want to delete this user?</span>
-              <ButtonConfirm onClick={() => dispatch(deleteUser(selected._id))}>Confirm</ButtonConfirm>
-              <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancel</ButtonCancel>
+              <H1>Borrando {selected.firstName} {selected.lastName}</H1>
+              <span>Estás seguro que deseas borrar este usuario?</span>
+              <ButtonConfirm onClick={() => dispatch(deleteUser(selected._id))}>Confirmar</ButtonConfirm>
+              <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
             </ConfirmationWrapper>
           ) : null
         }
       </Modal>
       <Modal ref={inviteUsersCsvModalRef}>
-        <H1>Inviting users by csv file</H1>
+        <H1>Invitando usuarios por .csv</H1>
         <InviteUsersCsvForm />
       </Modal>
     </Layout>
