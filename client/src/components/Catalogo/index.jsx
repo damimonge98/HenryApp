@@ -75,20 +75,20 @@ const Catalogo = () => {
         <h3 className="offertitle">Bolsa de Trabajo</h3>
         <h5>
           ¿Eres empresa?{" "}
-          <button type="button" class="btn" data-open="modal1">
+          <button type="button" className="btn" data-open="modal1">
             Publica tu oferta
           </button>
         </h5>
         {/* {-Modal crear oferta-} */}
-        <div class="modal" id="modal1">
-          <div class="modal-dialog">
-            <header class="modal-header">
+        <div className="modal" id="modal1">
+          <div className="modal-dialog">
+            <header className="modal-header">
               Crear tu oferta de empleo
-              <button class="close-modal" aria-label="close modal" data-close>
+              <button className="close-modal" aria-label="close modal" data-close>
                 ✕
               </button>
             </header>
-            <section class="modal-content">
+            <section className="modal-content">
               <CrearEmpleo />
             </section>
           </div>
