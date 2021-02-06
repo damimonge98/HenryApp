@@ -17,14 +17,30 @@
 }
 
 .menuDiv {
-    background-color: blue;
-    height: 100px;
-    width:1000px;
-    justify-content: center;
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
 }
 
 .video {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center; 
+    margin-top: 20px;   
+}
+
+.changeLecture {
+    cursor: pointer;
+}
+
+.changeLecture:hover{
+    color: red;
+}
+
+.link {
+    margin-top: 30px;
+}
+
+.returns {
+    font-size: 40px;
 }
