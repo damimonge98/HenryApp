@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
+import { getModule } from "../../redux/actions/moduleActions";
 import "./readme.css";
 
 

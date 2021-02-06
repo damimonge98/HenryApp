@@ -12,7 +12,12 @@ const OneLecture = (props) => {
   const dispatch = useDispatch()
   const history = useHistory();
   const allLectures = useSelector (state => state.lectures.lectures)
-  const [indexOfThisLecture, setIndexOfThisLecture] = useState(null)
+
+
+  var thisURL = window.location.pathname
+  var indexOfSlash = thisURL.lastIndexOf("/")
+  var thisModule = thisURL.substring(indexOfSlash+1)  
+  const lecturesOfThisModule = allLectures.filter(el => el.modulo === thisModule)
 
   const [allVideos, setAllVideos] = useState([{
     _id: "",
@@ -51,28 +56,28 @@ const OneLecture = (props) => {
     );
   };
 
+  
 
   /*var urlVideo = allVideos[0].url
   urlVideo = urlVideo.replace("https://vimeo.com/", "")
   var urlVimeo = "https://player.vimeo.com/video/307791576?title=0&byline=0&portrait=0"
   urlVimeo = urlVimeo.replace("307791576", urlVideo)*/
 
-  console.log(allLectures)
-  const getIndexOfThisLecture = allLectures.findIndex(l => l._id === lecture._id)
+  const getIndexOfThisLecture = lecturesOfThisModule.findIndex(l => l._id === lecture._id)
   console.log(getIndexOfThisLecture)
   var lectureAnterior = getIndexOfThisLecture === 0 ? 0 : getIndexOfThisLecture -1
   var lectureSiguiente = getIndexOfThisLecture +1
 
-  var prevLecture = allLectures[lectureAnterior] === undefined ? null : allLectures[lectureAnterior]._id
+  var prevLecture = lecturesOfThisModule[lectureAnterior] === undefined ? null : lecturesOfThisModule[lectureAnterior]._id
 
   var nextLecture = function () {
-    if (allLectures[lectureSiguiente] === undefined && allLectures[getIndexOfThisLecture] === undefined) {
+    if (lecturesOfThisModule[lectureSiguiente] === undefined && lecturesOfThisModule[getIndexOfThisLecture] === undefined) {
       return null
     }
-    if (allLectures[lectureSiguiente] === undefined && allLectures[getIndexOfThisLecture]) {
-      return allLectures[getIndexOfThisLecture]._id
+    if (lecturesOfThisModule[lectureSiguiente] === undefined && lecturesOfThisModule[getIndexOfThisLecture]) {
+      return lecturesOfThisModule[getIndexOfThisLecture]._id
     }
-    return allLectures[lectureSiguiente]._id
+    return lecturesOfThisModule[lectureSiguiente]._id
   }
 
 
@@ -87,11 +92,11 @@ const OneLecture = (props) => {
       <br />
 
       <div className = "menuDiv">
-      {allLectures.length === 0 ? null :
+      {lecturesOfThisModule.length === 0 ? null :
       <Fragment>
-      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
+      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
       <div className = "returns" className = "changeLecture" onClick = {()=> {window.history.back()}}>VOLVER</div>
-      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
       </Fragment>}
      </div>
 

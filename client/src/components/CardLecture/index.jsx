@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getModule } from "../../redux/actions/moduleActions";
+import {useDispatch} from "react-redux";
 import './estilos.css';
 
 const CardLecture = ({ lecture }) => {
@@ -10,9 +12,15 @@ const CardLecture = ({ lecture }) => {
     title,
     video, } = lecture;
 
+  const dispatch = useDispatch()
+  console.log(modulo)
+
+
+
+
 
   return (
-    <Link to={`/lecture/${_id}`}>
+    <Link to={`/lecture/${_id}/module/${modulo}`} >
       <div className="card">
         <div className="center">
           <img src={imagen} alt="Henry app" />
