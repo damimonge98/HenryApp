@@ -18,6 +18,7 @@ import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
 import Catalogo from "./components/Catalogo";
 import Payment from './containers/Payment/index'
+import InfoUtil from './components/InfoUtil/index'
 
 const routes = () => {
   return (
@@ -40,6 +41,7 @@ const routes = () => {
         <Route exact path="/booms" component={Booms} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
+        <Route exact path='/infoUtil' component={InfoUtil} />
       </Switch>
     </BrowserRouter >
   );
