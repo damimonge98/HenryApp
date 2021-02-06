@@ -18,7 +18,7 @@
 
 .menuDiv {
     display: flex;
-    background-color: white;
+    background-color: yellow;
     justify-content: space-around;
 }
 
@@ -33,14 +33,12 @@
     cursor: pointer;
 }
 
-.changeLecture:hover{
-    color: red;
-}
 
 .link {
     margin-top: 30px;
+    background-color: yellow
 }
 
 .returns {
-    font-size: 40px;
+    font-size: 100px;
 }

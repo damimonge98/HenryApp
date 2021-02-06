@@ -12,6 +12,7 @@ const OneLecture = (props) => {
   const dispatch = useDispatch()
   const history = useHistory();
   const allLectures = useSelector (state => state.lectures.lectures)
+  const [rightArrow, setRightArrow] = useState(true);
 
 
   var thisURL = window.location.pathname
@@ -64,7 +65,6 @@ const OneLecture = (props) => {
   urlVimeo = urlVimeo.replace("307791576", urlVideo)*/
 
   const getIndexOfThisLecture = lecturesOfThisModule.findIndex(l => l._id === lecture._id)
-  console.log(getIndexOfThisLecture)
   var lectureAnterior = getIndexOfThisLecture === 0 ? 0 : getIndexOfThisLecture -1
   var lectureSiguiente = getIndexOfThisLecture +1
 
@@ -89,14 +89,19 @@ const OneLecture = (props) => {
         <h1 className = "h1"><i className="fab fa-github"></i>{lecture.title}</h1>
       </Link>
       </div> 
-      <br />
+
 
       <div className = "menuDiv">
       {lecturesOfThisModule.length === 0 ? null :
       <Fragment>
       <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
-      <div className = "returns" className = "changeLecture" onClick = {()=> {window.history.back()}}>VOLVER</div>
-      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+      <div className = "returns" className = "changeLecture" onClick = {()=> {history.push(`/modulo/${thisModule}`)}}><h3>LECTURES</h3></div>
+      {rightArrow === true?
+       <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+       :
+       null
+    }
+     
       </Fragment>}
      </div>
 

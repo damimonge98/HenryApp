@@ -20,14 +20,18 @@ const CardLecture = ({ lecture }) => {
 
 
   return (
-    <Link to={`/lecture/${_id}/module/${modulo}`} >
       <div className="card">
         <div className="center">
-          <img src={imagen} alt="Henry app" />
+        <Link to={`/lecture/${_id}/module/${modulo}`} >
+        <img src={imagen} alt="Henry app" />
+            </Link>
+          
         </div>
         <div>
           <div>
+          <Link to={`/lecture/${_id}/module/${modulo}`} >
             <h3>{title}</h3>
+            </Link>
           </div>
           <div>
             {Array.isArray(video)
@@ -39,7 +43,7 @@ const CardLecture = ({ lecture }) => {
           </div>
         </div>
       </div>
-    </Link>
+    
   );
 };
 

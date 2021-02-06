@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
-import { getModule } from "../../redux/actions/moduleActions";
 import "./readme.css";
 
 
@@ -28,6 +27,13 @@ export default function Readme (props) {
     }, [ReadmeUrl])
     
     var codeReadme = atob(readme)
+    codeReadme = codeReadme.replaceAll("Ã©", "e");
+    codeReadme = codeReadme.replaceAll("Ã³", "o");
+    codeReadme = codeReadme.replaceAll("Ã", "á");
+    codeReadme = codeReadme.replaceAll ("á¡", "á");
+    codeReadme = codeReadme.replaceAll("Â", "");
+    codeReadme = codeReadme.replaceAll("áº", "ú");
+    codeReadme = codeReadme.replaceAll("aá", "ai")
     var newReadme = md.render(codeReadme)
     const firstTag = newReadme.indexOf("<h2>")
     const deleteHTML = newReadme.substring(firstTag)
