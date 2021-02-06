@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 
 //-----falta el input de remote para cambiar su valor
-//-----definir como se van a traer los datos de la empresa
-
+//-----falta el input para subir logo de la empresa
+//-----el input "end" deberia tener un selector dropdown para elegir si es front, back o fullstack
+//-----falta funcionalidad y conectar el formulario
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
-    // enterprise: {},
+    enterpriseName: "",
     title: "",
     description: "",
     location: "",
+    tipo: "",
+    end: "",
     remote: false,
     linkedIn: "",
   });
 
-  //const [toggle, setToggle] = useState(false);
 
   function handleChange(e) {
     setEmpleo({
@@ -24,9 +26,23 @@ const CrearEmpleo = () => {
     });
   }
   const handleSubmit = () => {
-    const { title, description, location, remote, linkedIn } = empleo;
+    const {
+      enterpriseName,
+      logo,
+      title,
+      description,
+      location,
+      remote,
+      tipo,
+      end,
+      linkedIn,
+    } = empleo;
     axios
       .post("http://localhost:5000/empleos", {
+        logo,
+        enterpriseName,
+        tipo,
+        end,
         title,
         description,
         location,
@@ -35,21 +51,6 @@ const CrearEmpleo = () => {
       })
       .then();
   };
-  // const handleToggle = (e) => {
-  //   if (e.target.checked) {
-  //     setEmpleo({
-  //       ...empleo,
-  //       remote: true,
-  //     });
-  //     setToggle(true);
-  //   } else {
-  //     setEmpleo({
-  //       ...empleo,
-  //       remote: false,
-  //     });
-  //     setToggle(false);
-  //   }
-  // };
 
   return (
     <div>
@@ -83,6 +84,20 @@ const CrearEmpleo = () => {
           </div>
         </div>
         <div>
+          <label>Nombre de la Empresa</label>
+          <div>
+            <input
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="enterpriseName"
+              value={empleo.enterpriseName}
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div>
           <label>Lugar de trabajo</label>
           <div>
             <input
@@ -91,6 +106,48 @@ const CrearEmpleo = () => {
               }}
               name="location"
               value={empleo.location}
+              type="text"
+              required
+            />
+          </div>          
+        </div>
+        <div>
+          <label>Es remoto?</label>
+          <div>
+            <input
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="remote"
+              value={empleo.remote}
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <label>Tipo de empleo</label>
+          <div>
+            <input
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="tipo"
+              value={empleo.tipo}
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div>
+          <label>Front, Back, Full?</label>
+          <div>
+            <input
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="end"
+              value={empleo.end}
               type="text"
               required
             />

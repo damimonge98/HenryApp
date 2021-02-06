@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { logoutUser } from "../../redux/actions/authActions";
 
 import { ReactComponent as HamburgerIcon } from "../../assets/icons/hamburgerlogo.svg";
@@ -22,9 +22,11 @@ const Header = () => {
 
   const { isAuth, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    history.push('/');
   };
 
   return (
@@ -72,6 +74,9 @@ const Header = () => {
               </MenuItem>
               <MenuItem>
                 <Link to="/payments">Pagos</Link>
+              </MenuItem>
+              <MenuItem>
+              <Link to="/empleos">Bolsa de trabajo</Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/settings">Configuración</Link>

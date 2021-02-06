@@ -2,17 +2,21 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Containers / Pages
-import CreateUser from "../src/components/CreateUser/index";
-import OneLecture from "../src/components/OneLecture/index";
+import CreateUser from './components/CreateUser';
+import OneLecture from './components/OneLecture';
 import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
+import lectureList from './containers/LectureList';
+import ModuleList from './containers/CRUDmodules';
+import CreateTalk from './components/CreateTalk';
+import TalkList from './components/TalkList';
+import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
-import lectureList from './containers/LectureList/index';
-import ModuleList from './containers/CRUDmodules/index';
-import Booms from "./components/Booms/Booms.jsx";
+import Booms from './components/Booms/Booms.jsx';
+import Catalogo from "./components/Catalogo";
 
 const routes = () => {
   return (
@@ -29,9 +33,13 @@ const routes = () => {
         <Route exact path='/modulo/:moduloid' component={Lectures} />
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
+        <Route exact path='/talk' component={CreateTalk} />
+        <Route exact path='/talks' component={TalkList} />
+        <Route exact path='/card-talk' component={CardTalk} />
         <Route exact path="/booms" component={Booms} />
+        <Route exact path='/empleos' component={Catalogo} />
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 };
 

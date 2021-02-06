@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
-import usersReducers from './reducers/usersReducers';
 import authReducers from './reducers/authReducers';
-import boomReducer from "./reducers/boomsReducer";
+import talkReducers from './reducers/talkReducers';
+import boomReducer from './reducers/boomsReducer';
+import usersReducers from './reducers/usersReducers';
+import lecturesReducers from './reducers/lecturesReducers';
 
 const rootReducer = combineReducers({
   auth: authReducers,
   user: usersReducers,
-  boom: boomReducer
+  talk: talkReducers,
+  boom: boomReducer,
+  lectures: lecturesReducers
 });
 
 export default rootReducer;

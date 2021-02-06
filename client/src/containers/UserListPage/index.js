@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
 import Layout from '../Layout';
@@ -12,8 +13,10 @@ import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Butto
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
+  const { isAuth } = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
+  const history = useHistory();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
   const inviteUsersCsvModalRef = useRef();
@@ -21,6 +24,10 @@ const UserListPage = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  useEffect(() => {
+    if (!isAuth) history.push('/');
+  }, [isAuth]);
 
   const handleUpdateUser = (id) => {
     const [user] = users.filter(u => {
