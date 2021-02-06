@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import './index.css'
+import $ from "jquery";
 
 
 const InfoUtil = () => {
 
 
     $(function () {
-        $(".accordion-titulo").click(function (e) {
+        $(".accordion-titulo").onClick(function (e) {
 
             e.preventDefault();
 
