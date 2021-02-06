@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -7,6 +8,9 @@ import './estilos.css'
 
 const Payment = () => {
     const { isAuth, user } = useSelector(state => state.auth);
+    const [textArea, setTextArea] = useState("");
+    const [attachments, setAttachments] = useState("");
+    const [sendEmail, setSendEmail] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -15,8 +19,20 @@ const Payment = () => {
     }, [isAuth]);
 
     useEffect(() => {
-        dispatch(getUserById());
+        dispatch(getUserById(user._id));
     }, []);
+
+    console.log(typeof attachments, "aa")
+
+    const handleSubmit = (() => {
+        axios.post("http://localhost:5000/sendMail", {
+            subject: `Envio de documentacion de ${user.firstName} ${user.lastName}`,
+            text: textArea,
+            attachments: attachments
+        })
+            .then(setSendEmail(true));
+    });
+
 
     return (
         <Layout>
@@ -53,11 +69,31 @@ const Payment = () => {
                         </div>
                         <div className="formulario">
                             <h2>Enviar documentación</h2>
-                            <from>
-                                <textarea 
-                                placeholder='...desea ingresar un comentario?'
+                            <form onSubmit={handleSubmit}>
+                                <textarea onChange={(e) => setTextArea(e.target.value)}
+                                    placeholder='...desea ingresar un comentario?'
                                 />
-                            </from>
+                                <div>
+                                    <input type="file" onChange={(e) => setAttachments(e.target.value)} name="adjunto" enctype="multipart/form-data"></input>
+                                </div>
+                                <div>
+                                    <button type="submit"> Enviar</button>
+                                </div>
+                            </form>
+                            <br />
+                            <br />
+                            <br />
+                            <div>
+                                {sendEmail ?
+                                    <div>
+                                        <h2 className="hurra">Tu documentacion ha sido enviada con exito. <button onClick={() => setSendEmail(false), setAttachments("")}>X</button></h2>
+                                        <div className='infoECuenta'>
+                                            <h3>Pronto recibiras en tu casilla de correo los pasos a seguir para realizar tu pago.</h3>
+                                        </div>
+                                    </div>
+
+                                    : null}
+                            </div>
                         </div>
                     </div>
                 </div>
