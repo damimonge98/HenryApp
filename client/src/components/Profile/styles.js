@@ -23,6 +23,22 @@ export const LogoWrapper = styled.div`
     width: 150px;
   }
 `;
+export const AvatarWrapper = styled.div`
+  height: 100px;
+  width: 100px;
+  border: 2px solid #ffff01;
+  border-radius: 50%;
+  background: #323232;
+  margin: 0 1rem;
+
+  & img {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
 
 export const RegisterButton = styled.button`
   height: 50px;
