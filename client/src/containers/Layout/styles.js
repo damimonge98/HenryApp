@@ -6,5 +6,5 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const Main = styled.div`
-  margin: 2rem 10vw;
+  /* margin: 2rem 0; */
 `;

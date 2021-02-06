@@ -10,6 +10,8 @@ import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+import DropDown from '../../components/DropDown';
+import FilterBar from '../../components/FilterBar';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
@@ -35,7 +37,6 @@ const UserListPage = () => {
     editModalRef.current.openModal();
   };
   const handleDeleteUser = (id) => {
-    console.log(id);
     const [user] = users.filter(u => {
       if (u._id === id)
         return true;
@@ -92,6 +93,43 @@ const UserListPage = () => {
     isAdmin: u.isSuperAdmin
   }));
 
+  const filters = [
+    {
+      name: "Roles",
+      options: [
+        {
+          value: "all",
+          name: "All Roles"
+        },
+        {
+          value: "students",
+          name: "Students"
+        },
+        {
+          value: "instructors",
+          name: "Instructors"
+        },
+      ]
+    },
+    {
+      name: "Super Admin",
+      options: [
+        {
+          value: "all",
+          name: "All Users"
+        },
+        {
+          value: true,
+          name: "Yes"
+        },
+        {
+          value: false,
+          name: "No"
+        },
+      ]
+    },
+  ];
+
   if (auth.loading || loading)
     return <Loading />;
 
@@ -106,6 +144,7 @@ const UserListPage = () => {
 
   return (
     <Layout>
+      <FilterBar filters={filters} />
       <ButtonsRow>
         <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invite users by csv</Button>
       </ButtonsRow>
