@@ -17,8 +17,15 @@ const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
   const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
-  const [adminFilter, setAdminFilter] = useState("all");
-  const [roleFilter, setRoleFilter] = useState("all");
+  const [adminFilter, setAdminFilter] = useState({
+    name: "All Users",
+    value: ""
+  });
+  const [roleFilter, setRoleFilter] = useState({
+    name: "All Roles",
+    value: ""
+  });
+  const [rows, setRows] = useState([]);
   const dispatch = useDispatch();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
@@ -28,6 +35,32 @@ const UserListPage = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  useEffect(() => {
+    setRows(
+      users
+        .filter(u => {
+          if (!roleFilter.value) {
+            return true;
+          }
+          return u.role === roleFilter.value;
+        })
+        .filter(u => {
+          if (adminFilter.value === "") {
+            return true;
+          }
+          console.log(u);
+          return u.isSuperAdmin === adminFilter.value;
+        })
+        .map(u => ({
+          _id: u._id,
+          fullName: `${u.firstName} ${u.lastName}`,
+          email: u.email,
+          role: u.role,
+          isAdmin: u.isSuperAdmin
+        }))
+    );
+  }, [roleFilter, adminFilter, users]);
 
   const handleUpdateUser = (id) => {
     const [user] = users.filter(u => {
@@ -48,6 +81,18 @@ const UserListPage = () => {
     setSelected(user);
     deleteModalRef.current.openModal();
   };
+
+  if (auth.loading || loading)
+    return <Loading />;
+
+  if (!auth.isAuth) {
+    history.push("/login");
+    return null;
+  }
+  if (!auth.user.isSuperAdmin) {
+    history.push("/");
+    return null;
+  }
 
   const columns = [
     {
@@ -88,70 +133,50 @@ const UserListPage = () => {
     }
   ];
 
-  const rows = users.map(u => ({
-    _id: u._id,
-    fullName: `${u.firstName} ${u.lastName}`,
-    email: u.email,
-    role: u.role,
-    isAdmin: u.isSuperAdmin
-  }));
-
   const filters = [
     {
       name: "Roles",
-      selectedFilter: roleFilter,
       setFilter: setRoleFilter,
+      selectedFilter: roleFilter,
       options: [
         {
           name: "All Roles",
-          value: "all"
+          value: ""
         },
         {
           name: "Guess",
-          value: "guess"
+          value: "guest"
         },
         {
-          name: "Students",
-          value: "studnets"
+          name: "Student",
+          value: "student"
         },
         {
-          name: "Instructurs",
-          value: "instructurs"
+          name: "Instructor",
+          value: "instructor"
         },
       ]
     },
     {
-      name: "Super Admin",
-      selectedFilter: adminFilter,
+      name: "Users",
       setFilter: setAdminFilter,
+      selectedFilter: adminFilter,
       options: [
         {
           name: "All Users",
-          value: "all"
+          value: ""
         },
         {
-          name: "No",
-          value: false
-        },
-        {
-          name: "Yes",
+          name: "Super Admins",
           value: true
+        },
+        {
+          name: "Regular Users",
+          value: false
         },
       ]
     },
-  ]
-
-  if (auth.loading || loading)
-    return <Loading />;
-
-  if (!auth.isAuth) {
-    history.push("/login");
-    return null;
-  }
-  if (!auth.user.isSuperAdmin) {
-    history.push("/");
-    return null;
-  }
+  ];
 
   return (
     <Layout>

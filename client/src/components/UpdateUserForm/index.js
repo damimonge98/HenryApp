@@ -78,8 +78,8 @@ const UpdateUserForm = ({ modalRef, userData }) => {
         error={errors.role?.message}
         options={[
           {
-            text: "Guess",
-            value: "guess"
+            text: "Guest",
+            value: "guest"
           },
           {
             text: "Student",

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FilterBarWrapper = styled.div`
   height: 70px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.15);
 
   display:  flex;
