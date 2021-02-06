@@ -6,7 +6,6 @@ const { isSuperAdmin, isUser } = require('../middlewares/auth');
 
 // Get all users
 router.get('/', async (req, res, next) => {
-  console.log(req.user);
   // isSuperAdmin(req, res, next);
   try {
     const users = await User.find();
@@ -93,8 +92,6 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
-
-  console.log(req.user);
 
   User.findByIdAndUpdate(id, req.body, { new: true }).then(user => {
     res.json(user);

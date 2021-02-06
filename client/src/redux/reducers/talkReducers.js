@@ -1,4 +1,7 @@
 import {
+  REQUEST_ACTION_TALKS,
+  REQUEST_SUCCESS_ACTION_TALKS,
+  REQUEST_FAILED_ACTION_TALKS,
   GET_ALL_TALKS,
   GET_TALK,
   CREATE_TALK,
@@ -8,11 +11,33 @@ import {
 
 const initialState = {
   talk: {},
-  talks: []
+  talks: [],
+  loading: false,
+  error: null
 };
 
 const talkReducers = (state = initialState, action) => {
   switch (action.type) {
+
+    case REQUEST_ACTION_TALKS:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case REQUEST_SUCCESS_ACTION_TALKS:
+      return {
+        ...state,
+        loading: false,
+        error: null
+      };
+
+    case REQUEST_FAILED_ACTION_TALKS:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
 
     case GET_ALL_TALKS:
       return {

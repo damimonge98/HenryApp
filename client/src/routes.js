@@ -11,8 +11,9 @@ import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
 import lectureList from './containers/LectureList';
 import ModuleList from './containers/CRUDmodules';
+import HenryTalksCRUD from './containers/HenryTalksCRUD';
 import CreateTalk from './components/CreateTalk';
-import TalkList from './components/TalkList';
+// import TalkList from './components/TalkList';
 import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
@@ -34,7 +35,7 @@ const routes = () => {
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talk' component={CreateTalk} />
-        <Route exact path='/talks' component={TalkList} />
+        <Route exact path='/talks' component={HenryTalksCRUD} />
         <Route exact path='/card-talk' component={CardTalk} />
         <Route exact path="/booms" component={Booms} />
         <Route exact path='/empleos' component={Catalogo} />
