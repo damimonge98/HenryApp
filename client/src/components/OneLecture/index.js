@@ -64,8 +64,18 @@ const OneLecture = (props) => {
   var lectureSiguiente = getIndexOfThisLecture +1
 
   var prevLecture = allLectures[lectureAnterior] === undefined ? null : allLectures[lectureAnterior]._id
-  console.log  ("prevLecture", prevLecture)
-  var nextLecture = allLectures[lectureSiguiente] === undefined ? null : allLectures[lectureSiguiente]._id
+
+  var nextLecture = function () {
+    if (allLectures[lectureSiguiente] === undefined && allLectures[getIndexOfThisLecture] === undefined) {
+      return null
+    }
+    if (allLectures[lectureSiguiente] === undefined && allLectures[getIndexOfThisLecture]) {
+      return allLectures[getIndexOfThisLecture]._id
+    }
+    return allLectures[lectureSiguiente]._id
+  }
+
+
   return (
     <div>  
       <Header/>
@@ -81,7 +91,7 @@ const OneLecture = (props) => {
       <Fragment>
       <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
       <div className = "returns" className = "changeLecture" onClick = {()=> {window.history.back()}}>VOLVER</div>
-      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
       </Fragment>}
      </div>
 
