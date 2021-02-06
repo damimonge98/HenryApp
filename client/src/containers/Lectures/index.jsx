@@ -44,8 +44,6 @@ const Lectures = (props) => {
     <div>
       <h2>{module.title}</h2>
       <br />
-      <h4>{module.description}</h4>
-      <br />
       <div className="lecture-grid">
         {lectures.map((lecture, index) => {
           return (

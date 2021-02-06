@@ -34,14 +34,14 @@ export default function Readme (props) {
 
     var codeReadme = atob(readme)
     console.log(codeReadme)
-    const firstTag = codeReadme.indexOf("<")
-    const lastTag = codeReadme.lastIndexOf(">")
+    var newReadme = md.render(codeReadme)
+    const firstTag = newReadme.indexOf("<h2>")
     console.log(firstTag)
-    console.log(lastTag)
-    const deleteHTML = codeReadme.substring(firstTag, lastTag)
-    codeReadme = codeReadme.replace(deleteHTML, "")
-    const newReadme = md.render(codeReadme)
+    const deleteHTML = newReadme.substring(firstTag)
+    newReadme = deleteHTML
     console.log(newReadme)
+    
+   
     return (
          <div className = "readme">
            {!readme? <div class="spinner-border text-light" role="status"></div>

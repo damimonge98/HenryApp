@@ -7,3 +7,10 @@
     margin-right         : 10px;
     margin-left          : 20px;
 }
+
+.containerDiv {
+    display: block;
+}
+.h1 {
+    text-align: center;
+}

@@ -44,13 +44,13 @@ const OneLecture = (props) => {
   };
 
   return (
-    <div>
-      <h2>{lecture.title}</h2>
+    <div className = "containerDiv">
+      <h2 className = "h1">{lecture.title}</h2>
       <br />
-      <h4>{lecture.description}</h4>
-      <br />
+      <button onClick = {()=> {window.history.back()}}className = "h1"> Volver </button>
+      <br/>
       <Link to={{ pathname: lecture.urlLecture }} target="_blank">
-        <h4><i className="fab fa-github"></i>{lecture.title}</h4>
+        <h4 className = "h1"><i className="fab fa-github"></i>{lecture.title}</h4>
       </Link>
       <br />
       <div className="videoCard-grid">
