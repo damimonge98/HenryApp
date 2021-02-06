@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../yup";
+import Layout from "../../containers/Layout";
 
 import Input from "../Input";
 import {
@@ -17,18 +18,15 @@ import henryLogo from "../../assets/images/henry.png";
 
 import { registerUser } from "../../redux/actions/authActions";
 
-const RegisterForm = () => {
+const ProfileForm = () => {
   const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(registerSchema),
   });
 
-  const { isAuth } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const history = useHistory();
-
-  useEffect(() => {
-    if (isAuth) history.push("/");
-  }, [isAuth]);
 
   const onSubmit = (data) => {
     dispatch(registerUser(data));
@@ -37,51 +35,42 @@ const RegisterForm = () => {
 
   return (
     <RegisterFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <LogoWrapper>
-        <Link to="/">
-          <img src={henryLogo} alt="Henry Logo" />
-        </Link>
-      </LogoWrapper>
+      <Layout>
+        <h1>
+          {user.firstName} {user.lastName}
+        </h1>
+        <h2> {user.email} </h2>
+      </Layout>
 
-      <Input
-        type="text"
-        name="firstName"
-        label="Nombre"
-        required
-        autoComplete="off"
-        ref={register}
-        onChange={() => trigger("firstName")}
-        error={errors.firstName?.message}
-      />
+      <div>
+        <h3>Update profile</h3>
+        <Input
+          type="text"
+          name="firstName"
+          label="First Name"
+          required
+          onChange={() => trigger("firstName")}
+          error={errors.firstName?.message}
+          placeholder={user.firstName}
+        />
 
-      <Input
-        type="text"
-        name="lastName"
-        label="Apellido"
-        required
-        autoComplete="off"
-        ref={register}
-        onChange={() => trigger("lastName")}
-        error={errors.lastName?.message}
-      />
-
-      <Input
-        type="text"
-        name="email"
-        label="Email"
-        required
-        autoComplete="off"
-        ref={register}
-        onChange={() => trigger("email")}
-        error={errors.email?.message}
-      />
+        <Input
+          type="text"
+          name="lastName"
+          label="Last Name"
+          required
+          onChange={() => trigger("lastName")}
+          error={errors.lastName?.message}
+          placeholder={user.lastName}
+        />
+      </div>
 
       <Input
         type="password"
         name="password"
-        label="Contraseña"
+        label="Password"
         required
-        autoComplete="off"
+        autocomplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.password?.message}
@@ -90,9 +79,9 @@ const RegisterForm = () => {
       <Input
         type="password"
         name="repassword"
-        label="Confirmar contraseña"
+        label="Confirm Password"
         required
-        autoComplete="off"
+        autocomplete="off"
         ref={register}
         onChange={() => trigger(["password", "repassword"])}
         error={errors.repassword?.message}
@@ -100,13 +89,10 @@ const RegisterForm = () => {
 
       <RegisterButton>
         <UserLogo />
-        Registrate
+        Change Password
       </RegisterButton>
-      <SpanLink>
-        Ya tenés una cuenta? <Link to="/login">Ingresá acá</Link>
-      </SpanLink>
     </RegisterFormWrapper>
   );
 };
 
-export default RegisterForm;
+export default ProfileForm;
