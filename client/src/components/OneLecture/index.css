@@ -8,9 +8,23 @@
     margin-left          : 20px;
 }
 
-.containerDiv {
-    display: block;
-}
 .h1 {
     text-align: center;
+}
+
+.navegationDiv {
+    background-color: red
+}
+
+.menuDiv {
+    background-color: blue;
+    height: 100px;
+    width:1000px;
+    justify-content: center;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
