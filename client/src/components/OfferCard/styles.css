@@ -33,27 +33,27 @@
   width: 100%;
 }
 
-.card:hover .card__front,
-.card:focus .card__front {
+.cards:hover .card__front,
+.cards:focus .card__front {
   transform: rotateY(180deg);
 }
 
-.card:hover .card__back,
-.card:focus .card__back {
+.cards:hover .card__back,
+.cards:focus .card__back {
   transform: rotateY(0);
 }
 
-.card {
+.cards {
   position:relative;
   height: 400px;
   width: 300px;
-  align-items: stretch;
+  align-items: center;
 }
 
-.location, .remote, .end, .tipo {
+.location, .remote, .end, .tipo, .enterprise {
   font-size: 15px;
 }
-.title, .enterprise {
+.title {
   font-size: 20px;
 }
 

@@ -2,14 +2,17 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Module = require('../models/module');
+const { isSuperAdmin, isUser } = require('../middlewares/auth');
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
+  console.log(req.user);
+  // isSuperAdmin(req, res, next);
   try {
     const users = await User.find();
-    res.json(users);
+    return res.json(users);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -90,37 +93,10 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
-  let allModules = await Module.find();
-  let current = allModules.length;
 
-  let update = {};
-  if (email) {
-    update = { ...update, email };
-  };
-  if (firstName) {
-    update = { ...update, firstName };
-  };
-  if (lastName) {
-    update = { ...update, lastName };
-  };
-  if (password) {
-    update = { ...update, password };
-  }
-  if (typeof isSuperAdmin === "boolean") {
-    update = { ...update, isSuperAdmin };
-  }
-  if (role) {
-    update = { ...update, role };
-  };
-  if (currentModule) {
-    update = { ...update, currentModule };
-  };
-  if (avatar) {
-    update = { ...update, avatar };
-  };
+  console.log(req.user);
 
-  User.findByIdAndUpdate(id, update, { new: true }).then(user => {
+  User.findByIdAndUpdate(id, req.body, { new: true }).then(user => {
     res.json(user);
   })
     .catch(error => {
