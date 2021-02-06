@@ -52,9 +52,11 @@ const Payment = () => {
                             suficientes.</p>
                         </div>
                         <div className="formulario">
-                            <h2>Enviar documentación</h2>
+                            <h2 className="infoTitulo">Enviar documentación</h2>
+                            <br />
                             <from>
                                 <textarea 
+                                className= 'infoTextarea'
                                 placeholder='...desea ingresar un comentario?'
                                 />
                             </from>
