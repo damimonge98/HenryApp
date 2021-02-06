@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
 import Layout from '../Layout';
@@ -31,7 +30,6 @@ const UserListPage = () => {
   const editModalRef = useRef();
   const deleteModalRef = useRef();
   const inviteUsersCsvModalRef = useRef();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getUsers());
