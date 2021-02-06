@@ -4,9 +4,9 @@ import {
   UPDATE_USER,
   DELETE_USER,
   INVITE_USERS,
-  REQUEST_ACTION,
-  REQUEST_SUCCESS_ACTION,
-  REQUEST_FAILED_ACTION
+  REQUEST_ACTION_USER,
+  REQUEST_SUCCESS_ACTION_USER,
+  REQUEST_FAILED_ACTION_USER
 } from "../constants/usersContants";
 
 const initialState = {
@@ -20,20 +20,20 @@ const initialState = {
 const userReducers = (state = initialState, action) => {
   switch (action.type) {
 
-    case REQUEST_ACTION:
+    case REQUEST_ACTION_USER:
       return {
         ...state,
         loading: true
       };
 
-    case REQUEST_SUCCESS_ACTION:
+    case REQUEST_SUCCESS_ACTION_USER:
       return {
         ...state,
         loading: false,
         error: null
       };
 
-    case REQUEST_FAILED_ACTION:
+    case REQUEST_FAILED_ACTION_USER:
       return {
         ...state,
         loading: false,
