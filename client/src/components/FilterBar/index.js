@@ -10,7 +10,15 @@ const FilterBar = ({ filters }) => {
         <FilterIcon />
       </FilterIconWrapper>
       {
-        filters.map((f, i) => <DropDown key={i} name={f.name} options={f.options} />)
+        filters.map((f, i) => (
+          <DropDown
+            key={i}
+            name={f.name}
+            selectedFilter={f.selectedFilter}
+            setFilter={f.setFilter}
+            options={f.options}
+          />
+        ))
       }
     </FilterBarWrapper>
   );

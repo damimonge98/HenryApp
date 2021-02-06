@@ -9,14 +9,16 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 import DropDown from '../../components/DropDown';
 import FilterBar from '../../components/FilterBar';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
   const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
+  const [adminFilter, setAdminFilter] = useState("all");
+  const [roleFilter, setRoleFilter] = useState("all");
   const dispatch = useDispatch();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
@@ -36,6 +38,7 @@ const UserListPage = () => {
     setSelected(user);
     editModalRef.current.openModal();
   };
+
   const handleDeleteUser = (id) => {
     const [user] = users.filter(u => {
       if (u._id === id)
@@ -49,7 +52,7 @@ const UserListPage = () => {
   const columns = [
     {
       id: "1",
-      text: "Full Name",
+      text: "Nombre y Apellido",
       name: "fullName"
     },
     {
@@ -59,7 +62,7 @@ const UserListPage = () => {
     },
     {
       id: "3",
-      text: "Role",
+      text: "Rol",
       name: "role"
     },
     {
@@ -69,7 +72,7 @@ const UserListPage = () => {
     },
     {
       id: "5",
-      text: "Actions",
+      text: "Acciones",
       name: "actions"
     }
   ];
@@ -96,39 +99,47 @@ const UserListPage = () => {
   const filters = [
     {
       name: "Roles",
+      selectedFilter: roleFilter,
+      setFilter: setRoleFilter,
       options: [
         {
-          value: "all",
-          name: "All Roles"
+          name: "All Roles",
+          value: "all"
         },
         {
-          value: "students",
-          name: "Students"
+          name: "Guess",
+          value: "guess"
         },
         {
-          value: "instructors",
-          name: "Instructors"
+          name: "Students",
+          value: "studnets"
+        },
+        {
+          name: "Instructurs",
+          value: "instructurs"
         },
       ]
     },
     {
       name: "Super Admin",
+      selectedFilter: adminFilter,
+      setFilter: setAdminFilter,
       options: [
         {
-          value: "all",
-          name: "All Users"
+          name: "All Users",
+          value: "all"
         },
         {
-          value: true,
-          name: "Yes"
+          name: "No",
+          value: false
         },
         {
-          value: false,
-          name: "No"
+          name: "Yes",
+          value: true
         },
       ]
     },
-  ];
+  ]
 
   if (auth.loading || loading)
     return <Loading />;
