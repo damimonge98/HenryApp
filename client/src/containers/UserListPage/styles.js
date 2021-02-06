@@ -56,6 +56,6 @@ export const Button = styled.button`
   font-size: 18px;
   backdrop-filter: blur(250px);
   border: 2px solid black;
-  margin: 0.5rem 0 0.5rem 1rem;
+  margin: 0 1rem 1rem 0;
   cursor: pointer;
 `;
