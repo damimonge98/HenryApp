@@ -59,6 +59,7 @@ const Payment = () => {
                     <div className='infoECuenta'>
                         <h3>{user.firstName}, tu deuda con Henry es de usd {user.debt}.</h3>
                     </div>
+                    <br />
                     <div className='contenedor'>
                         <div className="infoUtil">
                             <h2 className="infoTitulo">Información útil</h2><br />
@@ -79,7 +80,7 @@ const Payment = () => {
                         <div className="formulario">
                             <h2 className="infoTitulo">Enviar documentación</h2>
                             <br />
-                            <p>Podes enviar documentacion que verifique tus ingresos.</p><br />
+                            <p><b>Podes enviar documentacion que verifique tus ingresos.</b></p><br />
                             <form onSubmit={(e) => handleSubmit(e)/* , setAdj(null) */}>
                                 <textarea
                                     className='infoTextarea'
@@ -87,22 +88,22 @@ const Payment = () => {
                                     placeholder='...desea ingresar un comentario?'
                                     value={textArea}
                                 />
+                                <br /><br />
                                 <div>
-                                    <input type="file" name="adjunto" enctype="multipart/form-data"  /* onChange={(e) => setAdj(e.target.value)} */></input>
+                                    <input className='formButton' type="file" name="adjunto" enctype="multipart/form-data"  /* onChange={(e) => setAdj(e.target.value)} */></input>
                                 </div>
+                                <br />
                                 <div>
-                                    <button type="submit"> Enviar</button>
+                                    <button className='formButton' type="submit"><b>Enviar</b></button>
                                 </div>
                             </form>
-                            <br />
-                            <br />
                             <br />
                             <div>
                                 {sendEmail ?
                                     <div>
-                                        <h2 className="hurra">Tu documentacion ha sido enviada con exito. <button onClick={() => setSendEmail(false)}>X</button></h2>
-                                        <div className='infoECuenta'>
-                                            <h3>Pronto recibiras en tu casilla de correo los pasos a seguir para realizar tu pago.</h3>
+                                        <h4 className="infoDocumentacion"><button className='infoDocButton' onClick={() => setSendEmail(false)}>X</button>Tu documentacion ha sido enviada con exito. </h4>
+                                        <div className='infoEDocumentacion'>
+                                            <p><b>Pronto recibiras en tu casilla de correo los pasos a seguir para realizar tu pago.</b></p>
                                         </div>
                                     </div>
 

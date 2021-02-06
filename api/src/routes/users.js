@@ -2,14 +2,17 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Module = require('../models/module');
+const { isSuperAdmin, isUser } = require('../middlewares/auth');
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
+  console.log(req.user);
+  // isSuperAdmin(req, res, next);
   try {
     const users = await User.find();
-    res.json(users);
+    return res.json(users);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -95,44 +98,21 @@ router.patch('/user/:id', async (req, res) => {
   let allModules = await Module.find();
   let current = allModules.length;
 
-  let update = {};
-  if (email) {
-    update = { ...update, email };
-  };
-  if (firstName) {
-    update = { ...update, firstName };
-  };
-  if (lastName) {
-    update = { ...update, lastName };
-  };
-  if (password) {
-    update = { ...update, password };
-  }
+  let update = req.body;
   if (typeof isSuperAdmin === "boolean") {
     update = { ...update, isSuperAdmin };
-  }
-  if (role) {
-    update = { ...update, role };
-  };
-  if (debt === 0) {
+  }  
+  if (debt && debt === 0) {
     update = { ...update, debt: 0 };
   };
-  if (debt) {
-    update = { ...update, debt };
-  };
+
   if (currentModule && currentModule === 3 || currentModule === 4) {
     update = { ...update, currentModule, debt: 500 };
   };
   if (currentModule && currentModule > 4) {
     update = { ...update, currentModule, debt: 4000 };
   };
-  if (currentModule) {
-    update = { ...update, currentModule };
-  };
-  if (avatar) {
-    update = { ...update, avatar };
-  };
-
+   
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
   })

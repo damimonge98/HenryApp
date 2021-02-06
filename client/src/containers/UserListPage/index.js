@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUsers, deleteUser } from '../../redux/actions/usersActions';
 
 import Layout from '../Layout';
@@ -9,12 +9,22 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
+import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
 const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
-  const { isAuth } = useSelector(state => state.auth);
+  const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
+  const [adminFilter, setAdminFilter] = useState({
+    name: "All Users",
+    value: ""
+  });
+  const [roleFilter, setRoleFilter] = useState({
+    name: "All Roles",
+    value: ""
+  });
+  const [rows, setRows] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
   const editModalRef = useRef();
@@ -26,8 +36,30 @@ const UserListPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isAuth) history.push('/');
-  }, [isAuth]);
+    setRows(
+      users
+        .filter(u => {
+          if (!roleFilter.value) {
+            return true;
+          }
+          return u.role === roleFilter.value;
+        })
+        .filter(u => {
+          if (adminFilter.value === "") {
+            return true;
+          }
+          console.log(u);
+          return u.isSuperAdmin === adminFilter.value;
+        })
+        .map(u => ({
+          _id: u._id,
+          fullName: `${u.firstName} ${u.lastName}`,
+          email: u.email,
+          role: u.role,
+          isAdmin: u.isSuperAdmin
+        }))
+    );
+  }, [roleFilter, adminFilter, users]);
 
   const handleUpdateUser = (id) => {
     const [user] = users.filter(u => {
@@ -38,6 +70,7 @@ const UserListPage = () => {
     setSelected(user);
     editModalRef.current.openModal();
   };
+
   const handleDeleteUser = (id) => {
     const [user] = users.filter(u => {
       if (u._id === id)
@@ -47,6 +80,19 @@ const UserListPage = () => {
     setSelected(user);
     deleteModalRef.current.openModal();
   };
+
+  if (auth.loading || loading)
+    return <Loading />;
+
+  if (!auth.isAuth) {
+    history.push("/login");
+    return null;
+  }
+
+  if (!auth.user.isSuperAdmin) {
+    history.push("/");
+    return null;
+  }
 
   const columns = [
     {
@@ -87,19 +133,54 @@ const UserListPage = () => {
     }
   ];
 
-  const rows = users.map(u => ({
-    _id: u._id,
-    fullName: `${u.firstName} ${u.lastName}`,
-    email: u.email,
-    role: u.role,
-    isAdmin: u.isSuperAdmin
-  }));
-
-  if (loading)
-    return <Loading />;
+  const filters = [
+    {
+      name: "Roles",
+      setFilter: setRoleFilter,
+      selectedFilter: roleFilter,
+      options: [
+        {
+          name: "All Roles",
+          value: ""
+        },
+        {
+          name: "Guess",
+          value: "guest"
+        },
+        {
+          name: "Student",
+          value: "student"
+        },
+        {
+          name: "Instructor",
+          value: "instructor"
+        },
+      ]
+    },
+    {
+      name: "Users",
+      setFilter: setAdminFilter,
+      selectedFilter: adminFilter,
+      options: [
+        {
+          name: "All Users",
+          value: ""
+        },
+        {
+          name: "Super Admins",
+          value: true
+        },
+        {
+          name: "Regular Users",
+          value: false
+        },
+      ]
+    },
+  ];
 
   return (
     <Layout>
+      <FilterBar filters={filters} />
       <ButtonsRow>
         <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
       </ButtonsRow>

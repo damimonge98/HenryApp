@@ -1,9 +1,9 @@
 import axios from "axios";
 
 import {
-  REQUEST_ACTION,
-  REQUEST_SUCCESS_ACTION,
-  REQUEST_FAILED_ACTION,
+  REQUEST_ACTION_USER,
+  REQUEST_SUCCESS_ACTION_USER,
+  REQUEST_FAILED_ACTION_USER,
   GET_USER,
   GET_USERS,
   UPDATE_USER,
@@ -11,16 +11,16 @@ import {
   INVITE_USERS
 } from "../constants/usersContants";
 
-const requestAction = () => ({
-  type: REQUEST_ACTION
+const requestActionUser = () => ({
+  type: REQUEST_ACTION_USER
 });
 
-const requestSuccessAction = () => ({
-  type: REQUEST_SUCCESS_ACTION
+const requestSuccessActionUser = () => ({
+  type: REQUEST_SUCCESS_ACTION_USER
 });
 
-const requestFailedAction = (error) => ({
-  type: REQUEST_FAILED_ACTION,
+const requestFailedActionUser = (error) => ({
+  type: REQUEST_FAILED_ACTION_USER,
   error
 });
 
@@ -52,14 +52,14 @@ const inviteUsersAction = (invited) => ({
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      dispatch(requestActionUser());
 
       const res = await axios.get("http://localhost:5000/users");
 
       dispatch(getUsersAction(res.data));
-      dispatch(requestSuccessAction());
+      dispatch(requestSuccessActionUser());
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionUser(error));
     }
   };
 };
@@ -67,14 +67,14 @@ export const getUsers = () => {
 export const getUserById = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      dispatch(requestActionUser());
       const res = axios.get(`http://localhost:5000/users/user/${id}`);
 
       dispatch(getUserAction(res.data));
-      dispatch(requestSuccessAction());
+      dispatch(requestSuccessActionUser());
 
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionUser(error));
     }
   };
 };
@@ -82,14 +82,14 @@ export const getUserById = (id) => {
 export const updateUser = (id, data) => {
   return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      dispatch(requestActionUser());
 
       const res = await axios.patch(`http://localhost:5000/users/user/${id}`, data);
 
       dispatch(updateUserAction(res.data));
-      dispatch(requestSuccessAction());
+      dispatch(requestSuccessActionUser());
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionUser(error));
     }
   };
 };
@@ -97,14 +97,14 @@ export const updateUser = (id, data) => {
 export const deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      dispatch(requestActionUser());
 
       const res = await axios.delete(`http://localhost:5000/users/${id}`);
 
       dispatch(deleteUserAction(res.data));
-      dispatch(requestSuccessAction());
+      dispatch(requestSuccessActionUser());
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionUser(error));
     }
   };
 };
@@ -112,16 +112,16 @@ export const deleteUser = (id) => {
 export const inviteUsers = (file) => {
   return async (dispatch) => {
     try {
-      dispatch(requestAction());
+      dispatch(requestActionUser());
 
       const data = new FormData();
       data.append('users', file, file.name);
       const res = await axios.post("http://localhost:5000/upload/users", data);
 
       dispatch(inviteUsersAction(res.data.invited));
-      dispatch(requestSuccessAction());
+      dispatch(requestSuccessActionUser());
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionUser(error));
     }
   };
 };
