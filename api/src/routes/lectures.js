@@ -3,8 +3,8 @@ const { findById } = require('../models/lecture');
 const lecture = require('../models/lecture');
 const router = express.Router();
 const Lecture = require('../models/lecture');
-const Module = require('../models/module')
-const Video = require('../models/video')
+const Module = require('../models/module');
+const Video = require('../models/video');
 
 // get all lectures of a specific module
 router.get('/', async (req, res) => {
@@ -101,10 +101,10 @@ router.delete('/:id', (req, res) => {
       };
     };
     res[0].save();
-  })
+  });
   Lecture.findById(id).then(lecture => {
     lecture.remove();
-    res.json({ message: 'Lecture has been deleted' });
+    res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });
   });
