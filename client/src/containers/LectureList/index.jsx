@@ -47,16 +47,10 @@ const lectureList = () => {
   };
 
 
-<<<<<<< HEAD
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, description } = oneLecture;
     axios.patch(`http://localhost:5000/lectures/${estadoId}`, { title, description })
-=======
-  const handleSubmit = (id) => {
-    const { title, description } = oneLecture;
-    axios.patch(`http://localhost:5000/lectures/${id}`, { title, description })
->>>>>>> origin
       .then(res => {
         getLectures(),
           setOneLecture({
@@ -73,12 +67,8 @@ const lectureList = () => {
     });
   };
 
-<<<<<<< HEAD
   const handleVideoSubmit = (e) => {
     e.preventDefault();
-=======
-  const handleVideoSubmit = () => {
->>>>>>> origin
     const { title, profesor, url, img, duration } = video;
     axios.post(`http://localhost:5000/videos/${estadoId}`, { title, profesor, url, img, duration })
       .then(res => {
@@ -105,26 +95,16 @@ const lectureList = () => {
   return (
     <div>
       <div>
-<<<<<<< HEAD
         <table >
           <thead >
             <tr >
               <th scope="col">Modulo</th>
               <th scope="col">Lecture</th>
               <th scope="col">Descripcion</th>
-=======
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Módulo</th>
-              <th scope="col">Clase</th>
-              <th scope="col">Descripción</th>
->>>>>>> origin
               <th scope="col">Videos</th>
             </tr>
           </thead>
           <tbody>
-<<<<<<< HEAD
             {
               allLectures.map((lecture, index) => {
                 const { modulo, title, _id, description, video, moduloName } = lecture;
@@ -239,120 +219,11 @@ const lectureList = () => {
                     </div>
                   </tr>);
               })}
-=======
-            {allLectures.map((lecture, index) => {
-              const { modulo, title, _id, description, video, moduloName } = lecture;
-
-              return (
-                <tr key={index}>
-                  <td>{moduloName}</td>
-                  <td>{title}</td>
-                  <td>{description}</td>
-                  <td>{video.length}</td>
-                  <td >
-                    <button onClick={() => setEstadoId(_id)} >
-                      <a href="#openModal"> <i className="fas fa-user-edit" /></a>
-                    </button>
-                  </td>
-                  <div id="openModal" className="modalDialog">
-                    <div>	<a href="#close" title="Close" className="close">X</a>
-                      <h2>Editar Clase</h2>
-                      <form onSubmit={() => handleSubmit(estadoId)}>
-                        <a href="#close" title="Close" className="close"></a>
-                        <p>
-                          Título <input name="title" type="text" onChange={e => handleChange(e)} />
-                        </p>
-                        <p>
-                          Descripción <input name="description" onChange={e => handleChange(e)}></input>
-                        </p>
-                        <button type="submit">Guardar cambios</button>
-                      </form>
-                    </div>
-                  </div>
-                  {/* --------------------------------------------------------------------- */}
-                  <td>
-                    <button type="submit" onClick={() => handleDelete(_id)} >
-                      <i className="fas fa-trash-alt" />
-                    </button>
-                  </td>
-                  <td>
-                    <button onClick={() => setEstadoId(_id)}>
-                      <a href="#openModal2"><i className="fas fa-plus-circle me-2" /> Agregar video</a>
-                    </button>
-                  </td>
-                  <div id="openModal2" className="modalDialog">
-                    <div>
-                      <a href="#close" title="Close" className="close">X</a>
-                      <div>
-                        <form onSubmit={() => handleVideoSubmit(estadoId)}>
-                          <a href="#close" title="Close" className="close"></a>
-                          <div>
-                            <label>Título</label>
-                            <div>
-                              <input
-                                onChange={(e) => { handleVideoChange(e); }}
-                                name="title"
-                                type="text"
-                                required />
-                            </div>
-                          </div>
-                          <div>
-                            <label>Profesor</label>
-                            <div>
-                              <input
-                                onChange={(e) => { handleVideoChange(e); }}
-                                name="profesor"
-                                type="text"
-                                required />
-                            </div>
-                          </div>
-                          <div >
-                            <label>URL</label>
-                            <div>
-                              <input
-                                onChange={(e) => { handleVideoChange(e); }}
-                                name="url"
-                                type="text"
-                                required />
-                            </div>
-                          </div>
-                          <div>
-                            <label>Duración</label>
-                            <div>
-                              <input
-                                onChange={(e) => { handleVideoChange(e); }}
-                                name="duration"
-                                type="text" />
-                            </div>
-                          </div>
-                          <div>
-                            <label>Imagen</label>
-                            <div>
-                              <input
-                                onChange={(e) => { handleVideoChange(e); }}
-                                name="img"
-                                type="text" />
-                            </div>
-                          </div>
-                          <div>
-                            <div>
-                              <button type='submit'>Cargar video</button>
-                            </div>
-                          </div>
-                        </form>
-                        <br />
-                      </div>
-                    </div>
-                  </div>
-                </tr>);
-            })}
->>>>>>> origin
           </tbody>
         </table>
       </div>
       <Link to='/'>
         <button type="button">
-<<<<<<< HEAD
           <i className="fas fa-home" />
                   Inicio
               </button>
@@ -364,14 +235,6 @@ const lectureList = () => {
               </button>
       </Link>
     </div >
-=======
-          <i className="fas fa-home" />Inicio</button>
-      </Link>
-      <Link to='/modules'>
-        <button type="button"><i className="fas fa-list" />Módulos</button>
-      </Link>
-    </div>
->>>>>>> origin
   );
 };
 

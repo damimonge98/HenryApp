@@ -10,11 +10,7 @@ router.get('/', async (req, res, next) => {
   // isSuperAdmin(req, res, next);
   try {
     const users = await User.find();
-<<<<<<< HEAD
     return res.json(users);
-=======
-    res.json(users);
->>>>>>> origin
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
