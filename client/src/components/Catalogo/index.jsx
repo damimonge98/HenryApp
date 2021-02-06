@@ -39,7 +39,8 @@ const Catalogo = () => {
   return (
     <Layout>
       <div>
-        Eres empresa? <button>Publica tu oferta</button>
+        <h3 className="offertitle">Bolsa de Trabajo</h3>
+        <h5>¿Eres empresa? <button className="btn">Publica tu oferta</button></h5>
       </div>
       <div className="catalogueWrapper">
         <div className="empleosColumn">
