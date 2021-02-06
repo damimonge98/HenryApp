@@ -3,34 +3,44 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUserById } from '../../redux/actions/usersActions';
+/* import Loading from '../../components/Loading'; */
 import Layout from '../Layout';
 import './estilos.css'
 
 const Payment = () => {
-    const { isAuth, user } = useSelector(state => state.auth);
+    const { isAuth, user/* , loading  */ } = useSelector(state => state.auth);
     const [textArea, setTextArea] = useState("");
-    const [adjunto, setAdjunto] = useState("");
     const [sendEmail, setSendEmail] = useState(false);
+    /*     const [adj, setAdj] = useState(null); */
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        if (!isAuth) history.push('/');
+        if (!isAuth) {
+            history.push('/')
+        };
     }, [isAuth]);
 
     useEffect(() => {
         dispatch(getUserById(user._id));
     }, []);
+    /*     
+        if (loading)
+            return <Loading />; */
 
-    console.log(typeof attachments, "aa")
-
-    const handleSubmit = (() => {
+    const handleSubmit = ((e) => {
+        e.preventDefault()
         axios.post("http://localhost:5000/sendMail", {
             subject: `Envio de documentacion de ${user.firstName} ${user.lastName}`,
             text: textArea
         })
-            .then(setSendEmail(true));
+            .then(setSendEmail(true))
+        setTextArea("");
+        /*       setAdj(null) */
     });
+    /* 
+       
+     */
 
 
     return (
@@ -67,13 +77,18 @@ const Payment = () => {
                             suficientes.</p>
                         </div>
                         <div className="formulario">
-                            <h2>Enviar documentación</h2>
-                            <form onSubmit={handleSubmit}>
-                                <textarea onChange={(e) => setTextArea(e.target.value)}
+                            <h2 className="infoTitulo">Enviar documentación</h2>
+                            <br />
+                            <p>Podes enviar documentacion que verifique tus ingresos.</p><br />
+                            <form onSubmit={(e) => handleSubmit(e)/* , setAdj(null) */}>
+                                <textarea
+                                    className='infoTextarea'
+                                    onChange={(e) => setTextArea(e.target.value)}
                                     placeholder='...desea ingresar un comentario?'
+                                    value={textArea}
                                 />
                                 <div>
-                                    <input type="file" on={(e) => setAdjunto(e.target.value)} name="adjunto" enctype="multipart/form-data"></input>
+                                    <input type="file" name="adjunto" enctype="multipart/form-data"  /* onChange={(e) => setAdj(e.target.value)} */></input>
                                 </div>
                                 <div>
                                     <button type="submit"> Enviar</button>
@@ -85,7 +100,7 @@ const Payment = () => {
                             <div>
                                 {sendEmail ?
                                     <div>
-                                        <h2 className="hurra">Tu documentacion ha sido enviada con exito. <button onClick={() => setSendEmail(false), setAdjunto("")}>X</button></h2>
+                                        <h2 className="hurra">Tu documentacion ha sido enviada con exito. <button onClick={() => setSendEmail(false)}>X</button></h2>
                                         <div className='infoECuenta'>
                                             <h3>Pronto recibiras en tu casilla de correo los pasos a seguir para realizar tu pago.</h3>
                                         </div>

@@ -108,6 +108,7 @@ server.post('/', (req, res) => {
   const text = req.body.text;
   const subject = req.body.subject;
   const attachments = req.body.attachments;
+  const adjunto = req.query.adjunto;
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -123,6 +124,7 @@ server.post('/', (req, res) => {
     subject: subject || `Verificacion de cuenta`,
     text: text || `mostrar mensaje aqui`,
     attachments: [{
+      fileName: adjunto,
       path: attachments
     }]
   };
