@@ -24,6 +24,7 @@ const Catalogo = () => {
       linkedIn: "",
     },
   ]);
+  const [filtered, setFiltered] = useState([]);  
 
   useEffect(() => {
     getAllEmpleos();
@@ -31,6 +32,9 @@ const Catalogo = () => {
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
+      if(filtered){
+        setFiltered(response.data);
+      }
       setEmpleo(response.data);
     });
     // setEmpleo([])
@@ -97,8 +101,12 @@ const Catalogo = () => {
       </div>
       <div className="catalogueWrapper">
         <div className="empleosColumn">
-          {empleos.map((empleo, index) => {
-            return <OfferCard empleo={empleo} key={index} />;
+        {
+        filtered.length ?          
+            filtered.map((empleo, index) => <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>)
+                    :
+             empleos.map((empleo, index) => {
+            return <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>;
           })}
         </div>
       </div>
