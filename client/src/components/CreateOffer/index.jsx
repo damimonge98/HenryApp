@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-//-----falta el input de remote para cambiar su valor
 //-----falta el input para subir logo de la empresa
 //-----el input "end" deberia tener un selector dropdown para elegir si es front, back o fullstack
+//------------Lo mismo con remoto, lo intente pero no me cambiaba el valor
 
 
 const CrearEmpleo = () => {
