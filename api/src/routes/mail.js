@@ -1,4 +1,4 @@
-/* const express = require("express");
+const express = require("express");
 const nodemailer = require("nodemailer");
 const server = express.Router();
 
@@ -32,6 +32,10 @@ const sendEmail = (email, subject, text) => {
 // TODO: Change route to /emailVerification
 server.post('/', (req, res) => {
   const email = req.body.email;
+  const text = req.body.text;
+  const subject = req.body.subject;
+  const attachments = req.body.attachments;
+  const adjunto = req.query.adjunto;
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -42,9 +46,13 @@ server.post('/', (req, res) => {
 
   const mailOptions = {
     from: 'apphenry247@gmail.com',
-    to: email,
-    subject: `Verificacion de cuenta`,
-    text: `mostrar mensaje aqui`
+    to: email || "henryAdmin@henry.com",
+    subject: subject || `Verificacion de cuenta`,
+    text: text || `mostrar mensaje aqui`,
+    attachments: [{
+      fileName: adjunto,
+      path: attachments
+    }]
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -59,14 +67,13 @@ server.post('/', (req, res) => {
 });
 
 
-module.exports = { mailRoutes: server, sendEmail }; */
+module.exports = { mailRoutes: server, sendEmail };
 
 
 
 
 
-
-
+/* 
 
 
 
@@ -141,4 +148,4 @@ server.post('/', (req, res) => {
 });
 
 
-module.exports = { mailRoutes: server, sendEmail };
+module.exports = { mailRoutes: server, sendEmail }; */
