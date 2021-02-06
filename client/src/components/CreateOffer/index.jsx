@@ -4,7 +4,7 @@ import axios from "axios";
 //-----falta el input de remote para cambiar su valor
 //-----falta el input para subir logo de la empresa
 //-----el input "end" deberia tener un selector dropdown para elegir si es front, back o fullstack
-//-----falta funcionalidad para submitear la oferta
+
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
@@ -168,7 +168,7 @@ const CrearEmpleo = () => {
           </div>
         </div>
         <div>
-          <button type="submit">Crear Empleo</button>
+          <button type="submit" onSubmit={handleSubmit} class="btn">Crear Empleo</button>
         </div>
       </form>
     </div>
