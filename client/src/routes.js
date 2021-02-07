@@ -19,7 +19,6 @@ import Booms from "./components/Booms/Booms.jsx";
 import error from './components/error/error'
 import Catalogo from "./components/Catalogo";
 import Payment from './containers/Payment/index'
-import InfoUtil from './components/InfoUtil/index'
 
 const routes = () => {
   return (
@@ -43,7 +42,6 @@ const routes = () => {
         <Route exact path="/error" component={error} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
-        <Route exact path='/infoUtil' component={InfoUtil} />
       </Switch>
     </BrowserRouter >
   );
