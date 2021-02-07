@@ -1,79 +1,79 @@
 import {
-  REQUEST_ACTION_LECTURES,
-  REQUEST_SUCCESS_ACTION_LECTURES,
-  REQUEST_FAILED_ACTION_LECTURES,
-  GET_ALL_LECTURES,
-  GET_LECTURE_BY_ID,
-  CREATE_LECTURE,
-  UPDATE_LECTURE,
-  DELETE_LECTURE
-} from '../constants/lecturesConstants';
+  REQUEST_ACTION_MODULES,
+  REQUEST_SUCCESS_ACTION_MODULES,
+  REQUEST_FAILED_ACTION_MODULES,
+  GET_ALL_MODULES,
+  GET_MODULE_BY_ID,
+  CREATE_MODULE,
+  UPDATE_MODULE,
+  DELETE_MODULE
+} from '../constants/modulesConstants';
 
 
 const initialState = {
-  lectures: [],
-  lecture: {},
+  modules: [],
+  module: {},
   loading: false,
   error: null
 };
 
 
-const lecturesReducers = (state = initialState, action) => {
+const modulesReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case REQUEST_ACTION_LECTURES:
+    case REQUEST_ACTION_MODULES:
       return {
         ...state,
         loading: true
       };
 
-    case REQUEST_SUCCESS_ACTION_LECTURES:
+    case REQUEST_SUCCESS_ACTION_MODULES:
       return {
         ...state,
         loading: false,
         error: null
       };
 
-    case REQUEST_FAILED_ACTION_LECTURES:
+    case REQUEST_FAILED_ACTION_MODULES:
       return {
         ...state,
         loading: false,
         error: action.error
       };
 
-    case GET_ALL_LECTURES:
+    case GET_ALL_MODULES:
       return {
         ...state,
-        lectures: action.lectures
+        modules: action.modules
       };
 
-    case GET_LECTURE_BY_ID:
+    case GET_MODULE_BY_ID:
       return {
         ...state,
-        lecture: action.lecture
+        module: action.module
       };
 
-    case CREATE_LECTURE:
+    case CREATE_MODULE:
       return {
         ...state,
-        lectures: [...state.lectures, action.lecture]
+        modules: [...state.modules, action.module]
       };
 
-    case UPDATE_LECTURE:
+    case UPDATE_MODULE:
       return {
         ...state,
-        lectures: state.lectures.map(l => {
-          if (l._id === action.lecture._id)
-            return action.lecture;
-          return l;
+        modules: state.modules.map(m => {
+          if (m._id === action.module._id)
+            return action.module;
+          return m;
         })
       };
 
-    case DELETE_LECTURE:
+    case DELETE_MODULE:
       return {
         ...state,
-        lectures: state.lectures.filter(l => {
-          if (l._id === action.id) {
+        modules: state.modules.filter(m => {
+          if (m._id === action.id) {
             return false;
           }
           return true;
@@ -85,4 +85,4 @@ const lecturesReducers = (state = initialState, action) => {
   }
 };
 
-export default lecturesReducers;
+export default modulesReducer;
