@@ -17,6 +17,7 @@ import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
 import Catalogo from "./components/Catalogo";
+import LecturesPage from './containers/LecturesPage';
 
 const routes = () => {
   return (
@@ -30,7 +31,7 @@ const routes = () => {
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
         <Route exact path='/lecture/:lectureid' component={OneLecture} />
-        <Route exact path='/modulo/:moduloid' component={Lectures} />
+        <Route exact path='/modules/:moduloid' component={LecturesPage} />
         <Route exact path='/lecturesList' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talk' component={CreateTalk} />
