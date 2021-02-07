@@ -1,18 +1,23 @@
 import axios from "axios";
 import {
-  REQUEST_ACTION,
-  REQUEST_FAILED_ACTION,
+  REQUEST_ACTION_AUTH,
+  REQUEST_SUCCESS_ACTION_AUTH,
+  REQUEST_FAILED_ACTION_AUTH,
   REGISTER_ACTION,
   LOGIN_ACTION,
   LOGOUT_ACTION
 } from "../constants/authContants";
 
-const requestAction = () => ({
-  type: REQUEST_ACTION
+const requestActionAuth = () => ({
+  type: REQUEST_ACTION_AUTH
 });
 
-const requestFailedAction = (error) => ({
-  type: REQUEST_FAILED_ACTION,
+const requestSuccessActionAuth = () => ({
+  type: REQUEST_SUCCESS_ACTION_AUTH
+});
+
+const requestFailedActionAuth = (error) => ({
+  type: REQUEST_FAILED_ACTION_AUTH,
   error
 });
 
@@ -32,14 +37,13 @@ const logoutAction = () => ({
 export const registerUser = (registerData) => {
   return async (dispatch) => {
     try {
-      // dispatch(requestAction());
-
+      dispatch(requestActionAuth());
       await axios.post('http://localhost:5000/auth/register', { ...registerData });
-
       dispatch(registerAction());
+      dispatch(requestSuccessActionAuth());
 
     } catch (error) {
-      dispatch(requestFailedAction(error = {
+      dispatch(requestFailedActionAuth(error = {
         code: 409,
         errorMessage: 'Email address already in use'
       }));
@@ -50,15 +54,14 @@ export const registerUser = (registerData) => {
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      // dispatch(requestAction());
-
+      dispatch(requestActionAuth());
       const res = await axios.post('http://localhost:5000/auth/login', { email, password });
       localStorage.setItem("HJWT", res.data.token);
-
       dispatch(loginAction(res.data.user));
+      dispatch(requestSuccessActionAuth());
 
     } catch (error) {
-      dispatch(requestFailedAction(error = {
+      dispatch(requestFailedActionAuth(error = {
         code: 401,
         errorMessage: 'Incorrect username or password'
       }));
@@ -69,19 +72,19 @@ export const loginUser = ({ email, password }) => {
 export const autoLoginUser = () => {
   return async (dispatch) => {
     try {
-      // dispatch(requestAction());
+      dispatch(requestActionAuth());
       const token = localStorage.getItem("HJWT");
       const res = await axios.get('http://localhost:5000/auth/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-
       dispatch(loginAction(res.data));
+      dispatch(requestSuccessActionAuth());
 
     } catch (error) {
       console.log(error);
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionAuth(error));
     }
   };
 };
@@ -89,15 +92,16 @@ export const autoLoginUser = () => {
 export const logoutUser = () => {
   return async (dispatch) => {
     try {
-      // dispatch(requestAction());
+      dispatch(requestActionAuth());
 
       // await axios.post('http://localhost:5000/auth/logout');
       localStorage.removeItem("HJWT");
 
       dispatch(logoutAction());
+      dispatch(requestSuccessActionAuth());
 
     } catch (error) {
-      dispatch(requestFailedAction(error));
+      dispatch(requestFailedActionAuth(error));
     }
   };
 };
