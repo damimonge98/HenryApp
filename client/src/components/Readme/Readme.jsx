@@ -17,7 +17,7 @@ export default function Readme (props) {
     const getRepoReadme = function () {
       axios.get(ReadmeUrl, {
         headers: {
-          "Authorization": "token 2a0f242d2cf120c65ad72c8ba5804bf5404eff3c"
+          "Authorization": "token 1ff17f319d30260ec4658762c712910b152dadc0"
         }
       })
       .then ((res) => setReadme(res.data.content))};

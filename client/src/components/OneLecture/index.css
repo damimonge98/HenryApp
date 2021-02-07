@@ -12,33 +12,62 @@
     text-align: center;
 }
 
+.h3 {
+    text-align: center;
+    background-color: yellow;
+}
 .navegationDiv {
     background-color: red
 }
 
 .menuDiv {
     display: flex;
-    background-color: yellow;
-    justify-content: space-around;
+    background-color: white;
+    justify-content: space-between;
 }
 
 .video {
     display: flex;
     justify-content: center;
     align-items: center; 
-    margin-top: 20px;   
+    margin-top: 20px; 
+    background-color:black;
+    width: all 
 }
 
 .changeLecture {
     cursor: pointer;
 }
 
+.changeLecture:hover {
+    color: yellow
+}
+
 
 .link {
     margin-top: 30px;
-    background-color: yellow
+    background-color: white
 }
 
 .returns {
     font-size: 100px;
 }
+
+.teachersDiv {
+    display: flex;
+    justify-content: space-around;
+    background-color: yellow;
+}
+
+
+.teacherDiv {
+    cursor: pointer;    
+    width: 300px;
+    height: 50px;
+}
+
+
+.teacherDiv:hover {
+    background-color: white;
+}
+

@@ -48,7 +48,6 @@ const UserListPage = () => {
           if (adminFilter.value === "") {
             return true;
           }
-          console.log(u);
           return u.isSuperAdmin === adminFilter.value;
         })
         .map(u => ({

@@ -19,7 +19,6 @@ const OneLecture = (props) => {
   var indexOfSlash = thisURL.lastIndexOf("/")
   var thisModule = thisURL.substring(indexOfSlash+1)  
   const lecturesOfThisModule = allLectures.filter(el => el.modulo === thisModule)
-
   const [allVideos, setAllVideos] = useState([{
     _id: "",
     img: "",
@@ -28,7 +27,8 @@ const OneLecture = (props) => {
     title: "",
     url: ""
   }]);
-
+  const [teacher, setTeacher] = useState(0)
+  const [teacherDivStyle, setTeacherDivStyle] = useState("teacherDiv")
   const [lecture, setLecture] = useState({
     title: "",
     desription: "",
@@ -57,8 +57,21 @@ const OneLecture = (props) => {
     );
   };
 
-  
+  console.log("allVideos", allVideos)
 
+  const arrayAllVideos = []
+   allVideos.map (el => {
+    var urlVideo = el.url
+    urlVideo = urlVideo.replace("https://vimeo.com/", "")
+    arrayAllVideos.push(urlVideo)
+  })
+
+  const arrayAllTeachers = []
+  allVideos.map(el => {
+    arrayAllTeachers.push(el.profesor)
+  })
+
+  console.log(teacher)
   /*var urlVideo = allVideos[0].url
   urlVideo = urlVideo.replace("https://vimeo.com/", "")
   var urlVimeo = "https://player.vimeo.com/video/307791576?title=0&byline=0&portrait=0"
@@ -81,8 +94,9 @@ const OneLecture = (props) => {
   }
 
 
+
   return (
-    <div>  
+    <div className = "divContainer">  
       <Header/>
       <div className = "link">   
       <Link to={{ pathname: lecture.urlLecture }} target="_blank">
@@ -120,9 +134,17 @@ const OneLecture = (props) => {
           );
         })}
       </div>*/}
-
-      <div className = "video" >
-        <iframe src= "https://player.vimeo.com/video/426051769" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <h3 className = "h3">Elegir Instructor:</h3>
+    <h3 className = "h3">{arrayAllTeachers[teacher]}</h3>
+    <div className = "teachersDiv">
+    {arrayAllTeachers.map(el => {
+        return (
+          <div className = "teacherDiv" onClick = {() => {setTeacher(arrayAllTeachers.indexOf(el))}}>{el}</div>
+        )
+      })}
+    </div>
+      <div className = "video">
+        <iframe src= {`https://player.vimeo.com/video/${arrayAllVideos[teacher]}`} width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
       <Readme title = {lecture.title} url = {lecture.urlLecture}/>
     </div >

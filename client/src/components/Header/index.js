@@ -73,10 +73,13 @@ const Header = () => {
                 <Link to="/lecturesList">Clases</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/payments">Pagos</Link>
+                <Link to="/payments">Estado de cuenta</Link>
               </MenuItem>
               <MenuItem>
-              <Link to="/empleos">Bolsa de trabajo</Link>
+                <Link to="/empleos">Bolsa de trabajo</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/talks">Henry Talks</Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/settings">Configuración</Link>
