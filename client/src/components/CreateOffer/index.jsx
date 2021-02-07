@@ -16,7 +16,7 @@ const CrearEmpleo = () => {
     remote: false,
     linkedIn: "",
   });
-
+  
   function handleChange(e) {
     setEmpleo({
       ...empleo,
@@ -57,7 +57,7 @@ const CrearEmpleo = () => {
         <label>Select a file:</label>
          <input onChange={(e) => {
                 handleChange(e);
-              }} type="file" name="myfile" value={empleo.logo}  />
+              }} type="file" name="logo" value={empleo.logo}  />
         </div> */}
         <div>
           <label>Titulo</label>
