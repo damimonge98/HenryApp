@@ -13,11 +13,12 @@ import CreateTalk from './components/CreateTalk';
 import TalkList from './components/TalkList';
 import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
-import lectureList from './containers/LectureList/index';
+import LectureList from './containers/LectureList/index';
 import ModuleList from './containers/CRUDmodules/index';
 import Booms from "./components/Booms/Booms.jsx";
 import error from './components/error/error'
 import Catalogo from "./components/Catalogo";
+import Payment from './containers/Payment/index'
 
 const routes = () => {
   return (
@@ -32,7 +33,7 @@ const routes = () => {
         <Route exact path='/createUser' component={CreateUser} />
         <Route exact path='/lecture/:lectureid' component={OneLecture} />
         <Route exact path='/modulo/:moduloid' component={Lectures} />
-        <Route exact path='/lecturesList' component={lectureList} />
+        <Route exact path='/lecturesList' component={LectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talk' component={CreateTalk} />
         <Route exact path='/talks' component={TalkList} />
@@ -40,6 +41,7 @@ const routes = () => {
         <Route exact path="/booms" component={Booms} />
         <Route exact path="/error" component={error} />
         <Route exact path='/empleos' component={Catalogo} />
+        <Route exact path='/payments' component={Payment} />
       </Switch>
     </BrowserRouter >
   );
