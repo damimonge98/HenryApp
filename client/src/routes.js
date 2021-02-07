@@ -15,6 +15,10 @@ import HenryTalksCRUD from './containers/HenryTalksCRUD';
 import UserListPage from './containers/UserListPage';
 import Booms from './components/Booms/Booms.jsx';
 import Catalogo from './components/Catalogo';
+import CreateTalk from './components/CreateTalk';
+import TalkList from './components/TalkList';
+import CardTalk from './components/CardTalk';
+import error from './components/error/error';
 
 const routes = () => {
   return (
@@ -33,6 +37,8 @@ const routes = () => {
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talks' component={HenryTalksCRUD} />
         <Route exact path='/booms' component={Booms} />
+        <Route exact path='/createTalk' component={CreateTalk} />
+        <Route exact path='/error' component={error} />
         <Route exact path='/empleos' component={Catalogo} />
       </Switch>
     </BrowserRouter >
