@@ -17,20 +17,27 @@ const OfferCard = ({ empleo }) => {
   } = empleo;
 
   return (
+    <div>
     <div className="cards">
       <div className="card__front">
         <div>
           <img src={logo} className="logo" />
         </div>
+        <div className="divide"/>
         <div className="title">
           <p>{title}</p>
         </div>
         <div className="enterprise">
           <p>{enterpriseName}</p>
         </div>
+        <div className="divide"/>
         <div className="location">
           <p>{location}</p>
         </div>
+        <div className="tipo">
+          <p>{tipo}</p>
+        </div>
+        
         <div className="remote">
           <p>{remote === true ? "Trabajo en remoto" : "Presencial"}</p>
         </div>
@@ -40,18 +47,20 @@ const OfferCard = ({ empleo }) => {
         <div className="description">
           <p>{description}</p>
         </div>
-        <div className="tipo">
-          <p>{tipo}</p>
-        </div>
+        <div className="divide"/>
         <div className="end">
           <p>{end}</p>
         </div>
+        <div className="divide"/>
+        
         <div className="linkedin">
           <a href={linkedIn} target="_blank">
             <button className="btn">Ver en LinkedIn</button>
           </a>
         </div>
       </div>
+    </div>
+    <div className="divide"/>
     </div>
   );
 };
