@@ -9,16 +9,15 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
+import ModuleList from './containers/CRUDmodules';
+import HenryTalksCRUD from './containers/HenryTalksCRUD';
 import CreateTalk from './components/CreateTalk';
-import TalkList from './components/TalkList';
-import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
-import LectureList from './containers/LectureList/index';
-import ModuleList from './containers/CRUDmodules/index';
-import Booms from "./components/Booms/Booms.jsx";
+import Booms from './components/Booms/Booms.jsx';
+import Catalogo from './components/Catalogo';
+import LectureList from './containers/LectureList';
 import error from './components/error/error';
-import Catalogo from "./components/Catalogo";
-import Payment from './containers/Payment/index';
+import Payment from './containers/Payment';
 
 const routes = () => {
   return (
@@ -37,7 +36,8 @@ const routes = () => {
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talks' component={HenryTalksCRUD} />
         <Route exact path='/booms' component={Booms} />
-        <Route exact path='/error' component={error} />
+        <Route exact path='/talk' component={CreateTalk} />
+        <Route exact path="/error" component={error} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
       </Switch>
