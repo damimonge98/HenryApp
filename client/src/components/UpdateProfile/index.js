@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "../../yup";
 import Layout from "../../containers/Layout";
-import UpdateProfileForm from "../UpdateProfile";
-import ChangePasswordForm from "../ChangePasswordForm";
 
 import Input from "../Input";
 import {
@@ -20,8 +18,9 @@ import henryLogo from "../../assets/images/henry.png";
 
 import { autoLoginUser } from "../../redux/actions/authActions";
 import { updateUser } from "../../redux/actions/usersActions";
+import { object } from "yup/lib/locale";
 
-const ProfileForm = () => {
+const UpdateProfileForm = () => {
   const { user } = useSelector((state) => state.auth);
   const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(profileSchema),
@@ -36,27 +35,45 @@ const ProfileForm = () => {
   }, []);
 
   const onSubmit = (data) => {
-    dispatch(updateUser(data));
-    history.push("/");
+    if (data.firstName.length === 0) {
+      delete data.firstName;
+    }
+    if (data.lastName.length === 0) {
+      delete data.lastName;
+    }
+
+    if (Object.keys(data).length !== 0) {
+      dispatch(updateUser(user._id, data));
+      dispatch(autoLoginUser());
+      console.log(data);
+    }
   };
 
   return (
-    <Layout>
-      <div>
-        <AvatarWrapper>
-          {user.avatar && (
-            <img src={user.avatar} alt={user.firstName + " " + user.lastName} />
-          )}
-        </AvatarWrapper>
-        <h1>
-          {user.firstName} {user.lastName}
-        </h1>
-        <h2> {user.email} </h2>
-      </div>
-      <UpdateProfileForm />
-      <ChangePasswordForm />
-    </Layout>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h3>Update profile</h3>
+      <Input
+        type="text"
+        name="firstName"
+        label="First Name"
+        ref={register}
+        onChange={() => trigger("firstName")}
+        error={errors.firstName?.message}
+        defaultValue={user.firstName}
+      />
+
+      <Input
+        type="text"
+        name="lastName"
+        label="Last Name"
+        ref={register}
+        onChange={() => trigger("lastName")}
+        error={errors.lastName?.message}
+        defaultValue={user.lastName}
+      />
+      <button>Save changes</button>
+    </form>
   );
 };
 
-export default ProfileForm;
+export default UpdateProfileForm;
