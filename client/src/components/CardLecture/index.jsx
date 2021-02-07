@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getModule } from "../../redux/actions/moduleActions";
 import {useDispatch} from "react-redux";
 import './estilos.css';
 
@@ -13,12 +12,7 @@ const CardLecture = ({ lecture }) => {
     video, } = lecture;
 
   const dispatch = useDispatch()
-  console.log(modulo)
-
-
-
-
-
+  
   return (
       <div className="card">
         <div className="center">
