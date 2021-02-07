@@ -57,3 +57,14 @@ export const updateUserSchema = yup.object().shape({
   isSuperAdmin: yup.boolean()
     .required()
 });
+
+export const updateTalkSchema = yup.object().shape({
+  title: yup.string()
+    .max(100),
+  description: yup.string()
+    .max(500),
+  imagen: yup.string().url()
+    .max(200),
+  url: yup.string().url()
+    .max(200),
+});

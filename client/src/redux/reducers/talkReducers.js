@@ -12,7 +12,7 @@ import {
 const initialState = {
   talk: {},
   talks: [],
-  loading: false,
+  loadingTalks: false,
   error: null
 };
 
@@ -22,20 +22,20 @@ const talkReducers = (state = initialState, action) => {
     case REQUEST_ACTION_TALKS:
       return {
         ...state,
-        loading: true
+        loadingTalks: true
       };
 
     case REQUEST_SUCCESS_ACTION_TALKS:
       return {
         ...state,
-        loading: false,
+        loadingTalks: false,
         error: null
       };
 
     case REQUEST_FAILED_ACTION_TALKS:
       return {
         ...state,
-        loading: false,
+        loadingTalks: false,
         error: action.error
       };
 
