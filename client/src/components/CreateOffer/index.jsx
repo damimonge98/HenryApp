@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-//-----falta el input de remote para cambiar su valor
 //-----falta el input para subir logo de la empresa
-//-----el input "end" deberia tener un selector dropdown para elegir si es front, back o fullstack
-//-----falta funcionalidad y conectar el formulario
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
@@ -17,7 +14,6 @@ const CrearEmpleo = () => {
     remote: false,
     linkedIn: "",
   });
-
 
   function handleChange(e) {
     setEmpleo({
@@ -109,48 +105,57 @@ const CrearEmpleo = () => {
               type="text"
               required
             />
-          </div>          
+          </div>
         </div>
         <div>
           <label>Es remoto?</label>
           <div>
-            <input
+            <select
+              value={empleo.remote}
               onChange={(e) => {
                 handleChange(e);
               }}
               name="remote"
-              value={empleo.remote}
-              type="text"
-              required
-            />
+            >
+              <option value="true">Si</option>
+              <option value="false">No</option>
+            </select>
           </div>
         </div>
         <div>
           <label>Tipo de empleo</label>
           <div>
-            <input
+          <select
+              value={empleo.tipo}
               onChange={(e) => {
                 handleChange(e);
               }}
               name="tipo"
-              value={empleo.tipo}
-              type="text"
               required
-            />
+            >
+              <option value="part-time">Part-Time</option>
+              <option value="full-time">Full-Time</option>
+              <option value="pasantia">Pasantía</option>
+              <option value="eventual">Eventual</option>
+            </select>            
           </div>
         </div>
         <div>
           <label>Front, Back, Full?</label>
           <div>
-            <input
+          <select
+              value={empleo.end}
               onChange={(e) => {
                 handleChange(e);
               }}
               name="end"
-              value={empleo.end}
-              type="text"
               required
-            />
+            >
+              <option value="frontend">Front-End</option>
+              <option value="backend">Back-End</option>
+              <option value="fullstack">Full-Stack</option>
+            </select>
+            
           </div>
         </div>
         <div>
@@ -167,8 +172,11 @@ const CrearEmpleo = () => {
             />
           </div>
         </div>
+        <br/>
         <div>
-          <button type="submit">Crear Empleo</button>
+          <button type="submit" onSubmit={handleSubmit} className="btn">
+            Crear Empleo
+          </button>
         </div>
       </form>
     </div>

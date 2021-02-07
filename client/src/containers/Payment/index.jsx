@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { getUserById } from '../../redux/actions/usersActions';
 /* import Loading from '../../components/Loading'; */
 import Layout from '../Layout';
+import InfoUtil from '../../components/InfoUtil/index';
+import Documentacion from '../../components/EnvioDeDocumentación/index'
 import './estilos.css'
 
 const Payment = () => {
@@ -45,6 +47,7 @@ const Payment = () => {
 
     return (
         <Layout>
+            <br></br>
             <div>{(user.debt == 0)
                 ?
                 <div>
@@ -52,6 +55,7 @@ const Payment = () => {
                     <div className='infoECuenta'>
                         <h3>{user.firstName}, en este momento no tenés deuda con Henry.</h3>
                     </div>
+                    <InfoUtil />
                 </div>
                 :
                 <div>
@@ -61,7 +65,8 @@ const Payment = () => {
                     </div>
                     <br />
                     <div className='contenedor'>
-                        <div className="infoUtil">
+                        <InfoUtil></InfoUtil>
+                        {/* <div className="infoUtil">
                             <h2 className="infoTitulo">Información útil</h2><br />
                             <p>El <b>Acuerdo de Ingresos Compartidos</b> es la mejor manera de invertir en quienes tengan
                              el potencial y las ganas de cambiar su vida. Mediante este modelo, Henry se compromete
@@ -76,12 +81,13 @@ const Payment = () => {
                             a pagar solo cuando consigas un trabajo que supere el ingreso mínimo</b>. Si has comenzado a pagar pero
                             algún mes dejas de tener dichos ingresos, se suspenden tus pagos hasta que vuelvas a tener ingresos
                             suficientes.</p>
-                        </div>
-                        <div className="formulario">
+                        </div> */}
+                        <Documentacion user={user}></Documentacion>
+                        {/* <div className="formulario">
                             <h2 className="infoTitulo">Enviar documentación</h2>
                             <br />
                             <p><b>Podes enviar documentacion que verifique tus ingresos.</b></p><br />
-                            <form onSubmit={(e) => handleSubmit(e)/* , setAdj(null) */}>
+                            <form onSubmit={(e) => handleSubmit(e) , setAdj(null) }>
                                 <textarea
                                     className='infoTextarea'
                                     onChange={(e) => setTextArea(e.target.value)}
@@ -90,7 +96,7 @@ const Payment = () => {
                                 />
                                 <br /><br />
                                 <div>
-                                    <input className='formButton' type="file" name="adjunto" enctype="multipart/form-data"  /* onChange={(e) => setAdj(e.target.value)} */></input>
+                                    <input className='formButton' type="file" name="adjunto" enctype="multipart/form-data"   onChange={(e) => setAdj(e.target.value)} ></input>
                                 </div>
                                 <br />
                                 <div>
@@ -109,7 +115,7 @@ const Payment = () => {
 
                                     : null}
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

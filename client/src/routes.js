@@ -9,16 +9,16 @@ import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import Lectures from './containers/Lectures';
 import GooglePage from './containers/GooglePage';
-import LectureList from './containers/LectureList';
-import ModuleList from './containers/CRUDmodules';
 import CreateTalk from './components/CreateTalk';
 import TalkList from './components/TalkList';
 import CardTalk from './components/CardTalk';
 import UserListPage from './containers/UserListPage';
-import Booms from './components/Booms/Booms.jsx';
+import LectureList from './containers/LectureList/index';
+import ModuleList from './containers/CRUDmodules/index';
+import Booms from "./components/Booms/Booms.jsx";
+import error from './components/error/error'
 import Catalogo from "./components/Catalogo";
 import Payment from './containers/Payment/index'
-import InfoUtil from './components/InfoUtil/index'
 
 const routes = () => {
   return (
@@ -39,9 +39,9 @@ const routes = () => {
         <Route exact path='/talks' component={TalkList} />
         <Route exact path='/card-talk' component={CardTalk} />
         <Route exact path="/booms" component={Booms} />
+        <Route exact path="/error" component={error} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
-        <Route exact path='/infoUtil' component={InfoUtil} />
       </Switch>
     </BrowserRouter >
   );
