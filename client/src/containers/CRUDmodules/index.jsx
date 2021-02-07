@@ -98,7 +98,7 @@ const ModuleList = () => {
                   <td >{title}</td>
                   <td>{lectures.length}</td>
                   <td >
-                    <button onClick={() => setOneId(_id)} ><a href="#openModal1">
+                    <button className="btn" onClick={() => setOneId(_id)} ><a href="#openModal1">
                       <i className="fas fa-user-edit" /> </a>
                     </button>
                   </td>
@@ -119,15 +119,15 @@ const ModuleList = () => {
                           Descripción
                           <input name="description" onChange={e => handleModuleChange(e)} />
                         </p>
-                        <button type="submit">  Guardar cambios</button>
+                        <button type="submit" className="btn">  Guardar cambios</button>
                       </form>
                     </div>
                   </div>
 
                   {/* ---------------------------------MODAL CREAR LECTURE---------------------------------------------------- */}
 
-                  <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
-                  <td><button onClick={() => setOneId(_id)}><a href="#openModal"><i className="fas fa-plus-circle me-2" /> Agregar clase</a></button></td>
+                  <td><button className="btn" type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
+                  <td><button className="btn" onClick={() => setOneId(_id)}><a href="#openModal"><i className="fas fa-plus-circle me-2" /> Agregar clase</a></button></td>
                   <div id="openModal" className="modalDialog">
                     <div>
                       <a href="#close" title="Close" className="close">X</a>
@@ -188,7 +188,7 @@ const ModuleList = () => {
                           </div>
                           <div>
                             <div>
-                              <button type='submit'>Crear clase</button>
+                              <button type='submit' className="btn">Crear clase</button>
                             </div>
                           </div>
                         </form>
