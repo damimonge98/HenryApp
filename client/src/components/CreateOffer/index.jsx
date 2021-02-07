@@ -5,7 +5,9 @@ import axios from "axios";
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
+    
     enterpriseName: "",
+    
     title: "",
     description: "",
     location: "",
@@ -14,7 +16,7 @@ const CrearEmpleo = () => {
     remote: false,
     linkedIn: "",
   });
-
+  
   function handleChange(e) {
     setEmpleo({
       ...empleo,
@@ -51,6 +53,12 @@ const CrearEmpleo = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        {/* <div>
+        <label>Select a file:</label>
+         <input onChange={(e) => {
+                handleChange(e);
+              }} type="file" name="logo" value={empleo.logo}  />
+        </div> */}
         <div>
           <label>Titulo</label>
           <div>
