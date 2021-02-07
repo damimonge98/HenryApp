@@ -1,6 +1,7 @@
 import {
-  REQUEST_ACTION,
-  REQUEST_FAILED_ACTION,
+  REQUEST_ACTION_AUTH,
+  REQUEST_SUCCESS_ACTION_AUTH,
+  REQUEST_FAILED_ACTION_AUTH,
   LOGIN_ACTION,
   REGISTER_ACTION,
   LOGOUT_ACTION
@@ -16,16 +17,22 @@ const initialState = {
 const authReducers = (state = initialState, action) => {
   switch (action.type) {
 
-    case REQUEST_ACTION:
+    case REQUEST_ACTION_AUTH:
       return {
         ...state,
         loading: true
       };
 
-    case REQUEST_FAILED_ACTION:
+    case REQUEST_SUCCESS_ACTION_AUTH:
       return {
         ...state,
-        isAuth: false,
+        loading: false,
+        error: null
+      };
+
+    case REQUEST_FAILED_ACTION_AUTH:
+      return {
+        ...state,
         loading: false,
         error: action.error
       };
