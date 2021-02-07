@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBooms, getBoomsTweet } from "../../redux/actions/boomsActions.js";
 import Carousel from 'react-elastic-carousel';
 import "./Booms.css";
+import axios from "axios";
+
+
 
 
 export default function Booms() {
   const dispatch = useDispatch();
   const booms = useSelector((state) => state.boom.booms);
   const [state, setState] = useState([]);
-  const [link, setLink] = useState(null);
+
+ 
 
   useEffect(() => {
     dispatch(getBooms());
@@ -28,11 +32,16 @@ export default function Booms() {
     }
   }
 
+ 
+
+
+
   return (
     <div className="containerDiv">
       <div>
         <h1 className="containerTitle">¡ESTO SUCEDE EN TIEMPO REAL CON NUESTROS GRADUADOS!</h1>
       </div>
+
 
       <div className="containerCarousel">
         <Carousel style={{ backgroundColor: 'yellow', color: 'black' }}>
@@ -47,7 +56,7 @@ export default function Booms() {
             ) : <h1>Loading...</h1>}
         </Carousel>
       </div>
-    </div>
+    </div> 
   );
 
 

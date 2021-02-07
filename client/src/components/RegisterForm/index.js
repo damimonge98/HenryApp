@@ -1,23 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../yup";
 
-import Input from '../Input';
-import { RegisterFormWrapper, RegisterButton, SpanLink, LogoWrapper, UserLogo } from './styles';
+import Input from "../Input";
+import {
+  RegisterFormWrapper,
+  RegisterButton,
+  SpanLink,
+  LogoWrapper,
+  UserLogo,
+} from "./styles";
 import henryLogo from "../../assets/images/henry.png";
 
 import { registerUser } from "../../redux/actions/authActions";
 
 const RegisterForm = () => {
-
   const { register, handleSubmit, errors, trigger } = useForm({
-    resolver: yupResolver(registerSchema)
+    resolver: yupResolver(registerSchema),
   });
 
-  const { isAuth } = useSelector(state => state.auth);
+  const { isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -97,7 +102,9 @@ const RegisterForm = () => {
         <UserLogo />
         Registrate
       </RegisterButton>
-      <SpanLink>Ya tenés una cuenta? <Link to="/login">Ingresá acá</Link></SpanLink>
+      <SpanLink>
+        Ya tenés una cuenta? <Link to="/login">Ingresá acá</Link>
+      </SpanLink>
     </RegisterFormWrapper>
   );
 };
