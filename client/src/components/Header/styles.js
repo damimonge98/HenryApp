@@ -52,11 +52,9 @@ export const LogInWrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    
     & ul {
       visibility: visible;
     }
-
   }
 
   & span {
@@ -67,7 +65,7 @@ export const LogInWrapper = styled.div`
 export const AvatarWrapper = styled.div`
   height: 50px;
   width: 50px;
-  border: 2px solid #FFFF01;
+  border: 2px solid #ffff01;
   border-radius: 50%;
   background: #323232;
   margin: 0 1rem;
@@ -84,7 +82,6 @@ export const AvatarWrapper = styled.div`
 export const MenuWrapper = styled.ul`
   visibility: hidden;
 
-  
   width: 250px;
   position: absolute;
   top: 100%;
@@ -92,11 +89,11 @@ export const MenuWrapper = styled.ul`
   border-radius: 8px;
 
   filter: drop-shadow(2px 2px 25px rgba(32, 32, 32, 0.05));
-  
+
   z-index: 200;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 100%;
     right: 12px;
@@ -126,7 +123,7 @@ export const MenuItem = styled.li`
   padding: 0 1rem;
   color: black;
   font-weight: 500;
-  border-bottom: 0.2px solid rgba(0,0,0,.20);
+  border-bottom: 0.2px solid rgba(0, 0, 0, 0.2);
 
   display: flex;
   align-items: center;
