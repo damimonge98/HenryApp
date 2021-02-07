@@ -45,6 +45,7 @@ const Payment = () => {
 
     return (
         <Layout>
+            <br></br>
             <div>{(user.debt == 0)
                 ?
                 <div>
