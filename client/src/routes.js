@@ -36,8 +36,8 @@ const routes = () => {
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/talks' component={HenryTalksCRUD} />
         <Route exact path='/booms' component={Booms} />
-        <Route exact path='/talk' component={CreateTalk} />
-        <Route exact path="/error" component={error} />
+        <Route exact path='/createTalk' component={CreateTalk} />
+        <Route exact path='/error' component={error} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
       </Switch>
