@@ -12,41 +12,41 @@ import {
 } from '../constants/lecturesConstants';
 
 
-const requestActionLectures = () => ({
-  type: REQUEST_ACTION_LECTURES
+const requestActionModules = () => ({
+  type: REQUEST_ACTION_MODULES
 });
 
-const requestSuccessActionLectures = () => ({
-  type: REQUEST_SUCCESS_ACTION_LECTURES
+const requestSuccessActionModules = () => ({
+  type: REQUEST_SUCCESS_ACTION_MODULES
 });
 
-const requestFailedActionLectures = (error) => ({
-  type: REQUEST_FAILED_ACTION_LECTURES,
+const requestFailedActionModules = (error) => ({
+  type: REQUEST_FAILED_ACTION_MODULES,
   error
 });
 
-const getAllLecturesAction = (lectures) => ({
-  type: GET_ALL_LECTURES,
-  lectures
+const getAllModulesAction = (modules) => ({
+  type: GET_ALL_MODULES,
+  modules
 });
 
-const getLectureByIdAction = (lecture) => ({
-  type: GET_LECTURE_BY_ID,
-  lecture
+const getModuleByIdAction = (module) => ({
+  type: GET_MODULE_BY_ID,
+  module
 });
 
-const createLectureAction = (lecture) => ({
-  type: CREATE_LECTURE,
-  lecture
+const createModuleAction = (module) => ({
+  type: CREATE_MODULE,
+  module
 });
 
-const updatLectureAction = (lecture) => ({
-  type: UPDATE_LECTURE,
-  lecture
+const updateModuleAction = (module) => ({
+  type: UPDATE_MODULE,
+  module
 });
 
-const deleteLectureAction = (id) => ({
-  type: DELETE_LECTURE,
+const deleteModuleAction = (id) => ({
+  type: DELETE_MODULE,
   id
 });
 
