@@ -16,10 +16,10 @@ POST http://localhost:5000/talk
 Content-Type: application/json
 
 {
-  "title": "Promesas",
-  "imagen": ":)",
-  "description": "Todo sobre promesas",
-  "url": "www.url.com"
+  "title": "Desarrollo: un mundo de oportunidades",
+  "imagen": "https://files.slack.com/files-pri/TPRS7H4PN-F01L8DB5KU5/henry-talk-01.jpg",
+  "description": "Vamos a charlar con Gabriel Benmergui, Senior web Engineer de Robinhood, una de las Fintech más HOT de Silicon Valley :fire::fire::fire:",
+  "url": "https://us02web.zoom.us/j/89364743130"
 }
 
 ###

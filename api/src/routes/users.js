@@ -6,7 +6,6 @@ const { isSuperAdmin, isUser } = require('../middlewares/auth');
 
 // Get all users
 router.get('/', async (req, res, next) => {
-  console.log(req.user);
   // isSuperAdmin(req, res, next);
   try {
     const users = await User.find();
@@ -111,20 +110,20 @@ router.patch('/user/:id', async (req, res) => {
   };
 
   if (role && role === "instructor") {
-    update = { ...update, currentModule: current }
+    update = { ...update, currentModule: current };
   };
   if (role) {
     update = { ...update, role };
   };
   if (currentModule && currentModule == 3 || currentModule == 4) {
-    update = { ...update, currentModule, debt: 500 }
+    update = { ...update, currentModule, debt: 500 };
   };
   if (currentModule && currentModule > 4) {
-    update = { ...update, currentModule, debt: 4000 }
+    update = { ...update, currentModule, debt: 4000 };
   };
 
   if (debt && debt == 0) {
-    update = { ...update, debt: 0 }
+    update = { ...update, debt: 0 };
   };
 
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
