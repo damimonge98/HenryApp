@@ -71,8 +71,27 @@ export const loginSchema = yup.object().shape({
 });
 
 export const updateUserSchema = yup.object().shape({
-  firstName: yup.string().min(2).max(76).required(),
-  lastName: yup.string().min(2).max(76).required(),
-  role: yup.string().required(),
-  isSuperAdmin: yup.boolean().required(),
+  firstName: yup.string()
+    .min(2)
+    .max(76)
+    .required(),
+  lastName: yup.string()
+    .min(2)
+    .max(76)
+    .required(),
+  role: yup.string()
+    .required(),
+  isSuperAdmin: yup.boolean()
+    .required()
+});
+
+export const updateTalkSchema = yup.object().shape({
+  title: yup.string()
+    .max(100),
+  description: yup.string()
+    .max(500),
+  imagen: yup.string().url()
+    .max(200),
+  url: yup.string().url()
+    .max(200),
 });
