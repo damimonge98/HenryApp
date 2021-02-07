@@ -51,72 +51,72 @@ const deleteModuleAction = (id) => ({
 });
 
 
-export const getAllLectures = () => {
+export const getAllModules = () => {
   return async (dispatch) => {
     try {
-      dispatch(requestActionLectures());
-      const res = await axios.get('http://localhost:5000/lectures');
-      dispatch(getAllLecturesAction(res.data));
-      dispatch(requestSuccessActionLectures());
+      dispatch(requestActionModules());
+      const res = await axios.get('http://localhost:5000/modules');
+      dispatch(getAllModulesAction(res.data));
+      dispatch(requestSuccessActionModules());
 
     } catch (error) {
-      dispatch(requestFailedActionLectures(error));
+      dispatch(requestFailedActionModules(error));
     }
   };
 };
 
-export const getLectureById = (id) => {
+export const getModuleById = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(requestActionLectures());
-      const res = await axios.get(`http://localhost:5000/lectures/${id}`);
-      dispatch(getLectureByIdAction(res.data));
-      dispatch(requestSuccessActionLectures());
+      dispatch(requestActionModules());
+      const res = await axios.get(`http://localhost:5000/modules/${id}`);
+      dispatch(getModuleByIdAction(res.data));
+      dispatch(requestSuccessActionModules());
 
     } catch (error) {
-      dispatch(requestFailedActionLectures(error));
+      dispatch(requestFailedActionModules(error));
     }
   };
 };
 
-export const createLecture = (moduleId, lectureData) => {
+export const createModule = (moduleData) => {
   return async (dispatch) => {
     try {
-      dispatch(requestActionLectures());
-      const res = await axios.post(`http://localhost:5000/lectures/${moduleId}`, { ...lectureData });
-      dispatch(createLectureAction(res.data));
-      dispatch(requestSuccessActionLectures());
+      dispatch(requestActionModules());
+      const res = await axios.post(`http://localhost:5000/modules`, { ...moduleData });
+      dispatch(createModuleAction(res.data));
+      dispatch(requestSuccessActionModules());
 
     } catch (error) {
-      dispatch(requestFailedActionLectures(error));
+      dispatch(requestFailedActionModules(error));
     }
   };
 };
 
-export const updateLecture = (id, lectureData) => {
+export const updateModule = (id, moduleData) => {
   return async (dispatch) => {
     try {
-      dispatch(requestActionLectures());
-      const res = await axios.patch(`http://localhost:5000/lectures/${id}`, { ...lectureData });
-      dispatch(updatLectureAction(res.data));
-      dispatch(requestSuccessActionLectures());
+      dispatch(requestActionModules());
+      const res = await axios.patch(`http://localhost:5000/lectures/${id}`, { ...moduleData });
+      dispatch(updateModuleAction(res.data));
+      dispatch(requestSuccessActionModules());
 
     } catch (error) {
-      dispatch(requestFailedActionLectures(error));
+      dispatch(requestFailedActionModules(error));
     }
   };
 };
 
-export const deleteLecture = (id) => {
+export const deleteModule = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(requestActionLectures());
-      const res = await axios.delete(`http://localhost:5000/lectures/${id}`);
-      dispatch(deleteLectureAction(res.data));
-      dispatch(requestSuccessActionLectures());
+      dispatch(requestActionModules());
+      const res = await axios.delete(`http://localhost:5000/modules/${id}`);
+      dispatch(deleteModuleAction(res.data));
+      dispatch(requestSuccessActionModules());
 
     } catch (error) {
-      dispatch(requestFailedActionLectures(error));
+      dispatch(requestFailedActionModules(error));
     }
   };
 };
