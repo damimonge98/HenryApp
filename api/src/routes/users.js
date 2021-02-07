@@ -80,6 +80,7 @@ router.post('/', async (req, res) => {
   if (user.isSuperAdmin === true || user.role === 'instructor') {
     const allModules = await Module.find().then();
     user.currentModule = allModules.length;
+    user.debt = null;
 
   };
 
@@ -99,20 +100,33 @@ router.patch('/user/:id', async (req, res) => {
   let current = allModules.length;
 
   let update = req.body;
-  if (typeof isSuperAdmin === "boolean") {
-    update = { ...update, isSuperAdmin };
-  }  
-  if (debt && debt === 0) {
-    update = { ...update, debt: 0 };
+
+
+  if (typeof isSuperAdmin === "boolean" && isSuperAdmin === true) {
+    update = { ...update, isSuperAdmin, currentModule: current, debt: null };
   };
 
-  if (currentModule && currentModule === 3 || currentModule === 4) {
-    update = { ...update, currentModule, debt: 500 };
+  if (typeof isSuperAdmin === "boolean" && isSuperAdmin === false) {
+    update = { ...update, isSuperAdmin, currentModule: 0 };
+  };
+
+  if (role && role === "instructor") {
+    update = { ...update, currentModule: current }
+  };
+  if (role) {
+    update = { ...update, role };
+  };
+  if (currentModule && currentModule == 3 || currentModule == 4) {
+    update = { ...update, currentModule, debt: 500 }
   };
   if (currentModule && currentModule > 4) {
-    update = { ...update, currentModule, debt: 4000 };
+    update = { ...update, currentModule, debt: 4000 }
   };
-   
+
+  if (debt && debt == 0) {
+    update = { ...update, debt: 0 }
+  };
+
   User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
   })
@@ -120,7 +134,6 @@ router.patch('/user/:id', async (req, res) => {
       res.status(400).json({ message: error.message });
     });
 });
-
 
 //Ban one user
 router.patch('/ban/:id', (req, res) => {
