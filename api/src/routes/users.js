@@ -64,7 +64,7 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule } = req.body;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
   const user = new User({
     email,
     firstName,
@@ -73,11 +73,13 @@ router.post('/', async (req, res) => {
     isSuperAdmin,
     role,
     currentModule,
-    avatar
+    avatar,
+    debt
   });
   if (user.isSuperAdmin === true || user.role === 'instructor') {
     const allModules = await Module.find().then();
     user.currentModule = allModules.length;
+    user.debt = null;
 
   };
 
@@ -92,15 +94,45 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
+  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
+  let allModules = await Module.find();
+  let current = allModules.length;
 
-  User.findByIdAndUpdate(id, req.body, { new: true }).then(user => {
+  let update = req.body;
+
+
+  if (typeof isSuperAdmin === "boolean" && isSuperAdmin === true) {
+    update = { ...update, isSuperAdmin, currentModule: current, debt: null };
+  };
+
+  if (typeof isSuperAdmin === "boolean" && isSuperAdmin === false) {
+    update = { ...update, isSuperAdmin, currentModule: 0 };
+  };
+
+  if (role && role === "instructor") {
+    update = { ...update, currentModule: current };
+  };
+  if (role) {
+    update = { ...update, role };
+  };
+  if (currentModule && currentModule == 3 || currentModule == 4) {
+    update = { ...update, currentModule, debt: 500 };
+  };
+  if (currentModule && currentModule > 4) {
+    update = { ...update, currentModule, debt: 4000 };
+  };
+
+  if (debt && debt == 0) {
+    update = { ...update, debt: 0 };
+  };
+
+  User.findByIdAndUpdate(id, update, { new: true }).then(user => {
     res.json(user);
   })
     .catch(error => {
       res.status(400).json({ message: error.message });
     });
 });
-
 
 //Ban one user
 router.patch('/ban/:id', (req, res) => {
