@@ -115,7 +115,7 @@ const lectureList = () => {
                     <td>{title}</td>
                     <td>{description}</td>
                     <td>{video.length}</td>
-                    <td ><button onClick={() => setEstadoId(_id)} ><a href="#openModal"> <i className="fas fa-user-edit" /></a></button></td>
+                    <td ><button className="btn" onClick={() => setEstadoId(_id)} ><a href="#openModal"> <i className="fas fa-user-edit" /></a></button></td>
                     <div id="openModal" class="modalDialog">
                       <div>	<a href="#close" title="Close" class="close">X</a>
                         <h2>Editar Lecture</h2>
@@ -128,13 +128,13 @@ const lectureList = () => {
                             Descripcion
                             <input name="description" value={oneLecture.description} onChange={e => handleChange(e)}></input>
                           </p>
-                          <button type="submit"  >GUARDAR CAMBIOS</button>
+                          <button type="submit" className="btn" >GUARDAR CAMBIOS</button>
                         </form>
                       </div>
                     </div>
                     {/* --------------------------------------------------------------------- */}
-                    <td><button type="submit" onClick={() => handleDelete(_id)} > <i className="fas fa-trash-alt" /></button></td>
-                    <td><button onClick={() => setEstadoId(_id)}><a href="#openModal2"><i className="fas fa-plus-circle me-2" /> Agregar video</a></button></td>
+                    <td><button type="submit" onClick={() => handleDelete(_id)} className="btn" > <i className="fas fa-trash-alt" /></button></td>
+                    <td><button className="btn" onClick={() => setEstadoId(_id)}><a href="#openModal2"><i className="fas fa-plus-circle me-2" /> Agregar video</a></button></td>
                     <div id="openModal2" className="modalDialog">
                       <div>	<a href="#close" title="Close" className="close">X</a>
                         <div >
@@ -208,7 +208,7 @@ const lectureList = () => {
                             </div>
                             <div>
                               <div>
-                                <button type='submit'>
+                                <button type='submit' className="btn">
                                   Cargar video
                                                           </button>
                               </div>
@@ -223,13 +223,13 @@ const lectureList = () => {
         </table>
       </div>
       <Link to='/'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-home" />
                   Inicio
               </button>
       </Link>
       <Link to='/modules'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-list" />
                      Lista de Modulos
               </button>

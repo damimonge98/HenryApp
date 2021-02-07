@@ -9,7 +9,7 @@ const error = () => {
                 <img className='robot' src='error.png'></img>
             </div>
             <div >
-                <button className='button'>
+                <button className='btn'>
                     <Link to='/' className='text' style={{ textDecoration: 'none' }}>
                         <h6>volver al</h6>
                         <h1>INICIO</h1>

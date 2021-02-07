@@ -9,11 +9,7 @@
     background-color: rgb(168, 168, 166);
 }
 
-.button {
-    background-color: rgb(168, 168, 166);
-    padding         : 2px;
-    border          : solid yellow 2px;
-}
+
 
 .text {
     color      : rgb(255, 255, 0);
@@ -22,6 +18,19 @@
 }
 
 
-button:hover {
-    background-color: rgb(100, 99, 110);
- }
+
+
+ .btn {
+  color: black;
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+}
+.btn:hover {
+  color: yellow;
+  background-color: black;
+  border: 2px solid yellow;
+}

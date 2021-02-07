@@ -1,0 +1,14 @@
+.btn {
+  color: black;
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+}
+.btn:hover {
+  color: yellow;
+  background-color: black;
+  border: 2px solid yellow;
+}

@@ -121,18 +121,18 @@ const CreateUser = () => {
             </div>
           </div>
           <div>
-            <button type="submit">Crear Usuario</button>
+            <button type="submit" className="btn">Crear Usuario</button>
           </div>
         </div>
       </form>
       <br />
       <Link to='/users'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-users" />Usuarios
         </button>
       </Link>
       <Link to='/'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-home" />Inicio
         </button>
       </Link>

@@ -16,10 +16,10 @@ const TalkList = () => {
   return (
     <div>
       <Link to='/talk'>
-        <button type="button"><i className="fas fa-plus-circle me-2" />Crear talk</button>
+        <button type="button" className="btn"><i className="fas fa-plus-circle me-2" />Crear talk</button>
       </Link>
       <Link to='/'>
-        <button type="button"><i className="fas fa-home" />Inicio</button>
+        <button type="button" className="btn"><i className="fas fa-home" />Inicio</button>
       </Link>
       <br />
       <h2><i className="fas fa-users" />Henry Talks</h2>

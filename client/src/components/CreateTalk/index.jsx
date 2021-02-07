@@ -71,16 +71,16 @@ const CreateTalk = () => {
         </div>
         <div>
           <div>
-            <button type="submit">Crear HenryTalk</button>
+            <button type="submit" className="btn">Crear HenryTalk</button>
           </div>
         </div>
       </form>
       <br />
       <Link to='/'>
-        <button type="button"><i />Inicio</button>
+        <button type="button" className="btn"><i />Inicio</button>
       </Link>
       <Link to='/henrytalks'>
-        <button type="button">
+        <button type="button" className="btn">
           <i />Lista de Talks</button>
       </Link>
     </div>

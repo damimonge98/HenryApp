@@ -47,18 +47,18 @@ const CreateModule = () => {
         </div>
         <div>
           <div>
-            <button type="submit">Crear módulo</button>
+            <button type="submit" className="btn">Crear módulo</button>
           </div>
         </div>
       </form>
       <br />
       <Link to='/'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-home" />Inicio
         </button>
       </Link>
       <Link to='/lecturesList'>
-        <button type="button">
+        <button type="button" className="btn">
           <i className="fas fa-list" />Clases
         </button>
       </Link>

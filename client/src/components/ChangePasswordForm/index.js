@@ -78,7 +78,7 @@ const ChangePasswordForm = () => {
         error={errors.repassword?.message}
       />
 
-      <button>Change Password</button>
+      <button className="btn">Change Password</button>
     </form>
   );
 };
