@@ -48,7 +48,7 @@ const OfferCard = ({ empleo }) => {
         </div>
         <div className="linkedin">
           <a href={linkedIn} target="_blank">
-            <button>Ver en LinkedIn</button>
+            <button className="btn">Ver en LinkedIn</button>
           </a>
         </div>
       </div>
