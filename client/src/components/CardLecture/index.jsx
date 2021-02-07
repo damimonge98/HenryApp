@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
 import './estilos.css';
 
 const CardLecture = ({ lecture }) => {
@@ -10,16 +11,21 @@ const CardLecture = ({ lecture }) => {
     title,
     video, } = lecture;
 
-
+  const dispatch = useDispatch()
+  
   return (
-    <Link to={`/lecture/${_id}`}>
       <div className="card">
         <div className="center">
-          <img src={imagen} alt="Henry app" />
+        <Link to={`/lecture/${_id}/module/${modulo}`} >
+        <img src={imagen} alt="Henry app" />
+            </Link>
+          
         </div>
         <div>
           <div>
+          <Link to={`/lecture/${_id}/module/${modulo}`} >
             <h3>{title}</h3>
+            </Link>
           </div>
           <div>
             {Array.isArray(video)
@@ -31,7 +37,7 @@ const CardLecture = ({ lecture }) => {
           </div>
         </div>
       </div>
-    </Link>
+    
   );
 };
 
