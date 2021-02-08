@@ -2,7 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
 import "./readme.css";
-require("dotenv").config();
+import Loading from "../Loading";
+
 
 
 
@@ -52,14 +53,21 @@ export default function Readme (props) {
    
     return (
       
-         <div className = "readme">
-           {!readme? <div class="spinner-border text-light" role="status"></div>
+         <div>
+           { !readme ? 
+           <Fragment>
+            
+            <div class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+           </Fragment>
+           
            :
            <Fragment>
-            <div className = "readme">
            <h1 className = "h1">Readme</h1>
            <div dangerouslySetInnerHTML={{__html: newReadme }}/>
-           </div>
            </Fragment>
            }
         
