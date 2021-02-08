@@ -18,6 +18,10 @@ const enterpriseSchema = new Schema({
     unique: true,
     required: true
   },
+  verified:{
+    type: Boolean,
+    default: false
+  },
   empleos: [{
     type: Schema.Types.ObjectId,
     ref: 'Empleo'
