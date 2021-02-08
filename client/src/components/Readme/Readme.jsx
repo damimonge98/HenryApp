@@ -11,22 +11,31 @@ export default function Readme (props) {
     const md = new Remarkable();
   
     var ReadmeUrl = props.url
-    ReadmeUrl = ReadmeUrl.replace("https://github.com/","https://api.github.com/repos/" )
+    ReadmeUrl = ReadmeUrl.replace("https://github.com/","repos/")
     ReadmeUrl = ReadmeUrl.replace("/tree/master", "/contents")
     ReadmeUrl = ReadmeUrl + "/README.md?ref=master"
 
-    const getRepoReadme = function () {
-      axios.get(ReadmeUrl, {
-        headers: {
-          "Authorization": `token c2d4cc4909011847388ee364d7ec87d83e45e7a9`
+    console.log(ReadmeUrl)
+
+
+    const getRepoReadme	 = () => {
+      axios.post("http://localhost:5000/readme/", { ReadmeUrl } )
+      .then(
+        res => {
+          console.log(res);
+          if (!res.data.content) {
+            return
+          }
+          setReadme(res.data.content);
         }
-      })
-      .then ((res) => setReadme(res.data.content))};
+      );
+    };
 
     useEffect (()=> {
         getRepoReadme()
     }, [ReadmeUrl])
-    
+    console.log ("readme", readme)
+
     var codeReadme = atob(readme)
     codeReadme = codeReadme.replaceAll("Ã©", "e");
     codeReadme = codeReadme.replaceAll("Ã³", "o");
