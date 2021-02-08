@@ -33,32 +33,68 @@
   width: 100%;
 }
 
-.card:hover .card__front,
-.card:focus .card__front {
+.cards:hover .card__front,
+.cards:focus .card__front {
   transform: rotateY(180deg);
 }
 
-.card:hover .card__back,
-.card:focus .card__back {
+.cards:hover .card__back,
+.cards:focus .card__back {
   transform: rotateY(0);
 }
 
-.card {
+.cards {
   position:relative;
   height: 400px;
   width: 300px;
-  align-items: stretch;
+  align-items: center;
 }
 
-.location, .remote, .end, .tipo {
+.location, .remote, .end, .tipo, .enterprise {
   font-size: 15px;
+
 }
-.title, .enterprise {
+.title {
   font-size: 20px;
+  font-weight: bold;
 }
 
 .logo {
   border-radius: 5px;
   height: 150px;
   width: 150px;
+}
+.btn {
+  color: black;
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+}
+.btn:hover {
+  color: yellow;
+  background-color: black;
+  border: 2px solid yellow;
+}
+.divide {
+  height: 10px;
+}
+.description{
+  width: 90%;
+  text-align: justify;
+}
+.end, .description{
+  margin-left: 10px;
+}
+
+.linkedin {
+
+  text-align: center;
+  position: absolute;
+bottom: 8%;
+left: 50%;
+transform: translateX(-50%);
+
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './estilos.css';
 import LectureCard from "../../components/LectureCard";
+import Header from "../../components/Header/index";
+
 
 const Lectures = (props) => {
   const [lectures, setLectures] = useState([{
@@ -42,9 +44,8 @@ const Lectures = (props) => {
 
   return (
     <div>
+      <Header />
       <h2>{module.title}</h2>
-      <br />
-      <h4>{module.description}</h4>
       <br />
       <div className="lecture-grid">
         {lectures.map((lecture, index) => {

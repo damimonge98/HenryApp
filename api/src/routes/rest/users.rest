@@ -9,17 +9,18 @@ GET http://localhost:5000/users/600f05d1ab85f5333c922784
 ###
 
 # Update one user (id)
-PATCH http://localhost:5000/users/600eff955118332bac123f87
+PATCH http://localhost:5000/users/user/601f09944e42ef1b686665b9
 Content-Type: application/json
 
 {
-  "first_name": "Arbusto"
+  "role": "instructor",
+  "isSuperAdmin": true
 }
 
 ###
 
 # Delete one user (id)
-DELETE http://localhost:5000/users/601114d394ef521dc2cb76c0
+DELETE http://localhost:5000/users/601dea3f3e3056283428605e
 
 ###
 
