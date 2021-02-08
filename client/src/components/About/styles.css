@@ -30,7 +30,6 @@
 
 .devs {
   display: flex;
-  justify-content: space-around;
   -webkit-box-align:center;
   align-items:center;
   flex-wrap: wrap;
@@ -38,7 +37,6 @@
 
 .dev{
   display: flex;
-    justify-content: space-around;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: column;
@@ -47,13 +45,15 @@
 
 /* Imagenes */
 .dev img {
+  height:70px;
+  width: 70px;
   border-radius: 99em;
     object-fit: cover;
     border: 3px solid yellow;
     margin-bottom: 1em;
 }
 i {
-  font-size: 40px;
+  font-size: 20px;
   color:yellow;
   background-color: black;
   padding: 5px;
