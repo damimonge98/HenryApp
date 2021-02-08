@@ -5,23 +5,14 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import Readme from "../Readme/Readme";
 import { getAllLectures } from "../../redux/actions/lecturesActions";
-<<<<<<< HEAD
 import {useSelector, useDispatch} from "react-redux";
 import Header from "../Header/index.js";
 
-=======
-import { useSelector, useDispatch } from "react-redux";
-import Header from "../Header/index.js";
->>>>>>> 5afbface2ff6c8384ecce8e89ebbacafff876713
 
 const OneLecture = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-<<<<<<< HEAD
   const allLectures = useSelector (state => state.lecture.lectures)
-=======
-  const allLectures = useSelector(state => state.lectures.lectures);
->>>>>>> 5afbface2ff6c8384ecce8e89ebbacafff876713
   const [rightArrow, setRightArrow] = useState(true);
 
   var thisURL = window.location.pathname;
@@ -114,7 +105,7 @@ const OneLecture = (props) => {
       <div className = "clickLectures" className = "changeLecture" onClick = {()=> {history.push(`/lectures/${prevLecture}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
       <div className = "returns" className = "changeLecture" onClick = {()=> {history.push(`/modules/${thisModule}`)}}><h3>LECTURES <i class="fas fa-book-reader"></i></h3></div>
       {rightArrow === true?
-       <div  className = "clickLectures" className = "changeLecture" onClick = {()=> {history.push(`/lectures/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+       <div  className = "clickLectures" className = "changeLecture" onClick = {()=> {history.push(`/lectures${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
        :
        null
     }
@@ -127,27 +118,6 @@ const OneLecture = (props) => {
         <h1 className = "h1"><i className="fab fa-github"></i>{lecture.title}</h1>
       </Link>
       </div> 
-
-
-      <div className="menuDiv">
-        {lecturesOfThisModule.length === 0 ? null :
-          <Fragment>
-            <div className="changeLecture" onClick={() => { history.push(`/lecture/${prevLecture}/module/${thisModule}`); location.reload(); }}>
-              <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-            </div>
-            <div className="returns" className="changeLecture" onClick={() => { history.push(`/modulo/${thisModule}`); }}>
-              <h3>LECTURES</h3>
-            </div>
-            {rightArrow === true ?
-              <div className="changeLecture" onClick={() => { history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload(); }}>
-                <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
-              </div>
-              :
-              null
-            }
-
-          </Fragment>}
-      </div>
       <br />
 
       {/* <div className="videoCard-grid">
