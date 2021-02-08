@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Containers / Pages
+import TalkList from "./components/TalkList";
+import CardTalk from "./components/CardTalk";
 import CreateUser from "./components/CreateUser";
 import OneLecture from "./components/OneLecture";
 import HomePage from "./containers/HomePage";
@@ -15,14 +17,11 @@ import CreateTalk from "./components/CreateTalk";
 import UserListPage from "./containers/UserListPage";
 import Booms from "./components/Booms/Booms.jsx";
 import Catalogo from "./components/Catalogo";
-<<<<<<< HEAD
 import LecturesPage from './containers/LecturesPage';
-=======
 import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
 import Profile from "./components/Profile";
->>>>>>> 90564dfe7ff315fc23a8d15196e30e80baa2d4bc
 
 const routes = () => {
   return (
@@ -35,7 +34,7 @@ const routes = () => {
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/lectures' component={lectureList} />
+        <Route exact path='/lectures' component={LectureList} />
         <Route exact path='/modules' component={ModuleList} />
         <Route exact path='/lectures/:lectureid' component={OneLecture} />
         <Route exact path='/modules/:moduloid' component={LecturesPage} />
