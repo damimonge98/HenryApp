@@ -4,6 +4,7 @@ export const FilterBarWrapper = styled.div`
   height: 70px;
   margin-bottom: 1rem;
   box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.15);
+  background: white;
 
   display:  flex;
   align-items: center;
