@@ -57,15 +57,15 @@ const Header = () => {
               <MenuItem>
                 <Link to="/profile">Perfil</Link>
               </MenuItem>
-              <MenuItem>
+              {/* <MenuItem>
                 <Link to="/course">Curso</Link>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem>
                 <Link to="/users">Usuarios</Link>
               </MenuItem>
-              <MenuItem>
+       {/*        <MenuItem>
                 <Link to="/createUser">Crear usuario</Link>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem>
                 <Link to="/modules">Módulos</Link>
               </MenuItem>
@@ -81,9 +81,9 @@ const Header = () => {
               <MenuItem>
                 <Link to="/talks">Henry Talks</Link>
               </MenuItem>
-              <MenuItem>
+            {/*   <MenuItem>
                 <Link to="/settings">Configuración</Link>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleLogout}>
                 Salir
               </MenuItem>
