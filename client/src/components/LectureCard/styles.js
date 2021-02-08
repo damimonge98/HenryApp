@@ -2,15 +2,20 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #323232;
-`;
-
-export const LectureCardWrapper = styled.div`
   height: 300px;
   width: 100%;
-  margin: 1rem 1.5%;
+  min-width: 320px;
+  max-width: 320px;
+  margin: 0.5rem;
+  text-decoration: none;
+  color: #323232;
+  `;
+
+export const LectureCardWrapper = styled.div`
+  height: 100%;
+  width: 100%;
   background: white;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 `;
 
 export const ImageWrapper = styled.div`

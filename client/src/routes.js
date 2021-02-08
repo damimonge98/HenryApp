@@ -30,10 +30,10 @@ const routes = () => {
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/lecture/:lectureid' component={OneLecture} />
-        <Route exact path='/modules/:moduloid' component={LecturesPage} />
-        <Route exact path='/lecturesList' component={lectureList} />
+        <Route exact path='/lectures' component={lectureList} />
         <Route exact path='/modules' component={ModuleList} />
+        <Route exact path='/lectures/:lectureid' component={OneLecture} />
+        <Route exact path='/modules/:moduloid' component={LecturesPage} />
         <Route exact path='/talk' component={CreateTalk} />
         <Route exact path='/talks' component={TalkList} />
         <Route exact path='/card-talk' component={CardTalk} />

@@ -9,14 +9,12 @@ import {
   DELETE_MODULE
 } from '../constants/modulesConstants';
 
-
 const initialState = {
   modules: [],
   module: {},
   loading: false,
   error: null
 };
-
 
 const modulesReducer = (state = initialState, action) => {
   switch (action.type) {

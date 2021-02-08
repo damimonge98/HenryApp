@@ -26,7 +26,7 @@ const LectureCard = ({ lecture }) => {
 
 
   return (
-    <StyledLink to={`/lecture/${_id}`} >
+    <StyledLink to={`/lectures/${_id}`} >
       <LectureCardWrapper>
         <ImageWrapper>
           <img src={imagen} alt={title} />

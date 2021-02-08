@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import { ModuleCardWrapper, Title, Description, LectureList } from "./styles.js";
+import { ModuleCardWrapper, TopWrapper, Title, Description, LectureList, Button } from "./styles.js";
+import LectureCard from "../LectureCard/index.js";
 
-const ModuleCard = ({ module, available }) => {
+const ModuleCard = ({ module, lectures, available }) => {
+  console.log(lectures);
 
+  let firstLectures = lectures;
+  if (lectures.length > 4) {
+    firstLectures = lectures.slice(0, 4);
+  }
   return (
     <ModuleCardWrapper>
       <Title>{module.title}</Title>
       <Description>{module.description}</Description>
       <LectureList>
-
+        {firstLectures.map(l => <LectureCard lecture={l} />)}
       </LectureList>
+      <Button to={`/modules/${module._id}`}>All Lecture ({lectures.length})</Button>
     </ModuleCardWrapper>
   );
 };

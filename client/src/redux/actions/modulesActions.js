@@ -9,7 +9,7 @@ import {
   CREATE_MODULE,
   UPDATE_MODULE,
   DELETE_MODULE
-} from '../constants/lecturesConstants';
+} from '../constants/modulesConstants';
 
 
 const requestActionModules = () => ({
