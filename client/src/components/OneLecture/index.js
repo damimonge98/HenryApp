@@ -54,6 +54,7 @@ const OneLecture = (props) => {
   const getOneLecture = () => {
     axios.get(`http://localhost:5000/lectures/${props.match.params.lectureid}`).then(
       res => {
+        console.log(res);
         setLecture(res.data);
       }
     );
@@ -151,6 +152,7 @@ const OneLecture = (props) => {
       </div>
       <Readme title={lecture.title} url={lecture.urlLecture} />
     </div >
+
   );
 };
 
