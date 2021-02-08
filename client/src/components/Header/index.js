@@ -84,6 +84,9 @@ const Header = () => {
               <MenuItem>
                 <Link to="/settings">Configuración</Link>
               </MenuItem>
+              <MenuItem>
+                <Link to="/about">Sobre Nosotros</Link>
+              </MenuItem>
               <MenuItem onClick={handleLogout}>
                 Salir
               </MenuItem>

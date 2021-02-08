@@ -44,3 +44,24 @@
     flex-direction: column;
     flex: 1 0 20%;
 }
+
+/* Imagenes */
+.dev img {
+  border-radius: 99em;
+    object-fit: cover;
+    border: 3px solid yellow;
+    margin-bottom: 1em;
+}
+i {
+  font-size: 40px;
+  color:yellow;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2%;
+}
+i:hover {
+  color: black;
+  border-radius: 5px;
+  background-color: yellow;
+}
