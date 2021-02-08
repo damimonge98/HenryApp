@@ -9,7 +9,7 @@ const Empresa = require('../models/enterprise');
 //----------Rutas----------
 
 //-----Crear un empleo
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
   const {
     logo,
     enterpriseName,
@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     linkedIn,
     enterprise
   } = req.body;
-  const { id } = req.params
+  const { id } = req.params;
   const offerCard = new Empleo({
     logo,
     enterpriseName,
@@ -33,14 +33,14 @@ router.post("/", async (req, res) => {
     tipo,
     end,
     linkedIn,
-    /* enterprise */
+    enterprise
 
   });
- /*  const oneEnterprise = await Empresa.findById(id);
-  offerCard.enterprise = req.params.id; */
+  const oneEnterprise = await Empresa.findById(id);
+  offerCard.enterprise = req.params.id;
   await offerCard.save();
-/*   oneEnterprise.empleos.push(offerCard);
-  await oneEnterprise.save(); */
+  oneEnterprise.empleos.push(offerCard);
+  await oneEnterprise.save();
   try {
     res.status(201).json(offerCard);
   } catch (error) {
@@ -78,14 +78,14 @@ router.get("/", async (req, res) => {
 //-----Eliminar empleo
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  Empresa.find({empleos: id}).then(res => {
+  Empresa.find({ empleos: id }).then(res => {
     for (let i = 0; i < res[0].empleos.length; i++) {
-        if (res[0].empleos[i] == id) {
-            res[0].empleos.splice(i, 1);
-        };
+      if (res[0].empleos[i] == id) {
+        res[0].empleos.splice(i, 1);
+      };
     };
     res[0].save();
-});
+  });
   Empleo.findById(id)
     .then((empleo) => {
       empleo.remove();
@@ -111,7 +111,7 @@ router.patch("/:id", (req, res) => {
     end,
     linkedIn,
   } = req.body;
-  
+
   Empleo.findByIdAndUpdate(id, req.body, { new: true })
     .then((empleo) => {
       res.json(empleo);
