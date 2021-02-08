@@ -6,6 +6,7 @@ import axios from "axios";
 import OfferCard from "../OfferCard/index";
 import Layout from "../../containers/Layout";
 import CrearEmpleo from "../CreateOffer/index";
+import FilterBar from "../FilterBar/index";
 
 // Styled Components
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
@@ -77,11 +78,12 @@ const Catalogo = () => {
     <Layout>
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
-        <h5>
+        <h5 className="h5">
           ¿Eres empresa?{" "}
           <button type="button" className="btn" data-open="modal1">
             Publica tu oferta
           </button>
+          
         </h5>
         {/* {-Modal crear oferta-} */}
         <div className="modal" id="modal1">
