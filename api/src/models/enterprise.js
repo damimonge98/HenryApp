@@ -9,6 +9,19 @@ const enterpriseSchema = new Schema({
   logo: {
     type: String,
   },
+  password: {
+    type: String,
+    select: false, //cuando se hace GET, no trae la contraseña por seguridad.
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  empleos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Empleo'
+  }]
 });
 
 module.exports = mongoose.model("Empresa", enterpriseSchema);
