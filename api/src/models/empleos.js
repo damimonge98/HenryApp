@@ -40,6 +40,10 @@ const jobSchema = new Schema({
     type: String,
     required: true,
   },
+  enterprise:{
+     type: Schema.Types.ObjectId, 
+     ref: 'Empresa' 
+  }
 });
 
 module.exports = mongoose.model("Empleo", jobSchema);
