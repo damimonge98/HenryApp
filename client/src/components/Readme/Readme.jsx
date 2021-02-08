@@ -35,8 +35,7 @@ export default function Readme (props) {
     useEffect (()=> {
         getRepoReadme()
     }, [ReadmeUrl])
-    console.log ("readme", readme)
-
+  
     var codeReadme = atob(readme)
     codeReadme = codeReadme.replaceAll("Ã©", "e");
     codeReadme = codeReadme.replaceAll("Ã³", "o");
