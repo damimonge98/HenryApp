@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { getAllCompanies, deleteCompany } from '../../redux/actions/companiesActions';
 
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
@@ -11,8 +12,31 @@ import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
 /* import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles'; */
 
 const EnterpriseListPage = () => {
-    
+    const { companies, loadingCompanies } = useSelector(state => state.companies);
+    const auth = useSelector(state => state.auth);
+    const [selected, setSelected] = useState(null);
+    const [rows, setRows] = useState([]);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
+    useEffect(() => {
+        dispatch(getAllCompanies());
+    }, []);
+
+    useEffect(() => {
+        setRows(
+            companies
+                .map(c => ({
+                    _id: c._id,
+                    name: c.name,
+                    email: c.email,
+                    empleos: c.empleos.length,
+                    verified: c.verified
+                }))
+        );
+    }, [companies]);
+
+    
     const columns = [
         {
             id: "1",
@@ -34,12 +58,22 @@ const EnterpriseListPage = () => {
             text: "Verificada",
             name: "verified"
         },
-
     ]
+
+    const actions = [
+        {
+            handleClick: (id) => handleUpdateCompany(id),
+            icon: <i class="fas fa-user-edit"></i>
+        },
+        {
+            handleClick: (id) => handleDeleteCompany(id),
+            icon: <i class="fas fa-trash-alt"></i>
+        }
+    ];
+
     return (
         <Layout>
-          {/*   <Table columns={columns} rows='0' actions='0' /> */}
-
+            <Table columns={columns} rows={rows} actions={actions} />
         </Layout>
     )
 }
