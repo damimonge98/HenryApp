@@ -59,7 +59,7 @@
   font-size: 20px;
   font-weight: bold;
 }
-.enterprise {
+.enterprise, .description {
   text-align: center;
 }
 
@@ -89,7 +89,6 @@
 }
 .description{
   width: 90%;
-  text-align: justify;
 }
 .end, .description{
   margin-left: 10px;
