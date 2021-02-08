@@ -9,7 +9,7 @@ const Empresa = require('../models/enterprise');
 //----------Rutas----------
 
 //-----Crear un empleo
-router.post("/:id", async (req, res) => {
+router.post("/", async (req, res) => {
   const {
     logo,
     enterpriseName,
@@ -33,14 +33,14 @@ router.post("/:id", async (req, res) => {
     tipo,
     end,
     linkedIn,
-    enterprise
+    /* enterprise */
 
   });
-  const oneEnterprise = await Empresa.findById(id);
-  offerCard.enterprise = req.params.id;
+ /*  const oneEnterprise = await Empresa.findById(id);
+  offerCard.enterprise = req.params.id; */
   await offerCard.save();
-  oneEnterprise.empleos.push(offerCard);
-  await oneEnterprise.save();
+/*   oneEnterprise.empleos.push(offerCard);
+  await oneEnterprise.save(); */
   try {
     res.status(201).json(offerCard);
   } catch (error) {
