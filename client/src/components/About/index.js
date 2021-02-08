@@ -62,6 +62,8 @@ export default function About() {
       <div className="divisor1"/>
       <div className="devs">
         <div className="dev">
+        
+        <img src="https://media-exp1.licdn.com/dms/image/C4E03AQGMhX55gLDfaw/profile-displayphoto-shrink_200_200/0/1600636494618?e=1618444800&v=beta&t=Z4X637Id8on77ZDzAjxeHjTvNWwyHTktV0HyYeWlpGA" alt="su"/>
         Suyai Slootmans{" "}
             <a
               href="https://www.linkedin.com/in/suyai-slootmans/"
@@ -77,6 +79,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C4E03AQHeRmsMYz18Mw/profile-displayphoto-shrink_200_200/0/1600875918077?e=1618444800&v=beta&t=_xYqxrbbbJA2Gr9-ydOZmfyuDcjTnuAY48hYB-NuNNQ" alt="ale"/>
         Alejo Gschwind{" "}
             <a
               href="https://www.linkedin.com/in/gschwindalejo/"
@@ -92,6 +95,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQHHEVp6NAcf_Q/profile-displayphoto-shrink_200_200/0/1611065707974?e=1618444800&v=beta&t=IXHrgeDFwkuGkCXHcPCTPVUAv3b6W4RdJhX87vIkBhg" alt="dami"/>
         Damian Monge{" "}
             <a href="https://www.linkedin.com/in/damian-monge/" target="_blank">
               Linkedin
@@ -104,6 +108,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C5603AQEeBWZ99PnIQQ/profile-displayphoto-shrink_200_200/0/1611256090783?e=1618444800&v=beta&t=AGdEz4G8-RrOgY4BcvFUZQysVoU_ei9SFp1PlNorvHc" alt="chusto"/>
         Augusto Felicenzi{" "}
             <a
               href="https://www.linkedin.com/in/augusto-felicenzi/"
@@ -120,6 +125,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C4E03AQFc-HueGEGfvA/profile-displayphoto-shrink_200_200/0/1600637380061?e=1618444800&v=beta&t=kWC483DAfYGXAqlnvn5u0M5Gr9WyOfeKPVAGY8va0tg" alt="nere"/>
         Nereo Carbonara
             <a
               href="https://www.linkedin.com/in/nereo-carbonara/"
@@ -135,6 +141,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C4E35AQFZ3V0XTN_1pw/profile-framedphoto-shrink_200_200/0/1610649173015?e=1612879200&v=beta&t=suC0j_s9mWJnLIVCrmbP-BV42WiOB0oOakQYpXr5j1Q" alt="ser" />
         Sergio Pepe
             <a
               href="https://www.linkedin.com/in/sergio-pepe-682baa15a/"
@@ -150,6 +157,7 @@ export default function About() {
             </a>
         </div>
         <div className="dev">
+          <img src="https://media-exp1.licdn.com/dms/image/C4E03AQHPxkhz29TPeg/profile-displayphoto-shrink_200_200/0/1611190654795?e=1618444800&v=beta&t=sFR3PAmdpPe-lHsKgsu1rQSlKGRFD4gX40g0CxV-smE" alt="ana"/>
         Ana Paula Barua{" "}
             <a
               href="https://www.linkedin.com/in/ana-paula-barua-188013131/"
