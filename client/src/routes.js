@@ -19,6 +19,7 @@ import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
 import Profile from "./components/Profile";
+import EnterpriseListPage from "./containers/EnterpriseListPage";
 
 const routes = () => {
   return (
@@ -30,7 +31,7 @@ const routes = () => {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/users" component={UserListPage} />
-      {/*   <Route exact path="/createUser" component={CreateUser} /> */}
+        {/*   <Route exact path="/createUser" component={CreateUser} /> */}
         <Route exact path="/lecture/:lectureid/module/:moduleid" component={OneLecture} />
         <Route exact path="/modulo/:moduloid" component={Lectures} />
         <Route exact path="/lecturesList" component={LectureList} />
@@ -42,6 +43,7 @@ const routes = () => {
         <Route exact path="/empleos" component={Catalogo} />
         <Route exact path="/payments" component={Payment} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/enterprise" component={EnterpriseListPage} />
       </Switch>
     </BrowserRouter>
   );
