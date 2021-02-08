@@ -1,0 +1,46 @@
+/* Titulos */
+
+.title1, .title2, .title3 {
+  text-shadow: 0 0 5px yellow;
+  text-align: center;  
+}
+
+/* Separadores */
+
+.divisor1 {
+  height: 30px;
+}
+.divisor2 {
+  height: 100px;
+}
+
+/* Texto */
+
+
+
+/* Cuerpo */
+
+.nosotros, .redes, .pagina {
+  
+  position: relative;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.devs {
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align:center;
+  align-items:center;
+  flex-wrap: wrap;
+}
+
+.dev{
+  display: flex;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 0 20%;
+}
