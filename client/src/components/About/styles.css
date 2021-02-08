@@ -4,6 +4,11 @@
   text-shadow: 0 0 5px yellow;
   text-align: center;  
 }
+.title4{
+  text-shadow: 0 0 5px yellow;
+  text-align: start; 
+  font-size: 15px;
+}
 
 /* Separadores */
 
@@ -32,11 +37,11 @@
   display: flex;
   -webkit-box-align:center;
   align-items:center;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
 }
 
 .dev{
-  display: flex;
+  display: inline-block;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: column;
@@ -50,7 +55,9 @@
   border-radius: 99em;
     object-fit: cover;
     border: 3px solid yellow;
-    margin-bottom: 1em;
+    margin: auto;
+    display: inline-block;
+
 }
 i {
   font-size: 20px;
