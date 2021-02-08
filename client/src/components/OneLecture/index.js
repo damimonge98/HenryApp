@@ -96,26 +96,25 @@ const OneLecture = (props) => {
   return (
     <div className = "divContainer">  
       <Header/>
-      <div className = "link">   
-      <Link to={{ pathname: lecture.urlLecture }} target="_blank">
-        <h1 className = "h1"><i className="fab fa-github"></i>{lecture.title}</h1>
-      </Link>
-      </div> 
-
-
       <div className = "menuDiv">
       {lecturesOfThisModule.length === 0 ? null :
       <Fragment>
-      <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
-      <div className = "returns" className = "changeLecture" onClick = {()=> {history.push(`/modulo/${thisModule}`)}}><h3>LECTURES</h3></div>
+      <div className = "clickLectures" className = "changeLecture" onClick = {()=> {history.push(`/lecture/${prevLecture}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
+      <div className = "returns" className = "changeLecture" onClick = {()=> {history.push(`/modulo/${thisModule}`)}}><h3>LECTURES <i class="fas fa-book-reader"></i></h3></div>
       {rightArrow === true?
-       <div className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+       <div  className = "clickLectures" className = "changeLecture" onClick = {()=> {history.push(`/lecture/${nextLecture()}/module/${thisModule}`); location.reload()} }><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
        :
        null
     }
      
       </Fragment>}
      </div>
+
+     <div className = "link">   
+      <Link to={{ pathname: lecture.urlLecture }} target="_blank">
+        <h1 className = "h1"><i className="fab fa-github"></i>{lecture.title}</h1>
+      </Link>
+      </div> 
 
       <br/>
       <div>
@@ -132,20 +131,33 @@ const OneLecture = (props) => {
           );
         })}
       </div>*/}
-    <h3 className = "h3">Elegir Instructor:</h3>
+    {arrayAllTeachers.length === 0 ?
+    null
+    :
+    <Fragment>
+      <div className = "banner"></div>
+    <div className = "teacherAndVideoDiv">
+    <div className = "containerTeachers">
+    <h3 className = "h3">¡ELIGE TU INSTRUCTOR!</h3>
     <h3 className = "h3">{arrayAllTeachers[teacher]}</h3>
     <div className = "teachersDiv">
     {arrayAllTeachers.map(el => {
         return (
-          <div className = "teacherDiv" onClick = {() => {setTeacher(arrayAllTeachers.indexOf(el))}}>{el}</div>
+          <div className = "teacherDiv" onClick = {() => {setTeacher(arrayAllTeachers.indexOf(el))}}><h4 className = "h4">{el}</h4></div>
         )
       })}
     </div>
+    </div>
       <div className = "video">
-        <iframe src= {`https://player.vimeo.com/video/${arrayAllVideos[teacher]}`} width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <iframe src= {`https://player.vimeo.com/video/${arrayAllVideos[teacher]}`} width="680" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <Readme title = {lecture.title} url = {lecture.urlLecture}/>
+      </div>
+      </Fragment> 
+    }
+    <div className = "banner"></div>
+    <Readme title = {lecture.title} url = {lecture.urlLecture}/>
     </div >
+    
   );
 };
 
