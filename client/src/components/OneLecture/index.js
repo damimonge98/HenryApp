@@ -57,7 +57,6 @@ const OneLecture = (props) => {
     );
   };
 
-  console.log("allVideos", allVideos)
 
   const arrayAllVideos = []
    allVideos.map (el => {
@@ -71,7 +70,6 @@ const OneLecture = (props) => {
     arrayAllTeachers.push(el.profesor)
   })
 
-  console.log(teacher)
   /*var urlVideo = allVideos[0].url
   urlVideo = urlVideo.replace("https://vimeo.com/", "")
   var urlVimeo = "https://player.vimeo.com/video/307791576?title=0&byline=0&portrait=0"

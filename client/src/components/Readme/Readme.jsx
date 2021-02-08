@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
 import "./readme.css";
+require("dotenv").config();
+
 
 
 export default function Readme (props) {
@@ -13,11 +15,10 @@ export default function Readme (props) {
     ReadmeUrl = ReadmeUrl.replace("/tree/master", "/contents")
     ReadmeUrl = ReadmeUrl + "/README.md?ref=master"
 
-
     const getRepoReadme = function () {
       axios.get(ReadmeUrl, {
         headers: {
-          "Authorization": "token 1ff17f319d30260ec4658762c712910b152dadc0"
+          "Authorization": `token c2d4cc4909011847388ee364d7ec87d83e45e7a9`
         }
       })
       .then ((res) => setReadme(res.data.content))};
