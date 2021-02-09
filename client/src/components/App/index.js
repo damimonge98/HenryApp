@@ -9,13 +9,13 @@ import { quotes } from "../../data";
 
 function App() {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.auth);
+  const { loading } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(autoLoginUser());
   }, []);
 
-  if (loading) {
+  if (loading && window.location.pathname !== '/login') {
     const num = Math.round(Math.random() * (quotes.length - 1));
     return (
       <CenterInPage>

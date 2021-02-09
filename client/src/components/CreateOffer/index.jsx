@@ -20,7 +20,7 @@ const CrearEmpleo = () => {
   const handleSubmit = (/* id */) => {  //Este ID corresponde al de la empresa que esta logeada.
     const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post("http://localhost:5000/empleos/:id", { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
+      .post("http://localhost:5000/empleos/" /* + ":id" */, { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 
@@ -41,7 +41,7 @@ const CrearEmpleo = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(/* id */)}>
+      <form onSubmit={() => handleSubmit(/* id */)}>
 
         <div>
           <label>Titulo</label>
