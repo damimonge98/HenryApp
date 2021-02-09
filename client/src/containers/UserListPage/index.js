@@ -124,11 +124,7 @@ const UserListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateUser(id),
-<<<<<<< HEAD
       icon: <i class="fas fa-pencil-alt"></i>
-=======
-      icon: <i class="fas fa-user-edit"></i>
->>>>>>> origin/main
     },
     {
       handleClick: (id) => handleDeleteUser(id),
