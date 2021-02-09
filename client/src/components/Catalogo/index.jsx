@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 // Components
 import OfferCard from "../OfferCard/index";
@@ -13,9 +14,11 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
+    
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
+      logo: "",
       title: "",
       description: "",
       location: "",
@@ -25,21 +28,16 @@ const Catalogo = () => {
       linkedIn: "",
     },
   ]);
-  const [filtered, setFiltered] = useState([]);  
 
   useEffect(() => {
     getAllEmpleos();
   }, []);
 
+
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
-      if(filtered){
-        setFiltered(response.data);
-      }
-      setEmpleo(response.data);
-    });
-    // setEmpleo([])
-    // dispatch(getEmpleos());
+      setEmpleo(response.data)
+    })
   };
 
   const openEls = document.querySelectorAll("[data-open]");
@@ -74,6 +72,14 @@ const Catalogo = () => {
     }
   });
 
+  const handleDelete = (id) => {
+    if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
+      axios.delete(`http://localhost:5000/empleos/${id}`).then(
+        getAllEmpleos()
+      )
+    }
+  }
+
   return (
     <Layout>
       <div>
@@ -83,7 +89,7 @@ const Catalogo = () => {
           <button type="button" className="btn" data-open="modal1">
             Publica tu oferta
           </button>
-          
+
         </h5>
         {/* {-Modal crear oferta-} */}
         <div className="modal" id="modal1">
@@ -103,13 +109,10 @@ const Catalogo = () => {
       </div>
       <div className="catalogueWrapper">
         <div className="empleosColumn">
-        {
-        filtered.length ?          
-            filtered.map((empleo, index) => <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>)
-                    :
-             empleos.map((empleo, index) => {
-            return <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>;
-          })}
+          {
+            empleos.map((empleo, index) => {
+              return <OfferCard empleo={empleo} key={index}  />;
+            })}
         </div>
       </div>
     </Layout>
