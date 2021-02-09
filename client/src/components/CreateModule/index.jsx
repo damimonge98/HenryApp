@@ -57,7 +57,7 @@ const CreateModule = () => {
           <i className="fas fa-home" />Inicio
         </button>
       </Link>
-      <Link to='/lecturesList'>
+      <Link to='/lectures'>
         <button type="button">
           <i className="fas fa-list" />Clases
         </button>

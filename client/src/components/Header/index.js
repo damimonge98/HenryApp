@@ -69,7 +69,7 @@ const Header = () => {
                     <Link to="/modules">Módulos</Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link to="/lecturesList">Clases</Link>
+                    <Link to="/lectures">Clases</Link>
                   </MenuItem>
                   <MenuItem>
                     <Link to="/talks">Henry Talks</Link>

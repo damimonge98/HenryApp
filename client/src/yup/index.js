@@ -141,3 +141,21 @@ export const companyRegisterSchema = yup.object().shape({
     .url("Debes ingresar un link al logo de la empresa.")
     .max(200)
 });
+
+export const updateLectureSchema = yup.object().shape({
+  title: yup.string()
+    .max(100),
+  description: yup.string()
+    .max(500),
+  imagen: yup.string().url()
+    .max(200),
+  urlLecture: yup.string().url()
+    .max(200),
+});
+
+export const updateModuleSchema = yup.object().shape({
+  title: yup.string()
+    .max(100),
+  description: yup.string()
+    .max(500),
+});

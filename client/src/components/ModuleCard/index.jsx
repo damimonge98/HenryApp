@@ -4,7 +4,6 @@ import { ModuleCardWrapper, TopWrapper, Title, Description, LectureList, Button 
 import LectureCard from "../LectureCard/index.js";
 
 const ModuleCard = ({ module, lectures, available }) => {
-  console.log(lectures);
 
   let firstLectures = lectures;
   if (lectures.length > 4) {
@@ -17,7 +16,7 @@ const ModuleCard = ({ module, lectures, available }) => {
       <LectureList>
         {firstLectures.map(l => <LectureCard lecture={l} />)}
       </LectureList>
-      <Button to={`/modulo/${module._id}`}>All Lectures ({lectures.length})</Button>
+      <Button to={`/modules/${module._id}`}>All Lectures ({lectures.length})</Button>
     </ModuleCardWrapper>
   );
 };
