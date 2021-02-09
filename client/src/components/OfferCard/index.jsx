@@ -4,7 +4,7 @@ import "./styles.css";
 import axios from "axios";
 import Modal from '../Modal'
 
-const OfferCard = ({ empleo, isAdmin, id }) => {
+const OfferCard = ({ empleo }) => {
   //en teoria la tarjeta de empleo deberia tener primero logo y nombre de la empresa
   const {
     enterpriseName,
@@ -18,20 +18,10 @@ const OfferCard = ({ empleo, isAdmin, id }) => {
     linkedIn,
   } = empleo;
 
-  const handleDelete = (id) => {
-    if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then()
-    }
-  }
+
 
   return (
     <div>
-      <div>{
-        isAdmin ?
-          <button onClick={() => handleDelete(id)}>X</button>
-
-          : null
-      }</div>
       <div className="cards">
         <div className="card__front">
           <div>

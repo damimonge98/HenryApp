@@ -14,8 +14,7 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
-  const { user } = useSelector(state => state.auth);
-  
+    
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
@@ -29,23 +28,16 @@ const Catalogo = () => {
       linkedIn: "",
     },
   ]);
-  const [filtered, setFiltered] = useState([]);
 
- 
   useEffect(() => {
     getAllEmpleos();
-  }, [empleos]);
+  }, []);
+
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
-      if (filtered) {
-        setFiltered(response.data);
-      }
-      setEmpleo(response.data);
-      console.log(user.isAdmin)
-    });
-    // setEmpleo([])
-    // dispatch(getEmpleos());
+      setEmpleo(response.data)
+    })
   };
 
   const openEls = document.querySelectorAll("[data-open]");
@@ -80,6 +72,14 @@ const Catalogo = () => {
     }
   });
 
+  const handleDelete = (id) => {
+    if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
+      axios.delete(`http://localhost:5000/empleos/${id}`).then(
+        getAllEmpleos()
+      )
+    }
+  }
+
   return (
     <Layout>
       <div>
@@ -110,12 +110,9 @@ const Catalogo = () => {
       <div className="catalogueWrapper">
         <div className="empleosColumn">
           {
-            filtered.length ?
-              filtered.map((empleo, index) => <OfferCard empleo={empleo} key={index} isAdmin={user.isSuperAdmin} id={empleo._id}/>)
-              :
-              empleos.map((empleo, index) => {
-                return <OfferCard empleo={empleo} key={index} isAdmin={user.isSuperAdmin} id={empleo._id}/>;
-              })}
+            empleos.map((empleo, index) => {
+              return <OfferCard empleo={empleo} key={index}  />;
+            })}
         </div>
       </div>
     </Layout>
