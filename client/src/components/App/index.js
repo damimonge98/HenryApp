@@ -9,24 +9,24 @@ import { quotes } from "../../data";
 
 function App() {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.auth);
+  const { loading } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(autoLoginUser());
   }, []);
 
-  // if (loading) {
-  //   const num = Math.round(Math.random() * (quotes.length - 1));
-  //   return (
-  //     <CenterInPage>
-  //       <Loading />
-  //       <QuoteWrapper>
-  //         <Quote>‟{quotes[num].text}”</Quote>
-  //         <Author>{quotes[num].author}</Author>
-  //       </QuoteWrapper>
-  //     </CenterInPage>
-  //   );
-  // };
+  if (loading && window.location.pathname !== '/login') {
+    const num = Math.round(Math.random() * (quotes.length - 1));
+    return (
+      <CenterInPage>
+        <Loading />
+        <QuoteWrapper>
+          <Quote>‟{quotes[num].text}”</Quote>
+          <Author>{quotes[num].author}</Author>
+        </QuoteWrapper>
+      </CenterInPage>
+    );
+  };
 
   return (
     <AppWrapper>

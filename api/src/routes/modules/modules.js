@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Module = require('../models/module');
-const Lecture = require("../models/lecture");
-const Video = require("../models/video");
+const Module = require('../../models/module');
+const Lecture = require("../../models/lecture");
+const Video = require("../../models/video");
 
 
 //--------------------Get all modules--------------------
@@ -35,18 +35,18 @@ router.get('/:id', (req, res) => {
 
 //--------------------Create one module--------------------
 router.post('/', async (req, res) => {
-  const { title, description, order } = req.body;
-  const modulo = new Module({
-    title,
-    description,
-    order
-  });
-
-  const allModules = await Module.find().then();
-
-  modulo.order = allModules.length === 0 ? 0 : allModules.length;
-
   try {
+    const { title, description, order } = req.body;
+    const modulo = new Module({
+      title,
+      description,
+      order
+    });
+
+    const allModules = await Module.find().then();
+
+    modulo.order = allModules.length === 0 ? 0 : allModules.length;
+
     const newModule = await modulo.save();
     res.json(newModule);
   } catch (error) {
@@ -102,13 +102,11 @@ router.delete('/:id', (req, res) => {
     });
     modulo.remove();
 
-    res.json({ message: 'Module has been deleted' });
+    res.json(id);
   }).catch(error => {
     res.status(500).json({ message: error.message });
   });
 });
-
-
 // ------------------------------------------------------------ 
 
 

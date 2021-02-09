@@ -45,10 +45,11 @@ export const ButtonsRow = styled.div`
 `;
 
 export const Button = styled.button`
-  height: 30px;
+  height: 50px;
+  padding: 1rem 2rem;
   display: flex;
-  width: 200px;
   align-items: center;
+  /* width: 200px; */
   justify-content: center;
   background: white;
   color: black;
@@ -58,4 +59,9 @@ export const Button = styled.button`
   border: 2px solid black;
   margin: 0 1rem 1rem 0;
   cursor: pointer;
+
+  &:hover {
+    background: black;
+    color: white;
+  }
 `;

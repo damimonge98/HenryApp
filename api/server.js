@@ -14,12 +14,13 @@ const lectureRoutes = require('./src/routes/lectures');
 const uploadRoutes = require('./src/routes/upload/upload');
 const { mailRoutes } = require('./src/routes/mail.js');
 const videoRoutes = require('./src/routes/videos');
-const modulesRoutes = require('./src/routes/modules');
+const modulesRoutes = require('./src/routes/modules/modules');
 const empleoRoutes = require('./src/routes/empleos');
 const talkRoutes = require('./src/routes/talk');
 const booms = require('./src/routes/booms.js');
 const boomTweets = require('./src/routes/boomTweets.js');
 const readme = require ("./src/routes/readme.js");
+const enterprise = require ('./src/routes/enterprise.js');
 
 const server = express();
 
@@ -74,7 +75,8 @@ server.use("/boomTweets", boomTweets);
 server.use("/sendMail", mailRoutes);
 server.use('/empleos', empleoRoutes);
 server.use('/talk', talkRoutes);
-server.use("/readme", readme)
+server.use("/readme", readme);
+server.use("/enterprise", enterprise);
 
 // Error catching endware.
 server.use((err, req, res, next) => {

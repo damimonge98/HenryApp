@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CardLecture from '../../components/CardLecture/index';
 import './estilos.css';
+import LectureCard from "../../components/LectureCard";
 import Header from "../../components/Header/index";
 
 
@@ -44,14 +44,14 @@ const Lectures = (props) => {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <h2>{module.title}</h2>
       <br />
       <div className="lecture-grid">
         {lectures.map((lecture, index) => {
           return (
             <div key={index}>
-              <CardLecture lecture={lecture} />
+              <LectureCard lecture={lecture} />
             </div>
           );
         })}

@@ -16,6 +16,7 @@ const UserListPage = () => {
   const { users, loading } = useSelector(state => state.user);
   const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
+  const [search, setSearch] = useState("");
   const [adminFilter, setAdminFilter] = useState({
     name: "All Users",
     value: ""
@@ -50,15 +51,24 @@ const UserListPage = () => {
           }
           return u.isSuperAdmin === adminFilter.value;
         })
+        .filter(u => {
+          if (search.length > 0) {
+            return u.firstName.toLowerCase().includes(search.toLowerCase())
+              || u.lastName && u.lastName.toLowerCase().includes(search.toLowerCase()) ?
+              true
+              : false;
+          };
+          return true;
+        })
         .map(u => ({
           _id: u._id,
           fullName: `${u.firstName} ${u.lastName}`,
           email: u.email,
+          githubUsername: u.githubUsername,
           role: u.role,
-          isAdmin: u.isSuperAdmin
         }))
     );
-  }, [roleFilter, adminFilter, users]);
+  }, [search, roleFilter, adminFilter, users]);
 
   const handleUpdateUser = (id) => {
     const [user] = users.filter(u => {
@@ -106,13 +116,13 @@ const UserListPage = () => {
     },
     {
       id: "3",
-      text: "Rol",
-      name: "role"
+      text: "Github",
+      name: "githubUsername"
     },
     {
       id: "4",
-      text: "Admin",
-      name: "isAdmin"
+      text: "Rol",
+      name: "role"
     },
     {
       id: "5",
@@ -124,11 +134,11 @@ const UserListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateUser(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteUser(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 
@@ -143,7 +153,7 @@ const UserListPage = () => {
           value: ""
         },
         {
-          name: "Guess",
+          name: "Guest",
           value: "guest"
         },
         {
@@ -179,7 +189,7 @@ const UserListPage = () => {
 
   return (
     <Layout>
-      <FilterBar filters={filters} />
+      <FilterBar filters={filters} search={search} setSearch={setSearch} />
       <ButtonsRow>
         <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
       </ButtonsRow>
