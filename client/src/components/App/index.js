@@ -16,7 +16,6 @@ function App() {
   }, []);
 
   if (loading && window.location.pathname !== '/login') {
-    console.log(window.location);
     const num = Math.round(Math.random() * (quotes.length - 1));
     return (
       <CenterInPage>
