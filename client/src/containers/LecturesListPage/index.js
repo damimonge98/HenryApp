@@ -17,6 +17,7 @@ const LectureListPage = () => {
   const lecture = useSelector(state => state.lecture);
   const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
+  const [search, setSearch] = useState("");
   // const [adminFilter, setAdminFilter] = useState({
   //   name: "All Users",
   //   value: ""
@@ -48,6 +49,14 @@ const LectureListPage = () => {
         //   }
         //   return u.isSuperAdmin === adminFilter.value;
         // })
+        .filter(l => {
+          if (search.length > 0) {
+            if (l.title.includes(search) || l.description.includes(search))
+              return true;
+            return false;
+          }
+          return true;
+        })
         .map(l => ({
           _id: l._id,
           title: l.title,
@@ -165,7 +174,7 @@ const LectureListPage = () => {
 
   return (
     <Layout>
-      <FilterBar filters={[]} />
+      <FilterBar filters={[]} search={search} setSearch={(s) => setSearch(s)} />
       {/* <ButtonsRow>
         <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
       </ButtonsRow> */}

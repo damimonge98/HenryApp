@@ -1,17 +1,37 @@
 import React from 'react';
 
 import {
-  SearchWrapper
+  SearchWrapper,
+  SearchIconStyled,
+  CloseIconStyled,
+  WhiteBox
 } from "./styles";
-import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
-import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 
-const SearchInput = ({ ...props }) => {
+const SearchInput = ({ search, setSearch, ...props }) => {
+
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const clearInput = () => {
+    setSearch("");
+  };
+
   return (
     <SearchWrapper>
-      <SearchIcon />
-      <input {...props} />
-      <CloseIcon />
+      <SearchIconStyled />
+      <input
+        autoComplete={false}
+        value={search}
+        onChange={handleChange}
+        {...props}
+      />
+      {
+        search.length > 0 ?
+          <CloseIconStyled onClick={clearInput} />
+          : <WhiteBox />
+      }
     </SearchWrapper>
   );
 };

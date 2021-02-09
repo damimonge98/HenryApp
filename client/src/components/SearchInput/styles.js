@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
+
 
 export const SearchWrapper = styled.label`
   height: 100%;
@@ -21,4 +24,19 @@ export const SearchWrapper = styled.label`
     border: none;
     outline: none;
   }
+`;
+
+export const SearchIconStyled = styled(SearchIcon)`
+  width: 26px;
+  height: 26px;
+  `;
+
+export const CloseIconStyled = styled(CloseIcon)`
+  width: 26px;
+  height: 26px;
+`;
+
+export const WhiteBox = styled.div`
+  width: 26px;
+  height: 26px;
 `;
