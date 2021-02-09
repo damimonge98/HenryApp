@@ -6,6 +6,7 @@ import Loading from "../Loading";
 
 
 export default function Readme(props) {
+  if (props.url) {
   const [readme, setReadme] = useState(null);
   const md = new Remarkable();
 
@@ -68,7 +69,11 @@ export default function Readme(props) {
 
     </div>
 
-  );
+  )} else {
+    return (
+      <p>NO HAY NINGUN README ASOCIADO</p>
+    )
+  }
 
 
 
