@@ -80,6 +80,8 @@ const Catalogo = () => {
     }
   }
 
+
+
   return (
     <Layout>
       <div>
@@ -109,10 +111,9 @@ const Catalogo = () => {
       </div>
       <div className="catalogueWrapper">
         <div className="empleosColumn">
-          {
-            empleos.map((empleo, index) => {
-              return <OfferCard empleo={empleo} key={index}  />;
-            })}
+          {empleos.map((empleo, index) => {
+              return <OfferCard empleo={empleo} key={index} />;
+            }).reverse()}
         </div>
       </div>
     </Layout>
