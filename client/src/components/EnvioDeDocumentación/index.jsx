@@ -6,8 +6,9 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from "axios";
+import firebase from 'firebase';
 
-const useStyles = makeStyles((theme) => ({    
+const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
     },
@@ -22,11 +23,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Documentacion({user}) {
+export default function Documentacion({ user }) {
     const [textArea, setTextArea] = useState("");
     const [sendEmail, setSendEmail] = useState(false);
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [uploadValue, setUploadValue] = useState(0);
+    const [estadoLogo, setEstadoLogo] = useState('');
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -36,12 +39,29 @@ export default function Documentacion({user}) {
         e.preventDefault()
         axios.post("http://localhost:5000/sendMail", {
             subject: `Envio de documentacion de ${user.firstName} ${user.lastName}`,
-            text: textArea
+            text: textArea,
+            attachments: [{
+                path: estadoLogo
+            }]
         })
             .then(setSendEmail(true))
         setTextArea("");
         /*       setAdj(null) */
     });
+
+    function handleUpload(e) {
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref(`/fotos/${file.name}`);
+        const task = storageRef.put(file);
+
+        task.on('state_changed', snapshot => {
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setUploadValue(percentage)
+        }, err => { console.log(err) }, async () => {
+            const urlLogo = await storageRef.getDownloadURL()
+            setEstadoLogo(urlLogo);
+        })
+    }
 
     return (
         <div className={classes.root}>
@@ -65,7 +85,8 @@ export default function Documentacion({user}) {
                             />
                             <br /><br />
                             <div>
-                                <input className='formButton' type="file" name="adjunto" enctype="multipart/form-data"  /* onChange={(e) => setAdj(e.target.value)} */></input>
+                                <progress value={uploadValue} max='100' ></progress>
+                                <input className='formButton' type="file" name="adjunto" /* enctype="multipart/form-data" */ onChange={(e) => handleUpload(e)}></input>
                             </div>
                             <br />
                             <div>
