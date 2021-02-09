@@ -19,6 +19,7 @@ const Catalogo = () => {
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
+      logo: "",
       title: "",
       description: "",
       location: "",

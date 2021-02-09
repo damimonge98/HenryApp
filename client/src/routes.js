@@ -15,11 +15,11 @@ import CreateTalk from "./components/CreateTalk";
 import UserListPage from "./containers/UserListPage";
 import Booms from "./components/Booms/Booms.jsx";
 import Catalogo from "./components/Catalogo";
-import LecturesPage from './containers/LecturesPage';
 import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
 import Profile from "./components/Profile";
+import EnterpriseListPage from "./containers/EnterpriseListPage";
 
 const routes = () => {
   return (
@@ -43,6 +43,7 @@ const routes = () => {
         <Route exact path="/empleos" component={Catalogo} />
         <Route exact path="/payments" component={Payment} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/enterprise" component={EnterpriseListPage} />
       </Switch>
     </BrowserRouter>
   );

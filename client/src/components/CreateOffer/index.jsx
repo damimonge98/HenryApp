@@ -1,64 +1,48 @@
 import React, { useState } from "react";
 import axios from "axios";
+import firebase from 'firebase';
 
-//-----falta el input para subir logo de la empresa
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
-    
-    enterpriseName: "",
-    
-    title: "",
-    description: "",
-    location: "",
-    tipo: "",
-    end: "",
-    remote: false,
-    linkedIn: "",
+    logo: "", enterpriseName: "", title: "", description: "", location: "", tipo: "", end: "", remote: false, linkedIn: "",
   });
-  
+  const [uploadValue, setUploadValue] = useState(0);
+
+
   function handleChange(e) {
     setEmpleo({
       ...empleo,
       [e.target.name]: e.target.value,
     });
   }
-  const handleSubmit = () => {
-    const {
-      enterpriseName,
-      logo,
-      title,
-      description,
-      location,
-      remote,
-      tipo,
-      end,
-      linkedIn,
-    } = empleo;
+
+  const handleSubmit = (/* id */) => {  //Este ID corresponde al de la empresa que esta logeada.
+    const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post("http://localhost:5000/empleos", {
-        logo,
-        enterpriseName,
-        tipo,
-        end,
-        title,
-        description,
-        location,
-        remote,
-        linkedIn,
-      })
+      .post("http://localhost:5000/empleos/:id", { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 
+  function handleUpload(e) {
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref(`/fotos/${file.name}`);
+    const task = storageRef.put(file);
+
+    task.on('state_changed', snapshot => {
+      let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      setUploadValue(percentage)
+    }, err => { console.log(err) }, async () => {
+      const urlLogo = await storageRef.getDownloadURL()
+      setEmpleo({ ...empleo, logo: urlLogo })
+    })
+  }
+
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        {/* <div>
-        <label>Select a file:</label>
-         <input onChange={(e) => {
-                handleChange(e);
-              }} type="file" name="logo" value={empleo.logo}  />
-        </div> */}
+      <form onSubmit={handleSubmit(/* id */)}>
+
         <div>
           <label>Titulo</label>
           <div>
@@ -133,7 +117,7 @@ const CrearEmpleo = () => {
         <div>
           <label>Tipo de empleo</label>
           <div>
-          <select
+            <select
               value={empleo.tipo}
               onChange={(e) => {
                 handleChange(e);
@@ -145,13 +129,13 @@ const CrearEmpleo = () => {
               <option value="full-time">Full-Time</option>
               <option value="pasantia">Pasantía</option>
               <option value="eventual">Eventual</option>
-            </select>            
+            </select>
           </div>
         </div>
         <div>
           <label>Front, Back, Full?</label>
           <div>
-          <select
+            <select
               value={empleo.end}
               onChange={(e) => {
                 handleChange(e);
@@ -163,7 +147,7 @@ const CrearEmpleo = () => {
               <option value="backend">Back-End</option>
               <option value="fullstack">Full-Stack</option>
             </select>
-            
+
           </div>
         </div>
         <div>
@@ -179,10 +163,18 @@ const CrearEmpleo = () => {
               required
             />
           </div>
+        </div><br />
+        <div>Logo Empresa
+          <br />
+          <progress value={uploadValue} max='100' ></progress>
+          <input onChange={(e) => { handleUpload(e); }} name="img"
+            type="file"
+            required
+          />
         </div>
-        <br/>
+        <br />
         <div>
-          <button type="submit" onSubmit={handleSubmit} className="btn">
+          <button type="submit" className="btn">
             Crear Empleo
           </button>
         </div>

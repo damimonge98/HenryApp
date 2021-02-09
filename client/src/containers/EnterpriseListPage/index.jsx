@@ -7,10 +7,9 @@ import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
-import Input from '../../components/Input';
 import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+/* import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles'; */
 
 const EnterpriseListPage = () => {
     const { companies, loadingCompanies } = useSelector(state => state.companies);
@@ -19,9 +18,6 @@ const EnterpriseListPage = () => {
     const [rows, setRows] = useState([]);
     const dispatch = useDispatch();
     const history = useHistory();
-    const editModalRef = useRef();
-    const deleteModalRef = useRef();
-
 
     useEffect(() => {
         dispatch(getAllCompanies());
@@ -40,26 +36,7 @@ const EnterpriseListPage = () => {
         );
     }, [companies]);
 
-    const handleUpdateCompany = (id) => {
-        const [company] = companies.filter(c => {
-            if (c._id === id)
-                return true;
-            return false;
-        });
-        setSelected(company);
-        editModalRef.current.openModal();
-    };
-
-    const handleDeleteCompany = (id) => {
-        const [company] = companies.filter(c => {
-            if (c._id === id)
-                return true;
-            return false;
-        });
-        setSelected(company);
-        deleteModalRef.current.openModal();
-    };
-
+    
     const columns = [
         {
             id: "1",
@@ -102,24 +79,6 @@ const EnterpriseListPage = () => {
     return (
         <Layout>
             <Table columns={columns} rows={rows} actions={actions} />
-            <Modal ref={editModalRef}>
-                <H1>Editar Empresa</H1>
-                <form onSubmit={handleUpdateCompany}>
-                    <input />
-                </form>
-            </Modal>
-            <Modal ref={deleteModalRef}>
-                {
-                    selected ? (
-                        <ConfirmationWrapper>
-                            <H1>Borrando {selected.name}</H1>
-                            <span>Estás seguro que deseas borrar esta empresa?</span>
-                            <ButtonConfirm onClick={() => dispatch(deleteCompany(selected._id))}>Confirmar</ButtonConfirm>
-                            <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
-                        </ConfirmationWrapper>
-                    ) : null
-                }
-            </Modal>
         </Layout>
     )
 }
