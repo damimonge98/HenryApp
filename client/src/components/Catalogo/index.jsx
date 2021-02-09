@@ -14,7 +14,9 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
-    
+  const { user, loading} = useSelector(state => state.auth);
+  const [eliminar, setEliminar] = useState(false)
+
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
@@ -31,8 +33,11 @@ const Catalogo = () => {
 
   useEffect(() => {
     getAllEmpleos();
-  }, []);
+    setEliminar(false)
+  }, [eliminar]);
 
+  if (loading)
+    return <Loading />;
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
@@ -74,11 +79,12 @@ const Catalogo = () => {
 
   const handleDelete = (id) => {
     if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then(
-        getAllEmpleos()
-      )
+      axios.delete(`http://localhost:5000/empleos/${id}`).then()
+      setEliminar(true)
     }
   }
+
+
 
   return (
     <Layout>
@@ -111,8 +117,8 @@ const Catalogo = () => {
         <div className="empleosColumn">
           {
             empleos.map((empleo, index) => {
-              return <OfferCard empleo={empleo} key={index}  />;
-            })}
+              return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
+            }).reverse()}
         </div>
       </div>
     </Layout>
