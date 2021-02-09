@@ -4,7 +4,7 @@ import "./styles.css";
 import axios from "axios";
 import Modal from '../Modal'
 
-const OfferCard = ({ empleo }) => {
+const OfferCard = ({ empleo, admin, foo }) => {
   //en teoria la tarjeta de empleo deberia tener primero logo y nombre de la empresa
   const {
     enterpriseName,
@@ -22,7 +22,13 @@ const OfferCard = ({ empleo }) => {
 
   return (
     <div>
+      
       <div className="cards">
+      <div>{
+        admin
+          ? <button onClick={foo} className="close-btn">x</button>
+          : null
+      }</div>
         <div className="card__front">
           <div>
             <img src={logo} className="logo" />
@@ -48,6 +54,7 @@ const OfferCard = ({ empleo }) => {
         </div>
 
         <div className="card__back">
+        
           <div className="description">
             <p>{description}</p>
           </div>
