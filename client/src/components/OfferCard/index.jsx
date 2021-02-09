@@ -22,12 +22,13 @@ const OfferCard = ({ empleo, admin, foo }) => {
 
   return (
     <div>
+      
+      <div className="cards">
       <div>{
         admin
-          ? <button onClick={foo} >X</button>
+          ? <button onClick={foo} className="close-btn">x</button>
           : null
       }</div>
-      <div className="cards">
         <div className="card__front">
           <div>
             <img src={logo} className="logo" />
@@ -53,6 +54,7 @@ const OfferCard = ({ empleo, admin, foo }) => {
         </div>
 
         <div className="card__back">
+        
           <div className="description">
             <p>{description}</p>
           </div>
