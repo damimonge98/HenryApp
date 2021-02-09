@@ -84,6 +84,8 @@ const Catalogo = () => {
     }
   }
 
+
+
   return (
     <Layout>
       <div>
@@ -116,7 +118,7 @@ const Catalogo = () => {
           {
             empleos.map((empleo, index) => {
               return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
-            })}
+            }).reverse()}
         </div>
       </div>
     </Layout>
