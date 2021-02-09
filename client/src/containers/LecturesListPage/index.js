@@ -119,11 +119,11 @@ const LectureListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateLecture(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteLecture(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 
