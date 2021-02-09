@@ -31,8 +31,8 @@ const routes = () => {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/users" component={UserListPage} />
-        {/*   <Route exact path="/createUser" component={CreateUser} /> */}
-        <Route exact path="/lecture/:lectureid/module/:moduleid" component={OneLecture} />
+      {/*   <Route exact path="/createUser" component={CreateUser} /> */}
+        <Route exact path="/lectures/:lectureid/module/:moduleid" component={OneLecture} />
         <Route exact path="/modulo/:moduloid" component={Lectures} />
         <Route exact path="/lecturesList" component={LectureList} />
         <Route exact path="/modules" component={ModuleList} />

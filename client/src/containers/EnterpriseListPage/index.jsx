@@ -58,12 +58,17 @@ const EnterpriseListPage = () => {
             text: "Verificada",
             name: "verified"
         },
+        {
+            id: "5",
+            text: "Acciones",
+            name: "actions"
+        }
     ]
 
     const actions = [
         {
             handleClick: (id) => handleUpdateCompany(id),
-            icon: <i class="fas fa-user-edit"></i>
+            icon: <i class="fas fa-pencil-alt"></i>
         },
         {
             handleClick: (id) => handleDeleteCompany(id),
