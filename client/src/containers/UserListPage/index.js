@@ -64,8 +64,8 @@ const UserListPage = () => {
           _id: u._id,
           fullName: `${u.firstName} ${u.lastName}`,
           email: u.email,
+          githubUsername: u.githubUsername,
           role: u.role,
-          isAdmin: u.isSuperAdmin
         }))
     );
   }, [search, roleFilter, adminFilter, users]);
