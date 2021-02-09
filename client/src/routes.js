@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import TalkList from "./components/TalkList";
 import CardTalk from "./components/CardTalk";
 import CreateUser from "./components/CreateUser";
+/* import CreateUser from "./components/CreateUser"; */
 import OneLecture from "./components/OneLecture";
 import HomePage from "./containers/HomePage";
 import LoginPage from "./containers/LoginPage";
@@ -22,6 +23,7 @@ import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
 import Profile from "./components/Profile";
+import LectureListPage from "./containers/LecturesListPage";
 
 const routes = () => {
   return (
@@ -34,9 +36,9 @@ const routes = () => {
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/lectures' component={LectureList} />
+        <Route exact path='/lectures' component={LectureListPage} />
         <Route exact path='/modules' component={ModuleList} />
-        <Route exact path='/lectures/:lectureid' component={OneLecture} />
+        <Route exact path="/lecture/:lectureid/module/:moduleid" component={OneLecture} />
         <Route exact path='/modules/:moduloid' component={LecturesPage} />
         <Route exact path='/talk' component={CreateTalk} />
         <Route exact path='/talks' component={TalkList} />
