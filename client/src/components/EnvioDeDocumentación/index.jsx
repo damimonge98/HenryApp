@@ -29,7 +29,7 @@ export default function Documentacion({ user }) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [uploadValue, setUploadValue] = useState(0);
-    const [estadoLogo, setEstadoLogo] = useState('');
+    const [estadoLogo, setEstadoLogo] = useState(null);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -40,13 +40,13 @@ export default function Documentacion({ user }) {
         axios.post("http://localhost:5000/sendMail", {
             subject: `Envio de documentacion de ${user.firstName} ${user.lastName}`,
             text: textArea,
-            attachments: [{
-                path: estadoLogo
-            }]
+            path: estadoLogo
         })
             .then(setSendEmail(true))
         setTextArea("");
-        /*       setAdj(null) */
+        setUploadValue(0);
+        document.getElementById('attach').value = ""
+
     });
 
     function handleUpload(e) {
@@ -86,7 +86,7 @@ export default function Documentacion({ user }) {
                             <br /><br />
                             <div>
                                 <progress value={uploadValue} max='100' ></progress>
-                                <input className='formButton' type="file" name="adjunto" /* enctype="multipart/form-data" */ onChange={(e) => handleUpload(e)}></input>
+                                <input className='formButton' id='attach' type="file" name="adjunto" enctype="multipart/form-data" onChange={(e) => handleUpload(e)} required></input>
                             </div>
                             <br />
                             <div>
