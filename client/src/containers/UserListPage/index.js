@@ -116,13 +116,13 @@ const UserListPage = () => {
     },
     {
       id: "3",
-      text: "Rol",
-      name: "role"
+      text: "Github",
+      name: "githubUsername"
     },
     {
       id: "4",
-      text: "Admin",
-      name: "isAdmin"
+      text: "Rol",
+      name: "role"
     },
     {
       id: "5",
@@ -134,11 +134,11 @@ const UserListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateUser(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteUser(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 
@@ -153,7 +153,7 @@ const UserListPage = () => {
           value: ""
         },
         {
-          name: "Guess",
+          name: "Guest",
           value: "guest"
         },
         {
