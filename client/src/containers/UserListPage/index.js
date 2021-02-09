@@ -124,11 +124,11 @@ const UserListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateUser(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteUser(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 
@@ -143,7 +143,7 @@ const UserListPage = () => {
           value: ""
         },
         {
-          name: "Guess",
+          name: "Guest",
           value: "guest"
         },
         {
