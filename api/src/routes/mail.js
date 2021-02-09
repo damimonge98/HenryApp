@@ -1,4 +1,4 @@
-/* const express = require("express");
+const express = require("express");
 const nodemailer = require("nodemailer");
 const server = express.Router();
 
@@ -67,7 +67,7 @@ server.post('/', (req, res) => {
 });
 
 
-module.exports = { mailRoutes: server, sendEmail }; */
+module.exports = { mailRoutes: server, sendEmail };
 
 
 
@@ -77,7 +77,7 @@ module.exports = { mailRoutes: server, sendEmail }; */
 
 
 
- const express = require("express");
+/*  const express = require("express");
 const nodemailer = require("nodemailer");
 const server = express.Router();
 
@@ -132,7 +132,7 @@ server.post('/', (req, res) => {
     subject: subject || `Verificacion de cuenta`,
     text: text || `mostrar mensaje aqui`,
     attachments: [{
-    /*   fileName: adjunto, */
+      fileName: adjunto,
       path: attachments
     }]
   };
@@ -149,4 +149,4 @@ server.post('/', (req, res) => {
 });
 
 
-module.exports = { mailRoutes: server, sendEmail }; 
+module.exports = { mailRoutes: server, sendEmail };  */
