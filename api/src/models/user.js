@@ -55,7 +55,8 @@ const userSchema = new mongoose.Schema({
   },
 
   githubUsername: {
-    type: String
+    type: String,
+    default: ""
   },
 
   debt: {

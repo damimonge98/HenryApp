@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import CardTalk from '../CardTalk'
+import axios from 'axios'
 
 const TalkList = () => {
   const [allTalks, setAllTalks] = useState([{
@@ -10,18 +12,36 @@ const TalkList = () => {
     url: ""
   }]);
 
+
+
+  const getTalks = () => {
+    axios.get("http://localhost:5000/talk")
+      .then(res => {
+        setAllTalks(res.data);
+        console.log(res.data)
+      });
+  };
+
+  useEffect(() => {
+    getTalks();
+  }, []);
+
+
   const [modalState, setModalState] = useState(false);
   const dispatch = useDispatch();
 
   return (
     <div>
-      <Link to='/talk'>
+
+
+      <Link to='/createTalk'>
         <button type="button"><i className="fas fa-plus-circle me-2" />Crear talk</button>
       </Link>
       <Link to='/'>
         <button type="button"><i className="fas fa-home" />Inicio</button>
       </Link>
       <br />
+
       <h2><i className="fas fa-users" />Henry Talks</h2>
       <table >
         <thead >
@@ -32,6 +52,13 @@ const TalkList = () => {
           </tr>
         </thead>
       </table>
+      {allTalks.map((e, i) => {
+        return (
+          <div key={(i)}>
+            <CardTalk talk={e} />
+          </div>
+        )
+      })}
     </div>
   );
 };
