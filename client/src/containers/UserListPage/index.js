@@ -54,8 +54,8 @@ const UserListPage = () => {
           _id: u._id,
           fullName: `${u.firstName} ${u.lastName}`,
           email: u.email,
+          githubUsername: u.githubUsername,
           role: u.role,
-          isAdmin: u.isSuperAdmin
         }))
     );
   }, [roleFilter, adminFilter, users]);
@@ -106,13 +106,13 @@ const UserListPage = () => {
     },
     {
       id: "3",
-      text: "Rol",
-      name: "role"
+      text: "Github",
+      name: "githubUsername"
     },
     {
       id: "4",
-      text: "Admin",
-      name: "isAdmin"
+      text: "Rol",
+      name: "role"
     },
     {
       id: "5",
