@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import firebase from 'firebase';
 
-//-----falta el input para subir logo de la empresa
 
 const CrearEmpleo = () => {
   const [empleo, setEmpleo] = useState({
@@ -17,10 +16,11 @@ const CrearEmpleo = () => {
       [e.target.name]: e.target.value,
     });
   }
-  const handleSubmit = () => {
+
+  const handleSubmit = (/* id */) => {  //Este ID corresponde al de la empresa que esta logeada.
     const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post("http://localhost:5000/empleos/6021f651876a2c1ccc27e999", { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
+      .post("http://localhost:5000/empleos/:id", { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 
@@ -32,35 +32,17 @@ const CrearEmpleo = () => {
     task.on('state_changed', snapshot => {
       let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       setUploadValue(percentage)
-    }, err => {
-      console.log(err);
-    }, async () => {
+    }, err => { console.log(err) }, async () => {
       const urlLogo = await storageRef.getDownloadURL()
-      console.log(urlLogo)
-      setEmpleo({
-        ...empleo,
-        logo: urlLogo
-      })
+      setEmpleo({ ...empleo, logo: urlLogo })
     })
   }
 
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <progress value={uploadValue} max='100' ></progress>
-          <input onChange={(e) => { handleUpload(e); }} name="img"
-            type="file"
-            required
-          />
-        </div>
-        {/* <div>
-        <label>Select a file:</label>
-         <input onChange={(e) => {
-                handleChange(e);
-              }} type="file" name="logo" value={empleo.logo}  />
-        </div> */}
+      <form onSubmit={handleSubmit(/* id */)}>
+
         <div>
           <label>Titulo</label>
           <div>
@@ -181,10 +163,18 @@ const CrearEmpleo = () => {
               required
             />
           </div>
+        </div><br />
+        <div>Logo Empresa
+          <br />
+          <progress value={uploadValue} max='100' ></progress>
+          <input onChange={(e) => { handleUpload(e); }} name="img"
+            type="file"
+            required
+          />
         </div>
         <br />
         <div>
-          <button type="submit" onSubmit={handleSubmit} className="btn">
+          <button type="submit" className="btn">
             Crear Empleo
           </button>
         </div>
