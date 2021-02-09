@@ -9,7 +9,7 @@ GET http://localhost:5000/enterprise/60219fb7aa7ad646e4a3ab95
 
 ###
 
-# Create one company
+# Register company
 
 POST http://localhost:5000/enterprise/
 Content-Type: application/json
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ###
 
-# Update one company
+# Update company
 
 PATCH http://localhost:5000/enterprise/6021adef53d2aa0870e20227
 Content-Type: application/json
@@ -32,8 +32,8 @@ Content-Type: application/json
 
 ###
 
-# Delete one company
+# Delete company
 
-DELETE http://localhost:5000/enterprise/6021adef53d2aa0870e20227
+DELETE http://localhost:5000/enterprise/60221839b0db490f30ab0238
 
 ###

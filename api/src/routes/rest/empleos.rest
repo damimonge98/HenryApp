@@ -1,4 +1,3 @@
-
 # Get all job offers
 GET http://localhost:5000/empleos
 
@@ -9,7 +8,7 @@ GET http://localhost:5000/empleos/6021a06fd476b22a30571ee7
 
 ###
 
-# Create one job offer (company id)
+# Create job offer (company id)
 
 POST http://localhost:5000/empleos/60219fb7aa7ad646e4a3ab95
 Content-Type: application/json
@@ -23,7 +22,7 @@ Content-Type: application/json
 
 ###
 
-# Update one job offer
+# Update job offer
 
 PATCH http://localhost:5000/empleos/6021a09ed476b22a30571ee9
 Content-Type: application/json
@@ -34,7 +33,7 @@ Content-Type: application/json
 
 ###
 
-# Delete one job offer
+# Delete job offer
 
 DELETE http://localhost:5000/empleos/6021a06fd476b22a30571ee7
 

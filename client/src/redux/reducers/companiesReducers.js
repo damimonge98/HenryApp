@@ -4,7 +4,7 @@ import {
   REQUEST_FAILED_ACTION_COMPANIES,
   GET_ALL_COMPANIES,
   GET_COMPANY,
-  CREATE_COMPANY,
+  REGISTER_COMPANY,
   UPDATE_COMPANY,
   DELETE_COMPANY
 } from '../constants/companiesConstants';
@@ -51,7 +51,7 @@ const companiesReducers = (state = initialState, action) => {
         company: action.company
       };
 
-    case CREATE_COMPANY:
+    case REGISTER_COMPANY:
       return {
         ...state,
         companies: [...state.companies, action.company]
