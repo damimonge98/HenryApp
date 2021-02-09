@@ -14,7 +14,7 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
-  const { user, loading} = useSelector(state => state.auth);
+  const { user, loading } = useSelector(state => state.auth);
   const [eliminar, setEliminar] = useState(false)
 
   const [empleos, setEmpleo] = useState([
@@ -90,13 +90,15 @@ const Catalogo = () => {
     <Layout>
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
-        <h5 className="h5">
-          ¿Eres empresa?{" "}
-          <button type="button" className="btn" data-open="modal1">
-            Publica tu oferta
+        <div>{
+          user.isSuperAdmin ?
+            <h5 className="h5">
+              <button type="button" className="btn" data-open="modal1">
+                Publica tu oferta
           </button>
-
-        </h5>
+            </h5>
+            : null
+        }</div>
         {/* {-Modal crear oferta-} */}
         <div className="modal" id="modal1">
           <div className="modal-dialog">
