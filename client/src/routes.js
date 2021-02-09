@@ -15,6 +15,7 @@ import CreateTalk from "./components/CreateTalk";
 import UserListPage from "./containers/UserListPage";
 import Booms from "./components/Booms/Booms.jsx";
 import Catalogo from "./components/Catalogo";
+import LecturesPage from './containers/LecturesPage';
 import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
@@ -31,7 +32,7 @@ const routes = () => {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/users" component={UserListPage} />
       {/*   <Route exact path="/createUser" component={CreateUser} /> */}
-        <Route exact path="/lecture/:lectureid/module/:moduleid" component={OneLecture} />
+        <Route exact path="/lectures/:lectureid/module/:moduleid" component={OneLecture} />
         <Route exact path="/modulo/:moduloid" component={Lectures} />
         <Route exact path="/lecturesList" component={LectureList} />
         <Route exact path="/modules" component={ModuleList} />

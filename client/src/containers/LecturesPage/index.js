@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import './estilos.css';
 import LectureCard from "../../components/LectureCard";
-import Header from "../../components/Header/index";
+import { LecturePageWrapper, Grid } from "./styles";
+import Layout from "../Layout";
+import FilterBar from "../../components/FilterBar";
 
-
-const Lectures = (props) => {
+const LecturesPage = (props) => {
   const [lectures, setLectures] = useState([{
     _id: "",
     description: "",
@@ -29,6 +29,7 @@ const Lectures = (props) => {
   }, []);
 
   const getLectures = () => {
+    console.log(props);
     axios.get(`http://localhost:5000/modules/${props.match.params.moduloid}`)
       .then(res => {
         setModule(res.data);
@@ -38,25 +39,20 @@ const Lectures = (props) => {
   const getOneModule = () => {
     axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`).then(
       res => {
+        console.log(res);
         setLectures(res.data);
       });
   };
 
   return (
-    <div>
-      <Header />
-      <h2>{module.title}</h2>
-      <br />
-      <div className="lecture-grid">
-        {lectures.map((lecture, index) => {
-          return (
-            <div key={index}>
-              <LectureCard lecture={lecture} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <Layout>
+      <FilterBar filters={[]} />
+      <LecturePageWrapper>
+        <Grid>
+          {lectures.map(l => <LectureCard key={l._id} lecture={l} />)}
+        </Grid>
+      </LecturePageWrapper>
+    </Layout>
   );
 };
-export default Lectures;
+export default LecturesPage;
