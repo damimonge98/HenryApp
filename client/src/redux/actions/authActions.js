@@ -45,7 +45,7 @@ export const registerUser = (registerData) => {
     } catch (error) {
       dispatch(requestFailedActionAuth(error = {
         code: 409,
-        errorMessage: 'Email address already in use'
+        errorMessage: 'Dirección de email no disponible.'
       }));
     }
   };
@@ -63,7 +63,7 @@ export const loginUser = ({ email, password }) => {
     } catch (error) {
       dispatch(requestFailedActionAuth(error = {
         code: 401,
-        errorMessage: 'Incorrect username or password'
+        errorMessage: 'Email o contraseña incorrectos.'
       }));
     }
   };

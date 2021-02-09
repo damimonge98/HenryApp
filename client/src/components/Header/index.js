@@ -57,15 +57,19 @@ const Header = () => {
                 <Link to="/profile">Perfil</Link>
               </MenuItem>
               {user.isSuperAdmin === true || user.role === 'instructor'
-              ?
-                <div> <MenuItem>
-                  <Link to="/users">Usuarios</Link>
-                </MenuItem>
+                ?
+                <div>
+                  <MenuItem>
+                    <Link to="/users">Usuarios</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to="/enterprise">Empresas</Link>
+                  </MenuItem>
                   <MenuItem>
                     <Link to="/modules">Módulos</Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link to="/lecturesList">Clases</Link>
+                    <Link to="/lectures">Clases</Link>
                   </MenuItem>
                   <MenuItem>
                     <Link to="/talks">Henry Talks</Link>

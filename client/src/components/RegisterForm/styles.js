@@ -3,7 +3,7 @@ import { ReactComponent as User } from "../../assets/icons/user.svg";
 
 export const RegisterFormWrapper = styled.form`
   height: 100%;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,14 +39,17 @@ export const RegisterButton = styled.button`
   backdrop-filter: blur(250px);
   border: none;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   cursor: pointer;
 `;
 
 export const SpanLink = styled.span`
+  display: flex;
+  justify-content: center;
   font-weight: 500;
   font-size: 14px;
   color: #323232;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const UserLogo = styled(User)`

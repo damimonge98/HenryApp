@@ -30,7 +30,6 @@ const LecturesPage = (props) => {
   }, []);
 
   const getLectures = () => {
-    console.log(props);
     axios.get(`http://localhost:5000/modules/${props.match.params.moduloid}`)
       .then(res => {
         setModule(res.data);
@@ -40,7 +39,6 @@ const LecturesPage = (props) => {
   const getOneModule = () => {
     axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`).then(
       res => {
-        console.log(res);
         setLectures(res.data);
       });
   };

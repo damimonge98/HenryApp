@@ -110,11 +110,11 @@ const HenryTalksCRUD = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateTalk(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteTalk(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 

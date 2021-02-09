@@ -3,8 +3,6 @@ import axios from "axios";
 import { Remarkable } from 'remarkable';
 import "./readme.css";
 import Loading from "../Loading";
-require("dotenv").config();
-
 
 
 export default function Readme(props) {
@@ -16,14 +14,12 @@ export default function Readme(props) {
   ReadmeUrl = ReadmeUrl.replace("/tree/master", "/contents");
   ReadmeUrl = ReadmeUrl + "/README.md?ref=master";
 
-  console.log(ReadmeUrl);
 
 
   const getRepoReadme = () => {
     axios.post("http://localhost:5000/readme/", { ReadmeUrl })
       .then(
         res => {
-          console.log(res);
           if (!res.data.content) {
             return;
           }
@@ -36,13 +32,8 @@ export default function Readme(props) {
     getRepoReadme();
   }, [ReadmeUrl]);
 
-  if (!readme)
-    return <Loading />;
-  console.log("readme", readme);
-
   var codeReadme = atob(readme);
-  console.log(String(codeReadme));
-  codeReadme = codeReadme.replace("Ã©", "e");
+  codeReadme = codeReadme.replaceAll("Ã©", "e");
   codeReadme = codeReadme.replaceAll("Ã³", "o");
   codeReadme = codeReadme.replaceAll("Ã", "á");
   codeReadme = codeReadme.replaceAll("á¡", "á");
@@ -58,13 +49,20 @@ export default function Readme(props) {
   return (
 
     <div className="readme">
-      {!readme ? <div class="spinner-border text-light" role="status"></div>
+      { !readme ?
+        <Fragment>
+
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </Fragment>
+
         :
         <Fragment>
-          <div className="readme">
-            <h1 className="h1">Readme</h1>
-            <div dangerouslySetInnerHTML={{ __html: newReadme }} />
-          </div>
+          <h1 className="h1">Readme</h1>
+          <div dangerouslySetInnerHTML={{ __html: newReadme }} />
         </Fragment>
       }
 
@@ -75,4 +73,3 @@ export default function Readme(props) {
 
 
 }
-

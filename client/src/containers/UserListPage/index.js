@@ -54,7 +54,7 @@ const UserListPage = () => {
         .filter(u => {
           if (search.length > 0) {
             return u.firstName.toLowerCase().includes(search.toLowerCase())
-              || u.lastName.toLowerCase().includes(search.toLowerCase()) ?
+              || u.lastName && u.lastName.toLowerCase().includes(search.toLowerCase()) ?
               true
               : false;
           };

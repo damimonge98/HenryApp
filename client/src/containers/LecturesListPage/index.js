@@ -63,7 +63,7 @@ const LectureListPage = () => {
           description: l.description
         }))
     );
-  }, [lecture.lectures]);
+  }, [lecture.lectures, search]);
 
   const handleUpdateLecture = (id) => {
     const [selectedLecture] = lecture.lectures.filter(l => {
