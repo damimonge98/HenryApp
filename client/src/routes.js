@@ -23,7 +23,8 @@ import LectureList from "./containers/LectureList";
 import error from "./components/error/error";
 import Payment from "./containers/Payment";
 import Profile from "./components/Profile";
-import LectureListPage from "./containers/LecturesListPage";
+import LecturesListPage from "./containers/LecturesListPage";
+import ModulesListPage from "./containers/ModulesListPage";
 
 const routes = () => {
   return (
@@ -35,9 +36,9 @@ const routes = () => {
         <Route path='/register' exact component={RegisterPage} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/users' component={UserListPage} />
-        <Route exact path='/createUser' component={CreateUser} />
-        <Route exact path='/lectures' component={LectureListPage} />
-        <Route exact path='/modules' component={ModuleList} />
+        {/* <Route exact path='/createUser' component={CreateUser} /> */}
+        <Route exact path='/lectures' component={LecturesListPage} />
+        <Route exact path='/modules' component={ModulesListPage} />
         <Route exact path="/lecture/:lectureid/module/:moduleid" component={OneLecture} />
         <Route exact path='/modules/:moduloid' component={LecturesPage} />
         <Route exact path='/talk' component={CreateTalk} />

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllLectures, deleteLecture } from '../../redux/actions/lecturesActions';
+import { getAllModules, deleteModule } from '../../redux/actions/modulesActions';
 
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
-import UpdateLectureForm from '../../components/UpdateLectureForm';
+import UpdateModuleForm from '../../components/UpdateModuleForm';
 import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
-const LectureListPage = () => {
+const ModuleListPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const lecture = useSelector(state => state.lecture);
+  const module = useSelector(state => state.module);
   const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   // const [adminFilter, setAdminFilter] = useState({
@@ -30,12 +30,12 @@ const LectureListPage = () => {
   const deleteModalRef = useRef();
 
   useEffect(() => {
-    dispatch(getAllLectures());
+    dispatch(getAllModules());
   }, []);
 
   useEffect(() => {
     setRows(
-      lecture.lectures
+      module.modules
         // .filter(u => {
         //   if (!roleFilter.value) {
         //     return true;
@@ -48,35 +48,35 @@ const LectureListPage = () => {
         //   }
         //   return u.isSuperAdmin === adminFilter.value;
         // })
-        .map(l => ({
-          _id: l._id,
-          title: l.title,
-          description: l.description
+        .map(m => ({
+          _id: m._id,
+          title: m.title,
+          description: m.description
         }))
     );
-  }, [lecture.lectures]);
+  }, [module.modules]);
 
-  const handleUpdateLecture = (id) => {
-    const [selectedLecture] = lecture.lectures.filter(l => {
-      if (l._id === id)
+  const handleUpdateModule = (id) => {
+    const [selectedModule] = module.modules.filter(m => {
+      if (m._id === id)
         return true;
       return false;
     });
-    setSelected(selectedLecture);
+    setSelected(selectedModule);
     editModalRef.current.openModal();
   };
 
-  const handleDeleteLecture = (id) => {
-    const [selectedLecture] = lecture.lectures.filter(l => {
-      if (l._id === id)
+  const handleDeleteModule = (id) => {
+    const [selectedModule] = module.modules.filter(m => {
+      if (m._id === id)
         return true;
       return false;
     });
-    setSelected(selectedLecture);
+    setSelected(selectedModule);
     deleteModalRef.current.openModal();
   };
 
-  if (auth.loading || lecture.loading)
+  if (auth.loading || module.loading)
     return <Loading />;
 
   if (!auth.isAuth) {
@@ -109,11 +109,11 @@ const LectureListPage = () => {
 
   const actions = [
     {
-      handleClick: (id) => handleUpdateLecture(id),
+      handleClick: (id) => handleUpdateModule(id),
       icon: "E"
     },
     {
-      handleClick: (id) => handleDeleteLecture(id),
+      handleClick: (id) => handleDeleteModule(id),
       icon: "D"
     }
   ];
@@ -171,16 +171,16 @@ const LectureListPage = () => {
       </ButtonsRow> */}
       <Table columns={columns} rows={rows} actions={actions} style={{ "grid-template-columns": "1fr 1fr 1fr" }} />
       <Modal ref={editModalRef}>
-        <H1>Editar Lecture</H1>
-        <UpdateLectureForm modalRef={editModalRef} lectureData={selected} />
+        <H1>Editar Module</H1>
+        <UpdateModuleForm modalRef={editModalRef} moduleData={selected} />
       </Modal>
       <Modal ref={deleteModalRef}>
         {
           selected ? (
             <ConfirmationWrapper>
-              <H1>Borrando {selected.title} lecture</H1>
-              <span>Estás seguro que deseas borrar esta lecture?</span>
-              <ButtonConfirm onClick={() => dispatch(deleteLecture(selected._id))}>Confirmar</ButtonConfirm>
+              <H1>Borrando {selected.title} module</H1>
+              <span>Estás seguro que deseas borrar este modulo?</span>
+              <ButtonConfirm onClick={() => dispatch(deleteModule(selected._id))}>Confirmar</ButtonConfirm>
               <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
             </ConfirmationWrapper>
           ) : null
@@ -194,4 +194,4 @@ const LectureListPage = () => {
   );
 };
 
-export default LectureListPage;
+export default ModuleListPage;

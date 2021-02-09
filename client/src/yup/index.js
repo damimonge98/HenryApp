@@ -106,3 +106,10 @@ export const updateLectureSchema = yup.object().shape({
   urlLecture: yup.string().url()
     .max(200),
 });
+
+export const updateModuleSchema = yup.object().shape({
+  title: yup.string()
+    .max(100),
+  description: yup.string()
+    .max(500),
+});
