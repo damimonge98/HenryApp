@@ -1,43 +1,70 @@
+/* Contenedores */
 .parent {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 0.5fr repeat(4, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;  
+  display: flexbox;
+}
+.container {
+  display: flex;
+  background-color: black;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.div1 {
-  grid-area: 1 / 1 / 2 / 6;
-  background-color: white;
-  color: black;
-  margin-top: 10px;
+.div1{
+  position:relative;
 }
-.div2 {
-  grid-area: 2 / 1 / 4 / 3;
-  background-color: black;
-}
-.div3 {
-  grid-area: 2 / 3 / 4 / 6;
-  background-color: black;
+
+.div2, .div3 {
+  display: block;
+  text-align:center;
   color: white;
-}
-.div4 {
-  grid-area: 4 / 1 / 6 / 5;
-  background-color: #f3f3fc;
+  justify-content: center;
+  background-color: transparent;
+  align-items:center;
+  margin-top: -auto;
 }
 
-.devImg {
-  margin: 20px;
-  border-radius: 5px;
-  width: 500px; 
-  height: 500px;  
-  box-shadow: 2px 2px 5px #999;
-  }
+@media (min-width: 1200px){
+  /*media queries*/
 
-.divContainer3 {
-  margin-top: 10px;
-  padding: 10%;
+.div2, .div3 {
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 50%;
 }
-.cost{
-  width: 100%;
+
 }
+
+
+/* Texto */
+
+h1 {
+  padding: 10px;
+}
+.parrafo {
+  padding: 20px;
+}
+
+/* Botones */
+
+.btnhome {
+  font-size: 25px;
+  color: black;
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: auto;
+  width: auto;
+  display: inline-block;
+  padding: 10px;
+  margin: 5%;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btnhome:hover {
+  color: yellow;
+  background-color: black;
+  border: 2px solid yellow;
+}
+
+
