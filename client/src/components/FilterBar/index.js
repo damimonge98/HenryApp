@@ -1,7 +1,8 @@
 import React from 'react';
 import DropDown from '../DropDown';
+import SearchInput from '../SearchInput';
 import { ReactComponent as FilterIcon } from "../../assets/icons/filter.svg";
-import { FilterBarWrapper, FilterIconWrapper } from './styles';
+import { FilterBarWrapper, FilterIconWrapper, SearchInputWrapper } from './styles';
 
 const FilterBar = ({ filters }) => {
   return (
@@ -20,6 +21,9 @@ const FilterBar = ({ filters }) => {
           />
         ))
       }
+      <SearchInputWrapper>
+        <SearchInput />
+      </SearchInputWrapper>
     </FilterBarWrapper>
   );
 };
