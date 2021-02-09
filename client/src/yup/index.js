@@ -98,6 +98,19 @@ export const updateTalkSchema = yup.object().shape({
     .max(200)
 });
 
+export const updateCompanySchema = yup.object().shape({
+  name: yup.string()
+    .max(100)
+    .required(),
+  email: yup.string()
+    .min(5)
+    .max(76)
+    .email()
+    .required(),
+  verified: yup.boolean()
+    .required(),
+});
+
 export const companyRegisterSchema = yup.object().shape({
   name: yup.string()
     .min(2)

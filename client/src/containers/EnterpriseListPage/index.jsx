@@ -7,17 +7,21 @@ import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Modal from '../../components/Modal';
-import UpdateUserForm from '../../components/UpdateUserForm';
+import UpdateCompanyForm from '../../components/UpdateCompanyForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
-/* import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles'; */
+import { ButtonCancel, ButtonConfirm, ConfirmationWrapper, H1 } from '../UserListPage/styles';
+import FilterBar from '../../components/FilterBar';
+
 
 const EnterpriseListPage = () => {
+    const { user, isAuth, loading } = useSelector(state => state.auth);
     const { companies, loadingCompanies } = useSelector(state => state.companies);
-    const auth = useSelector(state => state.auth);
     const [selected, setSelected] = useState(null);
     const [rows, setRows] = useState([]);
     const dispatch = useDispatch();
     const history = useHistory();
+    const editModalRef = useRef();
+    const deleteModalRef = useRef();
 
     useEffect(() => {
         dispatch(getAllCompanies());
@@ -36,7 +40,39 @@ const EnterpriseListPage = () => {
         );
     }, [companies]);
 
-    
+    const handleDeleteCompany = (id) => {
+        const [company] = companies.filter(c => {
+            if (c._id === id)
+                return true;
+            return false;
+        });
+        setSelected(company);
+        deleteModalRef.current.openModal();
+    };
+
+    const handleUpdateCompany = (id) => {
+        const [company] = companies.filter(c => {
+            if (c._id === id)
+                return true;
+            return false;
+        });
+        setSelected(company);
+        editModalRef.current.openModal();
+    };
+
+    if (loading || loadingCompanies)
+        return <Loading />;
+
+    /*   if (!isAuth) {
+          history.push('/login');
+          return null;
+      }
+  
+      if (!user.isSuperAdmin) {
+          history.push('/');
+          return null;
+      } */
+
     const columns = [
         {
             id: "1",
@@ -78,7 +114,25 @@ const EnterpriseListPage = () => {
 
     return (
         <Layout>
+            <FilterBar filters={[]}/>
             <Table columns={columns} rows={rows} actions={actions} />
+            <Modal ref={editModalRef}>
+                <H1>Editar Empresa</H1>
+                <UpdateCompanyForm modalRef={editModalRef} companyData={selected} />
+            </Modal>
+            <Modal ref={deleteModalRef}>
+                {
+                    selected ? (
+                        <ConfirmationWrapper>
+                            <H1>Borrando {selected.name}</H1>
+                            <span>Estás seguro que deseas borrar esta empresa?</span>
+                            <ButtonConfirm onClick={() => dispatch(deleteCompany(selected._id))}>Confirmar</ButtonConfirm>
+                            <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
+                        </ConfirmationWrapper>
+                    ) : null
+                }
+            </Modal>
+
         </Layout>
     )
 }
