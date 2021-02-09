@@ -19,6 +19,7 @@ import LecturesListPage from './containers/LecturesListPage';
 import ModulesListPage from './containers/ModulesListPage';
 import EnterpriseListPage from './containers/EnterpriseListPage';
 import LecturesPage from './containers/LecturesPage';
+import TalkList from "./components/TalkList"
 
 const routes = () => {
   return (
@@ -42,6 +43,7 @@ const routes = () => {
         <Route exact path='/payments' component={Payment} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
+        <Route exact path="/talklist" component={TalkList} />
       </Switch>
     </BrowserRouter>
   );

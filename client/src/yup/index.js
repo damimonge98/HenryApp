@@ -36,7 +36,8 @@ export const registerSchema = yup.object().shape({
 
 export const profileSchema = yup.object().shape({
   firstName: yup.string().min(2).max(76),
-  lastName: yup.string().min(2).max(76)
+  lastName: yup.string().min(2).max(76),
+  githubUsername: yup.string().min(5).max(76),
 });
 
 export const passwordSchema = yup.object().shape({
