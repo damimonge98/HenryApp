@@ -2,14 +2,14 @@ import * as yup from "yup";
 
 yup.setLocale({
   mixed: {
-    default: "Not valid",
-    required: "Input required.",
+    default: "No es válido.",
+    required: "Campo requerido.",
   },
   string: {
-    email: "You must enter a valid email address.",
-    min: "Must have a minimum of ${min} characters.",
-    max: "Must have a maximum of ${max} characters.",
-  },
+    email: "Debes ingresar un correo de email válido.",
+    min: "Debe tener un mínimo de ${min} caracteres.",
+    max: "Debe tener un máximo de ${max} caracteres.",
+  }
 });
 
 export const registerSchema = yup.object().shape({
@@ -22,7 +22,7 @@ export const registerSchema = yup.object().shape({
     .max(40)
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/, {
       message:
-        "Password needs at least one number, one lowercase letter and one uppercase letter.",
+        "La contraseña necesita, por lo menos, un número, una letra mayúscula, y una letra minúscula.",
     })
     .required(),
   repassword: yup
@@ -31,12 +31,14 @@ export const registerSchema = yup.object().shape({
     .max(40)
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/)
     .required()
-    .oneOf([yup.ref("password"), null], "Passwords must match."),
+    .oneOf([yup.ref("password"), null], "Las contraseñas deben ser iguales.")
 });
+
 export const profileSchema = yup.object().shape({
   firstName: yup.string().min(2).max(76),
-  lastName: yup.string().min(2).max(76),
+  lastName: yup.string().min(2).max(76)
 });
+
 export const passwordSchema = yup.object().shape({
   oldpassword: yup
     .string()
@@ -44,7 +46,7 @@ export const passwordSchema = yup.object().shape({
     .max(40)
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/, {
       message:
-        "Password needs at least one number, one lowercase letter and one uppercase letter.",
+        "La contraseña necesita, por lo menos, un número, una letra mayúscula, y una letra minúscula.",
     })
     .required(),
   password: yup
@@ -53,7 +55,7 @@ export const passwordSchema = yup.object().shape({
     .max(40)
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/, {
       message:
-        "Password needs at least one number, one lowercase letter and one uppercase letter.",
+        "La contraseña necesita, por lo menos, un número, una letra mayúscula, y una letra minúscula.",
     })
     .required(),
   repassword: yup
@@ -62,12 +64,12 @@ export const passwordSchema = yup.object().shape({
     .max(40)
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/)
     .required()
-    .oneOf([yup.ref("password"), null], "Passwords must match."),
+    .oneOf([yup.ref("password"), null], "Las contraseñas deben ser iguales.")
 });
 
 export const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().required(),
+  password: yup.string().required()
 });
 
 export const updateUserSchema = yup.object().shape({
@@ -93,5 +95,36 @@ export const updateTalkSchema = yup.object().shape({
   imagen: yup.string().url()
     .max(200),
   url: yup.string().url()
-    .max(200),
+    .max(200)
+});
+
+export const companyRegisterSchema = yup.object().shape({
+  name: yup.string()
+    .min(2)
+    .max(76)
+    .required(),
+  email: yup.string()
+    .min(5)
+    .max(76)
+    .email()
+    .required(),
+  password: yup
+    .string()
+    .min(8)
+    .max(40)
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/, {
+      message:
+        "La contraseña necesita, por lo menos, un número, una letra mayúscula, y una letra minúscula.",
+    })
+    .required(),
+  repassword: yup
+    .string()
+    .min(8)
+    .max(40)
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/)
+    .required()
+    .oneOf([yup.ref("password"), null], "Las contraseñas deben ser iguales."),
+  logo: yup.string()
+    .url("Debes ingresar un link al logo de la empresa.")
+    .max(200)
 });

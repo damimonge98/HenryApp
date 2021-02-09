@@ -5,7 +5,7 @@ import {
   REQUEST_FAILED_ACTION_COMPANIES,
   GET_ALL_COMPANIES,
   GET_COMPANY,
-  CREATE_COMPANY,
+  REGISTER_COMPANY,
   UPDATE_COMPANY,
   DELETE_COMPANY
 } from '../constants/companiesConstants';
@@ -34,8 +34,8 @@ const getCompanyAction = (company) => ({
   company
 });
 
-const createCompanyAction = (company) => ({
-  type: CREATE_COMPANY,
+const registerCompanyAction = (company) => ({
+  type: REGISTER_COMPANY,
   company
 });
 
@@ -78,12 +78,12 @@ export const getCompany = (id) => {
   };
 };
 
-export const createCompany = (companyData) => {
+export const registerCompany = (companyData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionCompanies());
       const res = await axios.post('http://localhost:5000/enterprise', { ...companyData });
-      dispatch(createCompanyAction(res.data));
+      dispatch(registerCompanyAction(res.data));
       dispatch(requestSuccessActionCompanies());
 
     } catch (error) {
