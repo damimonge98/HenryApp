@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTalks } from '../../redux/actions/talkActions';
 
-const CardTalk = () => {
+const CardTalk = ({ talk }) => {
 
-  const { title, description, imagen, url } = useSelector(state => state.talk);
-  const dispatch = useDispatch();
+  const { title, description, imagen, url } = talk;
 
-  useEffect(() => {
-    dispatch(getAllTalks());
-  }, []);
 
   return (
     <Link to={url}>

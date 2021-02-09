@@ -14,7 +14,9 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
-    
+  const { user, loading } = useSelector(state => state.auth);
+  const [eliminar, setEliminar] = useState(false)
+
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
@@ -31,8 +33,11 @@ const Catalogo = () => {
 
   useEffect(() => {
     getAllEmpleos();
-  }, []);
+    setEliminar(false)
+  }, [eliminar]);
 
+  if (loading)
+    return <Loading />;
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
@@ -74,23 +79,26 @@ const Catalogo = () => {
 
   const handleDelete = (id) => {
     if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then(
-        getAllEmpleos()
-      )
+      axios.delete(`http://localhost:5000/empleos/${id}`).then()
+      setEliminar(true)
     }
   }
+
+
 
   return (
     <Layout>
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
-        <h5 className="h5">
-          ¿Eres empresa?{" "}
-          <button type="button" className="btn" data-open="modal1">
-            Publica tu oferta
+        <div>{
+          user.isSuperAdmin ?
+            <h5 className="h5">
+              <button type="button" className="btn" data-open="modal1">
+                Publica tu oferta
           </button>
-
-        </h5>
+            </h5>
+            : null
+        }</div>
         {/* {-Modal crear oferta-} */}
         <div className="modal" id="modal1">
           <div className="modal-dialog">
@@ -111,8 +119,8 @@ const Catalogo = () => {
         <div className="empleosColumn">
           {
             empleos.map((empleo, index) => {
-              return <OfferCard empleo={empleo} key={index}  />;
-            })}
+              return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
+            }).reverse()}
         </div>
       </div>
     </Layout>

@@ -91,7 +91,7 @@ const CompanyRegisterForm = () => {
         onChange={() => trigger(['password', 'repassword'])}
         error={errors.repassword?.message}
       />
-
+{/* 
       <Input
         type='url'
         name='logo'
@@ -101,7 +101,7 @@ const CompanyRegisterForm = () => {
         onChange={() => trigger('logo')}
         error={errors.logo?.message}
       />
-
+ */}
       <RegisterButton>
         <UserLogo />
         Registrate

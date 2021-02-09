@@ -79,7 +79,7 @@ const CreateTalk = () => {
       <Link to='/'>
         <button type="button"><i />Inicio</button>
       </Link>
-      <Link to='/henrytalks'>
+      <Link to='/talklist'>
         <button type="button">
           <i />Lista de Talks</button>
       </Link>

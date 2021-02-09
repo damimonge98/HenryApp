@@ -110,11 +110,11 @@ const ModuleListPage = () => {
   const actions = [
     {
       handleClick: (id) => handleUpdateModule(id),
-      icon: "E"
+      icon: <i class="fas fa-pencil-alt"></i>
     },
     {
       handleClick: (id) => handleDeleteModule(id),
-      icon: "D"
+      icon: <i class="fas fa-trash-alt"></i>
     }
   ];
 
