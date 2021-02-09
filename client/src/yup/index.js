@@ -6,7 +6,7 @@ yup.setLocale({
     required: "Campo requerido.",
   },
   string: {
-    email: "Debes ingresar un correo de email válido.",
+    email: "Debes ingresar una dirección de email válida.",
     min: "Debe tener un mínimo de ${min} caracteres.",
     max: "Debe tener un máximo de ${max} caracteres.",
   }
