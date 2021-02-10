@@ -173,3 +173,19 @@ export const updateModuleSchema = yup.object().shape({
   description: yup.string()
     .max(500),
 });
+
+export const createVideoSchema = yup.object().shape({
+  title: yup.string()
+    .max(100)
+    .required(),
+  url: yup.string()
+    .url()
+    .max(400)
+    .required(),
+  img: yup.string()
+    .url()
+    .max(400),
+  profesor: yup.string()
+    .max(100)
+    .required()
+});
