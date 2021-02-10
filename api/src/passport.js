@@ -72,7 +72,6 @@ passport.use(new GoogleStrategy({
         lastName: profile.name.familyName,
         email: profile.emails[0].value,
         avatar: profile.photos[0].value,
-        role: "guest"
       };
       if (invitation) {
         userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
@@ -118,7 +117,6 @@ passport.use(new GitHubStrategy({
         email: profile.emails[0].value,
         avatar: profile.photos[0].value,
         githubUsername: profile.username,
-        role: "guest"
       };
       if (invitation) {
         userData = { ...userData, role: "student", currentModule: 1 };

@@ -38,7 +38,6 @@ router.post('/register', (req, res, next) => {
           lastName,
           avatar: image,
           password: hashedPassword,
-          role: "guest"
         };
         if (invitation) {
           userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
