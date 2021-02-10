@@ -46,7 +46,7 @@ const Header = () => {
         isAuth ?
           <LogInWrapper>
             <ConsoleIcon />
-            {user.isSuperAdmin ? <Sudo>sudo</Sudo> : null}
+            {user && user.isSuperAdmin ? <Sudo>sudo</Sudo> : null}
             <span>{user.firstName ? user.firstName : user.companyName} {user.lastName && user.lastName}</span>
             <AvatarWrapper>
               {
