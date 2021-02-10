@@ -32,7 +32,7 @@ const UpdateProfileForm = () => {
         ref={register}
         onChange={() => trigger("firstName")}
         error={errors.firstName?.message}
-        defaultValue={user.firstName}
+        defaultValue={user.firstName ? user.firstName : user.companyName}
       />
 
       <Input
@@ -44,7 +44,7 @@ const UpdateProfileForm = () => {
         error={errors.lastName?.message}
         defaultValue={user.lastName}
       />
-       <Input
+      <Input
         type="text"
         name="githubUsername"
         label="Git Hub"

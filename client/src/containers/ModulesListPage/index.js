@@ -9,13 +9,14 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateModuleForm from '../../components/UpdateModuleForm';
 import FilterBar from '../../components/FilterBar';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+import AddLectureForm from '../../components/AddLectureForm';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, } from './styles';
 
 const ModuleListPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const module = useSelector(state => state.module);
-  const auth = useSelector(state => state.auth);
+  const { loading, isAuth, user } = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   // const [adminFilter, setAdminFilter] = useState({
   //   name: "All Users",
@@ -28,10 +29,16 @@ const ModuleListPage = () => {
   const [rows, setRows] = useState([]);
   const editModalRef = useRef();
   const deleteModalRef = useRef();
+  const addLectureModalRef = useRef();
 
   useEffect(() => {
     dispatch(getAllModules());
   }, []);
+
+  if (user.companyName) {
+    history.push('/empleos');
+    return null;
+  }
 
   useEffect(() => {
     setRows(
@@ -76,15 +83,25 @@ const ModuleListPage = () => {
     deleteModalRef.current.openModal();
   };
 
+  const handleAddLecture = (id) => {
+    const [selectedModule] = module.modules.filter(m => {
+      if (m._id === id)
+        return true;
+      return false;
+    });
+    setSelected(selectedModule);
+    addLectureModalRef.current.openModal();
+  };
+
   if (auth.loading || module.loading)
     return <Loading />;
 
-  if (!auth.isAuth) {
+  if (!isAuth) {
     history.push("/login");
     return null;
   }
 
-  if (!auth.user.isSuperAdmin) {
+  if (!user.isSuperAdmin) {
     history.push("/");
     return null;
   }
@@ -115,6 +132,10 @@ const ModuleListPage = () => {
     {
       handleClick: (id) => handleDeleteModule(id),
       icon: <i class="fas fa-trash-alt"></i>
+    },
+    {
+      handleClick: (id) => handleAddLecture(id),
+      icon: <i class="fas fa-plus"></i>
     }
   ];
 
@@ -186,10 +207,10 @@ const ModuleListPage = () => {
           ) : null
         }
       </Modal>
-      {/* <Modal ref={inviteUsersCsvModalRef}>
-        <H1>Invitando usuarios por .csv</H1>
-        <InviteUsersCsvForm />
-      </Modal> */}
+      <Modal ref={addLectureModalRef}>
+        <H1>Agregando nueva clase</H1>
+        <AddLectureForm modalRef={addLectureModalRef} moduleData={selected} />
+      </Modal>
     </Layout>
   );
 };

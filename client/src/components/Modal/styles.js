@@ -40,6 +40,7 @@ export const CloseButton = styled.div`
   right: 1rem;
   height: 30px;
   width: 30px;
+  color: white;
   border-radius: 3px;
   background: black;
   cursor: pointer;

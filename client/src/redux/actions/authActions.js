@@ -51,6 +51,20 @@ export const registerUser = (registerData) => {
   };
 };
 
+export const registerCompany = (companyData) => {
+  return async (dispatch) => {
+    try {
+      dispatch(requestActionAuth());
+      const res = await axios.post('http://localhost:5000/auth/register-company', { ...companyData });
+      dispatch(registerAction(res.data));
+      dispatch(requestSuccessActionAuth());
+
+    } catch (error) {
+      dispatch(requestFailedActionAuth(error));
+    }
+  };
+};
+
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
@@ -83,7 +97,6 @@ export const autoLoginUser = () => {
       dispatch(requestSuccessActionAuth());
 
     } catch (error) {
-      console.log(error);
       localStorage.removeItem("HJWT");
       dispatch(requestFailedActionAuth(error));
     }

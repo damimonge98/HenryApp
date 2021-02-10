@@ -26,7 +26,9 @@ const Modal = forwardRef(({ children }, ref) => {
     <ModalWrapper>
       <BackDrop onClick={close} />
       <ModalBox>
-        <CloseButton onClick={close} />
+        <CloseButton onClick={close}>
+          <i class="fas fa-times"></i>
+        </CloseButton>
         {children}
       </ModalBox>
     </ModalWrapper>, document.getElementById("modal-root"));

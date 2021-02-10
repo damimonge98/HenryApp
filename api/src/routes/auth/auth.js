@@ -22,12 +22,11 @@ router.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
   let image = `https://robohash.org/${firstName, lastName}.png`;
 
-
-  User.findOne({ email }, async (err, doc) => {
+  User.findOne({ email }, async (err, user) => {
     try {
-      if (doc) res.send('User already exists');
+      if (user) res.send('Este usuario ya existe.');
 
-      if (!doc) {
+      if (!user) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const invitation = await Invitation.findOne({ email });
@@ -46,7 +45,33 @@ router.post('/register', (req, res, next) => {
 
         const newUser = new User(userData);
         await newUser.save();
-        res.send({ done: true, msg: "New user registered!" });
+        res.send({ done: true, msg: 'Nuevo usuario registrado.' });
+      }
+    } catch (err) {
+      next(err);
+    }
+  });
+});
+
+router.post('/register-company', (req, res, next) => {
+  const { email, companyName, password } = req.body;
+  let image = `https://robohash.org/${companyName}.png`;
+
+  User.findOne({ email }, async (err, company) => {
+    try {
+      if (company) res.send('Empresa ya registrada.');
+
+      if (!company) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+          email,
+          companyName,
+          avatar: image,
+          password: hashedPassword,
+          role: 'company'
+        });
+        await newUser.save();
+        res.send({ done: true, msg: 'Nueva empresa registrada.' });
       }
     } catch (err) {
       next(err);
@@ -60,7 +85,7 @@ router.post('/login', (req, res, next) => {
       return res.status(400).json({ errors: err });
     }
     if (!user) {
-      return res.status(400).json({ errors: 'No user found' });
+      return res.status(400).json({ errors: 'Usuario no encontrado.' });
     }
 
     try {

@@ -31,7 +31,14 @@ const HomePage = () => {
       {
         auth.isAuth ?
           <ModulesSection>
-            {module.modules.map(m => <ModuleCard key={m._id} module={m} lectures={lecture.lectures.filter(l => l.modulo === m._id)} />)}
+            {module.modules.sort((a, b) => a.order - b.order).map(m => (
+              <ModuleCard
+                key={m._id}
+                module={m}
+                lectures={lecture.lectures.filter(l => l.modulo === m._id)}
+                blocked={auth.user.currentModule < m.order}
+              />
+            ))}
             {/* <ModuleCard /> */}
             {/* <LectureCard lecture={{
               _id: "123S2XRT3",
