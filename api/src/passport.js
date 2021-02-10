@@ -76,12 +76,12 @@ passport.use(new GoogleStrategy({
       };
       if (invitation) {
         userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
+        invitation.delete();
       }
       await User.findOneAndUpdate({ googleId: profile.id }, {
         ...userData
       }, { upsert: true, useFindAndModify: false });
 
-      invitation.delete();
 
       return cb(null, profile);
     } catch (error) {
@@ -110,10 +110,23 @@ passport.use(new GitHubStrategy({
 },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      await User.findOneAndUpdate({ githubId: profile.id }, {
+
+      const invitation = await Invitation.findOne({ email: profile.emails[0].value });
+
+      let userData = {
         firstName: profile.username,
         email: profile.emails[0].value,
-        avatar: profile.photos[0].value
+        avatar: profile.photos[0].value,
+        githubUsername: profile.username,
+        role: "guest"
+      };
+      if (invitation) {
+        userData = { ...userData, role: "student", currentModule: 1 };
+        invitation.delete();
+      }
+
+      await User.findOneAndUpdate({ githubId: profile.id }, {
+        ...userData
       }, { upsert: true, useFindAndModify: false });
       return done(null, profile);
     } catch (err) {
