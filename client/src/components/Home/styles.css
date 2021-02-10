@@ -51,7 +51,7 @@ h1 {
   font-size: 25px;
   color: black;
   background-color: yellow;
-  border: 2px solid black;
+  border: 2px solid yellow;
   border-radius: 6px;
   height: auto;
   width: auto;
@@ -60,6 +60,7 @@ h1 {
   margin: 5%;
   text-transform: uppercase;
   font-weight: 700;
+  box-shadow: 0 0 5px yellow;
 }
 .btnhome:hover {
   color: yellow;
