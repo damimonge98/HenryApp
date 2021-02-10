@@ -20,7 +20,7 @@ Content-Type: application/json
 ###
 
 # Delete one user (id)
-DELETE http://localhost:5000/users/601dea3f3e3056283428605e
+DELETE http://localhost:5000/users/60234ae49fabee21bf7e54c0
 
 ###
 
