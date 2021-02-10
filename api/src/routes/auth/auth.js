@@ -42,10 +42,10 @@ router.post('/register', (req, res, next) => {
         };
         if (invitation) {
           userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
+          invitation.delete();
         }
 
         const newUser = new User(userData);
-        invitation.delete();
         await newUser.save();
         res.send({ done: true, msg: "New user registered!" });
       }

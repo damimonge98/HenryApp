@@ -1,4 +1,5 @@
 const User = require('./models/user');
+const Invitation = require('./models/invitation');
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -63,12 +64,24 @@ passport.use(new GoogleStrategy({
 },
   async (accessToken, refreshToken, profile, cb) => {
     try {
-      await User.findOneAndUpdate({ googleId: profile.id }, {
+
+      const invitation = await Invitation.findOne({ email: profile.emails[0].value });
+
+      let userData = {
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         email: profile.emails[0].value,
-        avatar: profile.photos[0].value
+        avatar: profile.photos[0].value,
+        role: "guest"
+      };
+      if (invitation) {
+        userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
+      }
+      await User.findOneAndUpdate({ googleId: profile.id }, {
+        ...userData
       }, { upsert: true, useFindAndModify: false });
+
+      invitation.delete();
 
       return cb(null, profile);
     } catch (error) {
