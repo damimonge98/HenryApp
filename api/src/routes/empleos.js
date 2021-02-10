@@ -82,9 +82,9 @@ router.delete("/:id", (req, res) => {
     for (let i = 0; i < res[0].jobs.length; i++) {
       if (res[0].jobs[i] == id) {
         res[0].jobs.splice(i, 1);
+        res[0].save();
       };
     };
-    res[0].save();
   });
   Empleo.findById(id)
     .then((empleo) => {

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import firebase from 'firebase';
+import { useSelector } from "react-redux";
 
 
 const CrearEmpleo = () => {
+const usuario = useSelector(state => state.auth.user);
+
   const [empleo, setEmpleo] = useState({
     logo: "", enterpriseName: "", title: "", description: "", location: "", tipo: "", end: "", remote: false, linkedIn: "",
   });
@@ -17,10 +20,10 @@ const CrearEmpleo = () => {
     });
   }
 
-  const handleSubmit = (/* id */) => {  //Este ID corresponde al de la empresa que esta logeada.
+  const handleSubmit = (id) => {  //Este ID corresponde al usuario logeado rol empresa.
     const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post("http://localhost:5000/empleos/" /* + ":id" */, { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
+      .post(`http://localhost:5000/empleos/${id}` , { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 
@@ -41,7 +44,7 @@ const CrearEmpleo = () => {
 
   return (
     <div>
-      <form onSubmit={() => handleSubmit(/* id */)}>
+      <form onSubmit={() => handleSubmit(usuario._id)}>
 
         <div>
           <label>Titulo</label>

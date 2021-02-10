@@ -91,7 +91,7 @@ const Catalogo = () => {
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
         <div>{
-          user.isSuperAdmin ?
+          user.isSuperAdmin || user.role === 'company' ?
             <h5 className="h5">
               <button type="button" className="btn" data-open="modal1">
                 Publica tu oferta
