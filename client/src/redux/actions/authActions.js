@@ -97,6 +97,7 @@ export const autoLoginUser = () => {
       dispatch(requestSuccessActionAuth());
 
     } catch (error) {
+      localStorage.removeItem("HJWT");
       dispatch(requestFailedActionAuth(error));
     }
   };

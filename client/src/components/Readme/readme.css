@@ -56,3 +56,15 @@
       transform: scale(1.0);
     }
   }
+
+  .image {
+    width: 1500px;
+    height: 600px;
+  }
+
+  .h1Image {
+      color: #47B6E8;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 50px;
+  }

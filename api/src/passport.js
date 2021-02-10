@@ -1,4 +1,5 @@
 const User = require('./models/user');
+const Invitation = require('./models/invitation');
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -63,12 +64,23 @@ passport.use(new GoogleStrategy({
 },
   async (accessToken, refreshToken, profile, cb) => {
     try {
-      await User.findOneAndUpdate({ googleId: profile.id }, {
+
+      const invitation = await Invitation.findOne({ email: profile.emails[0].value });
+
+      let userData = {
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         email: profile.emails[0].value,
-        avatar: profile.photos[0].value
+        avatar: profile.photos[0].value,
+      };
+      if (invitation) {
+        userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
+        invitation.delete();
+      }
+      await User.findOneAndUpdate({ googleId: profile.id }, {
+        ...userData
       }, { upsert: true, useFindAndModify: false });
+
 
       return cb(null, profile);
     } catch (error) {
@@ -97,10 +109,22 @@ passport.use(new GitHubStrategy({
 },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      await User.findOneAndUpdate({ githubId: profile.id }, {
+
+      const invitation = await Invitation.findOne({ email: profile.emails[0].value });
+
+      let userData = {
         firstName: profile.username,
         email: profile.emails[0].value,
-        avatar: profile.photos[0].value
+        avatar: profile.photos[0].value,
+        githubUsername: profile.username,
+      };
+      if (invitation) {
+        userData = { ...userData, role: "student", currentModule: 1 };
+        invitation.delete();
+      }
+
+      await User.findOneAndUpdate({ githubId: profile.id }, {
+        ...userData
       }, { upsert: true, useFindAndModify: false });
       return done(null, profile);
     } catch (err) {

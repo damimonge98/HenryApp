@@ -4,6 +4,7 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require('../../models/user');
+const Invitation = require('../../models/invitation');
 const { isUser, isAdmin } = require("../../middlewares/auth");
 const { JWT_SECRET } = process.env;
 
@@ -27,13 +28,22 @@ router.post('/register', (req, res, next) => {
 
       if (!user) {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({
+
+        const invitation = await Invitation.findOne({ email });
+
+        let userData = {
           email,
           firstName,
           lastName,
           avatar: image,
-          password: hashedPassword
-        });
+          password: hashedPassword,
+        };
+        if (invitation) {
+          userData = { ...userData, role: "student", currentModule: 1, githubUsername: invitation.githubUsername };
+          invitation.delete();
+        }
+
+        const newUser = new User(userData);
         await newUser.save();
         res.send({ done: true, msg: 'Nuevo usuario registrado.' });
       }
