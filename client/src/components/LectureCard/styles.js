@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ReactComponent as LockIcon } from "../../assets/icons/lock.svg";
 
 export const StyledLink = styled(Link)`
   height: 300px;
@@ -9,6 +10,7 @@ export const StyledLink = styled(Link)`
   margin: 0.5rem;
   text-decoration: none;
   color: #323232;
+  cursor: ${(props) => props.blocked ? "initial" : "pointer"};
   `;
 
 export const LectureCardWrapper = styled.div`
@@ -16,6 +18,7 @@ export const LectureCardWrapper = styled.div`
   width: 100%;
   background: white;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  position: relative;
 `;
 
 export const ImageWrapper = styled.div`
@@ -89,4 +92,14 @@ export const Date = styled.span`
 export const LeftWrapper = styled.div`
   display:flex;
   align-items: center;
+`;
+
+export const LockIconStyled = styled(LockIcon)`
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 `;
