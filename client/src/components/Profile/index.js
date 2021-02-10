@@ -36,11 +36,11 @@ const ProfileForm = () => {
       <div>
         <AvatarWrapper>
           {user.avatar && (
-            <img src={user.avatar} alt={user.firstName + " " + user.lastName} />
+            <img src={user.avatar} alt={user.firstName ? user.firstName : user.companyName + " " + user.lastName && user.lastName} />
           )}
         </AvatarWrapper>
         <h1>
-          {user.firstName} {user.lastName}
+          {user.firstName ? user.firstName : user.companyName} {user.lastName && user.lastName}
         </h1>
         <h2> {user.email} </h2>
       </div>

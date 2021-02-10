@@ -4,8 +4,10 @@ import LectureCard from "../../components/LectureCard";
 import { LecturePageWrapper, Grid } from "./styles";
 import Layout from "../Layout";
 import FilterBar from "../../components/FilterBar";
+import { useSelector } from 'react-redux';
 
 const LecturesPage = (props) => {
+  const { user } = useSelector(state => state.auth);
   const [search, setSearch] = useState("");
   const [lectures, setLectures] = useState([{
     _id: "",
@@ -23,6 +25,11 @@ const LecturesPage = (props) => {
     order: "",
     title: "",
   }]);
+
+  if (user.companyName) {
+    history.push('/empleos');
+    return null;
+  }
 
   useEffect(() => {
     getLectures();

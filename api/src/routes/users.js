@@ -64,17 +64,35 @@ router.get('/user/:id', (req, res) => {
 // Create one user
 router.post('/', async (req, res) => {
 
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
-  const user = new User({
-    email,
+  const {
     firstName,
     lastName,
+    companyName,
+    email,
     password,
-    isSuperAdmin,
     role,
     currentModule,
     avatar,
-    debt
+    debt,
+    verifiedCompany,
+    jobs,
+    isSuperAdmin,
+    removed
+  } = req.body;
+  const user = new User({
+    firstName,
+    lastName,
+    companyName,
+    email,
+    password,
+    role,
+    currentModule,
+    avatar,
+    debt,
+    verifiedCompany,
+    jobs,
+    isSuperAdmin,
+    removed
   });
   if (user.isSuperAdmin === true || user.role === 'instructor') {
     const allModules = await Module.find().then();
@@ -94,7 +112,21 @@ router.post('/', async (req, res) => {
 // Update one user
 router.patch('/user/:id', async (req, res) => {
   const { id } = req.params;
-  const { email, firstName, lastName, password, isSuperAdmin, role, avatar, currentModule, debt } = req.body;
+  const {
+    firstName,
+    lastName,
+    companyName,
+    email,
+    password,
+    role,
+    currentModule,
+    avatar,
+    debt,
+    verifiedCompany,
+    jobs,
+    isSuperAdmin,
+    removed
+  } = req.body;
   let allModules = await Module.find();
   let current = allModules.length;
   let update = req.body;
