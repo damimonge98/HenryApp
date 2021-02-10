@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooms, getBoomsTweet } from "../../redux/actions/boomsActions.js";
-import Carousel from 'react-elastic-carousel';
+import  Carousel from 'react-elastic-carousel';
 import "./Booms.css";
 import axios from "axios";
 
@@ -44,15 +44,14 @@ export default function Booms() {
 
 
       <div className="containerCarousel">
-        <Carousel style={{ backgroundColor: 'yellow', color: 'black' }}>
+        <Carousel style={{ backgroundColor: 'black', color: 'white' }} itemsToShow={1}  >
+          
           {booms.length !== 0 ?
             booms.map((el, i) =>
-              <Fragment key={i}>
                 <div className="containerBoom">
                   <p>{el.info}</p>
                   <a href={el.link} className="link">Leer más...</a>
                 </div>
-              </Fragment>
             ) : <h1>Loading...</h1>}
         </Carousel>
       </div>

@@ -11,9 +11,10 @@ const session = require("express-session");
 // Models
 const Module = require("./src/models/module");
 const Lecture = require("./src/models/lecture");
+const User = require("./src/models/user");
 
 // Data
-const modules = require('./data/modules');
+const modules = require('./data');
 
 const userRoutes = require('./src/routes/users');
 const authRoutes = require('./src/routes/auth/auth');

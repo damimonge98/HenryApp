@@ -89,7 +89,7 @@ const Catalogo = () => {
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
         <div>{
-          user && user.isSuperAdmin ?
+          user && user.isSuperAdmin || user && user.role === 'company' ?
             <h5 className="h5">
               <button type="button" className="btn" data-open="modal1">
                 Publica tu oferta
@@ -117,7 +117,7 @@ const Catalogo = () => {
         <div className="empleosColumn">
           {
             empleos.map((empleo, index) => {
-              return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
+              return <OfferCard empleo={empleo} key={index} admin={user && user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
             }).reverse()}
         </div>
       </div>
