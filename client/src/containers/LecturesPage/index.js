@@ -5,9 +5,10 @@ import LectureCard from "../../components/LectureCard";
 import { LecturePageWrapper, Grid } from "./styles";
 import Layout from "../Layout";
 import FilterBar from "../../components/FilterBar";
+import Loading from '../../components/Loading';
 
 const LecturesPage = (props) => {
-  const { user } = useSelector(state => state.auth);
+  const { user, loading } = useSelector(state => state.auth);
   const [search, setSearch] = useState("");
   const [lectures, setLectures] = useState([{
     _id: "",
@@ -26,7 +27,7 @@ const LecturesPage = (props) => {
     title: "",
   }]);
 
-  if (user.companyName) {
+  if (user && user.companyName) {
     history.push('/empleos');
     return null;
   }

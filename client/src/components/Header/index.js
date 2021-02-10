@@ -58,7 +58,7 @@ const Header = () => {
               </MenuItem>
               {user.isSuperAdmin === true || user.role === 'instructor'
                 ?
-                <div>
+                <>
                   <MenuItem>
                     <Link to="/users">Usuarios</Link>
                   </MenuItem>
@@ -74,7 +74,7 @@ const Header = () => {
                   <MenuItem>
                     <Link to="/talks">Henry Talks</Link>
                   </MenuItem>
-                </div>
+                </>
                 :
                 <MenuItem>
                   <Link to="/payments">Estado de cuenta</Link>

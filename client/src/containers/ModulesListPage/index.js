@@ -35,7 +35,7 @@ const ModuleListPage = () => {
     dispatch(getAllModules());
   }, []);
 
-  if (user.companyName) {
+  if (user && user.companyName) {
     history.push('/empleos');
     return null;
   }
@@ -93,7 +93,7 @@ const ModuleListPage = () => {
     addLectureModalRef.current.openModal();
   };
 
-  if (auth.loading || module.loading)
+  if (loading || module.loading)
     return <Loading />;
 
   if (!isAuth) {
@@ -101,7 +101,7 @@ const ModuleListPage = () => {
     return null;
   }
 
-  if (!user.isSuperAdmin) {
+  if (user && !user.isSuperAdmin) {
     history.push("/");
     return null;
   }

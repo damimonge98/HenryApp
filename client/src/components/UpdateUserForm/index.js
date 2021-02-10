@@ -81,12 +81,36 @@ const UpdateUserForm = ({ modalRef, userData }) => {
             value: "guest"
           },
           {
-            text: "Student",
+            text: "Estudiante",
             value: "student"
           },
           {
             text: "Instructor",
             value: "instructor"
+          },
+          {
+            text: "Empresa",
+            value: "company"
+          },
+        ]}
+      />
+
+      <Select
+        name="verifiedCompany"
+        label="Empresa verificada"
+        required
+        ref={register}
+        defaultValue={userData.verifiedCompany}
+        onSelect={() => trigger("verifiedCompany")}
+        error={errors.role?.message}
+        options={[
+          {
+            text: "No",
+            value: false
+          },
+          {
+            text: "Yes",
+            value: true
           }
         ]}
       />

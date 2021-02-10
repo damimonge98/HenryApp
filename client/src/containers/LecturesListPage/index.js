@@ -10,11 +10,12 @@ import Modal from '../../components/Modal';
 import UpdateLectureForm from '../../components/UpdateLectureForm';
 import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
+import AddVideoForm from '../../components/AddVideoForm';
 
 const LectureListPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const lecture = useSelector(state => state.lecture);
+  const { loadingLectures, lectures } = useSelector(state => state.lecture);
   const { loading, isAuth, user } = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
@@ -35,14 +36,14 @@ const LectureListPage = () => {
     dispatch(getAllLectures());
   }, []);
 
-  if (user.companyName) {
+  if (user && user.companyName) {
     history.push('/empleos');
     return null;
   }
 
   useEffect(() => {
     setRows(
-      lecture.lectures
+      lectures
         // .filter(u => {
         //   if (!roleFilter.value) {
         //     return true;
@@ -69,10 +70,10 @@ const LectureListPage = () => {
           description: l.description
         }))
     );
-  }, [lecture.lectures, search]);
+  }, [lectures, search]);
 
   const handleUpdateLecture = (id) => {
-    const [selectedLecture] = lecture.lectures.filter(l => {
+    const [selectedLecture] = lectures.filter(l => {
       if (l._id === id)
         return true;
       return false;
@@ -82,7 +83,7 @@ const LectureListPage = () => {
   };
 
   const handleDeleteLecture = (id) => {
-    const [selectedLecture] = lecture.lectures.filter(l => {
+    const [selectedLecture] = lectures.filter(l => {
       if (l._id === id)
         return true;
       return false;
@@ -92,7 +93,7 @@ const LectureListPage = () => {
   };
 
   const handleAddVideo = (id) => {
-    const [selectedLecture] = lecture.lectures.filter(l => {
+    const [selectedLecture] = lectures.filter(l => {
       if (l._id === id)
         return true;
       return false;
@@ -101,7 +102,7 @@ const LectureListPage = () => {
     addVideoModalRef.current.openModal();
   };
 
-  if (auth.loading || lecture.loading)
+  if (loading || loadingLectures)
     return <Loading />;
 
   if (!isAuth) {
@@ -109,7 +110,7 @@ const LectureListPage = () => {
     return null;
   }
 
-  if (!user.isSuperAdmin) {
+  if (user && !user.isSuperAdmin) {
     history.push("/");
     return null;
   }

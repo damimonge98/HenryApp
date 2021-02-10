@@ -13,7 +13,7 @@ const initialState = {
   users: [],
   invited: [],
   userDetail: [],
-  loading: false,
+  loadingUsers: false,
   error: null
 };
 
@@ -23,20 +23,20 @@ const userReducers = (state = initialState, action) => {
     case REQUEST_ACTION_USER:
       return {
         ...state,
-        loading: true
+        loadingUsers: true
       };
 
     case REQUEST_SUCCESS_ACTION_USER:
       return {
         ...state,
-        loading: false,
+        loadingUsers: false,
         error: null
       };
 
     case REQUEST_FAILED_ACTION_USER:
       return {
         ...state,
-        loading: false,
+        loadingUsers: false,
         error: action.error
       };
 

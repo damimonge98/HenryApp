@@ -12,10 +12,12 @@ import FilterBar from "../FilterBar/index";
 // Styled Components
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
 import "./styles.css";
+import Loading from '../Loading';
+import { getAllJobs } from '../../redux/actions/jobsActions';
 
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
-  const [eliminar, setEliminar] = useState(false)
+  const [eliminar, setEliminar] = useState(false);
 
   const [empleos, setEmpleo] = useState([
     {
@@ -31,19 +33,15 @@ const Catalogo = () => {
     },
   ]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getAllEmpleos();
-    setEliminar(false)
+    dispatch(getAllJobs());
+    setEliminar(false);
   }, [eliminar]);
 
   if (loading)
     return <Loading />;
-
-  const getAllEmpleos = () => {
-    axios.get("http://localhost:5000/empleos/").then((response) => {
-      setEmpleo(response.data)
-    })
-  };
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
@@ -79,10 +77,10 @@ const Catalogo = () => {
 
   const handleDelete = (id) => {
     if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then()
-      setEliminar(true)
+      axios.delete(`http://localhost:5000/empleos/${id}`).then();
+      setEliminar(true);
     }
-  }
+  };
 
 
 
@@ -91,7 +89,7 @@ const Catalogo = () => {
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
         <div>{
-          user.isSuperAdmin ?
+          user && user.isSuperAdmin ?
             <h5 className="h5">
               <button type="button" className="btn" data-open="modal1">
                 Publica tu oferta
