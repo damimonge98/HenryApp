@@ -93,7 +93,7 @@ const ModuleListPage = () => {
     addLectureModalRef.current.openModal();
   };
 
-  if (auth.loading || module.loading)
+  if (loading || module.loading)
     return <Loading />;
 
   if (!isAuth) {

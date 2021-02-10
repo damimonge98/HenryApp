@@ -9,6 +9,7 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateLectureForm from '../../components/UpdateLectureForm';
 import FilterBar from '../../components/FilterBar';
+import AddVideoForm from '../../components/AddVideoForm';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
 
 const LectureListPage = () => {
@@ -34,11 +35,6 @@ const LectureListPage = () => {
   useEffect(() => {
     dispatch(getAllLectures());
   }, []);
-
-  if (user.companyName) {
-    history.push('/empleos');
-    return null;
-  }
 
   useEffect(() => {
     setRows(
@@ -101,7 +97,7 @@ const LectureListPage = () => {
     addVideoModalRef.current.openModal();
   };
 
-  if (auth.loading || lecture.loading)
+  if (loading || lecture.loading)
     return <Loading />;
 
   if (!isAuth) {
@@ -111,6 +107,11 @@ const LectureListPage = () => {
 
   if (!user.isSuperAdmin) {
     history.push("/");
+    return null;
+  }
+
+  if (user.role === "company" && user.companyName) {
+    history.push('/empleos');
     return null;
   }
 
