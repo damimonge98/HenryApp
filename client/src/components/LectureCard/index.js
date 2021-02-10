@@ -12,7 +12,8 @@ import {
   ByText,
   Date,
   LeftWrapper,
-  LockIconStyled
+  LockIconStyled,
+  BackDrop
 } from "./styles";
 
 const LectureCard = ({ lecture, blocked }) => {
@@ -31,7 +32,10 @@ const LectureCard = ({ lecture, blocked }) => {
       <LectureCardWrapper blocked={blocked}>
         {
           blocked ?
-            <LockIconStyled />
+            <>
+              <BackDrop />
+              <LockIconStyled />
+            </>
             : null
         }
         <ImageWrapper>

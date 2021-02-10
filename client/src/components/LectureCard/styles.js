@@ -103,3 +103,13 @@ export const LockIconStyled = styled(LockIcon)`
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
+
+export const BackDrop = styled.div`
+  height: 100%;
+  width: 100%;
+  background:  rgba(255,255,255, 0.8);
+  z-index: 90;
+  position: absolute;
+  top: 0;
+  left:  0;
+`;
