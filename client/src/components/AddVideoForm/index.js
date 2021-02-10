@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { updateLectureSchema } from "../../yup";
-import { updateLecture } from "../../redux/actions/lecturesActions";
+import { createVideoSchema } from "../../yup";
 
 import Input from '../Input';
 import Loading from '../Loading';
 import Select from '../Select';
-import { UpdateLectureFormWrapper, UpdateButton } from './styles';
+import { AddVideoFormWrapper, AddVideoButton } from './styles';
+import axios from 'axios';
 
-const UpdateLectureForm = ({ modalRef, lectureData }) => {
+const AddVideoForm = ({ modalRef, lectureData }) => {
 
   const { register, handleSubmit, errors, trigger } = useForm({
-    resolver: yupResolver(updateLectureSchema)
+    resolver: yupResolver(createVideoSchema)
   });
 
   // TODO: necesito hacer un req para traer los datos del usuario ?
@@ -23,7 +23,13 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    dispatch(updateLecture(lectureData._id, data));
+    console.log(data);
+    // dispatch(updateLecture(lectureData._id, data));
+    axios.post(`http://localhost:5000/videos/${lectureData._id}`, { ...data })
+      .then(res => {
+        // getLectures();
+        modalRef.current.closeModal();
+      });
   };
 
   if (!lectureData)
@@ -32,7 +38,7 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
   console;
 
   return (
-    <UpdateLectureFormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <AddVideoFormWrapper onSubmit={handleSubmit(onSubmit)}>
 
       <Input
         type="text"
@@ -40,7 +46,6 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         label="Title"
         required
         autoComplete="off"
-        defaultValue={lectureData.title}
         ref={register}
         onChange={() => trigger("title")}
         error={errors.title?.message}
@@ -48,44 +53,40 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
 
       <Input
         type="text"
-        name="description"
-        label="Description"
+        name="url"
+        label="Video URL"
         required
         autoComplete="off"
-        defaultValue={lectureData.description}
         ref={register}
-        onChange={() => trigger("description")}
-        error={errors.description?.message}
+        onChange={() => trigger("url")}
+        error={errors.url?.message}
       />
 
       <Input
         type="text"
-        name="imagen"
+        name="img"
         label="Image"
-        required
         autoComplete="off"
-        defaultValue={lectureData.imagen}
         ref={register}
-        onChange={() => trigger("imagen")}
-        error={errors.imagen?.message}
+        onChange={() => trigger("img")}
+        error={errors.img?.message}
       />
 
       <Input
         type="text"
-        name="urlLecture"
-        label="Lecture URL"
+        name="profesor"
+        label="Instructor"
         autoComplete="off"
-        defaultValue={lectureData.urlLecture}
         ref={register}
-        onChange={() => trigger("urlLecture")}
-        error={errors.urlLecture?.message}
+        onChange={() => trigger("profesor")}
+        error={errors.profesor?.message}
       />
 
-      <UpdateButton>
-        Editar Lecture
-      </UpdateButton>
-    </UpdateLectureFormWrapper>
+      <AddVideoButton>
+        Add Video
+      </AddVideoButton>
+    </AddVideoFormWrapper>
   );
 };
 
-export default UpdateLectureForm;
+export default AddVideoForm;

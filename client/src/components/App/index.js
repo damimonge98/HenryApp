@@ -20,18 +20,21 @@ function App() {
     dispatch(autoLoginUser());
   }, []);
 
-  if (loading && window.location.pathname !== '/login') {
-    const num = Math.round(Math.random() * (quotes.length - 1));
-    return (
-      <CenterInPage>
-        <Loading />
-        <QuoteWrapper>
-          <Quote>‟{quotes[num].text}”</Quote>
-          <Author>{quotes[num].author}</Author>
-        </QuoteWrapper>
-      </CenterInPage>
-    );
-  };
+  if (loading && window.location.pathname !== '/login')
+    <Loading />;
+
+  // {
+  //   const num = Math.round(Math.random() * (quotes.length - 1));
+  //   return (
+  //     <CenterInPage>
+  //       <Loading />
+  //       <QuoteWrapper>
+  //         <Quote>‟{quotes[num].text}”</Quote>
+  //         <Author>{quotes[num].author}</Author>
+  //       </QuoteWrapper>
+  //     </CenterInPage>
+  //   );
+  // };
 
   return (
     <AppWrapper>

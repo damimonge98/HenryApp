@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import LectureCard from "../../components/LectureCard";
 import { LecturePageWrapper, Grid } from "./styles";
 import Layout from "../Layout";
 import FilterBar from "../../components/FilterBar";
-import { useSelector } from 'react-redux';
 
 const LecturesPage = (props) => {
   const { user } = useSelector(state => state.auth);
@@ -61,12 +61,27 @@ const LecturesPage = (props) => {
       return true;
     });
 
+
+  if (loading)
+    return <Loading />;
+
+  if (!user) {
+    props.history.push("/login");
+    return null;
+  }
+
   return (
     <Layout>
       <FilterBar filters={[]} search={search} setSearch={setSearch} />
       <LecturePageWrapper>
         <Grid>
-          {filteredLectures.map(l => <LectureCard key={l._id} lecture={l} />)}
+          {filteredLectures.map(l => (
+            <LectureCard
+              blocked={user.currentModule < module.order}
+              key={l._id}
+              lecture={l}
+            />
+          ))}
         </Grid>
       </LecturePageWrapper>
     </Layout>

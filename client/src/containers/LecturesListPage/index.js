@@ -29,6 +29,7 @@ const LectureListPage = () => {
   const [rows, setRows] = useState([]);
   const editModalRef = useRef();
   const deleteModalRef = useRef();
+  const addVideoModalRef = useRef();
 
   useEffect(() => {
     dispatch(getAllLectures());
@@ -90,7 +91,17 @@ const LectureListPage = () => {
     deleteModalRef.current.openModal();
   };
 
-  if (loading || lecture.loading)
+  const handleAddVideo = (id) => {
+    const [selectedLecture] = lecture.lectures.filter(l => {
+      if (l._id === id)
+        return true;
+      return false;
+    });
+    setSelected(selectedLecture);
+    addVideoModalRef.current.openModal();
+  };
+
+  if (auth.loading || lecture.loading)
     return <Loading />;
 
   if (!isAuth) {
@@ -129,6 +140,10 @@ const LectureListPage = () => {
     {
       handleClick: (id) => handleDeleteLecture(id),
       icon: <i class="fas fa-trash-alt"></i>
+    },
+    {
+      handleClick: (id) => handleAddVideo(id),
+      icon: <i class="fas fa-video"></i>
     }
   ];
 
@@ -200,10 +215,10 @@ const LectureListPage = () => {
           ) : null
         }
       </Modal>
-      {/* <Modal ref={inviteUsersCsvModalRef}>
-        <H1>Invitando usuarios por .csv</H1>
-        <InviteUsersCsvForm />
-      </Modal> */}
+      <Modal ref={addVideoModalRef}>
+        <H1>Agregar un video</H1>
+        <AddVideoForm modalRef={addVideoModalRef} lectureData={selected} />
+      </Modal>
     </Layout>
   );
 };

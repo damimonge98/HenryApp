@@ -143,15 +143,28 @@ export const companyRegisterSchema = yup.object().shape({
     .max(200)
 });
 
+export const createLectureSchema = yup.object().shape({
+  title: yup.string()
+    .max(100)
+    .required(),
+  description: yup.string()
+    .max(500)
+    .required(),
+  imagen: yup.string().url()
+    .max(400),
+  urlLecture: yup.string().url()
+    .max(400),
+});
+
 export const updateLectureSchema = yup.object().shape({
   title: yup.string()
     .max(100),
   description: yup.string()
     .max(500),
   imagen: yup.string().url()
-    .max(200),
+    .max(400),
   urlLecture: yup.string().url()
-    .max(200),
+    .max(400),
 });
 
 export const updateModuleSchema = yup.object().shape({
@@ -159,4 +172,20 @@ export const updateModuleSchema = yup.object().shape({
     .max(100),
   description: yup.string()
     .max(500),
+});
+
+export const createVideoSchema = yup.object().shape({
+  title: yup.string()
+    .max(100)
+    .required(),
+  url: yup.string()
+    .url()
+    .max(400)
+    .required(),
+  img: yup.string()
+    .url()
+    .max(400),
+  profesor: yup.string()
+    .max(100)
+    .required()
 });

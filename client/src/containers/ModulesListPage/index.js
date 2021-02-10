@@ -9,6 +9,7 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateModuleForm from '../../components/UpdateModuleForm';
 import FilterBar from '../../components/FilterBar';
+import AddLectureForm from '../../components/AddLectureForm';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, } from './styles';
 
 const ModuleListPage = () => {
@@ -28,6 +29,7 @@ const ModuleListPage = () => {
   const [rows, setRows] = useState([]);
   const editModalRef = useRef();
   const deleteModalRef = useRef();
+  const addLectureModalRef = useRef();
 
   useEffect(() => {
     dispatch(getAllModules());
@@ -81,7 +83,17 @@ const ModuleListPage = () => {
     deleteModalRef.current.openModal();
   };
 
-  if (loading || module.loading)
+  const handleAddLecture = (id) => {
+    const [selectedModule] = module.modules.filter(m => {
+      if (m._id === id)
+        return true;
+      return false;
+    });
+    setSelected(selectedModule);
+    addLectureModalRef.current.openModal();
+  };
+
+  if (auth.loading || module.loading)
     return <Loading />;
 
   if (!isAuth) {
@@ -120,6 +132,10 @@ const ModuleListPage = () => {
     {
       handleClick: (id) => handleDeleteModule(id),
       icon: <i class="fas fa-trash-alt"></i>
+    },
+    {
+      handleClick: (id) => handleAddLecture(id),
+      icon: <i class="fas fa-plus"></i>
     }
   ];
 
@@ -191,10 +207,10 @@ const ModuleListPage = () => {
           ) : null
         }
       </Modal>
-      {/* <Modal ref={inviteUsersCsvModalRef}>
-        <H1>Invitando usuarios por .csv</H1>
-        <InviteUsersCsvForm />
-      </Modal> */}
+      <Modal ref={addLectureModalRef}>
+        <H1>Agregando nueva clase</H1>
+        <AddLectureForm modalRef={addLectureModalRef} moduleData={selected} />
+      </Modal>
     </Layout>
   );
 };

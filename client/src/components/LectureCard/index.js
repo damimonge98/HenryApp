@@ -11,10 +11,12 @@ import {
   Avatar,
   ByText,
   Date,
-  LeftWrapper
+  LeftWrapper,
+  LockIconStyled,
+  BackDrop
 } from "./styles";
 
-const LectureCard = ({ lecture }) => {
+const LectureCard = ({ lecture, blocked }) => {
   const {
     _id,
     description,
@@ -26,8 +28,16 @@ const LectureCard = ({ lecture }) => {
 
 
   return (
-    <StyledLink to={`/lectures/${_id}/module/${modulo}`} >
-      <LectureCardWrapper>
+    <StyledLink blocked={blocked} to={blocked ? "" : `/lectures/${_id}/module/${modulo}`} >
+      <LectureCardWrapper blocked={blocked}>
+        {
+          blocked ?
+            <>
+              <BackDrop />
+              <LockIconStyled />
+            </>
+            : null
+        }
         <ImageWrapper>
           <img src={imagen} alt={title} />
         </ImageWrapper>
