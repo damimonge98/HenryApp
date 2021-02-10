@@ -39,7 +39,7 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   color: gray;
-  line-height: 1.5rem;
+  line-height: 1rem;
   font-size: 14px;
   overflow: hidden;
   white-space: nowrap;
