@@ -130,7 +130,7 @@ const UserListPage = () => {
     },
     {
       id: "5",
-      text: "Current Module",
+      text: "Modulo Actual",
       name: "currentModule"
     },
     {
