@@ -4,7 +4,7 @@ const router = express.Router();
 //----------Modelos----------
 
 const Empleo = require("../models/empleos");
-const Empresa = require('../models/enterprise');
+const User = require('../models/user');
 
 //----------Rutas----------
 
@@ -36,10 +36,10 @@ router.post("/:id", async (req, res) => {
     enterprise
 
   });
-  const oneEnterprise = await Empresa.findById(id);
+  const oneEnterprise = await User.findById(id);
   offerCard.enterprise = req.params.id;
   await offerCard.save();
-  oneEnterprise.empleos.push(offerCard);
+  oneEnterprise.jobs.push(offerCard);
   await oneEnterprise.save();
   try {
     res.status(201).json(offerCard);
@@ -78,10 +78,10 @@ router.get("/", async (req, res) => {
 //-----Eliminar empleo
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  Empresa.find({ empleos: id }).then(res => {
-    for (let i = 0; i < res[0].empleos.length; i++) {
-      if (res[0].empleos[i] == id) {
-        res[0].empleos.splice(i, 1);
+  User.find({ jobs: id }).then(res => {
+    for (let i = 0; i < res[0].jobs.length; i++) {
+      if (res[0].jobs[i] == id) {
+        res[0].jobs.splice(i, 1);
       };
     };
     res[0].save();
