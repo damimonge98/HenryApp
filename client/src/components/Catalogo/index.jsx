@@ -13,7 +13,6 @@ import FilterBar from "../FilterBar/index";
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
 import "./styles.css";
 import Loading from '../Loading';
-import { getAllJobs } from '../../redux/actions/jobsActions';
 
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
@@ -33,6 +32,12 @@ const Catalogo = () => {
     },
   ]);
 
+  const getAllEmpleos = () => {
+    axios.get("http://localhost:5000/empleos/").then((response) => {
+      setEmpleo(response.data);
+    });
+  };
+
   useEffect(() => {
     getAllEmpleos();
     setEliminar(false);
@@ -40,12 +45,6 @@ const Catalogo = () => {
 
   if (loading)
     return <Loading />;
-
-  const getAllEmpleos = () => {
-    axios.get("http://localhost:5000/empleos/").then((response) => {
-      setEmpleo(response.data);
-    });
-  };
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
