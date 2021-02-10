@@ -83,6 +83,9 @@ const Header = () => {
               <MenuItem>
                 <Link to="/empleos">Bolsa de trabajo</Link>
               </MenuItem>
+              <MenuItem>
+                <Link to="/about">Sobre Nosotros</Link>
+              </MenuItem>
 
               <MenuItem onClick={handleLogout}>
                 Salir
