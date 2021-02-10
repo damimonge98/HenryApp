@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { AppWrapper, CenterInPage, Quote, QuoteWrapper, Author } from './styles';
 import routes from '../../routes';
-import { autoLoginUser } from "../../redux/actions/authActions";
+import { quotes } from "../../data";
+
+// Components
 import Loading from '../Loading';
 
-import { quotes } from "../../data";
+// Actions
+import { autoLoginUser } from "../../redux/actions/authActions";
+
+// Styles
+import { AppWrapper, CenterInPage, Quote, QuoteWrapper, Author } from './styles';
 
 function App() {
   const dispatch = useDispatch();

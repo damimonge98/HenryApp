@@ -4,7 +4,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "../../yup";
-import { loginUser } from "../../redux/actions/authActions";
+import { loginCompany } from "../../redux/actions/authActions";
 
 import Input from '../Input';
 import {
@@ -18,11 +18,11 @@ import {
   GoogleLogo,
   LogoWrapper,
   UserLogo
-} from './styles';
+} from '../LoginForm/styles';
 
 import henryLogo from "../../assets/images/henry.png";
 
-const LoginForm = () => {
+const CompanyLoginForm = () => {
 
   const { register, handleSubmit, watch, errors, trigger } = useForm({
     resolver: yupResolver(loginSchema)
@@ -39,7 +39,7 @@ const LoginForm = () => {
   }, [isAuth]);
 
   const onChange = async (data) => {
-    await dispatch(loginUser(data));
+    await dispatch(loginCompany(data));
     if (isAuth) {
       setInvalidUser(false);
       history.push('/');
@@ -67,7 +67,7 @@ const LoginForm = () => {
       <Input
         type="email"
         name="email"
-        label="Email"
+        label="Email de la empresa"
         autoComplete="off"
         required
         onChange={() => trigger("email")}
@@ -97,4 +97,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default CompanyLoginForm;

@@ -164,6 +164,10 @@ const UserListPage = () => {
           name: "Instructor",
           value: "instructor"
         },
+        {
+          name: "Company",
+          value: "company"
+        },
       ]
     },
     {

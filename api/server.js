@@ -37,7 +37,6 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', async () => {
   db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
-
   try {
     await Promise.all(
       modules.map(async m => {
