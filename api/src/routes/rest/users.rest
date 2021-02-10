@@ -4,12 +4,12 @@ GET http://localhost:5000/users
 ###
 
 # Get one user (id)
-GET http://localhost:5000/users/600f05d1ab85f5333c922784
+GET http://localhost:5000/users/60234bee88023325690f284d
 
 ###
 
 # Update one user (id)
-PATCH http://localhost:5000/users/user/601f09944e42ef1b686665b9
+PATCH http://localhost:5000/users/user/602350cda9dbce2bdb6f4014
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 ###
 
 # Delete one user (id)
-DELETE http://localhost:5000/users/601dea3f3e3056283428605e
+DELETE http://localhost:5000/users/6023505f75f04d2a26295a04
 
 ###
 
