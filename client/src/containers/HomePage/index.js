@@ -11,7 +11,7 @@ import { getAllModules } from '../../redux/actions/modulesActions';
 import { getAllLectures } from '../../redux/actions/lecturesActions';
 import { ModulesSection } from './styles';
 
-const HomePage = () => {
+const HomePage = (props) => {
   const { loading, isAuth, user } = useSelector(state => state.auth);
   const module = useSelector(state => state.module);
   const { loadingLectures, lectures } = useSelector(state => state.lecture);
