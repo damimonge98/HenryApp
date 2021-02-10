@@ -5,7 +5,6 @@ import LectureCard from "../../components/LectureCard";
 import { LecturePageWrapper, Grid } from "./styles";
 import Layout from "../Layout";
 import FilterBar from "../../components/FilterBar";
-import { useSelector } from 'react-redux';
 
 const LecturesPage = (props) => {
   const { user } = useSelector(state => state.auth);
@@ -63,10 +62,10 @@ const LecturesPage = (props) => {
     });
 
 
-  if (auth.loading)
+  if (loading)
     return <Loading />;
 
-  if (!auth.user) {
+  if (!user) {
     props.history.push("/login");
     return null;
   }
@@ -78,7 +77,7 @@ const LecturesPage = (props) => {
         <Grid>
           {filteredLectures.map(l => (
             <LectureCard
-              blocked={auth.user.currentModule < module.order}
+              blocked={user.currentModule < module.order}
               key={l._id}
               lecture={l}
             />
