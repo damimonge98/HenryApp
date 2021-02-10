@@ -11,8 +11,7 @@ import Loading from '../Loading';
 import Select from '../Select';
 import { UpdateUserFormWrapper, UpdateButton } from './styles';
 
-const UpdateUserForm = ({ modalRef, userData }) => {
-
+const UpdateUserForm = ({ modalRef, userData, modules }) => {
   const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(updateUserSchema)
   });
@@ -23,7 +22,7 @@ const UpdateUserForm = ({ modalRef, userData }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    dispatch(updateUser(userData._id, data));
+    dispatch(updateUser(userData._id, { ...data, currentModule: Number(data.currentModule) }));
   };
 
   if (!userData)
@@ -98,7 +97,7 @@ const UpdateUserForm = ({ modalRef, userData }) => {
         ref={register}
         defaultValue={userData.isSuperAdmin}
         onSelect={() => trigger("isSuperAdmin")}
-        error={errors.role?.message}
+        error={errors.isSuperAdmin?.message}
         options={[
           {
             text: "No",
@@ -109,6 +108,19 @@ const UpdateUserForm = ({ modalRef, userData }) => {
             value: true
           }
         ]}
+      />
+
+      <Select
+        name="currentModule"
+        label="Current Module"
+        required
+        ref={register}
+        defaultValue={userData.currentModule}
+        onSelect={() => trigger("currentModule")}
+        error={errors.currentModule?.message}
+        options={modules.sort((a, b) => a.order - b.order).map(m => {
+          return ({ text: m.title, value: Number(m.order) });
+        })}
       />
 
       <UpdateButton>

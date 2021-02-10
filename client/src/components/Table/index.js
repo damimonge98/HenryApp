@@ -22,7 +22,7 @@ const Table = ({ columns = [], rows, actions = [], style = {} }) => {
             const arrValues = Object.values(row);
             return (
               <Row key={_id} style={style} >
-                {arrValues.map((val, i) => (
+                {arrValues.sort((a, b) => a.order - b.order).map((val, i) => (
                   <Cell key={i}>{String(val)}</Cell>
                 ))}
                 <Cell>
