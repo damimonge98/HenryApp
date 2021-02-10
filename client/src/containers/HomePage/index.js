@@ -31,7 +31,7 @@ const HomePage = () => {
       {
         auth.isAuth ?
           <ModulesSection>
-            {module.modules.map(m => (
+            {module.modules.sort((a, b) => a.order - b.order).map(m => (
               <ModuleCard
                 key={m._id}
                 module={m}
