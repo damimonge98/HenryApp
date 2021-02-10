@@ -74,7 +74,6 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         type="text"
         name="urlLecture"
         label="Lecture URL"
-        required
         autoComplete="off"
         defaultValue={lectureData.urlLecture}
         ref={register}
