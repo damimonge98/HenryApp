@@ -216,7 +216,7 @@ const LectureListPage = () => {
         }
       </Modal>
       <Modal ref={addVideoModalRef}>
-        <H1>Add a video</H1>
+        <H1>Agregar un video</H1>
         <AddVideoForm modalRef={addVideoModalRef} lectureData={selected} />
       </Modal>
     </Layout>
