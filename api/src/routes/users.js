@@ -137,7 +137,7 @@ router.patch('/user/:id', async (req, res) => {
   };
 
   if (typeof isSuperAdmin === "boolean" && isSuperAdmin === false) {
-    update = { ...update, isSuperAdmin, currentModule: 0 };
+    update = { ...update, isSuperAdmin, currentModule };
   };
 
   if (role && role === "instructor") {

@@ -9,7 +9,7 @@ GET http://localhost:5000/users/60234bee88023325690f284d
 ###
 
 # Update one user (id)
-PATCH http://localhost:5000/users/user/6023dad14290334fe032667c
+PATCH http://localhost:5000/users/user/6023e9ba2d13916e74b7b544
 Content-Type: application/json
 
 {
