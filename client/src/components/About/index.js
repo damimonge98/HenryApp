@@ -25,7 +25,8 @@ export default function About() {
         <div className="divisor1"/>
         <div className="redes">
           <h2 className="title2">¡Seguilos en sus redes!</h2>
-          <div className="divisor1"/>
+          
+          
           <a href="https://twitter.com/soyhenry_ok" target="_blank">
           <i class="fab fa-twitter"/>
           </a>
@@ -44,7 +45,9 @@ export default function About() {
           >
             <i class="fab fa-facebook"/>
           </a>
+          
           <h6>Contacto: contacto@soyhenry.com</h6>
+          
         </div>
       </div>
       <div className="divisor1"/>
