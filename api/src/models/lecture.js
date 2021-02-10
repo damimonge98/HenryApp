@@ -24,7 +24,6 @@ const lectureSchema = new Schema({
   },
   moduloName: {
     type: String,
-    required: true
   }
 });
 
