@@ -1,0 +1,85 @@
+/* Titulos */
+
+.title1, .title2, .title3 {
+  text-shadow: 0 0 5px yellow;
+  text-align: center;  
+}
+.title4{
+  text-shadow: 0 0 5px yellow;
+  text-align: start; 
+  font-size: 15px;
+}
+
+/* Separadores */
+
+.divisor1 {
+  height: 30px;
+}
+.divisor2 {
+  height: 100px;
+}
+
+/* Texto */
+
+
+
+/* Cuerpo */
+
+.nosotros, .redes, .pagina {
+
+  position: relative;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.devs {
+  display: flex;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dev{
+  display: flex;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 0 20%;
+}
+
+/* Imagenes */
+.dev img {
+  height:70px;
+  width: 70px;
+  border-radius: 99em;
+    object-fit: cover;
+    border: 3px solid yellow;
+    margin: auto;
+    display: inline-block;
+
+}
+i {
+  font-size: 20px;
+  color:yellow;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5%;
+}
+i:hover {
+  color: black;
+  border-radius: 5px;
+  background-color: yellow;
+}
+
+.mediabox {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 40%;
+}
