@@ -33,15 +33,19 @@ const Catalogo = () => {
     },
   ]);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getAllJobs());
+    getAllEmpleos();
     setEliminar(false);
   }, [eliminar]);
 
   if (loading)
     return <Loading />;
+
+  const getAllEmpleos = () => {
+    axios.get("http://localhost:5000/empleos/").then((response) => {
+      setEmpleo(response.data);
+    });
+  };
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
