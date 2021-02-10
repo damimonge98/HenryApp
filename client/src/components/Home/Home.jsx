@@ -1,6 +1,5 @@
 import React from "react";
-import HenryDev from "../../assets/images/HenryDev.png";
-import Cost from "../../assets/images/Cost.png";
+import {Link} from "react-router-dom";
 import Booms from "../Booms/Booms";
 import "./styles.css";
 
@@ -10,51 +9,29 @@ const InitialHome = () => {
       <div className="div1">
         <Booms />
       </div>
-
-      <div className="div2">
-        <img src={HenryDev} className="devImg" />
-      </div>
-
-      <div className="div3">
-        <div className="divContainer3">
-          <h1> ¿Por qué Henry?</h1>
-          <br />
-          <h2>100% online</h2>
-          <br />
-          <p>
-            Toda la carrera es a remoto pero las clases son en VIVO. Solo
-            necesitas una computadora y un buen acceso a internet.
+      <div className="container">
+        <div className="div2">
+          <h1>Recursos para los alumnos</h1>
+          <p className="parrafo">
+            Tendrás acceso a todo tu material de estudio según el módulo en el
+            que estás cursando, clases grabadas de diferentes instructores y tu
+            estado de cuenta, y cuando termines el Módulo 4 ¡Podrás acceder a
+            nuestra bolsa de empleos!
           </p>
-          <br />
-          <h2>Soporte 1:1</h2>
-          <br />
-          <p>
-            Contamos con una red de instructores, PM’s y coaches que van a estar
-            a tu disposición cuando tengas dificultades ayudándote a acelerar tu
-            carrera.
-          </p>
-          <br />
-          <h2>Currícula</h2>
-
-          <br />
-          <p>
-            Con +700 horas de programación basado en prácticas y proyectos
-            reales, aprenderás las habilidades más demandadas del mercado
-            laboral.
-          </p>
-          <br />
-          <h2>Comunidad</h2>
-          <br />
-          <p>
-            Unirte a Henry significa crear conexiones para toda la vida, hacer
-            nuevos amigos y aprovechar oportunidades globales y diversas.
-          </p>
+          <Link to="/login">
+          <button className="btnhome">Accedé</button>
+          </Link>
         </div>
-      </div>
-
-      <div className="div4">
-        <div>
-          <img src={Cost} className="cost" />
+        <div className="div3">
+          <h1>Hire Henrys</h1>
+          <p className="parrafo">
+            Si tienes una empresa y buscas sumar programadores a tu equipo,
+            ofrecemos un espacio donde puedes publicar tus ofertas y recibir
+            postulaciones de nuestros graduados.
+          </p>
+          <Link to="/login">
+          <button className="btnhome">Publica tus ofertas</button>
+          </Link>
         </div>
       </div>
     </div>
