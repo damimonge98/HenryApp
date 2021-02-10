@@ -3,14 +3,12 @@ import {
   REQUEST_SUCCESS_ACTION_AUTH,
   REQUEST_FAILED_ACTION_AUTH,
   LOGIN_ACTION,
-  LOGIN_COMPANY_ACTION,
   REGISTER_ACTION,
   LOGOUT_ACTION
 } from '../constants/authContants';
 
 const initialState = {
   user: null,
-  company: null,
   isAuth: false,
   loading: true,
   error: null
@@ -44,14 +42,6 @@ const authReducers = (state = initialState, action) => {
         ...state,
         loading: false,
         user: action.user,
-        isAuth: true
-      };
-
-    case LOGIN_COMPANY_ACTION:
-      return {
-        ...state,
-        loading: false,
-        company: action.company,
         isAuth: true
       };
 

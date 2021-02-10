@@ -5,7 +5,6 @@ import {
   REQUEST_FAILED_ACTION_AUTH,
   REGISTER_ACTION,
   LOGIN_ACTION,
-  LOGIN_COMPANY_ACTION,
   LOGOUT_ACTION
 } from "../constants/authContants";
 
@@ -25,11 +24,6 @@ const requestFailedActionAuth = (error) => ({
 const loginAction = (user) => ({
   type: LOGIN_ACTION,
   user
-});
-
-const loginCompanyAction = (company) => ({
-  type: LOGIN_COMPANY_ACTION,
-  company
 });
 
 const registerAction = () => ({
@@ -57,6 +51,20 @@ export const registerUser = (registerData) => {
   };
 };
 
+export const registerCompany = (companyData) => {
+  return async (dispatch) => {
+    try {
+      dispatch(requestActionAuth());
+      const res = await axios.post('http://localhost:5000/auth/register-company', { ...companyData });
+      dispatch(registerAction(res.data));
+      dispatch(requestSuccessActionAuth());
+
+    } catch (error) {
+      dispatch(requestFailedActionAuth(error));
+    }
+  };
+};
+
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
@@ -64,24 +72,6 @@ export const loginUser = ({ email, password }) => {
       const res = await axios.post('http://localhost:5000/auth/login', { email, password });
       localStorage.setItem("HJWT", res.data.token);
       dispatch(loginAction(res.data.user));
-      dispatch(requestSuccessActionAuth());
-
-    } catch (error) {
-      dispatch(requestFailedActionAuth(error = {
-        code: 401,
-        errorMessage: 'Email o contraseña incorrectos.'
-      }));
-    }
-  };
-};
-
-export const loginCompany = ({ email, password }) => {
-  return async (dispatch) => {
-    try {
-      dispatch(requestActionAuth());
-      const res = await axios.post('http://localhost:5000/auth/login', { email, password });
-      localStorage.setItem("HJWT", res.data.token);
-      dispatch(loginCompanyAction(res.data.company));
       dispatch(requestSuccessActionAuth());
 
     } catch (error) {
@@ -107,7 +97,6 @@ export const autoLoginUser = () => {
       dispatch(requestSuccessActionAuth());
 
     } catch (error) {
-      console.log(error);
       dispatch(requestFailedActionAuth(error));
     }
   };

@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { companyRegisterSchema } from '../../yup';
 
 // Actions
-import { registerCompany } from '../../redux/actions/companiesActions';
+import { registerCompany } from '../../redux/actions/authActions';
 
 // Components
 import Input from '../Input';
@@ -91,7 +91,7 @@ const CompanyRegisterForm = () => {
         onChange={() => trigger(['password', 'repassword'])}
         error={errors.repassword?.message}
       />
-{/* 
+      {/* 
       <Input
         type='url'
         name='logo'

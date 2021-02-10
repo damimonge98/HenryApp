@@ -23,27 +23,3 @@ Content-Type: application/json
 DELETE http://localhost:5000/users/601dea3f3e3056283428605e
 
 ###
-
-# Register
-POST http://localhost:5000/auth/register
-Content-Type: application/json
-
-{
-  "email": "aufel@gmail.com",
-  "first_name": "Au",
-  "last_name": "Fel",
-  "password": "123"
-}
-
-###
-
-# Login
-POST http://localhost:5000/auth/login
-Content-Type: application/json
-
-{
-    "email": "aufel@gmail.com",
-    "password": "123"
-}
-
-###

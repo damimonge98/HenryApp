@@ -55,19 +55,19 @@ const CompanyLoginForm = () => {
       </LogoWrapper>
       <LoginGithubButton href='http://localhost:5000/auth/github'>
         <GithubLogo />
-        Log in with GitHub
+        Ingresar con GitHub
       </LoginGithubButton>
-      <Span>or</Span>
+      <Span>o</Span>
       <LoginGoogleButton href="http://localhost:5000/auth/google">
         <GoogleLogo />
-        Log in with Google
+        Ingresar con Google
       </LoginGoogleButton>
-      <Span>or</Span>
+      <Span>o</Span>
 
       <Input
         type="email"
         name="email"
-        label="Email"
+        label="Email de la empresa"
         autoComplete="off"
         required
         onChange={() => trigger("email")}
@@ -78,7 +78,7 @@ const CompanyLoginForm = () => {
       <Input
         type="password"
         name="password"
-        label="Password"
+        label="Contraseña"
         autoComplete="off"
         required
         onChange={() => trigger("password")}
@@ -90,9 +90,9 @@ const CompanyLoginForm = () => {
 
       <LoginButton>
         <UserLogo />
-        Login with email
+        Ingresar con email
       </LoginButton>
-      <SpanLink>Don't have an account? <Link to="/register">Register here</Link></SpanLink>
+      <SpanLink>No tenés una cuenta? <Link to="/register">Registrate acá</Link></SpanLink>
     </LoginFormWrapper>
   );
 };

@@ -5,7 +5,6 @@ import {
   REQUEST_FAILED_ACTION_COMPANIES,
   GET_ALL_COMPANIES,
   GET_COMPANY,
-  REGISTER_COMPANY,
   UPDATE_COMPANY,
   DELETE_COMPANY
 } from '../constants/companiesConstants';
@@ -31,11 +30,6 @@ const getAllCompaniesAction = (companies) => ({
 
 const getCompanyAction = (company) => ({
   type: GET_COMPANY,
-  company
-});
-
-const registerCompanyAction = (company) => ({
-  type: REGISTER_COMPANY,
   company
 });
 
@@ -70,20 +64,6 @@ export const getCompany = (id) => {
       dispatch(requestActionCompanies());
       const res = await axios.get(`http://localhost:5000/enterprise/${id}`);
       dispatch(getCompanyAction(res.data));
-      dispatch(requestSuccessActionCompanies());
-
-    } catch (error) {
-      dispatch(requestFailedActionCompanies(error));
-    }
-  };
-};
-
-export const registerCompany = (companyData) => {
-  return async (dispatch) => {
-    try {
-      dispatch(requestActionCompanies());
-      const res = await axios.post('http://localhost:5000/enterprise', { ...companyData });
-      dispatch(registerCompanyAction(res.data));
       dispatch(requestSuccessActionCompanies());
 
     } catch (error) {

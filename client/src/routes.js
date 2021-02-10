@@ -19,7 +19,6 @@ import LecturesListPage from './containers/LecturesListPage';
 import ModulesListPage from './containers/ModulesListPage';
 import EnterpriseListPage from './containers/EnterpriseListPage';
 import LecturesPage from './containers/LecturesPage';
-import CompanyLoginForm from './components/CompanyLoginForm/CompanyLoginForm';
 
 const routes = () => {
   return (
@@ -33,7 +32,6 @@ const routes = () => {
         <Route exact path='/oauth/:token' component={GooglePage} />
         <Route exact path='/register' component={RegisterPage} />
         <Route exact path='/login' component={LoginPage} />
-        <Route exact path='/login-company' component={CompanyLoginForm} />
         <Route exact path='/users' component={UserListPage} />
         <Route exact path='/lectures/:lectureid/module/:moduleid' component={OneLecture} />
         <Route exact path='/talks' component={HenryTalksCRUD} />
