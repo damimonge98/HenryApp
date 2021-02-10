@@ -73,11 +73,11 @@ module.exports = { mailRoutes: server, sendEmail };
 
 
 
-/* 
 
 
 
-const express = require("express");
+
+/*  const express = require("express");
 const nodemailer = require("nodemailer");
 const server = express.Router();
 
@@ -96,6 +96,7 @@ const sendEmail = (email, subject, text) => {
     to: email,
     subject: subject,
     text
+
   };
 
   transporter.sendMail({ ...mailOptions, subject: subject }, (error, info) => {
@@ -148,4 +149,4 @@ server.post('/', (req, res) => {
 });
 
 
-module.exports = { mailRoutes: server, sendEmail }; */
+module.exports = { mailRoutes: server, sendEmail };  */

@@ -16,14 +16,14 @@ const CardLecture = ({ lecture }) => {
   return (
       <div className="card">
         <div className="center">
-        <Link to={`/lecture/${_id}/module/${modulo}`} >
+        <Link to={`/lectures/${_id}/module/${modulo}`} >
         <img src={imagen} alt="Henry app" />
             </Link>
           
         </div>
         <div>
           <div>
-          <Link to={`/lecture/${_id}/module/${modulo}`} >
+          <Link to={`/lectures/${_id}/module/${modulo}`} >
             <h3>{title}</h3>
             </Link>
           </div>

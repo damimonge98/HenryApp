@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  background: #fcfcfc;
+  background: #f4f7f6;
   min-height: 100vh;
 `;
 

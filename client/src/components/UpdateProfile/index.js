@@ -44,6 +44,15 @@ const UpdateProfileForm = () => {
         error={errors.lastName?.message}
         defaultValue={user.lastName}
       />
+       <Input
+        type="text"
+        name="githubUsername"
+        label="Git Hub"
+        ref={register}
+        onChange={() => trigger("githubUsername")}
+        error={errors.githubUsername?.message}
+        defaultValue={user.githubUsername}
+      />
       <button>Save changes</button>
     </form>
   );

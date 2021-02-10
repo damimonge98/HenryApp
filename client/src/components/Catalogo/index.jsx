@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 // Components
 import OfferCard from "../OfferCard/index";
@@ -13,9 +14,13 @@ import FilterBar from "../FilterBar/index";
 import "./styles.css";
 
 const Catalogo = () => {
+  const { user, loading } = useSelector(state => state.auth);
+  const [eliminar, setEliminar] = useState(false)
+
   const [empleos, setEmpleo] = useState([
     {
       _id: "",
+      logo: "",
       title: "",
       description: "",
       location: "",
@@ -25,21 +30,19 @@ const Catalogo = () => {
       linkedIn: "",
     },
   ]);
-  const [filtered, setFiltered] = useState([]);  
 
   useEffect(() => {
     getAllEmpleos();
-  }, []);
+    setEliminar(false)
+  }, [eliminar]);
+
+  if (loading)
+    return <Loading />;
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
-      if(filtered){
-        setFiltered(response.data);
-      }
-      setEmpleo(response.data);
-    });
-    // setEmpleo([])
-    // dispatch(getEmpleos());
+      setEmpleo(response.data)
+    })
   };
 
   const openEls = document.querySelectorAll("[data-open]");
@@ -74,17 +77,28 @@ const Catalogo = () => {
     }
   });
 
+  const handleDelete = (id) => {
+    if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
+      axios.delete(`http://localhost:5000/empleos/${id}`).then()
+      setEliminar(true)
+    }
+  }
+
+
+
   return (
     <Layout>
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
-        <h5 className="h5">
-          ¿Eres empresa?{" "}
-          <button type="button" className="btn" data-open="modal1">
-            Publica tu oferta
+        <div>{
+          user.isSuperAdmin ?
+            <h5 className="h5">
+              <button type="button" className="btn" data-open="modal1">
+                Publica tu oferta
           </button>
-          
-        </h5>
+            </h5>
+            : null
+        }</div>
         {/* {-Modal crear oferta-} */}
         <div className="modal" id="modal1">
           <div className="modal-dialog">
@@ -103,13 +117,10 @@ const Catalogo = () => {
       </div>
       <div className="catalogueWrapper">
         <div className="empleosColumn">
-        {
-        filtered.length ?          
-            filtered.map((empleo, index) => <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>)
-                    :
-             empleos.map((empleo, index) => {
-            return <OfferCard empleo={empleo} key={index} location={empleos.location} remote={empleos.remote} tipo={empleos.tipo} end={empleos.end}/>;
-          })}
+          {
+            empleos.map((empleo, index) => {
+              return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
+            }).reverse()}
         </div>
       </div>
     </Layout>

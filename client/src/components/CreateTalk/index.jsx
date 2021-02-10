@@ -79,8 +79,8 @@ const CreateTalk = () => {
       <Link to='/'>
         <button type="button" className="btn"><i />Inicio</button>
       </Link>
-      <Link to='/henrytalks'>
-        <button type="button" className="btn">
+      <Link to='/talklist'>
+        <button type="button">
           <i />Lista de Talks</button>
       </Link>
     </div>
