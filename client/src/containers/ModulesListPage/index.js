@@ -208,7 +208,7 @@ const ModuleListPage = () => {
         }
       </Modal>
       <Modal ref={addLectureModalRef}>
-        <H1>Adding New Lecture</H1>
+        <H1>Agregando nueva clase</H1>
         <AddLectureForm modalRef={addLectureModalRef} moduleData={selected} />
       </Modal>
     </Layout>
