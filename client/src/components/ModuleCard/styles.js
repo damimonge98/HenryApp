@@ -47,3 +47,17 @@ export const Button = styled(Link)`
   justify-content: center;
   align-items: center;
 `;
+
+export const DisabledButton = styled.div`
+  height: 50px;
+  width: 250px;
+  margin: 1rem auto;
+  padding: 1rem 4rem;
+  background: #b3b3b3;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: not-allowed;
+`;

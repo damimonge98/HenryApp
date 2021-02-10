@@ -22,3 +22,36 @@
 .link {
   text-decoration: none;
 }
+
+button.rec-dot{
+  background-color: black;
+  box-shadow: 0 0 1px 3px rgb(255, 255, 255);
+}
+
+ button.rec-dot:active, button.rec-dot:focus  {
+  background-color: yellow;
+  box-shadow: 0 0 1px 3px rgb(253, 253, 253);
+}
+
+button.rec-dot:active {
+  color: yellow;
+  box-shadow: 0 0 1px 3px rgb(255, 255, 255);
+}
+
+button.rec-dot:hover {
+ color: yellow;
+}
+
+.rec.rec-arrow {
+  background-color: yellow;
+}
+
+.rec.rec-arrow:focus {
+  background: red
+}
+
+button.rec-arrow:hover {
+  background-color: yellow;
+}
+
+

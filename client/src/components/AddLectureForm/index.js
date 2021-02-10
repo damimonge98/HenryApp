@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { updateLectureSchema } from "../../yup";
-import { updateLecture } from "../../redux/actions/lecturesActions";
+import { createLectureSchema } from "../../yup";
+import { createLecture } from "../../redux/actions/lecturesActions";
 
 import Input from '../Input';
 import Loading from '../Loading';
 import Select from '../Select';
-import { UpdateLectureFormWrapper, UpdateButton } from './styles';
+import { AddLectureWrapper, CreateButton } from './styles';
 
-const UpdateLectureForm = ({ modalRef, lectureData }) => {
+const AddLectureForm = ({ modalRef, moduleData }) => {
 
   const { register, handleSubmit, errors, trigger } = useForm({
-    resolver: yupResolver(updateLectureSchema)
+    resolver: yupResolver(createLectureSchema)
   });
 
   // TODO: necesito hacer un req para traer los datos del usuario ?
@@ -23,16 +23,17 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    dispatch(updateLecture(lectureData._id, data));
+    dispatch(createLecture(moduleData._id, data));
+    modalRef.current.closeModal();
   };
 
-  if (!lectureData)
+  if (!moduleData)
     return <Loading />;
 
   console;
 
   return (
-    <UpdateLectureFormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <AddLectureWrapper onSubmit={handleSubmit(onSubmit)}>
 
       <Input
         type="text"
@@ -40,7 +41,6 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         label="Title"
         required
         autoComplete="off"
-        defaultValue={lectureData.title}
         ref={register}
         onChange={() => trigger("title")}
         error={errors.title?.message}
@@ -52,7 +52,6 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         label="Description"
         required
         autoComplete="off"
-        defaultValue={lectureData.description}
         ref={register}
         onChange={() => trigger("description")}
         error={errors.description?.message}
@@ -62,9 +61,7 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         type="text"
         name="imagen"
         label="Image"
-        required
         autoComplete="off"
-        defaultValue={lectureData.imagen}
         ref={register}
         onChange={() => trigger("imagen")}
         error={errors.imagen?.message}
@@ -75,17 +72,16 @@ const UpdateLectureForm = ({ modalRef, lectureData }) => {
         name="urlLecture"
         label="Lecture URL"
         autoComplete="off"
-        defaultValue={lectureData.urlLecture}
         ref={register}
         onChange={() => trigger("urlLecture")}
         error={errors.urlLecture?.message}
       />
 
-      <UpdateButton>
-        Editar Lecture
-      </UpdateButton>
-    </UpdateLectureFormWrapper>
+      <CreateButton>
+        Add Lecture
+      </CreateButton>
+    </AddLectureWrapper>
   );
 };
 
-export default UpdateLectureForm;
+export default AddLectureForm;

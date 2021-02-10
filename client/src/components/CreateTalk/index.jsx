@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import { createTalk } from '../../redux/actions/talkActions';
 
 const CreateTalk = () => {
+
+  const { user } = useSelector(state => state.auth);
 
   const [talk, setTalk] = useState({
     title: "",
@@ -13,6 +15,12 @@ const CreateTalk = () => {
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  if (user.companyName) {
+    history.push('/empleos');
+    return null;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

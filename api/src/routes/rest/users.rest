@@ -9,7 +9,7 @@ GET http://localhost:5000/users/60234bee88023325690f284d
 ###
 
 # Update one user (id)
-PATCH http://localhost:5000/users/user/602350cda9dbce2bdb6f4014
+PATCH http://localhost:5000/users/user/6023dad14290334fe032667c
 Content-Type: application/json
 
 {
@@ -21,29 +21,5 @@ Content-Type: application/json
 
 # Delete one user (id)
 DELETE http://localhost:5000/users/6023505f75f04d2a26295a04
-
-###
-
-# Register
-POST http://localhost:5000/auth/register
-Content-Type: application/json
-
-{
-  "email": "aufel@gmail.com",
-  "first_name": "Au",
-  "last_name": "Fel",
-  "password": "123"
-}
-
-###
-
-# Login
-POST http://localhost:5000/auth/login
-Content-Type: application/json
-
-{
-    "email": "aufel@gmail.com",
-    "password": "123"
-}
 
 ###

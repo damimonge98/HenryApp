@@ -7,15 +7,15 @@ import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
 
-  const [companyForm, setCompanyForm] = useState(false);
+  const [registerType, setRegisterType] = useState(false);
 
-  if (!companyForm) {
+  if (!registerType) {
     return (
       <RegisterPageWrapper>
         <RegisterCard>
           <RegisterForm />
           <SpanLink>Sos una empresa?
-          <Link onClick={() => setCompanyForm(!companyForm)}> Registrate acá</Link>
+          <Link onClick={() => setRegisterType(!registerType)}> Registrate acá</Link>
           </SpanLink>
         </RegisterCard>
       </RegisterPageWrapper>
@@ -26,7 +26,7 @@ const RegisterPage = () => {
         <RegisterCard>
           <CompanyRegisterForm />
           <SpanLink>Sos un estudiante?
-          <Link onClick={() => setCompanyForm(!companyForm)}> Registrate acá</Link>
+          <Link onClick={() => setRegisterType(!registerType)}> Registrate acá</Link>
           </SpanLink>
         </RegisterCard>
       </RegisterPageWrapper>

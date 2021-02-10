@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { AppWrapper, CenterInPage, Quote, QuoteWrapper, Author } from './styles';
 import routes from '../../routes';
-import { autoLoginUser } from "../../redux/actions/authActions";
+import { quotes } from "../../data";
+
+// Components
 import Loading from '../Loading';
 
-import { quotes } from "../../data";
+// Actions
+import { autoLoginUser } from "../../redux/actions/authActions";
+
+// Styles
+import { AppWrapper, CenterInPage, Quote, QuoteWrapper, Author } from './styles';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,18 +20,21 @@ function App() {
     dispatch(autoLoginUser());
   }, []);
 
-  if (loading && window.location.pathname !== '/login') {
-    const num = Math.round(Math.random() * (quotes.length - 1));
-    return (
-      <CenterInPage>
-        <Loading />
-        <QuoteWrapper>
-          <Quote>‟{quotes[num].text}”</Quote>
-          <Author>{quotes[num].author}</Author>
-        </QuoteWrapper>
-      </CenterInPage>
-    );
-  };
+  if (loading && window.location.pathname !== '/login')
+    <Loading />;
+
+  // {
+  //   const num = Math.round(Math.random() * (quotes.length - 1));
+  //   return (
+  //     <CenterInPage>
+  //       <Loading />
+  //       <QuoteWrapper>
+  //         <Quote>‟{quotes[num].text}”</Quote>
+  //         <Author>{quotes[num].author}</Author>
+  //       </QuoteWrapper>
+  //     </CenterInPage>
+  //   );
+  // };
 
   return (
     <AppWrapper>

@@ -19,7 +19,6 @@ import LecturesListPage from './containers/LecturesListPage';
 import ModulesListPage from './containers/ModulesListPage';
 import EnterpriseListPage from './containers/EnterpriseListPage';
 import LecturesPage from './containers/LecturesPage';
-import TalkList from "./components/TalkList"
 import About from "./components/About/index";
 import ThisPage from "./components/About/thispage";
 
@@ -45,7 +44,6 @@ const routes = () => {
         <Route exact path='/payments' component={Payment} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
-        <Route exact path="/talklist" component={TalkList} />
         <Route exact path="/about" component={About} />
         <Route exact path="/thispage" component={ThisPage}/>
       </Switch>

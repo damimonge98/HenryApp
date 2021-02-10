@@ -9,7 +9,7 @@ const jobSchema = new Schema({
       "https://media-exp1.licdn.com/dms/image/C4E0BAQGy6GZmHb_SXA/company-logo_200_200/0/1603651276024?e=1619654400&v=beta&t=kRb_lMNqQF3oGVL9IrNYVxKdJf1qDW3FNTRdSeIu4zI",
   },
 
-  enterpriseName: {
+  companyName: {
     type: String,
   },
 
@@ -40,9 +40,10 @@ const jobSchema = new Schema({
     type: String,
     required: true,
   },
-  enterprise:{
-     type: Schema.Types.ObjectId, 
-     ref: 'Empresa' 
+
+  enterprise: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 
