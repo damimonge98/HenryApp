@@ -2,10 +2,11 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Remarkable } from 'remarkable';
 import "./readme.css";
-import Loading from "../Loading";
+
 
 
 export default function Readme(props) {
+  if (props.url) {
   const [readme, setReadme] = useState(null);
   const md = new Remarkable();
 
@@ -68,7 +69,14 @@ export default function Readme(props) {
 
     </div>
 
-  );
+  )} else {
+    return (
+      <div>
+      <h1 className = "h1Image">Esta lecture  <br/> no tiene Readme </h1>
+      <img src = "https://www.sciener.my/wp-content/uploads/2018/10/scienerc-404-error-.png" className = "image"/>
+      </div>
+      )
+  }
 
 
 
