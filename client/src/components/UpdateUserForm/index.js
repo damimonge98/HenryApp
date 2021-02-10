@@ -22,14 +22,12 @@ const UpdateUserForm = ({ modalRef, userData, modules }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log({ ...data, currentModule: Number(data.currentModule) });
     dispatch(updateUser(userData._id, { ...data, currentModule: Number(data.currentModule) }));
   };
 
   if (!userData)
     return <Loading />;
 
-  console.log(modules);
   return (
     <UpdateUserFormWrapper onSubmit={handleSubmit(onSubmit)}>
 
