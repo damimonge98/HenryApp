@@ -100,7 +100,7 @@ export const updateTalkSchema = yup.object().shape({
 });
 
 export const updateCompanySchema = yup.object().shape({
-  name: yup.string()
+  companyName: yup.string()
     .max(100)
     .required(),
   email: yup.string()
@@ -113,7 +113,7 @@ export const updateCompanySchema = yup.object().shape({
 });
 
 export const companyRegisterSchema = yup.object().shape({
-  name: yup.string()
+  companyName: yup.string()
     .min(2)
     .max(76)
     .required(),

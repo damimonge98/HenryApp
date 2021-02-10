@@ -43,7 +43,7 @@ passport.use(
               if (isMatch) {
                 return done(null, user);
               } else {
-                return done(null, false, { message: 'Wrong password' });
+                return done(null, false, { message: 'Contraseña incorrecta.' });
               }
             });
           });

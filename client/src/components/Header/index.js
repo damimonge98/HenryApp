@@ -20,7 +20,7 @@ import henryLogo from "../../assets/images/henry.png";
 
 const Header = () => {
 
-  const { isAuth, user, company } = useSelector(state => state.auth);
+  const { isAuth, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -45,11 +45,11 @@ const Header = () => {
         isAuth ?
           <LogInWrapper>
             <ConsoleIcon />
-            <span>{user ? user.firstName : company.name} {user && user.lastName}</span>
+            <span>{user.firstName ? user.firstName : user.companyName} {user.lastName && user.lastName}</span>
             <AvatarWrapper>
               {
                 user.avatar &&
-                <img src={user ? user.avatar : company.logo} alt={user ? user.firstName : company.name + " " + user && user.lastName} />
+                <img src={user.avatar} alt={user.firstName ? user.firstName : user.companyName + " " + user.lastName && user.lastName} />
               }
             </AvatarWrapper>
             <MenuWrapper>

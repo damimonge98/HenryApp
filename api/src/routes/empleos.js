@@ -12,7 +12,7 @@ const Empresa = require('../models/enterprise');
 router.post("/:id", async (req, res) => {
   const {
     logo,
-    enterpriseName,
+    companyName,
     title,
     description,
     remote,
@@ -25,7 +25,7 @@ router.post("/:id", async (req, res) => {
   const { id } = req.params;
   const offerCard = new Empleo({
     logo,
-    enterpriseName,
+    companyName,
     title,
     description,
     remote,
@@ -101,7 +101,7 @@ router.delete("/:id", (req, res) => {
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
   const {
-    enterpriseName,
+    companyName,
     logo,
     title,
     description,

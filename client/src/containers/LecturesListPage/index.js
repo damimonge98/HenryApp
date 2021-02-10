@@ -9,13 +9,13 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateLectureForm from '../../components/UpdateLectureForm';
 import FilterBar from '../../components/FilterBar';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
 
 const LectureListPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const lecture = useSelector(state => state.lecture);
-  const auth = useSelector(state => state.auth);
+  const { loading, isAuth, user } = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
   // const [adminFilter, setAdminFilter] = useState({
@@ -33,6 +33,11 @@ const LectureListPage = () => {
   useEffect(() => {
     dispatch(getAllLectures());
   }, []);
+
+  if (user.companyName) {
+    history.push('/empleos');
+    return null;
+  }
 
   useEffect(() => {
     setRows(
@@ -85,15 +90,15 @@ const LectureListPage = () => {
     deleteModalRef.current.openModal();
   };
 
-  if (auth.loading || lecture.loading)
+  if (loading || lecture.loading)
     return <Loading />;
 
-  if (!auth.isAuth) {
+  if (!isAuth) {
     history.push("/login");
     return null;
   }
 
-  if (!auth.user.isSuperAdmin) {
+  if (!user.isSuperAdmin) {
     history.push("/");
     return null;
   }

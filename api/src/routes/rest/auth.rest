@@ -37,7 +37,7 @@ POST http://localhost:5000/auth/register-company/
 Content-Type: application/json
 
 {
-  "name": "Microsoft",
+  "companyName": "Microsoft",
   "email": "microsoft@outlook.com",
   "password": "Hola1234"
 }

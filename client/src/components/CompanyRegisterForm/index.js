@@ -50,13 +50,13 @@ const CompanyRegisterForm = () => {
 
       <Input
         type='text'
-        name='name'
+        name='companyName'
         label='Nombre de la empresa'
         required
         autoComplete='off'
         ref={register}
-        onChange={() => trigger('name')}
-        error={errors.name?.message}
+        onChange={() => trigger('companyName')}
+        error={errors.companyName?.message}
       />
 
       <Input
@@ -94,12 +94,12 @@ const CompanyRegisterForm = () => {
       {/* 
       <Input
         type='url'
-        name='logo'
+        name='avatar'
         label='Logo'
         autoComplete='off'
         ref={register}
-        onChange={() => trigger('logo')}
-        error={errors.logo?.message}
+        onChange={() => trigger('avatar')}
+        error={errors.avatar?.message}
       />
  */}
       <RegisterButton>

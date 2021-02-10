@@ -9,13 +9,13 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateModuleForm from '../../components/UpdateModuleForm';
 import FilterBar from '../../components/FilterBar';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, } from './styles';
 
 const ModuleListPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const module = useSelector(state => state.module);
-  const auth = useSelector(state => state.auth);
+  const { loading, isAuth, user } = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   // const [adminFilter, setAdminFilter] = useState({
   //   name: "All Users",
@@ -32,6 +32,11 @@ const ModuleListPage = () => {
   useEffect(() => {
     dispatch(getAllModules());
   }, []);
+
+  if (user.companyName) {
+    history.push('/empleos');
+    return null;
+  }
 
   useEffect(() => {
     setRows(
@@ -76,15 +81,15 @@ const ModuleListPage = () => {
     deleteModalRef.current.openModal();
   };
 
-  if (auth.loading || module.loading)
+  if (loading || module.loading)
     return <Loading />;
 
-  if (!auth.isAuth) {
+  if (!isAuth) {
     history.push("/login");
     return null;
   }
 
-  if (!auth.user.isSuperAdmin) {
+  if (!user.isSuperAdmin) {
     history.push("/");
     return null;
   }
