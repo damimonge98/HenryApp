@@ -13,7 +13,8 @@ import {
   HeaderWrapper,
   MenuWrapper,
   MenuItem,
-  LinksWrapper
+  LinksWrapper,
+  Sudo
 } from './styles';
 
 import henryLogo from "../../assets/images/henry.png";
@@ -45,6 +46,7 @@ const Header = () => {
         isAuth ?
           <LogInWrapper>
             <ConsoleIcon />
+            {user.isSuperAdmin ? <Sudo>sudo</Sudo> : null}
             <span>{user.firstName ? user.firstName : user.companyName} {user.lastName && user.lastName}</span>
             <AvatarWrapper>
               {
@@ -58,13 +60,13 @@ const Header = () => {
               </MenuItem>
               {user.isSuperAdmin === true || user.role === 'instructor'
                 ?
-                <div>
+                <>
                   <MenuItem>
                     <Link to="/users">Usuarios</Link>
                   </MenuItem>
-                  <MenuItem>
+                  {/* <MenuItem>
                     <Link to="/enterprise">Empresas</Link>
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem>
                     <Link to="/modules">Módulos</Link>
                   </MenuItem>
@@ -74,7 +76,7 @@ const Header = () => {
                   <MenuItem>
                     <Link to="/talks">Henry Talks</Link>
                   </MenuItem>
-                </div>
+                </>
                 :
                 <MenuItem>
                   <Link to="/payments">Estado de cuenta</Link>

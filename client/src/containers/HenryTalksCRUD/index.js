@@ -52,7 +52,7 @@ const HenryTalksCRUD = () => {
     return null;
   }
 
-  if (!user.isSuperAdmin) {
+  if (user && !user.isSuperAdmin) {
     history.push('/');
     return null;
   }

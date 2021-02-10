@@ -13,7 +13,7 @@ import {
 const initialState = {
   lectures: [],
   lecture: {},
-  loading: false,
+  loadingLectures: false,
   error: null
 };
 
@@ -24,20 +24,20 @@ const lecturesReducers = (state = initialState, action) => {
     case REQUEST_ACTION_LECTURES:
       return {
         ...state,
-        loading: true
+        loadingLectures: true
       };
 
     case REQUEST_SUCCESS_ACTION_LECTURES:
       return {
         ...state,
-        loading: false,
+        loadingLectures: false,
         error: null
       };
 
     case REQUEST_FAILED_ACTION_LECTURES:
       return {
         ...state,
-        loading: false,
+        loadingLectures: false,
         error: action.error
       };
 

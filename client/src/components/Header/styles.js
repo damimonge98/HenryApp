@@ -96,7 +96,7 @@ export const MenuWrapper = styled.ul`
     content: "";
     position: absolute;
     bottom: 100%;
-    right: 12px;
+    right: 17px;
     width: 0;
     height: 0;
     border-bottom: 12px solid #fff;
@@ -111,7 +111,7 @@ export const MenuWrapper = styled.ul`
 
   li:last-child {
     border-radius: 0 0 8px 8px;
-    background: rgba(220, 220, 220, 0.75);
+    background: #eaeaea;
     backdrop-filter: blur(250px);
     border-bottom: 0;
   }
@@ -149,4 +149,9 @@ export const LinksWrapper = styled.div`
     font-size: 18px;
     margin-right: 0.5rem;
   }
+`;
+
+export const Sudo = styled.span`
+  color: #ffff01;
+  font-weight: 500;
 `;

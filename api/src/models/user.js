@@ -3,22 +3,24 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
 
   firstName: {
-    type: String
+    type: String,
+    default: ""
   },
 
   lastName: {
-    type: String
+    type: String,
+    default: ""
   },
 
   companyName: {
-    type: String
+    type: String,
+    default: ""
   },
 
   email: {
     type: String,
     unique: true,
-    required: true,
-    default: ""
+    required: true
   },
 
   password: {
@@ -28,7 +30,7 @@ const userSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum: ['instructor', 'student', 'guest', 'banned', 'company'],
+    enum: ['guest', 'student', 'instructor', 'company', 'banned'],
     default: 'guest'
   },
 

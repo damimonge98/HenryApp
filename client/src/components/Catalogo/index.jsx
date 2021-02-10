@@ -12,10 +12,11 @@ import FilterBar from "../FilterBar/index";
 // Styled Components
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
 import "./styles.css";
+import Loading from '../Loading';
 
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
-  const [eliminar, setEliminar] = useState(false)
+  const [eliminar, setEliminar] = useState(false);
 
   const [empleos, setEmpleo] = useState([
     {
@@ -31,19 +32,19 @@ const Catalogo = () => {
     },
   ]);
 
+  const getAllEmpleos = () => {
+    axios.get("http://localhost:5000/empleos/").then((response) => {
+      setEmpleo(response.data);
+    });
+  };
+
   useEffect(() => {
     getAllEmpleos();
-    setEliminar(false)
+    setEliminar(false);
   }, [eliminar]);
 
   if (loading)
     return <Loading />;
-
-  const getAllEmpleos = () => {
-    axios.get("http://localhost:5000/empleos/").then((response) => {
-      setEmpleo(response.data)
-    })
-  };
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
@@ -79,10 +80,10 @@ const Catalogo = () => {
 
   const handleDelete = (id) => {
     if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then()
-      setEliminar(true)
+      axios.delete(`http://localhost:5000/empleos/${id}`).then();
+      setEliminar(true);
     }
-  }
+  };
 
 
 
@@ -91,7 +92,7 @@ const Catalogo = () => {
       <div>
         <h3 className="offertitle">Bolsa de Trabajo</h3>
         <div>{
-          user.isSuperAdmin || user.role === 'company' ?
+          user && user.isSuperAdmin || user && user.role === 'company' ?
             <h5 className="h5">
               <button type="button" className="btn" data-open="modal1">
                 Publica tu oferta
@@ -119,7 +120,7 @@ const Catalogo = () => {
         <div className="empleosColumn">
           {
             empleos.map((empleo, index) => {
-              return <OfferCard empleo={empleo} key={index} admin={user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
+              return <OfferCard empleo={empleo} key={index} admin={user && user.isSuperAdmin} foo={() => handleDelete(empleo._id)} />;
             }).reverse()}
         </div>
       </div>

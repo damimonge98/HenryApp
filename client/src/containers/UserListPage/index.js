@@ -14,9 +14,9 @@ import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
 
 const UserListPage = () => {
-  const { users, loading } = useSelector(state => state.user);
+  const { users, loadingUsers } = useSelector(state => state.user);
+  const { loading, isAuth, user } = useSelector(state => state.auth);
   const module = useSelector(state => state.module);
-  const auth = useSelector(state => state.auth);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
   const [adminFilter, setAdminFilter] = useState({
@@ -56,8 +56,8 @@ const UserListPage = () => {
         })
         .filter(u => {
           if (search.length > 0) {
-            return u.firstName.toLowerCase().includes(search.toLowerCase())
-              || u.lastName && u.lastName.toLowerCase().includes(search.toLowerCase()) ?
+            return u.firstName && u.firstName.toLowerCase().includes(search.toLowerCase())
+              || u.lastName && u.lastName.toLowerCase().includes(search.toLowerCase()) || u.companyName && u.companyName.toLowerCase().includes(search.toLowerCase()) ?
               true
               : false;
           };
@@ -65,7 +65,7 @@ const UserListPage = () => {
         })
         .map(u => ({
           _id: u._id,
-          fullName: `${u.firstName} ${u.lastName}`,
+          fullName: u.firstName ? `${u.firstName} ${u.lastName}` : u.companyName,
           email: u.email,
           githubUsername: u.githubUsername,
           role: u.role,
@@ -94,15 +94,15 @@ const UserListPage = () => {
     deleteModalRef.current.openModal();
   };
 
-  if (auth.loading || loading || module.loading)
+  if (loading || loadingUsers || module.loading)
     return <Loading />;
 
-  if (!auth.isAuth) {
+  if (!isAuth) {
     history.push("/login");
     return null;
   }
 
-  if (!auth.user.isSuperAdmin) {
+  if (user && !user.isSuperAdmin) {
     history.push("/");
     return null;
   }
@@ -174,7 +174,7 @@ const UserListPage = () => {
           value: "instructor"
         },
         {
-          name: "Company",
+          name: "Empresa",
           value: "company"
         },
       ]

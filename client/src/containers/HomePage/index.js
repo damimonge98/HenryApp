@@ -12,9 +12,9 @@ import { getAllLectures } from '../../redux/actions/lecturesActions';
 import { ModulesSection } from './styles';
 
 const HomePage = () => {
-  const auth = useSelector(state => state.auth);
+  const { loading, isAuth, user } = useSelector(state => state.auth);
   const module = useSelector(state => state.module);
-  const lecture = useSelector(state => state.lecture);
+  const { loadingLectures, lectures } = useSelector(state => state.lecture);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,21 +22,21 @@ const HomePage = () => {
     dispatch(getAllLectures());
   }, []);
 
-  if (auth.loading || module.loading || lecture.loading) {
+  if (loading || module.loading || loadingLectures) {
     return <Loading />;
   }
 
   return (
     <Layout>
       {
-        auth.isAuth ?
+        isAuth ?
           <ModulesSection>
             {module.modules.sort((a, b) => a.order - b.order).map(m => (
               <ModuleCard
                 key={m._id}
                 module={m}
-                lectures={lecture.lectures.filter(l => l.modulo === m._id)}
-                blocked={auth.user.currentModule < m.order}
+                lectures={lectures.filter(l => l.modulo === m._id)}
+                blocked={user.currentModule < m.order}
               />
             ))}
             {/* <ModuleCard /> */}
