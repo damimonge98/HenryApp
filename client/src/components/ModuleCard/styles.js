@@ -31,8 +31,12 @@ export const Description = styled.h3`
 `;
 
 export const LectureList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  grid-auto-flow: row dense;
+  overflow: hidden;
+  box-sizing: content-box;
 `;
 
 export const Button = styled(Link)`

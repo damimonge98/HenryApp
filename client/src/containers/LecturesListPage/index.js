@@ -9,8 +9,8 @@ import Table from '../../components/Table';
 import Modal from '../../components/Modal';
 import UpdateLectureForm from '../../components/UpdateLectureForm';
 import FilterBar from '../../components/FilterBar';
-import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
 import AddVideoForm from '../../components/AddVideoForm';
+import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper } from './styles';
 
 const LectureListPage = () => {
   const history = useHistory();
@@ -35,11 +35,6 @@ const LectureListPage = () => {
   useEffect(() => {
     dispatch(getAllLectures());
   }, []);
-
-  if (user && user.companyName) {
-    history.push('/empleos');
-    return null;
-  }
 
   useEffect(() => {
     setRows(
@@ -112,6 +107,11 @@ const LectureListPage = () => {
 
   if (user && !user.isSuperAdmin) {
     history.push("/");
+    return null;
+  }
+
+  if (user && user.companyName) {
+    history.push('/empleos');
     return null;
   }
 

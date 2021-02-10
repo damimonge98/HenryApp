@@ -27,11 +27,6 @@ const LecturesPage = (props) => {
     title: "",
   }]);
 
-  if (user && user.companyName) {
-    history.push('/empleos');
-    return null;
-  }
-
   useEffect(() => {
     getLectures();
     getOneModule();
@@ -68,6 +63,11 @@ const LecturesPage = (props) => {
 
   if (!user) {
     props.history.push("/login");
+    return null;
+  }
+
+  if (user && user.companyName) {
+    history.push('/empleos');
     return null;
   }
 
