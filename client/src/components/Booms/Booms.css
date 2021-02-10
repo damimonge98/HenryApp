@@ -33,15 +33,25 @@ button.rec-dot{
   box-shadow: 0 0 1px 3px rgb(253, 253, 253);
 }
 
-button.rec-dot:hover {
-  background-color: yellow;
+button.rec-dot:active {
+  color: yellow;
   box-shadow: 0 0 1px 3px rgb(255, 255, 255);
-  
+}
+
+button.rec-dot:hover {
+ color: yellow;
 }
 
 .rec.rec-arrow {
-  background-color: white;
+  background-color: yellow;
 }
-button.rec-arrow:active {
-  background: transparent;
+
+.rec.rec-arrow:focus {
+  background: red
 }
+
+button.rec-arrow:hover {
+  background-color: yellow;
+}
+
+
