@@ -37,8 +37,8 @@ mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, us
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', async () => {
-  // db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
-  try {
+ //db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
+ /* try {
     await Promise.all(
       modules.map(async m => {
         let lectures = m.lectures;
@@ -56,7 +56,7 @@ db.once('open', async () => {
     );
   } catch (err) {
     console.log(err);
-  }
+  } */
 
   console.log('  🗃  Connected to database!\n  👨‍💻  Have fun! 👩‍💻');
 });

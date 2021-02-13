@@ -12,6 +12,7 @@ import UpdateUserForm from '../../components/UpdateUserForm';
 import InviteUsersCsvForm from '../../components/InviteUsersCsvForm';
 import FilterBar from '../../components/FilterBar';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, ButtonsRow, Button } from './styles';
+import UpdateDebtForm from '../../components/UpdateDebtForm';
 
 const UserListPage = () => {
   const { users, loadingUsers } = useSelector(state => state.user);
@@ -32,6 +33,7 @@ const UserListPage = () => {
   const history = useHistory();
   const editModalRef = useRef();
   const deleteModalRef = useRef();
+  const editDebtModalRef = useRef();
   const inviteUsersCsvModalRef = useRef();
 
   useEffect(() => {
@@ -94,6 +96,16 @@ const UserListPage = () => {
     deleteModalRef.current.openModal();
   };
 
+  const handleUpdateDebt = (id) => {
+    const [user] = users.filter(u => {
+      if (u._id === id)
+        return true;
+      return false;
+    });
+    setSelected(user);
+    editDebtModalRef.current.openModal();
+  };
+
   if (loading || loadingUsers || module.loading)
     return <Loading />;
 
@@ -148,6 +160,11 @@ const UserListPage = () => {
     {
       handleClick: (id) => handleDeleteUser(id),
       icon: <i class="fas fa-trash-alt"></i>
+    },
+    {
+      handleClick: (id) => handleUpdateDebt(id),
+      icon: <i class="fas fa-file-invoice-dollar"></i>
+
     }
   ];
 
@@ -227,6 +244,10 @@ const UserListPage = () => {
             </ConfirmationWrapper>
           ) : null
         }
+      </Modal>
+      <Modal ref={editDebtModalRef}>
+        <H1>Editar Estado De Cuenta</H1>
+        <UpdateDebtForm modalRef={editDebtModalRef} userData={selected} ></UpdateDebtForm>
       </Modal>
       <Modal ref={inviteUsersCsvModalRef}>
         <H1>Invitando usuarios por .csv</H1>
