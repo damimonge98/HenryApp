@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { companyRegisterSchema } from '../../yup';
+import firebase from 'firebase';
 
 // Actions
 import { registerCompany } from '../../redux/actions/authActions';
@@ -26,7 +27,7 @@ const CompanyRegisterForm = () => {
   const { register, handleSubmit, errors, trigger } = useForm({
     resolver: yupResolver(companyRegisterSchema)
   });
-
+  const [uploadValue, setUploadValue] = useState(0);
   const { isAuth } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,13 +36,27 @@ const CompanyRegisterForm = () => {
     if (isAuth) history.push('/');
   }, [isAuth]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+
+
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref(`/fotos/${file.name}`);
+    const task = storageRef.put(file);
+
+    task.on('state_changed', snapshot => {
+      let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      setUploadValue(percentage)
+    }, err => { console.log(err) }, async () => {
+      const urlLogo = await storageRef.getDownloadURL()
+      data.avatar = urlLogo
+    })
+
     dispatch(registerCompany(data));
     history.push('/login');
   };
 
   return (
-    <RegisterFormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <RegisterFormWrapper onSubmit={e => handleSubmit(onSubmit(e))}>
       <LogoWrapper>
         <Link to='/'>
           <img src={HenryLogo} alt='Henry Logo' />
@@ -91,9 +106,9 @@ const CompanyRegisterForm = () => {
         onChange={() => trigger(['password', 'repassword'])}
         error={errors.repassword?.message}
       />
-      {/* 
+      <progress value={uploadValue} max='100' ></progress>
       <Input
-        type='url'
+        type='file'
         name='avatar'
         label='Logo'
         autoComplete='off'
@@ -101,7 +116,7 @@ const CompanyRegisterForm = () => {
         onChange={() => trigger('avatar')}
         error={errors.avatar?.message}
       />
- */}
+
       <RegisterButton>
         <UserLogo />
         Registrate
