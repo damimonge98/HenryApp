@@ -11,6 +11,8 @@ import UpdateModuleForm from '../../components/UpdateModuleForm';
 import FilterBar from '../../components/FilterBar';
 import AddLectureForm from '../../components/AddLectureForm';
 import { H1, ButtonCancel, ButtonConfirm, ConfirmationWrapper, } from './styles';
+import { Button, ButtonsRow } from '../UserListPage/styles';
+import CreateModule from '../../components/CreateModule';
 
 const ModuleListPage = () => {
   const history = useHistory();
@@ -30,6 +32,7 @@ const ModuleListPage = () => {
   const editModalRef = useRef();
   const deleteModalRef = useRef();
   const addLectureModalRef = useRef();
+  const createModuleRef = useRef();
 
   useEffect(() => {
     dispatch(getAllModules());
@@ -187,9 +190,9 @@ const ModuleListPage = () => {
   return (
     <Layout>
       <FilterBar filters={[]} />
-      {/* <ButtonsRow>
-        <Button onClick={() => inviteUsersCsvModalRef.current.openModal()}>Invitar usuarios por .csv</Button>
-      </ButtonsRow> */}
+      <ButtonsRow>
+        <Button onClick={() => createModuleRef.current.openModal()}>Crear módulo</Button>
+      </ButtonsRow>
       <Table columns={columns} rows={rows} actions={actions} style={{ "grid-template-columns": "1fr 1fr 1fr" }} />
       <Modal ref={editModalRef}>
         <H1>Editar Module</H1>
@@ -200,7 +203,7 @@ const ModuleListPage = () => {
           selected ? (
             <ConfirmationWrapper>
               <H1>Borrando {selected.title} module</H1>
-              <span>Estás seguro que deseas borrar este modulo?</span>
+              <span>Estás seguro que deseas borrar este módulo?</span>
               <ButtonConfirm onClick={() => dispatch(deleteModule(selected._id))}>Confirmar</ButtonConfirm>
               <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
             </ConfirmationWrapper>
@@ -210,6 +213,10 @@ const ModuleListPage = () => {
       <Modal ref={addLectureModalRef}>
         <H1>Agregando nueva clase</H1>
         <AddLectureForm modalRef={addLectureModalRef} moduleData={selected} />
+      </Modal>
+      <Modal ref={createModuleRef}>
+        <H1>Creando módulo</H1>
+        <CreateModule />
       </Modal>
     </Layout>
   );
