@@ -1,5 +1,5 @@
 
-
+"https://i.ibb.co/tChL35L/unknown.png"
 const modules = [
   {
     title: "Prep",
@@ -21,61 +21,59 @@ const modules = [
       {
         title: "02-JS-I",
         description: "Introducción a Javascript",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/02-JS-I",
       },
       {
         title: "03-JS-II",
         description: "Javascript II",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/03-JS-II",
       },
       {
         title: "04-JS-III",
         description: "Javascript III",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/04-JS-III",
       },
       {
         title: "05-JS-IV",
         description: "Introducción a los Objetos",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/05-JS-IV",
       },
       {
         title: "06-JS-V",
         description: "Clases y prototypes",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/06-JS-V",
       },
       {
         title: "07-JS-VI",
         description: "Callbacks",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/07-JS-VI",
       },
       {
         title: "08-HTML",
         description: "Fundamentos HTML/CSS",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://freeiconshop.com/wp-content/uploads/edd/html-flat.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/08-HTML",
       },
       {
         title: "09-CSS-Positioning",
         description: "CSS Intermedio",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://freeiconshop.com/wp-content/uploads/edd/css-flat.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/09-CSS-Positioning",
       },
       {
         title: "10-JS-Extra-Homeworks",
         description: "Ejercicios Extras",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/10-JS-Extra-Homeworks",
       },
       {
         title: "10-JS-Conceptos",
         description: "Expresiones vs Statements",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/JS-conceptos/Statements-Expressions",
       }
     ],
