@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Modules from '../Modulos/index';
-import InitialHome from '../../components/Home/Home';
+import GuessHome from '../../components/GuessHome/GuessHome';
 import LectureCard from '../../components/LectureCard';
 import ModuleCard from '../../components/ModuleCard';
 
@@ -52,9 +52,8 @@ const HomePage = () => {
           </ModulesSection>
           // <Modules ></Modules>
           :
-          <InitialHome />
+          <GuessHome />
       }
-      <VideoPlayer />
     </Layout>
   );
 };

@@ -7,11 +7,15 @@
 }
 
 .containerDiv {
-  font-family: "Montserrat", sans-serif;  
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.containerCarousel {
+  width: 100%;
 }
 
 .containerBoom {
-  display: block;
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
   margin-top: 40px;
@@ -20,15 +24,17 @@
 }
 
 .link {
+  color: #ffff01;
   text-decoration: none;
 }
 
-button.rec-dot{
+button.rec-dot {
   background-color: black;
   box-shadow: 0 0 1px 3px rgb(255, 255, 255);
 }
 
- button.rec-dot:active, button.rec-dot:focus  {
+button.rec-dot:active,
+button.rec-dot:focus {
   background-color: yellow;
   box-shadow: 0 0 1px 3px rgb(253, 253, 253);
 }
@@ -39,19 +45,23 @@ button.rec-dot:active {
 }
 
 button.rec-dot:hover {
- color: yellow;
+  color: yellow;
 }
 
 .rec.rec-arrow {
-  background-color: yellow;
+  background-color: rgb(172, 172, 172);
 }
 
 .rec.rec-arrow:focus {
-  background: red
+  background-color: rgb(49, 49, 49);
 }
 
-button.rec-arrow:hover {
-  background-color: yellow;
+button.rec-arrow:hover,
+button.rec-arrow:active {
+  background-color: rgb(49, 49, 49);
 }
 
+button:hover {
+  background-color: rgb(49, 49, 49);
 
+}
