@@ -10,6 +10,7 @@ import ModuleCard from '../../components/ModuleCard';
 import { getAllModules } from '../../redux/actions/modulesActions';
 import { getAllLectures } from '../../redux/actions/lecturesActions';
 import { ModulesSection } from './styles';
+import VideoPlayer from '../../components/VideoPlayer';
 
 const HomePage = () => {
   const { loading, isAuth, user } = useSelector(state => state.auth);
@@ -53,6 +54,7 @@ const HomePage = () => {
           :
           <InitialHome />
       }
+      <VideoPlayer />
     </Layout>
   );
 };

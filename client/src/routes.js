@@ -21,6 +21,7 @@ import EnterpriseListPage from './containers/EnterpriseListPage';
 import LecturesPage from './containers/LecturesPage';
 import About from './components/About/index';
 import ThisPage from './components/About/thispage';
+import LecturePage from './containers/LeacturePage';
 
 const routes = () => {
   return (
@@ -45,7 +46,8 @@ const routes = () => {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/thispage" component={ThisPage}/>
+        <Route exact path="/thispage" component={ThisPage} />
+        <Route exact path="/lectureVideo" component={LecturePage} />
       </Switch>
     </BrowserRouter>
   );
