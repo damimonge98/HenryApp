@@ -37,7 +37,7 @@ mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, us
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', async () => {
-  //db.dropDatabase(); // Borra por compleo la base de datos
+  //db.dropDatabase(); // Borra por completo la base de datos
   db.dropCollection("modules")  //Borra solo los modulos con sus clases y videos
   try {
     await Promise.all(
