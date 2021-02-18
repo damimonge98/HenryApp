@@ -241,20 +241,32 @@ const modules = [
   },
   {
     title: "Module IV",
-    description: "Lorem ipsum dolor sit amet, consectetur.",
+    description: "Bases de Datos",
     order: 4,
     lectures: [
       {
-        title: "React & Redux 18",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
-        // imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
+        title: "01-dbms",
+        description: "dbms",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/01-dbms",
       },
       {
-        title: "React & Redux 19",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        title: "02-sql",
+        description: "Postgres",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
+        urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/02-sql",
+      },
+      {
+        title: "03-sequelize",
+        description: "Sequelize",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/03-sequelize",
+      },
+      {
+        title: "04-Authentication",
+        description: "Authentication",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/04-Authentication",
       }
     ],
   },
