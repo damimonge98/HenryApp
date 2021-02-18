@@ -2,52 +2,82 @@
 
 const modules = [
   {
-    title: "Preparation",
+    title: "Prep",
     description: "Curso de preparacion para el ingreso a Henry",
     order: 0,
     lectures: [
       {
+        title: "00-PrimerosPasos",
+        description: "PrimerosPasos",
+        imagen: "https://i.ibb.co/bL3tRjH/git-logo.png",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/00-PrimerosPasos",
+      },
+      {
         title: "01-Git",
         description: "¿Qué es un control de versiones?",
         imagen: "https://i.ibb.co/bL3tRjH/git-logo.png",
-        urlLecture: "https://github.com/Le127/Curso.Prep.Henry/tree/master/01-Git",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/01-Git",
       },
       {
         title: "02-JS-I",
         description: "Introducción a Javascript",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/Le127/Curso.Prep.Henry/tree/master/02-JS-I",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/02-JS-I",
       },
       {
         title: "03-JS-II",
         description: "Javascript II",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/Le127/Curso.Prep.Henry/tree/master/03-JS-II",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/03-JS-II",
       },
       {
         title: "04-JS-III",
         description: "Javascript III",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/Le127/Curso.Prep.Henry/tree/master/04-JS-III",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/04-JS-III",
       },
       {
-        title: "React & Redux 5",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        title: "05-JS-IV",
+        description: "Introducción a los Objetos",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/05-JS-IV",
       },
       {
-        title: "React & Redux 5",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        title: "06-JS-V",
+        description: "Clases y prototypes",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/06-JS-V",
       },
       {
-        title: "React & Redux 5",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        title: "07-JS-VI",
+        description: "Callbacks",
         imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
-        urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/07-JS-VI",
       },
+      {
+        title: "08-HTML",
+        description: "Fundamentos HTML/CSS",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/08-HTML",
+      },
+      {
+        title: "09-CSS-Positioning",
+        description: "CSS Intermedio",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/09-CSS-Positioning",
+      },
+      {
+        title: "10-JS-Extra-Homeworks",
+        description: "Ejercicios Extras",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/10-JS-Extra-Homeworks",
+      },
+      {
+        title: "10-JS-Conceptos",
+        description: "Expresiones vs Statements",
+        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/JS-conceptos/Statements-Expressions",
+      }
     ],
   },
   {
