@@ -85,7 +85,7 @@ const modules = [
       {
         title: "00-IntroToCS",
         description: "Ciencias de la Computacion",
-       
+
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/00-IntroToCS",
       },
       {
@@ -140,7 +140,7 @@ const modules = [
       {
         title: "02-CSS",
         description: "CSS Avanzado",
-        imagen:"https://i.ibb.co/NWDV7np/css.jpg",
+        imagen: "https://i.ibb.co/NWDV7np/css.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
       },
       {
@@ -152,7 +152,7 @@ const modules = [
       {
         title: "04-Ajax",
         description: "AJAX",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/k6RWrdD/ajax.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/04-Ajax",
       },
       {
@@ -164,37 +164,37 @@ const modules = [
       {
         title: "06-React-Intro",
         description: "REACT",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/06-React-Intro",
       },
       {
         title: "07-React-Estilos",
         description: "Dando Estilos en React",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/07-React-Estilos",
       },
       {
         title: "08-React-Estado-LifeCycle",
         description: "Estados REACT",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/08-React-Estado-LifeCycle",
       },
       {
         title: "09-React-Routing",
         description: "Front-End Routing",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/09-React-Routing",
       },
       {
         title: "10-React-Forms",
         description: "React Forms",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/10-React-Forms",
       },
       {
         title: "11-Redux",
         description: "Redux",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/RDrrHxv/redux32.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/11-Redux",
       },
       {
