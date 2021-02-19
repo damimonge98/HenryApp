@@ -48,7 +48,7 @@ const UpdateProfileForm = () => {
       <Input
         type="text"
         name="githubUsername"
-        label="Git Hub"
+        label="Git Hub Username"
         ref={register}
         onChange={() => trigger("githubUsername")}
         error={errors.githubUsername?.message}
