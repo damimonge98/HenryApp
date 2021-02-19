@@ -13,6 +13,7 @@ import FilterBar from "../FilterBar/index";
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
 import "./styles.css";
 import Loading from '../Loading';
+import JobCard from "../JobCard";
 
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
@@ -48,9 +49,9 @@ const Catalogo = () => {
     return <Loading />;
 
   if (user.role !== 'company' && user.currentModule <= 4) {
-      history.push("/login");
-      return null;
-    }
+    history.push("/login");
+    return null;
+  }
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
@@ -130,6 +131,7 @@ const Catalogo = () => {
             }).reverse()}
         </div>
       </div>
+      <JobCard job={empleos[0]} />
     </Layout>
   );
 };
