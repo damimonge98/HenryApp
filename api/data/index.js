@@ -1,5 +1,3 @@
-
-"https://i.ibb.co/tChL35L/unknown.png"
 const modules = [
   {
     title: "Prep",
