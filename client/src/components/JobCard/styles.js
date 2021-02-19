@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 
 export const JobCardWrapper = styled.div`
   height: 450px;
@@ -7,6 +8,7 @@ export const JobCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const Row = styled.div`
@@ -77,4 +79,18 @@ export const Button = styled.a`
 export const Type = styled.span`
   font-weight: normal;
   font-size: 12px;
+`;
+
+export const Close = styled(CloseIcon)`
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  height: 1.8rem;
+  width: 1.8rem;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;

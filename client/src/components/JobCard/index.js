@@ -3,18 +3,18 @@ import {
   JobCardWrapper,
   Row,
   Logo,
-  EnterpriseName,
   Title,
   Button,
   Description,
   Location,
   Remote,
-  Type
+  Type,
+  Close
 } from './styles';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, admin, funcion }) => {
+
   const {
-    enterprise,
     logo,
     title,
     description,
@@ -24,30 +24,32 @@ const JobCard = ({ job }) => {
     end,
     linkedIn,
   } = job;
-  console.log(job);
+
   return (
     <JobCardWrapper>
+      {admin ?
+        <Close onClick={funcion} />
+        :
+        null
+      }
       <Row>
         <Logo src={logo} />
         {/* <EnterpriseName>{enterprise}</EnterpriseName> */}
       </Row>
       <Type>
-        {tipo}
+        {end} - {tipo}
       </Type>
       <Row>
         <Title>{title}</Title>
         {
           remote ?
-            <Remote>Remote</Remote>
+            <Remote>Remoto</Remote>
             : null
         }
       </Row>
       <Location>{location}</Location>
       <Description>{description}</Description>
-      <Button href={linkedIn} target={"_blank"}>Linked In</Button>
-
-      {/* <Row>
-      </Row> */}
+      <Button href={linkedIn} target={"_blank"}>LinkedIn</Button>
 
     </JobCardWrapper>
   );

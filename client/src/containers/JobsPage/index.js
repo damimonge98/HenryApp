@@ -9,19 +9,8 @@ import CrearEmpleo from '../../components/CreateOffer';
 
 const JobsPage = () => {
   const { user, loading } = useSelector(state => state.auth);
-  const [jobs, setJobs] = useState([
-    {
-      _id: "",
-      logo: "",
-      title: "",
-      description: "",
-      location: "",
-      remote: "",
-      tipo: "",
-      end: "",
-      linkedIn: "",
-    },
-  ]);
+  const [jobs, setJobs] = useState([]);
+  const [eliminar, setEliminar] = useState(false);
 
   const getAllEmpleos = () => {
     axios.get("http://localhost:5000/empleos/").then((response) => {
@@ -31,7 +20,8 @@ const JobsPage = () => {
 
   useEffect(() => {
     getAllEmpleos();
-  }, []);
+    setEliminar(false);
+  }, [eliminar]);
 
   if (loading)
     return <Loading />;
@@ -73,18 +63,25 @@ const JobsPage = () => {
     }
   });
 
+  const handleDelete = (id) => {
+    if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
+      axios.delete(`http://localhost:5000/empleos/${id}`).then();
+      setEliminar(true);
+    }
+  };
+
   return (
     <Layout>
       <JobsPageWrapper>
-        <H1>Bolsa de trabajo:</H1>
+        <H1>Bolsa de trabajo</H1>
         {
           user && user.isSuperAdmin || user && user.role === 'company' ?
             <Row>
-              <Button data-open="modal1">Publicar Trabajo</Button>
+              <Button data-open="modal1">Publicar Empleo</Button>
             </Row> : null
         }
         <Grid>
-          {jobs.map(job => <JobCard job={job} />)}
+          {jobs.map(job => <JobCard job={job} admin={user.isSuperAdmin} funcion={() => handleDelete(job._id)} />).reverse()}
         </Grid>
       </JobsPageWrapper>
       <div className="modal" id="modal1">

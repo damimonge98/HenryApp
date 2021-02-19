@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import OfferCard from "../OfferCard/index";
 import Layout from "../../containers/Layout";
 import CrearEmpleo from "../CreateOffer/index";
-import FilterBar from "../FilterBar/index";
 
 // Styled Components
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
@@ -27,10 +26,10 @@ const Catalogo = () => {
       title: "",
       description: "",
       location: "",
-      remote: "",
-      tipo: "",
-      end: "",
-      linkedIn: "",
+      remote: false,
+      tipo: "part-time",
+      end: "frontend",
+      linkedIn: ""
     },
   ]);
 
