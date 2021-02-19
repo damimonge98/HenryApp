@@ -50,7 +50,7 @@ export default function Booms() {
                 <p>{el.info}</p>
                 <a href={el.link} target={'_blank'} className="link">Leer más...</a>
               </div>
-            ) : <h1>Loading...</h1>}
+            ) : <h1>Cargando...</h1>}
         </Carousel>
       </div>
     </div>

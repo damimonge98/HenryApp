@@ -25,11 +25,11 @@ const UpdateProfileForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>Update profile</h3>
+      <h3>Actualizar perfil</h3>
       <Input
         type="text"
         name="firstName"
-        label="First Name"
+        label="Nombre"
         ref={register}
         onChange={() => trigger("firstName")}
         error={errors.firstName?.message}
@@ -39,7 +39,7 @@ const UpdateProfileForm = () => {
       <Input
         type="text"
         name="lastName"
-        label="Last Name"
+        label="Apellido"
         ref={register}
         onChange={() => trigger("lastName")}
         error={errors.lastName?.message}
@@ -48,13 +48,13 @@ const UpdateProfileForm = () => {
       <Input
         type="text"
         name="githubUsername"
-        label="Git Hub Username"
+        label="Usuario de Git Hub"
         ref={register}
         onChange={() => trigger("githubUsername")}
         error={errors.githubUsername?.message}
         defaultValue={user.githubUsername}
       />
-      <Button>Save changes</Button>
+      <Button>Guardar cambios</Button>
     </form>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import CardTalk from '../CardTalk'
-import axios from 'axios'
+import CardTalk from '../CardTalk';
+import axios from 'axios';
 
 const TalkList = () => {
   const [allTalks, setAllTalks] = useState([{
@@ -18,7 +18,6 @@ const TalkList = () => {
     axios.get("http://localhost:5000/talk")
       .then(res => {
         setAllTalks(res.data);
-        console.log(res.data)
       });
   };
 
@@ -57,7 +56,7 @@ const TalkList = () => {
           <div key={(i)}>
             <CardTalk talk={e} />
           </div>
-        )
+        );
       })}
     </div>
   );

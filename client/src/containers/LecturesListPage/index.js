@@ -208,8 +208,8 @@ const LectureListPage = () => {
         {
           selected ? (
             <ConfirmationWrapper>
-              <H1>Borrando {selected.title} lecture</H1>
-              <span>Estás seguro que deseas borrar esta lecture?</span>
+              <H1>Borrando {selected.title} clase</H1>
+              <span>Estás seguro que deseas borrar esta clase?</span>
               <ButtonConfirm onClick={() => dispatch(deleteLecture(selected._id))}>Confirmar</ButtonConfirm>
               <ButtonCancel onClick={() => deleteModalRef.current.closeModal()}>Cancelar</ButtonCancel>
             </ConfirmationWrapper>
