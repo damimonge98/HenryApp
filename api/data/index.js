@@ -206,7 +206,7 @@ const modules = [
       {
         title: "13-React-Hooks",
         description: "React Hooks",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/13-React-Hooks",
       }
     ],
@@ -219,7 +219,7 @@ const modules = [
       {
         title: "01-Node",
         description: "Introducción a Nodejs",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/GJpGZJ5/node.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/01-Node",
       },
       {
