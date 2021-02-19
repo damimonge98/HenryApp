@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const JobCardWrapper = styled.div`
-  max-width: 350px;
   height: 450px;
   padding: 2rem;
   background: white;

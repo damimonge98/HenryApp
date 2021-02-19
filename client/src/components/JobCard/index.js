@@ -29,7 +29,7 @@ const JobCard = ({ job }) => {
     <JobCardWrapper>
       <Row>
         <Logo src={logo} />
-        <EnterpriseName>{enterprise}</EnterpriseName>
+        {/* <EnterpriseName>{enterprise}</EnterpriseName> */}
       </Row>
       <Type>
         {tipo}
@@ -48,6 +48,7 @@ const JobCard = ({ job }) => {
 
       {/* <Row>
       </Row> */}
+
     </JobCardWrapper>
   );
 };

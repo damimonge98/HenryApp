@@ -22,6 +22,7 @@ import LecturesPage from './containers/LecturesPage';
 import About from './components/About/index';
 import ThisPage from './components/About/thispage';
 import LecturePage from './containers/LeacturePage';
+import JobsPage from './containers/JobsPage';
 
 const routes = () => {
   return (
@@ -41,7 +42,7 @@ const routes = () => {
         <Route exact path='/booms' component={Booms} />
         <Route exact path='/create-talk' component={CreateTalk} />
         <Route exact path='/error' component={error} />
-        <Route exact path='/empleos' component={Catalogo} />
+        <Route exact path='/empleos' component={JobsPage} />
         <Route exact path='/payments' component={Payment} />
         <Route exact path='/profile' component={ProfilePage} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
