@@ -83,7 +83,7 @@ const Header = () => {
                 </MenuItem>
               }
               {
-                user.currentModule > 4
+               user.role === 'company' || user.currentModule > 4
                   ?
                   <MenuItem>
                     <Link to="/empleos">Bolsa de trabajo</Link>
