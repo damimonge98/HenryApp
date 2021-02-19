@@ -40,9 +40,10 @@ export const AvatarWrapper = styled.div`
   }
 `;
 
-export const RegisterButton = styled.button`
-  height: 50px;
-  width: 70%;
+export const Button = styled.button`
+  height: 40px;
+  padding: 0 2rem;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +62,7 @@ export const SpanLink = styled.span`
   font-weight: 500;
   font-size: 14px;
   color: #323232;
-  margin-top: 1rem;
+  margin-top: 0.4rem;
 `;
 
 export const UserLogo = styled(User)`

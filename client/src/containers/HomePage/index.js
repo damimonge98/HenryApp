@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Modules from '../Modulos/index';
-import InitialHome from '../../components/Home/Home';
+import GuestHome from '../../components/GuestHome/GuestHome';
 import LectureCard from '../../components/LectureCard';
 import ModuleCard from '../../components/ModuleCard';
 
 import { getAllModules } from '../../redux/actions/modulesActions';
 import { getAllLectures } from '../../redux/actions/lecturesActions';
 import { ModulesSection } from './styles';
+import VideoPlayer from '../../components/VideoPlayer';
 
 const HomePage = () => {
   const { loading, isAuth, user } = useSelector(state => state.auth);
@@ -29,7 +30,7 @@ const HomePage = () => {
   return (
     <Layout>
       {
-        isAuth ?
+        isAuth && user.role !== "company" ?
           <ModulesSection>
             {module.modules.sort((a, b) => a.order - b.order).map(m => (
               <ModuleCard
@@ -51,7 +52,7 @@ const HomePage = () => {
           </ModulesSection>
           // <Modules ></Modules>
           :
-          <InitialHome />
+          <GuestHome />
       }
     </Layout>
   );

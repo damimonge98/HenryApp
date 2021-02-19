@@ -41,7 +41,7 @@ export const LectureList = styled.div`
 
 export const Button = styled(Link)`
   height: 50px;
-  width: 250px;
+  width: fit-content;
   margin: 1rem auto;
   padding: 1rem 4rem;
   background: black;

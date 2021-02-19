@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { passwordSchema } from "../../yup";
 
 import Input from "../Input";
+import { Button } from "./styles";
 
 import { updateUser } from "../../redux/actions/usersActions";
 
@@ -57,7 +58,7 @@ const ChangePasswordForm = () => {
         error={errors.repassword?.message}
       />
 
-      <button>Change Password</button>
+      <Button>Change Password</Button>
     </form>
   );
 };

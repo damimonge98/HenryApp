@@ -14,13 +14,14 @@ import Booms from './components/Booms/Booms.jsx';
 import Catalogo from './components/Catalogo';
 import error from './components/error/error';
 import Payment from './containers/Payment';
-import Profile from './components/Profile';
+import ProfilePage from './containers/ProfilePage';
 import LecturesListPage from './containers/LecturesListPage';
 import ModulesListPage from './containers/ModulesListPage';
 import EnterpriseListPage from './containers/EnterpriseListPage';
 import LecturesPage from './containers/LecturesPage';
 import About from './components/About/index';
 import ThisPage from './components/About/thispage';
+import LecturePage from './containers/LeacturePage';
 
 const routes = () => {
   return (
@@ -42,10 +43,11 @@ const routes = () => {
         <Route exact path='/error' component={error} />
         <Route exact path='/empleos' component={Catalogo} />
         <Route exact path='/payments' component={Payment} />
-        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/profile' component={ProfilePage} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/thispage" component={ThisPage}/>
+        <Route exact path="/thispage" component={ThisPage} />
+        <Route exact path="/lectureVideo" component={LecturePage} />
       </Switch>
     </BrowserRouter>
   );
