@@ -29,7 +29,6 @@ export default function Readme(props) {
             if (!res.data.content) {
               return;
             }
-            console.log("RES ", res.datas);
             setReadme(res.data.content);
           }
         );
@@ -42,9 +41,7 @@ export default function Readme(props) {
     if (!readme)
       return <Loading />;
 
-    console.log("readme", readme);
     var codeReadme = atob(readme);
-    console.log("Codereadme", codeReadme);
     // codeReadme = codeReadme.replaceAll("Ã©", "e");
     // codeReadme = codeReadme.replaceAll("Ã³", "o");
     // codeReadme = codeReadme.replaceAll("Ã", "á");
@@ -84,7 +81,7 @@ export default function Readme(props) {
   } else {
     return (
       <div>
-        <h1 className="h1Image">Esta lecture  <br /> no tiene Readme </h1>
+        <h1 className="h1Image">Esta clase<br />no tiene readme</h1>
         <img src="https://www.sciener.my/wp-content/uploads/2018/10/scienerc-404-error-.png" className="image" />
       </div>
     );

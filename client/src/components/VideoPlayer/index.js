@@ -38,7 +38,7 @@ const VideoPlayer = () => {
               React & Redux
             </VideoName>
             <ModuleName>
-              Lecutre 12 - Module 3
+              Clase 12 - Módulo 3
             </ModuleName>
           </VideoInfo>
           <VideoControllers>

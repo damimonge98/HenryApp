@@ -10,12 +10,19 @@ import { AvatarWrapper, ProfilePageWrapper, InfoCardWraper, H1, CardWrapper } fr
 const ProfilePage = () => {
   const { user, loading } = useSelector((state) => state.auth);
 
+  const roles = {
+    instructor: 'instructor',
+    student: 'estudiante',
+    guest: 'invitado',
+    company: 'empresa'
+  };
+
   if (loading)
     return <Loading />;
   return (
     <Layout>
       <ProfilePageWrapper>
-        <H1>Proflie</H1>
+        <H1>Perfil</H1>
         <InfoCardWraper>
           <AvatarWrapper>
             {user.avatar && (
@@ -26,10 +33,10 @@ const ProfilePage = () => {
             {user.firstName ? user.firstName : user.companyName} {user.lastName && user.lastName}
           </h1>
           <h2>{user.email} </h2>
-          <h4>You are {user.role === "instructor" ? "an" : "a"} {user.role[0].toUpperCase() + user.role.slice(1)} </h4>
+          <h4>Tu rol es {roles[user.role]}</h4>
           {
-            user.role === "student" ?
-              <h5>Your are in {user.currentModule === 0 ? "Prep Course" : "Module " + user.currentModule}</h5>
+            user.role === "student" || user.role === "guest" ?
+              <h5>Estás en el {user.currentModule === 0 ? "Prep Course" : "módulo " + user.currentModule}</h5>
               : null
           }
         </InfoCardWraper>

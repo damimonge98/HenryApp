@@ -27,21 +27,21 @@ const GuestHome = () => {
   return (
     <GuestHomeWrapper>
       <Announcements>
-        <span>Lanzamos nuestra carrera partime! 🚀</span>
+        <span>Lanzamos nuestra carrera part-time! 🚀</span>
       </Announcements>
       <Container>
         {
           students ? (
             <StudentSection>
               <LeftSection>
-                <H5>¿Que ofrecemos?</H5>
+                <H5>¿Qué ofrecemos?</H5>
                 <Toggles>
                   <h6 onClick={() => setStudents(true)}>Para <Span active={students} >Estudiantes</Span></h6>
                   <h6 onClick={() => setStudents(false)}>Para <Span active={!students}>Empresas</Span></h6>
                 </Toggles>
                 <h1>Invertimos en tu educación.</h1>
                 <h3>Comienza a estudiar programación.</h3>
-                <p>Conviértete en un desarrollador de software en 4 meses o 8 meses a remoto. Y lo mejor, sólo nos pagas cuando consigues un trabajo.</p>
+                <p>Conviértete en un desarrollador de software en 4 u 8 meses a remoto. Y lo mejor, sólo nos pagas cuando consigues trabajo.</p>
                 <Button to="/login">Comienza a estudiar</Button>
               </LeftSection>
               <RightSection>
@@ -54,7 +54,7 @@ const GuestHome = () => {
           ) : (
               <EnterpriseSection>
                 <LeftSection>
-                  <H5>¿Que ofrecemos?</H5>
+                  <H5>¿Qué ofrecemos?</H5>
                   <Toggles>
                     <h6 onClick={() => setStudents(true)}>Para <Span active={students} >Estudiantes</Span></h6>
                     <h6 onClick={() => setStudents(false)}>Para <Span active={!students}>Empresas</Span></h6>
@@ -62,7 +62,7 @@ const GuestHome = () => {
                   <h1>Encuentra el mejor talento.</h1>
                   <h3>Busca el mejor talento para tu equipo.</h3>
                   <p>En nuestra bolsa de trabajo encontraras variedad de desarolladores con distintas áreas de expertise.</p>
-                  <Button to="/register">Registrata tu empresa</Button>
+                  <Button to="/register">Registra tu empresa</Button>
                 </LeftSection>
                 <RightSection>
                   <ImageWrapper>
