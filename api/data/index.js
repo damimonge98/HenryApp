@@ -1,5 +1,3 @@
-
-
 const modules = [
   {
     title: "Prep",
@@ -9,73 +7,70 @@ const modules = [
       {
         title: "00-PrimerosPasos",
         description: "PrimerosPasos",
-        imagen: "https://i.ibb.co/bL3tRjH/git-logo.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/00-PrimerosPasos",
       },
       {
         title: "01-Git",
         description: "¿Qué es un control de versiones?",
-        imagen: "https://i.ibb.co/bL3tRjH/git-logo.png",
+        imagen: "https://i.ibb.co/5MN8M6T/git1.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/01-Git",
       },
       {
         title: "02-JS-I",
         description: "Introducción a Javascript",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/02-JS-I",
       },
       {
         title: "03-JS-II",
         description: "Javascript II",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/03-JS-II",
       },
       {
         title: "04-JS-III",
         description: "Javascript III",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/04-JS-III",
       },
       {
         title: "05-JS-IV",
         description: "Introducción a los Objetos",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/05-JS-IV",
       },
       {
         title: "06-JS-V",
         description: "Clases y prototypes",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/06-JS-V",
       },
       {
         title: "07-JS-VI",
         description: "Callbacks",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/07-JS-VI",
       },
       {
         title: "08-HTML",
         description: "Fundamentos HTML/CSS",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/CWqk9pW/what-is-html.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/08-HTML",
       },
       {
         title: "09-CSS-Positioning",
         description: "CSS Intermedio",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/NWDV7np/css.jpg",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/09-CSS-Positioning",
       },
       {
         title: "10-JS-Extra-Homeworks",
         description: "Ejercicios Extras",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/10-JS-Extra-Homeworks",
       },
       {
         title: "10-JS-Conceptos",
         description: "Expresiones vs Statements",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/atralice/Curso.Prep.Henry/tree/master/JS-conceptos/Statements-Expressions",
       }
     ],
@@ -88,49 +83,44 @@ const modules = [
       {
         title: "00-IntroToCS",
         description: "Ciencias de la Computacion",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/00-IntroToCS",
       },
       {
         title: "01-JavaScriptAvanzado-I",
         description: "Entendiendo JavaScript a Fondo I",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/01-JavaScriptAvanzado-I",
       },
       {
         title: "02-JavaScriptAvanzado-II",
         description: "Entendiendo JavaScript a Fondo II",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/02-JavaScriptAvanzado-II",
       },
       {
         title: "03-EstructuraDeDatos-I",
         description: "Estructuras de Datos I",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/03-EstructuraDeDatos-I",
       },
       {
         title: "04-EstructuraDeDatos-II",
         description: "Estructuras de Datos II",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/04-EstructuraDeDatos-II",
       },
       {
         title: "05-EstructuraDeDatos-III",
         description: "Estructuras de Datos III",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/05-EstructuraDeDatos-III",
       },
       {
         title: "06-Algoritmos-I",
         description: "Algoritmos I",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/06-Algoritmos-I",
       },
       {
         title: "06-Algoritmos-II",
         description: "Algoritmos II",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M1/tree/master/07-Algoritmos-II",
       }
     ],
@@ -143,25 +133,24 @@ const modules = [
       {
         title: "00 - DOM",
         description: "Introducción al DOM",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/01-DOM",
       },
       {
         title: "02-CSS",
         description: "CSS Avanzado",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/NWDV7np/css.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/02-CSS",
       },
       {
         title: "03-ES6",
         description: "ECMAScript 6",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/W5j3xQb/ES6.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/03-ES6",
       },
       {
         title: "04-Ajax",
         description: "AJAX",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/k6RWrdD/ajax.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/04-Ajax",
       },
       {
@@ -173,37 +162,37 @@ const modules = [
       {
         title: "06-React-Intro",
         description: "REACT",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/06-React-Intro",
       },
       {
         title: "07-React-Estilos",
         description: "Dando Estilos en React",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/07-React-Estilos",
       },
       {
         title: "08-React-Estado-LifeCycle",
         description: "Estados REACT",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/08-React-Estado-LifeCycle",
       },
       {
         title: "09-React-Routing",
         description: "Front-End Routing",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/09-React-Routing",
       },
       {
         title: "10-React-Forms",
         description: "React Forms",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/10-React-Forms",
       },
       {
         title: "11-Redux",
         description: "Redux",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/RDrrHxv/redux32.png",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/11-Redux",
       },
       {
@@ -215,7 +204,7 @@ const modules = [
       {
         title: "13-React-Hooks",
         description: "React Hooks",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/kM3D7NF/react.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M2/tree/master/13-React-Hooks",
       }
     ],
@@ -228,43 +217,41 @@ const modules = [
       {
         title: "01-Node",
         description: "Introducción a Nodejs",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/GJpGZJ5/node.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/01-Node",
       },
       {
         title: "02-Promises",
         description: "Promises",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/02-Promises",
       },
       {
         title: "03-WebServer",
         description: "Creando Servidor Web con Nodejs",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/GJpGZJ5/node.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/03-WebServer",
       },
       {
         title: "04-AdvancePromises",
         description: "Advanced Promises",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/04-AdvancePromises",
       },
       {
         title: "05-Express",
         description: "Express",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/dBcpW1k/nodeexpress.webp",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/05-Express",
       },
       {
         title: "06-Testing",
         description: "Software Testing",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/06-Testing",
       },
       {
         title: "07-AsyncAwait",
         description: "Async-Await",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/07-AsyncAwait",
       }
     ],
@@ -277,25 +264,23 @@ const modules = [
       {
         title: "01-dbms",
         description: "dbms",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/01-dbms",
       },
       {
-        title: "02-sql",
+        title: "02-SQL",
         description: "Postgres",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/RbV6RP6/postgresql.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/02-sql",
       },
       {
-        title: "03-sequelize",
+        title: "03-Sequelize",
         description: "Sequelize",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/1rz3YVV/sequelize.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/03-sequelize",
       },
       {
         title: "04-Authentication",
         description: "Authentication",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/04-Authentication",
       }
     ],
