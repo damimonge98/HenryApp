@@ -67,7 +67,7 @@ const Payment = () => {
         <div>
           <h2 className="hurra">Estado de cuenta</h2>
           <div className='infoECuenta'>
-            <h3>{user.firstName}, tu deuda con Henry es de usd {user.debt}.</h3>
+            <h3>{user.firstName}, tu deuda con Henry es de USD {user.debt}.</h3>
           </div>
           <br />
           <div className='contenedor'>

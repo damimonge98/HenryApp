@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -17,6 +17,7 @@ import Loading from '../Loading';
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
   const [eliminar, setEliminar] = useState(false);
+  const history = useHistory();
 
   const [empleos, setEmpleo] = useState([
     {
@@ -45,6 +46,11 @@ const Catalogo = () => {
 
   if (loading)
     return <Loading />;
+
+  if (user.role !== 'company' && user.currentModule <= 4) {
+      history.push("/login");
+      return null;
+    }
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
