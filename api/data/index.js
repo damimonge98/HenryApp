@@ -269,13 +269,13 @@ const modules = [
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/01-dbms",
       },
       {
-        title: "02-sql",
+        title: "02-SQL",
         description: "Postgres",
         imagen: "https://i.ibb.co/RbV6RP6/postgresql.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/02-sql",
       },
       {
-        title: "03-sequelize",
+        title: "03-Sequelize",
         description: "Sequelize",
         imagen: "https://i.ibb.co/1rz3YVV/sequelize.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/03-sequelize",
