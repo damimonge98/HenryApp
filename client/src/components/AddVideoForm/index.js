@@ -23,7 +23,6 @@ const AddVideoForm = ({ modalRef, lectureData }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log(data);
     // dispatch(updateLecture(lectureData._id, data));
     axios.post(`http://localhost:5000/videos/${lectureData._id}`, { ...data })
       .then(res => {

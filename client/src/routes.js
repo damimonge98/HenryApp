@@ -46,9 +46,9 @@ const routes = () => {
         <Route exact path='/payments' component={Payment} />
         <Route exact path='/profile' component={ProfilePage} />
         <Route exact path='/enterprise' component={EnterpriseListPage} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/thispage" component={ThisPage} />
-        <Route exact path="/lectureVideo" component={LecturePage} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/thispage' component={ThisPage} />
+        {/* <Route exact path='/lectureVideo' component={LecturePage} /> */}
       </Switch>
     </BrowserRouter>
   );

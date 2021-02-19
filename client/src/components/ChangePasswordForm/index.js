@@ -27,7 +27,7 @@ const ChangePasswordForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>Change Password</h3>
+      <h3>Cambiar contraseña</h3>
       <Input
         type="password"
         name="oldpassword"
@@ -58,7 +58,7 @@ const ChangePasswordForm = () => {
         error={errors.repassword?.message}
       />
 
-      <Button>Change Password</Button>
+      <Button>Cambiar contraseña</Button>
     </form>
   );
 };
