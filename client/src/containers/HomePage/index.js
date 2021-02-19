@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from '../Layout';
 import Loading from '../../components/Loading';
 import Modules from '../Modulos/index';
-import GuessHome from '../../components/GuessHome/GuessHome';
+import GuestHome from '../../components/GuestHome/GuestHome';
 import LectureCard from '../../components/LectureCard';
 import ModuleCard from '../../components/ModuleCard';
 
@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <Layout>
       {
-        isAuth ?
+        isAuth && user.role !== "company" ?
           <ModulesSection>
             {module.modules.sort((a, b) => a.order - b.order).map(m => (
               <ModuleCard
@@ -52,7 +52,7 @@ const HomePage = () => {
           </ModulesSection>
           // <Modules ></Modules>
           :
-          <GuessHome />
+          <GuestHome />
       }
     </Layout>
   );

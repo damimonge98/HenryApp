@@ -7,7 +7,7 @@ import enterpriseImage from "../../assets/images/buildings.png";
 
 import {
   Announcements,
-  GuessHomeWrapper,
+  GuestHomeWrapper,
   Container,
   StudentSection,
   Button,
@@ -21,13 +21,13 @@ import {
   H5
 } from "./styles";
 
-const GuessHome = () => {
+const GuestHome = () => {
   const [students, setStudents] = useState(true);
 
   return (
-    <GuessHomeWrapper>
+    <GuestHomeWrapper>
       <Announcements>
-        <span>Lanzamos nuestra carrea partime! 🚀</span>
+        <span>Lanzamos nuestra carrera parttime! 🚀</span>
       </Announcements>
       <Container>
         {
@@ -39,7 +39,7 @@ const GuessHome = () => {
                   <h6 onClick={() => setStudents(true)}>Para <Span active={students} >Estudiantes</Span></h6>
                   <h6 onClick={() => setStudents(false)}>Para <Span active={!students}>Empresas</Span></h6>
                 </Toggles>
-                <h1>Invetimos en tu educación.</h1>
+                <h1>Invertimos en tu educación.</h1>
                 <h3>Comienza a estudiar programación.</h3>
                 <p>Conviértete en un desarrollador de software en 4 meses o 8 meses a remoto. Y lo mejor, sólo nos pagas cuando consigues un trabajo.</p>
                 <Button to="/login">Comienza a estudiar</Button>
@@ -79,7 +79,7 @@ const GuessHome = () => {
           <Button to="/login">Comienza a estudiar</Button>
         </Section>
       </Container>
-    </GuessHomeWrapper>
+    </GuestHomeWrapper>
   );
 };
-export default GuessHome;
+export default GuestHome;

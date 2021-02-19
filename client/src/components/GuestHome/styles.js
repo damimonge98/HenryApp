@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const GuessHomeWrapper = styled.div`
+export const GuestHomeWrapper = styled.div`
   width: 100%;
   overflow-y: hidden;
 `;
