@@ -225,37 +225,35 @@ const modules = [
       {
         title: "02-Promises",
         description: "Promises",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/02-Promises",
       },
       {
         title: "03-WebServer",
         description: "Creando Servidor Web con Nodejs",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/GJpGZJ5/node.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/03-WebServer",
       },
       {
         title: "04-AdvancePromises",
         description: "Advanced Promises",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/R44y3N2/Javascrippt1.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/04-AdvancePromises",
       },
       {
         title: "05-Express",
         description: "Express",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/dBcpW1k/nodeexpress.webp",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/05-Express",
       },
       {
         title: "06-Testing",
         description: "Software Testing",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/06-Testing",
       },
       {
         title: "07-AsyncAwait",
         description: "Async-Await",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M3/tree/master/07-AsyncAwait",
       }
     ],
@@ -268,25 +266,23 @@ const modules = [
       {
         title: "01-dbms",
         description: "dbms",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/01-dbms",
       },
       {
         title: "02-sql",
         description: "Postgres",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/RbV6RP6/postgresql.jpg",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/02-sql",
       },
       {
         title: "03-sequelize",
         description: "Sequelize",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
+        imagen: "https://i.ibb.co/1rz3YVV/sequelize.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/03-sequelize",
       },
       {
         title: "04-Authentication",
         description: "Authentication",
-        imagen: "https://rosolutions.com.mx/blog/wp-content/uploads/2018/07/react-redux.png",
         urlLecture: "https://github.com/soyHenry/FT-M4/tree/master/04-Authentication",
       }
     ],
