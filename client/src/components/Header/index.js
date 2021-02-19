@@ -73,9 +73,9 @@ const Header = () => {
                   <MenuItem>
                     <Link to="/lectures">Clases</Link>
                   </MenuItem>
-                  <MenuItem>
+                  {/* <MenuItem>
                     <Link to="/talks">Henry Talks</Link>
-                  </MenuItem>
+                  </MenuItem> */}
                 </>
                 :
                 <MenuItem>
