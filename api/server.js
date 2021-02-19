@@ -37,7 +37,9 @@ mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, us
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', async () => {
-  // db.dropDatabase(); // Con este comando se borra la db cuando se reincia el servidor
+  //db.dropDatabase(); // Borra por completo la base de datos
+  db.dropCollection("modules"); //Borra solo los modulos 
+  db.dropCollection("lectures");// Borra solo las lectures
   try {
     await Promise.all(
       modules.map(async m => {
