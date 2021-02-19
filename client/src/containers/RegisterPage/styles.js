@@ -11,6 +11,7 @@ export const RegisterPageWrapper = styled.div`
 export const RegisterCard = styled.div`
   width: 40%;
   height: fit-content;
+  padding: 1rem 0;
   max-height: 95vh;
   background: white;
   box-shadow: 8px 8px 50px rgba(0, 0, 0, 0.3);

@@ -62,7 +62,7 @@ export const SpanLink = styled.span`
   font-weight: 500;
   font-size: 14px;
   color: #323232;
-  margin-top: 1rem;
+  margin-top: 0.4rem;
 `;
 
 export const UserLogo = styled(User)`
