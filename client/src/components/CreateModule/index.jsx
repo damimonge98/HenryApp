@@ -51,7 +51,7 @@ const CreateModule = () => {
           </div>
         </div>
       </form>
-      <br />
+   {/*    <br />
       <Link to='/'>
         <button type="button">
           <i className="fas fa-home" />Inicio
@@ -61,7 +61,7 @@ const CreateModule = () => {
         <button type="button">
           <i className="fas fa-list" />Clases
         </button>
-      </Link>
+      </Link> */}
     </div >
   );
 };

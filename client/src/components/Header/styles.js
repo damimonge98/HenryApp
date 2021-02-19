@@ -1,3 +1,4 @@
+import { grey } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
@@ -133,6 +134,9 @@ export const MenuItem = styled.li`
     color: black;
     font-weight: 500;
     text-decoration: none;
+  }
+  & div {
+    color: grey;
   }
   &:hover {
     background: #cacaca;
