@@ -27,7 +27,7 @@ const GuestHome = () => {
   return (
     <GuestHomeWrapper>
       <Announcements>
-        <span>Lanzamos nuestra carrera parttime! 🚀</span>
+        <span>Lanzamos nuestra carrera partime! 🚀</span>
       </Announcements>
       <Container>
         {

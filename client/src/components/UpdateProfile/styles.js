@@ -40,9 +40,10 @@ export const AvatarWrapper = styled.div`
   }
 `;
 
-export const RegisterButton = styled.button`
-  height: 50px;
-  width: 70%;
+export const Button = styled.button`
+  height: 40px;
+  padding: 0 2rem;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;

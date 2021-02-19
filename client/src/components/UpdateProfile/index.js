@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "../../yup";
 
 import Input from "../Input";
+import { Button } from "./styles";
 
 import { autoLoginUser } from "../../redux/actions/authActions";
 import { updateUser } from "../../redux/actions/usersActions";
@@ -53,7 +54,7 @@ const UpdateProfileForm = () => {
         error={errors.githubUsername?.message}
         defaultValue={user.githubUsername}
       />
-      <button>Save changes</button>
+      <Button>Save changes</Button>
     </form>
   );
 };
