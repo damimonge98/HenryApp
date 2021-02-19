@@ -82,9 +82,18 @@ const Header = () => {
                   <Link to="/payments">Estado de cuenta</Link>
                 </MenuItem>
               }
-              <MenuItem>
-                <Link to="/empleos">Bolsa de trabajo</Link>
-              </MenuItem>
+              {
+                user.currentModule > 4
+                  ?
+                  <MenuItem>
+                    <Link to="/empleos">Bolsa de trabajo</Link>
+                  </MenuItem>
+                  :
+                  <MenuItem>
+                    <div>
+                      Bolsa de trabajo</div>
+                  </MenuItem>
+              }
               <MenuItem>
                 <Link to="/about">Sobre Nosotros</Link>
               </MenuItem>
