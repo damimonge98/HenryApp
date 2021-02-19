@@ -5,10 +5,18 @@ import { useSelector } from "react-redux";
 
 
 const CrearEmpleo = () => {
-const usuario = useSelector(state => state.auth.user);
+  const usuario = useSelector(state => state.auth.user);
 
   const [empleo, setEmpleo] = useState({
-    logo: "", enterpriseName: "", title: "", description: "", location: "", tipo: "", end: "", remote: false, linkedIn: "",
+    _id: "",
+    logo: "",
+    title: "",
+    description: "",
+    location: "",
+    remote: false,
+    tipo: "part-time",
+    end: "frontend",
+    linkedIn: ""
   });
   const [uploadValue, setUploadValue] = useState(0);
 
@@ -23,7 +31,7 @@ const usuario = useSelector(state => state.auth.user);
   const handleSubmit = (id) => {  //Este ID corresponde al usuario logeado rol empresa.
     const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post(`http://localhost:5000/empleos/${id}` , { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
+      .post(`http://localhost:5000/empleos/${id}`, { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 
@@ -34,11 +42,11 @@ const usuario = useSelector(state => state.auth.user);
 
     task.on('state_changed', snapshot => {
       let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      setUploadValue(percentage)
-    }, err => { console.log(err) }, async () => {
-      const urlLogo = await storageRef.getDownloadURL()
-      setEmpleo({ ...empleo, logo: urlLogo })
-    })
+      setUploadValue(percentage);
+    }, err => { console.log(err); }, async () => {
+      const urlLogo = await storageRef.getDownloadURL();
+      setEmpleo({ ...empleo, logo: urlLogo });
+    });
   }
 
 
@@ -47,7 +55,7 @@ const usuario = useSelector(state => state.auth.user);
       <form onSubmit={() => handleSubmit(usuario._id)}>
 
         <div>
-          <label>Titulo</label>
+          <label>Título</label>
           <div>
             <input
               onChange={(e) => {
@@ -61,7 +69,7 @@ const usuario = useSelector(state => state.auth.user);
           </div>
         </div>
         <div>
-          <label>Descripcion</label>
+          <label>Descripción</label>
           <div>
             <input
               onChange={(e) => {
@@ -75,7 +83,7 @@ const usuario = useSelector(state => state.auth.user);
           </div>
         </div>
         <div>
-          <label>Nombre de la Empresa</label>
+          <label>Nombre de la empresa</label>
           <div>
             <input
               onChange={(e) => {
@@ -112,8 +120,8 @@ const usuario = useSelector(state => state.auth.user);
               }}
               name="remote"
             >
-              <option value="true">Si</option>
-              <option value="false">No</option>
+              <option value={false}>No</option>
+              <option value={true}>Sí</option>
             </select>
           </div>
         </div>
@@ -136,7 +144,7 @@ const usuario = useSelector(state => state.auth.user);
           </div>
         </div>
         <div>
-          <label>Front, Back, Full?</label>
+          <label>Front / Back / Full-Stack</label>
           <div>
             <select
               value={empleo.end}
@@ -154,7 +162,7 @@ const usuario = useSelector(state => state.auth.user);
           </div>
         </div>
         <div>
-          <label>Enlace en LinkedIn</label>
+          <label>Enlace de LinkedIn</label>
           <div>
             <input
               onChange={(e) => {
@@ -167,7 +175,7 @@ const usuario = useSelector(state => state.auth.user);
             />
           </div>
         </div><br />
-        <div>Logo Empresa
+        <div>Logo de la empresa
           <br />
           <progress value={uploadValue} max='100' ></progress>
           <input onChange={(e) => { handleUpload(e); }} name="img"

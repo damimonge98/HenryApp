@@ -7,12 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import OfferCard from "../OfferCard/index";
 import Layout from "../../containers/Layout";
 import CrearEmpleo from "../CreateOffer/index";
-import FilterBar from "../FilterBar/index";
 
 // Styled Components
 //import { CatalogueWrapper, EmpleosColumn } from './styles';
 import "./styles.css";
 import Loading from '../Loading';
+import JobCard from "../JobCard";
 
 const Catalogo = () => {
   const { user, loading } = useSelector(state => state.auth);
@@ -26,10 +26,10 @@ const Catalogo = () => {
       title: "",
       description: "",
       location: "",
-      remote: "",
-      tipo: "",
-      end: "",
-      linkedIn: "",
+      remote: false,
+      tipo: "part-time",
+      end: "frontend",
+      linkedIn: ""
     },
   ]);
 
@@ -48,9 +48,9 @@ const Catalogo = () => {
     return <Loading />;
 
   if (user.role !== 'company' && user.currentModule <= 4) {
-      history.push("/login");
-      return null;
-    }
+    history.push("/login");
+    return null;
+  }
 
   const openEls = document.querySelectorAll("[data-open]");
   const isVisible = "is-visible";
@@ -130,6 +130,7 @@ const Catalogo = () => {
             }).reverse()}
         </div>
       </div>
+      <JobCard job={empleos[0]} />
     </Layout>
   );
 };
