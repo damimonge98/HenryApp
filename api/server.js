@@ -32,6 +32,7 @@ const enterprise = require('./src/routes/enterprise.js');
 
 const server = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect(DATABASE_URL, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
@@ -117,6 +118,9 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-server.listen(5000, () => {
-  console.log("  🚀 Server running on port 5000...");
+const host = process.env.HOST || "0.0.0.0";
+const port = process.env.PORT || 5000;
+
+server.listen(port,host, () => {
+  console.log("  🚀 Server running on port", port);
 });
