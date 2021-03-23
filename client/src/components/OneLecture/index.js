@@ -43,14 +43,14 @@ const OneLecture = (props) => {
   }, []);
 
   const getVideos = () => {
-    axios.get("http://localhost:5000/videos/", { params: { lectureid: props.match.params.lectureid } })
+    axios.get("/videos/", { params: { lectureid: props.match.params.lectureid } })
       .then(res => {
         setAllVideos(res.data);
       });
   };
 
   const getOneLecture = () => {
-    axios.get(`http://localhost:5000/lectures/${props.match.params.lectureid}`).then(
+    axios.get(`/lectures/${props.match.params.lectureid}`).then(
       res => {
         setLecture(res.data);
       }

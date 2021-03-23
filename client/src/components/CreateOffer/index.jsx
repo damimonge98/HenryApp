@@ -31,7 +31,7 @@ const CrearEmpleo = () => {
   const handleSubmit = (id) => {  //Este ID corresponde al usuario logeado rol empresa.
     const { enterpriseName, logo, title, description, location, remote, tipo, end, linkedIn } = empleo;
     axios
-      .post(`http://localhost:5000/empleos/${id}`, { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
+      .post(`/empleos/${id}`, { logo, enterpriseName, tipo, end, title, description, location, remote, linkedIn })
       .then();
   };
 

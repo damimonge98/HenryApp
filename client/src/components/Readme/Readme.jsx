@@ -23,7 +23,7 @@ export default function Readme(props) {
 
 
     const getRepoReadme = () => {
-      axios.post("http://localhost:5000/readme/", { ReadmeUrl })
+      axios.post("/readme/", { ReadmeUrl })
         .then(
           res => {
             if (!res.data.content) {

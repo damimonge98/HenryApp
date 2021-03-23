@@ -13,7 +13,7 @@ const JobsPage = () => {
   const [eliminar, setEliminar] = useState(false);
 
   const getAllEmpleos = () => {
-    axios.get("http://localhost:5000/empleos/").then((response) => {
+    axios.get("/empleos/").then((response) => {
       setJobs(response.data);
     });
   };
@@ -65,7 +65,7 @@ const JobsPage = () => {
 
   const handleDelete = (id) => {
     if (confirm("Estás seguro de que quieres eliminar esta oferta de trabajo?")) {
-      axios.delete(`http://localhost:5000/empleos/${id}`).then();
+      axios.delete(`/empleos/${id}`).then();
       setEliminar(true);
     }
   };

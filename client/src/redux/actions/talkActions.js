@@ -54,7 +54,7 @@ export const getAllTalks = () => {
   return async (dispatch) => {
     try {
       dispatch(requestActionTalks());
-      const res = await axios.get('http://localhost:5000/talk');
+      const res = await axios.get('/talk');
       dispatch(getAllTalksAction(res.data));
       dispatch(requestSuccessActionTalks());
 
@@ -68,7 +68,7 @@ export const getTalk = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionTalks());
-      const res = await axios.get(`http://localhost:5000/talk/${id}`);
+      const res = await axios.get(`/talk/${id}`);
       dispatch(getTalkAction(res.data));
       dispatch(requestSuccessActionTalks());
 
@@ -82,7 +82,7 @@ export const createTalk = (talkData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionTalks());
-      const res = await axios.post('http://localhost:5000/talk', { ...talkData });
+      const res = await axios.post('/talk', { ...talkData });
       dispatch(createTalkAction(res.data));
       dispatch(requestSuccessActionTalks());
 
@@ -96,7 +96,7 @@ export const updateTalk = (id, talkData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionTalks());
-      const res = await axios.patch(`http://localhost:5000/talk/${id}`, { ...talkData });
+      const res = await axios.patch(`/talk/${id}`, { ...talkData });
       dispatch(updateTalkAction(res.data));
       dispatch(requestSuccessActionTalks());
 
@@ -110,7 +110,7 @@ export const deleteTalk = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionTalks());
-      const res = await axios.delete(`http://localhost:5000/talk/${id}`);
+      const res = await axios.delete(`/talk/${id}`);
       dispatch(deleteTalkAction(res.data));
       dispatch(requestSuccessActionTalks());
 

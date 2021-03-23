@@ -20,7 +20,7 @@ const Modules = ({ moduloid }) => {
   }, []);
 
   const getModulos = () => {
-    axios.get("http://localhost:5000/modules/")
+    axios.get("/modules/")
       .then(res => {
         setModulos(res.data);
       });

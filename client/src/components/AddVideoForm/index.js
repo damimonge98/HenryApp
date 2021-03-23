@@ -24,7 +24,7 @@ const AddVideoForm = ({ modalRef, lectureData }) => {
 
   const onSubmit = (data) => {
     // dispatch(updateLecture(lectureData._id, data));
-    axios.post(`http://localhost:5000/videos/${lectureData._id}`, { ...data })
+    axios.post(`/videos/${lectureData._id}`, { ...data })
       .then(res => {
         // getLectures();
         modalRef.current.closeModal();

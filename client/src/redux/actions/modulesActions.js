@@ -55,7 +55,7 @@ export const getAllModules = () => {
   return async (dispatch) => {
     try {
       dispatch(requestActionModules());
-      const res = await axios.get('http://localhost:5000/modules');
+      const res = await axios.get('/modules');
       dispatch(getAllModulesAction(res.data));
       dispatch(requestSuccessActionModules());
 
@@ -69,7 +69,7 @@ export const getModuleById = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionModules());
-      const res = await axios.get(`http://localhost:5000/modules/${id}`);
+      const res = await axios.get(`/modules/${id}`);
       dispatch(getModuleByIdAction(res.data));
       dispatch(requestSuccessActionModules());
 
@@ -83,7 +83,7 @@ export const createModule = (moduleData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionModules());
-      const res = await axios.post(`http://localhost:5000/modules`, { ...moduleData });
+      const res = await axios.post(`/modules`, { ...moduleData });
       dispatch(createModuleAction(res.data));
       dispatch(requestSuccessActionModules());
 
@@ -97,7 +97,7 @@ export const updateModule = (id, moduleData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionModules());
-      const res = await axios.patch(`http://localhost:5000/lectures/${id}`, { ...moduleData });
+      const res = await axios.patch(`/lectures/${id}`, { ...moduleData });
       dispatch(updateModuleAction(res.data));
       dispatch(requestSuccessActionModules());
 
@@ -111,7 +111,7 @@ export const deleteModule = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionModules());
-      const res = await axios.delete(`http://localhost:5000/modules/${id}`);
+      const res = await axios.delete(`/modules/${id}`);
       dispatch(deleteModuleAction(res.data));
       dispatch(requestSuccessActionModules());
 

@@ -25,7 +25,7 @@ const CreateUser = () => {
 
   const handleSubmit = () => {
     const { email, firstName, lastName, password, role, isSuperAdmin } = user;
-    axios.post("http://localhost:5000/users", { email, firstName, lastName, password, role, isSuperAdmin })
+    axios.post("/users", { email, firstName, lastName, password, role, isSuperAdmin })
       .then();
   };
 

@@ -33,7 +33,7 @@ const lectureList = () => {
   }, []);
 
   const getLectures = () => {
-    axios.get("http://localhost:5000/lectures")
+    axios.get("/lectures")
       .then(res => {
         setAllLectures(res.data);
       });
@@ -41,7 +41,7 @@ const lectureList = () => {
 
   const handleDelete = (id) => {
     if (confirm("¿Quiere eliminar la Lecture? Se eliminarán todos los videos asociados") === true) {
-      axios.delete(`http://localhost:5000/lectures/${id}`)
+      axios.delete(`/lectures/${id}`)
         .then(res => getLectures());
     };
   };
@@ -50,7 +50,7 @@ const lectureList = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, description } = oneLecture;
-    axios.patch(`http://localhost:5000/lectures/${estadoId}`, { title, description })
+    axios.patch(`/lectures/${estadoId}`, { title, description })
       .then(res => {
         getLectures(),
           setOneLecture({
@@ -70,7 +70,7 @@ const lectureList = () => {
   const handleVideoSubmit = (e) => {
     e.preventDefault();
     const { title, profesor, url, img, duration } = video;
-    axios.post(`http://localhost:5000/videos/${estadoId}`, { title, profesor, url, img, duration })
+    axios.post(`/videos/${estadoId}`, { title, profesor, url, img, duration })
       .then(res => {
         getLectures(),
           setVideo({

@@ -18,7 +18,7 @@ const CreateModule = () => {
 
   const handleSubmit = () => {
     const { title, description } = module;
-    axios.post("http://localhost:5000/modules", { title, description })
+    axios.post("/modules", { title, description })
       .then(console.log(res));
   };
 

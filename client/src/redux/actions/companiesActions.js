@@ -48,7 +48,7 @@ export const getAllCompanies = () => {
   return async (dispatch) => {
     try {
       dispatch(requestActionCompanies());
-      const res = await axios.get('http://localhost:5000/enterprise');
+      const res = await axios.get('/enterprise');
       dispatch(getAllCompaniesAction(res.data));
       dispatch(requestSuccessActionCompanies());
 
@@ -62,7 +62,7 @@ export const getCompany = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionCompanies());
-      const res = await axios.get(`http://localhost:5000/enterprise/${id}`);
+      const res = await axios.get(`/enterprise/${id}`);
       dispatch(getCompanyAction(res.data));
       dispatch(requestSuccessActionCompanies());
 
@@ -76,7 +76,7 @@ export const updateCompany = (id, companyData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionCompanies());
-      const res = await axios.patch(`http://localhost:5000/enterprise/${id}`, { ...companyData });
+      const res = await axios.patch(`/enterprise/${id}`, { ...companyData });
       dispatch(updateCompanyAction(res.data));
       dispatch(requestSuccessActionCompanies());
 
@@ -90,7 +90,7 @@ export const deleteCompany = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionCompanies());
-      const res = await axios.delete(`http://localhost:5000/enterprise/${id}`);
+      const res = await axios.delete(`/enterprise/${id}`);
       dispatch(deleteCompanyAction(res.data));
       dispatch(requestSuccessActionCompanies());
 

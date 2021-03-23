@@ -54,7 +54,7 @@ export const getUsers = () => {
     try {
       dispatch(requestActionUser());
 
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("/users");
 
       dispatch(getUsersAction(res.data));
       dispatch(requestSuccessActionUser());
@@ -68,7 +68,7 @@ export const getUserById = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionUser());
-      const res = axios.get(`http://localhost:5000/users/user/${id}`);
+      const res = axios.get(`/users/user/${id}`);
 
       dispatch(getUserAction(res.data));
       dispatch(requestSuccessActionUser());
@@ -84,7 +84,7 @@ export const updateUser = (id, data) => {
     try {
       dispatch(requestActionUser());
 
-      const res = await axios.patch(`http://localhost:5000/users/user/${id}`, data);
+      const res = await axios.patch(`/users/user/${id}`, data);
 
       dispatch(updateUserAction(res.data));
       dispatch(requestSuccessActionUser());
@@ -99,7 +99,7 @@ export const deleteUser = (id) => {
     try {
       dispatch(requestActionUser());
 
-      const res = await axios.delete(`http://localhost:5000/users/${id}`);
+      const res = await axios.delete(`/users/${id}`);
 
       dispatch(deleteUserAction(res.data));
       dispatch(requestSuccessActionUser());
@@ -116,7 +116,7 @@ export const inviteUsers = (file) => {
 
       const data = new FormData();
       data.append('users', file, file.name);
-      const res = await axios.post("http://localhost:5000/upload/users", data);
+      const res = await axios.post("/upload/users", data);
 
       dispatch(inviteUsersAction(res.data.invited));
       dispatch(requestSuccessActionUser());

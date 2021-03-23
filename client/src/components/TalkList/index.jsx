@@ -15,7 +15,7 @@ const TalkList = () => {
 
 
   const getTalks = () => {
-    axios.get("http://localhost:5000/talk")
+    axios.get("/talk")
       .then(res => {
         setAllTalks(res.data);
       });

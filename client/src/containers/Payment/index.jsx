@@ -37,7 +37,7 @@ const Payment = () => {
 
   const handleSubmit = ((e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/sendMail", {
+    axios.post("/sendMail", {
       subject: `Envio de documentacion de ${user.firstName} ${user.lastName}`,
       text: textArea
     })

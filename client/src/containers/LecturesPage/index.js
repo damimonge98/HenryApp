@@ -33,14 +33,14 @@ const LecturesPage = (props) => {
   }, []);
 
   const getLectures = () => {
-    axios.get(`http://localhost:5000/modules/${props.match.params.moduloid}`)
+    axios.get(`/modules/${props.match.params.moduloid}`)
       .then(res => {
         setModule(res.data);
       });
   };
 
   const getOneModule = () => {
-    axios.get(`http://localhost:5000/lectures/?moduleid=${props.match.params.moduloid}`).then(
+    axios.get(`/lectures/?moduleid=${props.match.params.moduloid}`).then(
       res => {
         setLectures(res.data);
       });

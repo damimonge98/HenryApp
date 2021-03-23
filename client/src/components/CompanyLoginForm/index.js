@@ -53,12 +53,12 @@ const CompanyLoginForm = () => {
           <img src={henryLogo} alt="Henry Logo" />
         </Link>
       </LogoWrapper>
-      <LoginGithubButton href='http://localhost:5000/auth/github'>
+      <LoginGithubButton href='/auth/github'>
         <GithubLogo />
         Ingresar con GitHub
       </LoginGithubButton>
       <Span>o</Span>
-      <LoginGoogleButton href="http://localhost:5000/auth/google">
+      <LoginGoogleButton href="/auth/google">
         <GoogleLogo />
         Ingresar con Google
       </LoginGoogleButton>

@@ -22,7 +22,7 @@ const ModuleList = () => {
   }, []);
 
   const getModules = () => {
-    axios.get("http://localhost:5000/modules/")
+    axios.get("/modules/")
       .then(res => {
         setAllModules(res.data);
       });
@@ -30,7 +30,7 @@ const ModuleList = () => {
 
   const handleDelete = (id) => {
     if (confirm("¿Quiere eliminar este módulo? Se eliminarán todas las clases y videos asociados.") === true) {
-      axios.delete(`http://localhost:5000/modules/${id}`)
+      axios.delete(`/modules/${id}`)
         .then(res => getModules());
     }
   };
@@ -51,7 +51,7 @@ const ModuleList = () => {
   }
   const handleSubmit = () => {
     const { title, imagen, description, moduloName, urlLecture } = lecture;
-    axios.post(`http://localhost:5000/lectures/${oneId}`, { title, imagen, description, moduloName, urlLecture })
+    axios.post(`/lectures/${oneId}`, { title, imagen, description, moduloName, urlLecture })
       .then(res => console.log(res));
 
   };
@@ -59,7 +59,7 @@ const ModuleList = () => {
   const handleModuleSubmit = (id) => {
     const { title, description } = oneModule;
 
-    axios.patch(`http://localhost:5000/modules/${id}`, { title, description })
+    axios.patch(`/modules/${id}`, { title, description })
       .then(res => {
         getModules();
         setOneModule({

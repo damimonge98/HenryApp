@@ -54,7 +54,7 @@ export const getAllJobs = () => {
   return async (dispatch) => {
     try {
       dispatch(requestActionJobs());
-      const res = await axios.get('http://localhost:5000/empleos');
+      const res = await axios.get('/empleos');
       dispatch(getAllJobsAction(res.data));
       dispatch(requestSuccessActionJobs());
 
@@ -68,7 +68,7 @@ export const getJob = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionJobs());
-      const res = await axios.get(`http://localhost:5000/empleos/${id}`);
+      const res = await axios.get(`/empleos/${id}`);
       dispatch(getJobAction(res.data));
       dispatch(requestSuccessActionJobs());
 
@@ -82,7 +82,7 @@ export const createJob = (id, jobData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionJobs());
-      const res = await axios.post(`http://localhost:5000/empleos/${id}`, { ...jobData });
+      const res = await axios.post(`/empleos/${id}`, { ...jobData });
       dispatch(createJobAction(res.data));
       dispatch(requestSuccessActionJobs());
 
@@ -96,7 +96,7 @@ export const updateJob = (id, jobData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionJobs());
-      const res = await axios.patch(`http://localhost:5000/empleos/${id}`, { ...jobData });
+      const res = await axios.patch(`/empleos/${id}`, { ...jobData });
       dispatch(updateJobAction(res.data));
       dispatch(requestSuccessActionJobs());
 
@@ -110,7 +110,7 @@ export const deleteJob = (id) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionJobs());
-      const res = await axios.delete(`http://localhost:5000/empleos/${id}`);
+      const res = await axios.delete(`/empleos/${id}`);
       dispatch(deleteJobAction(res.data));
       dispatch(requestSuccessActionJobs());
 

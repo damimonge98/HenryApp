@@ -38,7 +38,7 @@ export const registerUser = (registerData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
-      await axios.post('http://localhost:5000/auth/register', { ...registerData });
+      await axios.post('/auth/register', { ...registerData });
       dispatch(registerAction());
       dispatch(requestSuccessActionAuth());
 
@@ -55,7 +55,7 @@ export const registerCompany = (companyData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
-      const res = await axios.post('http://localhost:5000/auth/register-company', { ...companyData });
+      const res = await axios.post('/auth/register-company', { ...companyData });
       dispatch(registerAction(res.data));
       dispatch(requestSuccessActionAuth());
 
@@ -69,7 +69,7 @@ export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
-      const res = await axios.post('http://localhost:5000/auth/login', { email, password });
+      const res = await axios.post('/auth/login', { email, password });
       localStorage.setItem("HJWT", res.data.token);
       dispatch(loginAction(res.data.user));
       dispatch(requestSuccessActionAuth());
@@ -88,7 +88,7 @@ export const autoLoginUser = () => {
     try {
       dispatch(requestActionAuth());
       const token = localStorage.getItem("HJWT");
-      const res = await axios.get('http://localhost:5000/auth/me', {
+      const res = await axios.get('/auth/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ export const logoutUser = () => {
     try {
       dispatch(requestActionAuth());
 
-      // await axios.post('http://localhost:5000/auth/logout');
+      // await axios.post('/auth/logout');
       localStorage.removeItem("HJWT");
 
       dispatch(logoutAction());

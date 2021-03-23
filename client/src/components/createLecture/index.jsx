@@ -19,7 +19,7 @@ const CreateLecture = (props) => {
         });
     }
     const handleSubmit = () => {
-        axios.post(`http://localhost:5000/lectures/${props.match.params.id}`, {title, imagen, description})
+        axios.post(`/lectures/${props.match.params.id}`, {title, imagen, description})
             .then(res => console.log(res));
 
     };
