@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import CardTalk from '../CardTalk';
-import axios from 'axios';
+import axios from '../../configAxios';
 
 const TalkList = () => {
   const [allTalks, setAllTalks] = useState([{

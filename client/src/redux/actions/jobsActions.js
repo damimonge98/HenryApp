@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../configAxios";
 import {
   REQUEST_ACTION_JOBS,
   REQUEST_SUCCESS_ACTION_JOBS,

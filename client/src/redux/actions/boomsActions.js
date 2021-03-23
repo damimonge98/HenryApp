@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../configAxios";
 import {GET_BOOMS, GET_BOOM_TWEETS} from "../constants/boomsContants"
 
 export function getBooms () {

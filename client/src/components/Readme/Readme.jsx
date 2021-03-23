@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import axios from '../../configAxios'; 
 import Loading from "../Loading";
 import { Remarkable } from 'remarkable';
 import ReactMarkdown from "react-markdown";

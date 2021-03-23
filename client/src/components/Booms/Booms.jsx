@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBooms, getBoomsTweet } from "../../redux/actions/boomsActions.js";
 import Carousel from 'react-elastic-carousel';
 import "./Booms.css";
-import axios from "axios";
+import axios from '../../configAxios';
 
 
 export default function Booms() {

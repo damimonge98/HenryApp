@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../configAxios";
 import ModuleCard from '../../components/ModuleCard/index.jsx';
 import './styles.css';
 import { useSelector } from "react-redux";

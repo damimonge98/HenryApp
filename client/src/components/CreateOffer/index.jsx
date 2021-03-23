@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from '../../configAxios';
 import firebase from 'firebase';
 import { useSelector } from "react-redux";
 

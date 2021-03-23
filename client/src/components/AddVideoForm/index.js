@@ -9,7 +9,7 @@ import Input from '../Input';
 import Loading from '../Loading';
 import Select from '../Select';
 import { AddVideoFormWrapper, AddVideoButton } from './styles';
-import axios from 'axios';
+import axios from '../../configAxios';
 
 const AddVideoForm = ({ modalRef, lectureData }) => {
 

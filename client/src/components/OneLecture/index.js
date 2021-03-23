@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import axios from '../../configAxios';
 import "./index.css";
 import { Link } from "react-router-dom";
 import Readme from "../Readme/Readme";

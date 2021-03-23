@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../configAxios";
 import './estilos.css';
 import LectureCard from "../../components/LectureCard";
 import Header from "../../components/Header/index";

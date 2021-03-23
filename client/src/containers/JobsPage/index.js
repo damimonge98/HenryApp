@@ -4,7 +4,7 @@ import { Grid, JobsPageWrapper, H1, Button, Row } from './styles';
 import Layout from '../Layout';
 import JobCard from '../../components/JobCard';
 import Loading from '../../components/Loading';
-import axios from 'axios';
+import axios from '../../configAxios';
 import CrearEmpleo from '../../components/CreateOffer';
 
 const JobsPage = () => {

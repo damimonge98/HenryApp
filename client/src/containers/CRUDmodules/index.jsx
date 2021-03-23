@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from '../../configAxios';
 import CreateModule from '../../components/CreateModule/index';
 import "./estilos.css";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
-import axios from "axios";
+import axios from '../../configAxios';
 import Modal from '../Modal'
 
 const OfferCard = ({ empleo, admin, foo }) => {
