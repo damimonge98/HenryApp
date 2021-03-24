@@ -55,7 +55,7 @@ export const getUsers = () => {
       dispatch(requestActionUser());
 
       const res = await axios.get("/users");
-
+      console.log("res", res)
       dispatch(getUsersAction(res.data));
       dispatch(requestSuccessActionUser());
     } catch (error) {

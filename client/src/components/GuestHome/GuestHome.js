@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useDispatch} from "react-redux";
 import Booms from "../Booms/Booms";
 import { ReactComponent as Dots } from "../../assets/icons/dots.svg";
 
 import studentsImage from "../../assets/images/students.png";
 import enterpriseImage from "../../assets/images/buildings.png";
+
+import { getUsers } from "../../redux/actions/usersActions"
 
 import {
   Announcements,
@@ -23,6 +26,11 @@ import {
 
 const GuestHome = () => {
   const [students, setStudents] = useState(true);
+  const dispatch = useDispatch();
+  useEffect (()=> {
+    dispatch(getUsers())
+    .then(res=>console.log(res))
+  },[])
 
   return (
     <GuestHomeWrapper>
