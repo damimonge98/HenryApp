@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const clienteAxios = axios.create({
-    baseURL: ""
+    baseURL: "https://henry-app-sage.vercel.app/auth/register"
 })
 
 export default clienteAxios;

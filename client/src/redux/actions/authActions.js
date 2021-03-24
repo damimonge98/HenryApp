@@ -38,7 +38,7 @@ export const registerUser = (registerData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
-      await axios.post('https://henry-app21.herokuapp.com/auth/register', { ...registerData });
+      await axios.post('/', { ...registerData });
       dispatch(registerAction());
       dispatch(requestSuccessActionAuth());
 
