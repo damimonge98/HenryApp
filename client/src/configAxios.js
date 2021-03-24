@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const clienteAxios = axios.create({
-    baseURL: process.env.REACT_APP_API
+    baseURL: "https://henry-app21.herokuapp.com"
 })
 
 export default clienteAxios;
