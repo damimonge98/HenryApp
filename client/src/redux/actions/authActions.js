@@ -35,6 +35,7 @@ const logoutAction = () => ({
 });
 
 export const registerUser = (registerData) => {
+  console.log("registerData", registerData)
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
