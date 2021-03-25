@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch} from "react-redux";
-import Booms from "../Booms/Booms";
+/*import Booms from "../Booms/Booms";*/
 import { ReactComponent as Dots } from "../../assets/icons/dots.svg";
 
 import studentsImage from "../../assets/images/students.png";
@@ -81,7 +81,7 @@ const GuestHome = () => {
               </EnterpriseSection>
             )
         }
-        <Booms />
+        {/*<Booms />*/}
         <Section>
           <h4>¿Listo para cambiar tu vida?</h4>
           <Button to="/login">Comienza a estudiar</Button>
