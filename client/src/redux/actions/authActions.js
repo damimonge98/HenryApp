@@ -39,7 +39,7 @@ export const registerUser = (registerData) => {
   return async (dispatch) => {
     try {
       dispatch(requestActionAuth());
-      await axios.post('/', {email: registerData.email, firstName: registerData.firstName, lastName: registerData.lastName, password: registerData.password });
+      await axios.post('/', {email: registerData.email, firstName: registerData.firstName, lastName: registerData.lastName, password: registerData.password }, { headers: { "Access-Control-Allow-Origin": "*", } } );
       dispatch(registerAction());
       dispatch(requestSuccessActionAuth());
 
